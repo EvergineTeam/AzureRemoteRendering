@@ -1,0 +1,26 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Condition="$(TargetFrameworkIdentifier) == '.NETFramework' OR $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('netstandard'))">
+    <Content Include="$(MSBuildThisFileDirectory)bin\$(Configuration)\netstandard2.0\runtimes\win10-x64\native\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetPlatformIdentifier) == 'UAP' AND $(PlatformName) != 'x64'">
+    <Content Include="$(MSBuildThisFileDirectory)bin\$(Configuration)\netstandard2.0\runtimes\win10-$(PlatformName)\nativeassets\uap10.0\*">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetPlatformIdentifier) == 'UAP' AND $(PlatformName) == 'x64'">
+    <Content Include="$(MSBuildThisFileDirectory)bin\$(Configuration)\netstandard2.0\runtimes\win10-$(PlatformName)\native\*">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </Content>
+  </ItemGroup>
+
+</Project>
