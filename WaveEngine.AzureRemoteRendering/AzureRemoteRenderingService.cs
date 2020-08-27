@@ -60,10 +60,6 @@ namespace WaveEngine.AzureRemoteRendering
 
         // Simulation
         private SimulationUpdate simUpdate;
-        private DX11Texture proxyDepthTarget;
-        private DX11Texture proxyColorTarget;
-        private DepthStencilView proxyDepthView;
-        private RenderTargetView proxyColorView;
         private Mathematics.Matrix4x4 preUpdateCameraWorldTransform;
 
         // Mixed Reality
@@ -259,21 +255,15 @@ namespace WaveEngine.AzureRemoteRendering
                 camera.ResetCustomProjection();
                 camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
 
+                var drawContext = camera.DrawContext;
+                var frameBuffer = drawContext.IntermediateFrameBuffer ?? drawContext.FrameBuffer;
+                var dx11FrameBuffer = (DX11FrameBuffer)frameBuffer;
+                var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
+                var depthDestination = dx11FrameBuffer.DepthTargetview;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, this.proxyColorTarget.Description.Width, this.proxyColorTarget.Description.Height);
-                dxContext.OutputMerger.SetRenderTargets(this.proxyDepthView, this.proxyColorView);
+                dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
+                dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
                 blitSuccess = simulationBinding.BlitRemoteFrameToProxy() == Result.Success;
-
-                if (blitSuccess)
-                {
-                    var frameBuffer = camera.DrawContext.FrameBuffer as DX11FrameBuffer;
-                    var colorSource = this.proxyColorTarget.NativeTexture;
-                    var depthSource = this.proxyDepthTarget.NativeTexture;
-                    var colorDestination = frameBuffer.ColorTargetViews[0].Resource;
-                    var depthDestination = frameBuffer.DepthTargetview.Resource;
-                    dxContext.CopyResource(colorSource, colorDestination);
-                    dxContext.CopyResource(depthSource, depthDestination);
-                }
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
             {
@@ -645,13 +635,12 @@ namespace WaveEngine.AzureRemoteRendering
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
                 var swapChainDescription = this.graphicsPresenter.FocusedDisplay.SwapChain.SwapChainDescription;
-
                 var textureDescription = new TextureDescription()
                 {
                     Type = Common.Graphics.TextureType.Texture2D,
                     Usage = Common.Graphics.ResourceUsage.Default,
                     Flags = TextureFlags.RenderTarget | TextureFlags.ShaderResource,
-                    Format = PixelFormat.R8G8B8A8_UNorm,
+                    Format = swapChainDescription.ColorTargetFormat,
                     Width = swapChainDescription.Width,
                     Height = swapChainDescription.Height,
                     Depth = 1,
@@ -661,15 +650,13 @@ namespace WaveEngine.AzureRemoteRendering
                     CpuAccess = ResourceCpuAccess.None,
                     SampleCount = TextureSampleCount.None,
                 };
-                this.proxyColorTarget = this.graphicsContext.Factory.CreateTexture(ref textureDescription) as DX11Texture;
+                var proxyColorTexture = this.graphicsContext.Factory.CreateTexture(ref textureDescription);
+                var proxyColorPtr = proxyColorTexture.NativePointer;
 
-                textureDescription.Format = PixelFormat.D24_UNorm_S8_UInt;
+                textureDescription.Format = swapChainDescription.DepthStencilTargetFormat;
                 textureDescription.Flags = TextureFlags.DepthStencil;
-                this.proxyDepthTarget = this.graphicsContext.Factory.CreateTexture(ref textureDescription) as DX11Texture;
-
-                var dxDevice = (this.graphicsContext as DX11GraphicsContext).DXDevice;
-                this.proxyColorView = new RenderTargetView(dxDevice, this.proxyColorTarget.NativeTexture);
-                this.proxyDepthView = new DepthStencilView(dxDevice, this.proxyDepthTarget.NativeTexture);
+                var proxyDepthTexture = this.graphicsContext.Factory.CreateTexture(ref textureDescription);
+                var proxyDepthPtr = proxyDepthTexture.NativePointer;
 
                 this.simUpdate = new SimulationUpdate()
                 {
@@ -677,12 +664,15 @@ namespace WaveEngine.AzureRemoteRendering
                     renderTargetHeight = (int)textureDescription.Height,
                 };
 
+                // In spite of ARR BlitRemoteFrame invocation is performed using framebuffer's color and depth targets
+                // (avoid the need of DX11.CopyResource), InitSimulation invocation need textures with specific description
+                // even though they are disposed right after the invocation.
                 var m_device = this.graphicsContext.NativeDevicePointer;
-                var m_proxyDepthTarget = this.proxyDepthTarget.NativePointer;
-                var m_proxyColorTarget = this.proxyColorTarget.NativePointer;
                 var refreshRate = swapChainDescription.RefreshRate;
-                var result = simulationBinding.InitSimulation(m_device, m_proxyDepthTarget, m_proxyColorTarget, refreshRate, false, false);
+                var result = simulationBinding.InitSimulation(m_device, proxyDepthPtr, proxyColorPtr, refreshRate, false, false);
                 success = result == Result.Success;
+                proxyColorTexture.Dispose();
+                proxyDepthTexture.Dispose();
             }
 
             if (!success)
@@ -703,18 +693,6 @@ namespace WaveEngine.AzureRemoteRendering
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationSession)
             {
                 simulationSession.DeinitSimulation();
-
-                this.proxyColorTarget?.Dispose();
-                this.proxyColorTarget = null;
-
-                this.proxyDepthTarget?.Dispose();
-                this.proxyDepthTarget = null;
-
-                this.proxyColorView?.Dispose();
-                this.proxyColorView = null;
-
-                this.proxyDepthView?.Dispose();
-                this.proxyDepthView = null;
             }
 
             this.CurrentSession.ConnectionStatusChanged -= this.Session_ConnectionStatusChanged;
