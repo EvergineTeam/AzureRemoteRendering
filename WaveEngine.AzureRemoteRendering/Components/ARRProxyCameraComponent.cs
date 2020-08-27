@@ -33,6 +33,8 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             base.OnActivated();
 
+            this.camera3D.BackgroundColor = Color.Black;
+
             this.arrService.ConnectionStatusChanged += this.ArrService_ConnectionStatusChanged;
             this.ArrService_ConnectionStatusChanged(this, this.arrService.ConnectionStatus);
         }
