@@ -104,7 +104,7 @@ namespace WaveEngine.AzureRemoteRendering
         public AzureSession CurrentSession { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether the active <see cref="AzureSession"/> is connected.
+        /// Gets a value indicating whether the <see cref="this.CurrentSession"/> is connected.
         /// </summary>
         public bool IsCurrentSessionConnected => this.CurrentSession?.IsConnected == true;
 

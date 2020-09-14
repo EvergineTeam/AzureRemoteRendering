@@ -195,3 +195,4 @@ src/.idea/
 .waveengine
 
 WaveContent.cs
+WaveEngine.AzureRemoteRendering/WaveEngine.AzureRemoteRendering.xml

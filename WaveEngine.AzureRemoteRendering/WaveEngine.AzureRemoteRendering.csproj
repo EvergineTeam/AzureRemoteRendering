@@ -3,16 +3,33 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Provides a service to support Azure Remote Rendering system</Description>
+    <Copyright>Copyright (c) Wave Engine 2020</Copyright>
+    <Authors>Wave Engine Team</Authors>
+    <Company>Plain Concepts</Company>
+    <Product>Wave Engine</Product>
+    <PackageProjectUrl>https://waveengine.net/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/WaveEngine/AzureRemoteRendering</RepositoryUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>WaveEngine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Github\AzureRemoteRendering\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="WaveEngine.Common.Attributes.WaveEngineAssembly">
+      <_Parameter1>Extension</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="0.1.41" GeneratePathProperty="true">
       <ExcludeAssets>build</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Common" Version="3.0.0.5727-nightly" />
-    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.5727-nightly" />
-    <PackageReference Include="WaveEngine.Framework" Version="3.0.0.5727-nightly" />
-    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.5727-nightly" />
+    <PackageReference Include="WaveEngine.Common" Version="3.0.0.5807-preview4" />
+    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.5807-preview4" />
+    <PackageReference Include="WaveEngine.Framework" Version="3.0.0.5807-preview4" />
+    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.5807-preview4" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build/net45/WaveEngine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
@@ -33,5 +50,18 @@
       <Link>runtimes\win10-x64\native\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="WaveEngine.AzureRemoteRendering.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\Resouces\NugetIcon\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
