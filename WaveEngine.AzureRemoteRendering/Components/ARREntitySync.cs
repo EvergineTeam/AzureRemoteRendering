@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using WaveEngine.Framework;
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.AzureRemoteRendering;
 using WaveEngine.Framework.Graphics;
 using System.Diagnostics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;

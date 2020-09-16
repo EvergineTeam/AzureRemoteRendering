@@ -2690,7 +2690,7 @@ namespace Microsoft.Azure.RemoteRendering
     /// The account information and domain to associate an AzureFrontend instance with.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct AzureFrontendAccountInfoAbi
+    internal class AzureFrontendAccountInfoAbi
     {
         /// <summary>
         /// Domain that will be used to generate sessions for the Azure Remote Rendering service. The domain is of the form [region].mixedreality.azure.com. Region should be selected based on the region currently closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.
@@ -2744,7 +2744,7 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// The account information and domain to associate an AzureFrontend instance with.
     /// </summary>
-    public partial struct AzureFrontendAccountInfo
+    public partial class AzureFrontendAccountInfo
     {
         /// <summary>
         /// Domain that will be used to generate sessions for the Azure Remote Rendering service. The domain is of the form [region].mixedreality.azure.com. Region should be selected based on the region currently closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.

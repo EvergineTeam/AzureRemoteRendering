@@ -288,6 +288,11 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="accountInfo">The Azure Frontend credentials.</param>
         public void Initialize(AzureFrontendAccountInfo accountInfo)
         {
+            if(accountInfo == null)
+            {
+                throw new ArgumentNullException(nameof(accountInfo));
+            }
+
             if (this.frontEnd != null)
             {
                 throw new InvalidOperationException($"{nameof(AzureRemoteRenderingService)} is already initialized.");

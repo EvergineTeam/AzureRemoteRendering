@@ -26,10 +26,10 @@
       <ExcludeAssets>build</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Common" Version="3.0.0.5807-preview4" />
-    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.5807-preview4" />
-    <PackageReference Include="WaveEngine.Framework" Version="3.0.0.5807-preview4" />
-    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.5807-preview4" />
+    <PackageReference Include="WaveEngine.Common" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Framework" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.5947-preview4" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build/net45/WaveEngine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
