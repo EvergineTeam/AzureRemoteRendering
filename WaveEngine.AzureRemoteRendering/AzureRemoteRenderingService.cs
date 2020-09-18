@@ -83,7 +83,7 @@ namespace WaveEngine.AzureRemoteRendering
 
         /// <summary>
         /// Gets the frontend associated with this service. Frontends are used for authentication and
-        /// will be created through <see cref="Initialize(AzureFrontendAccountInfo)"/>.
+        /// will be created through <see cref="Initialize(ARRFrontendAccountInfo)"/>.
         /// </summary>
         public AzureFrontend FrontEnd
         {
@@ -203,8 +203,7 @@ namespace WaveEngine.AzureRemoteRendering
             }
 
             var cameraSettings = this.CurrentSession.Actions.CameraSettings;
-            cameraSettings.NearPlane = camera.NearPlane;
-            cameraSettings.FarPlane = camera.FarPlane;
+            cameraSettings.SetNearAndFarPlane(camera.NearPlane, camera.FarPlane);
 
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
@@ -286,7 +285,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// Initializes the service creating the <see cref="FrontEnd"/>.
         /// </summary>
         /// <param name="accountInfo">The Azure Frontend credentials.</param>
-        public void Initialize(AzureFrontendAccountInfo accountInfo)
+        public void Initialize(ARRFrontendAccountInfo accountInfo)
         {
             if(accountInfo == null)
             {
@@ -303,12 +302,12 @@ namespace WaveEngine.AzureRemoteRendering
                 throw new InvalidOperationException($"{nameof(AzureRemoteRenderingService)} is not attached.");
             }
 
-            if (!accountInfo.HasRequiredInfo())
+            if (!accountInfo.HasRequiredInfo)
             {
                 throw new ArgumentException($"{nameof(accountInfo)} has not all required info.");
             }
 
-            this.frontEnd = new AzureFrontend(accountInfo);
+            this.frontEnd = new AzureFrontend(accountInfo.Convert());
         }
 
         /// <summary>

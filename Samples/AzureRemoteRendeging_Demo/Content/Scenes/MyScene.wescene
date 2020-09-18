@@ -1,0 +1,216 @@
+!WaveEngine.Framework.Assets.AssetSources.Entities.SceneModel,WaveEngine.Framework
+Items:
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: camera
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 2c95feb4-e8ea-4dcd-89e6-551a0970736f
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.923879564
+          X: -0.382683367
+          Y: -0.0
+          Z: -0.0
+        LocalPosition:
+          X: 0.0
+          Y: 2.0
+          Z: 2.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Cameras.FreeCamera3D,WaveEngine.Components
+        Id: d41631c9-4daa-4859-b3f6-9092a1a7bf2c
+        IsEnabled: true
+        MaxPitch: 1.49225616
+        MouseSensibility: 0.0299999993
+        Speed: 5.0
+        TouchMoveAndOrientationRatio: 0.5
+        TouchSensibility: 1.0
+        UpdateOrder: 0.5
+      - !WaveEngine.Framework.Graphics.Camera3D,WaveEngine.Framework
+        Id: ae499b05-5e07-419a-9e9f-db8697067609
+        Aperture: 1.0
+        AspectRatio: 1.77209306
+        BackgroundColor:
+          A: 255
+          B: 0
+          G: 0
+          R: 0
+        CameraOrder: 0.0
+        ClearDepth: 1.0
+        ClearFlags: All
+        ClearStencil: 0
+        Compensation: 0.0
+        DepthRange:
+          MaxDepth: 1.0
+          MinDepth: 0.0
+        DisplayTag: null
+        DisplayTagDirty: false
+        Exposure: 1.00000012
+        FarPlane: 1000.0
+        FieldOfView: 0.785398185
+        FieldOfViewAxis: Vertical
+        FocalDistance: 2.0
+        FocalLength: 50.0
+        FrustumCullingEnabled: true
+        HDREnabled: false
+        IsEnabled: true
+        LayerMaskDefaultValue: true
+        LinearBackgroundColor:
+          A: 1.0
+          AsVector3:
+            X: 0.0
+            Y: 0.0
+            Z: 0.0
+          AsVector4:
+            W: 1.0
+            X: 0.0
+            Y: 0.0
+            Z: 0.0
+          B: 0.0
+          G: 0.0
+          R: 0.0
+        NearPlane: 0.100000001
+        PreviousViewProjection:
+          M11: 0.0
+          M12: 0.0
+          M13: 0.0
+          M14: 0.0
+          M21: 0.0
+          M22: 0.0
+          M23: 0.0
+          M24: 0.0
+          M31: 0.0
+          M32: 0.0
+          M33: 0.0
+          M34: 0.0
+          M41: 0.0
+          M42: 0.0
+          M43: 0.0
+          M44: 0.0
+        ScreenViewport:
+          Height: 215.0
+          MaxDepth: 1.0
+          MinDepth: 0.0
+          Width: 381.0
+          X: 0.0
+          Y: 0.0
+        Sensitivity: 100.0
+        SensorSize:
+          X: 36.0
+          Y: 24.0
+        ShutterSpeed: 1.20000005
+        UpVector:
+          X: 0.0
+          Y: 1.0
+          Z: 0.0
+        UsePhysicalParameters: false
+      - !WaveEngine.AzureRemoteRendering.Components.ARRProxyCameraComponent,WaveEngine.AzureRemoteRendering
+        Id: 48dae10e-5ccc-414a-9a2f-4928f2816412
+        IsEnabled: true
+      - !WaveEngine.AzureRemoteRendering.Components.ARRSessionManager,WaveEngine.AzureRemoteRendering
+        Id: dc76d938-cdcf-46ac-8c53-d923b932219c
+        AccountInfo:
+          AccessToken: 
+          AccountDomain: westeurope.mixedreality.azure.com
+          AccountId: 
+          AccountKey: 
+          AuthenticationToken: 
+        CreateAndConnectAutomatically: true
+        InitialLeaseTime: 0:01:00:00.0000000
+        IsEnabled: true
+        VMSize: Standard
+    Children: []
+    Id: 5add2499-4f19-4965-bbf3-7be16886359e
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: light
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 2de614dd-c813-4736-a9e6-c9fed7bb7a00
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.853553474
+          X: 0.146446586
+          Y: -0.353553355
+          Z: -0.353553355
+        LocalPosition:
+          X: 4.0
+          Y: 4.0
+          Z: 4.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.DirectionalLight,WaveEngine.Framework
+        Id: d4e41f40-a171-4d65-8bac-cb2c41b410d5
+        Color:
+          A: 255
+          B: 255
+          G: 255
+          R: 255
+        Intensity: 1.0
+        IsEnabled: true
+    Children: []
+    Id: 4391ceef-344e-4832-8f55-c6a341c9c045
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: engineModel
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 54b7762b-c263-423b-8169-70c21c6e7e33
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.AzureRemoteRendering.Components.ARRModelLoader,WaveEngine.AzureRemoteRendering
+        Id: 9db81401-40a8-4ab2-940b-f4a356ec29a0
+        IsEnabled: true
+        Progress: 0.0
+        Url: builtin://Engine
+      - !WaveEngine.AzureRemoteRendering.Components.ARREntitySync,WaveEngine.AzureRemoteRendering
+        Id: e2660b45-8178-4ae7-9dc9-bacb3fe6ab04
+        IsEnabled: true
+        SyncEveryFrame: false
+        UpdateOrder: 0.5
+      - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
+        Id: 3eb13c62-2ba3-40a8-89a3-84199a9933ba
+        Diameter: 0.100000001
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: sphere_primitive
+        Tessellation: 16
+        UVHorizontalFlip: false
+        UVVerticalFlip: false
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 42118a4c-cd7f-4362-86a7-1a3ad91aca3e
+        DebugBoundingbox: true
+        FrustumCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: bc1f18b9-dac9-4eeb-9bc3-08b243ed6ea8
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+    Children: []
+    Id: 1ec0132a-bc9e-4113-ab50-56d8c8863bb1
+Managers: []

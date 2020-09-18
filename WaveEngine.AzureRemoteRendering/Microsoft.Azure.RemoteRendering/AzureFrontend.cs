@@ -55,7 +55,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
     }
 
-    public partial class AzureFrontendAccountInfo
+    public partial struct AzureFrontendAccountInfo
     {
         public bool HasRequiredInfo()
         {

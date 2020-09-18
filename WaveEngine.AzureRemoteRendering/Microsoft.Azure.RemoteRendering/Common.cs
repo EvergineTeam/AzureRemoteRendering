@@ -232,7 +232,7 @@ namespace Microsoft.Azure.RemoteRendering
 
     // Allow the frontend account info to be serialized
     [Serializable]
-    public partial class AzureFrontendAccountInfo
+    public partial struct AzureFrontendAccountInfo
     {
         public AzureFrontendAccountInfo(
             string accountDomain = "mixedreality.azure.com",

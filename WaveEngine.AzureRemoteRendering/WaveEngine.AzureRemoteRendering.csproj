@@ -14,7 +14,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Github\AzureRemoteRendering\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\WaveEngine.AzureRemoteRendering.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttribute Include="WaveEngine.Common.Attributes.WaveEngineAssembly">
@@ -52,14 +52,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="WaveEngine.AzureRemoteRendering.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\Resouces\NugetIcon\icon.png">
+    <None Include="..\Resources\NugetIcon\icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

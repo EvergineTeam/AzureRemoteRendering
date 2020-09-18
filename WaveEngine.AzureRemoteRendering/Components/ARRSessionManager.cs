@@ -24,7 +24,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         /// <summary>
         /// Gets or sets the account information and domain to associate an <see cref="AzureFrontend"/> instance with.
         /// </summary>
-        public AzureFrontendAccountInfo AccountInfo { get; set; } = new AzureFrontendAccountInfo();
+        public ARRFrontendAccountInfo AccountInfo { get; set; } = new ARRFrontendAccountInfo();
 
         /// <summary>
         /// Gets or sets a value indicating that a <see cref="AzureSession"/> will be reused or created once this component is activated.
