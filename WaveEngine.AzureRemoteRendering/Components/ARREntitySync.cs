@@ -184,6 +184,24 @@ namespace WaveEngine.AzureRemoteRendering.Components
             }
         }
 
+        /// <inheritdoc />
+        protected override void OnActivated()
+        {
+            if (this.IsRemoteEntityValid)
+            {
+                this.RemoteEntity.Enabled = true;
+            }
+        }
+
+        /// <inheritdoc />
+        protected override void OnDeactivated()
+        {
+            if (this.IsRemoteEntityValid)
+            {
+                this.RemoteEntity.Enabled = false;
+            }
+        }
+
         /// <summary>
         /// Synchronize local proxy <see cref="WaveEntity"/> transform and name
         /// with the remote <see cref="ARREntity"/>.

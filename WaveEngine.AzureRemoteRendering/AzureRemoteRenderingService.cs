@@ -25,7 +25,7 @@ namespace WaveEngine.AzureRemoteRendering
     /// </summary>
     /// <remarks>
     /// This service must be initialized before <see cref="XRPlatform"/> service in Mixed Reality platform.
-    /// Once attached, the method <see cref="Initialize(AzureFrontendAccountInfo)"/> must be called to perform
+    /// Once attached, the method <see cref="Initialize(ARRFrontendAccountInfo)"/> must be called to perform
     /// authentication with the <see cref="AzureFrontend"/>.
     /// Currently the extension only works with <see cref="GraphicsBackend.DirectX11"/>.
     /// </remarks>
@@ -104,7 +104,7 @@ namespace WaveEngine.AzureRemoteRendering
         public AzureSession CurrentSession { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="this.CurrentSession"/> is connected.
+        /// Gets a value indicating whether the <see cref="CurrentSession"/> is connected.
         /// </summary>
         public bool IsCurrentSessionConnected => this.CurrentSession?.IsConnected == true;
 
@@ -311,7 +311,9 @@ namespace WaveEngine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Query the full set of existing rendering sessions for the account associated with the frontend.
+        /// Query the full set of existing rendering sessions for the account associated with the frontend. Since the underlying call is a REST call,
+        /// there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail
+        /// and the HttpResponseCode reports code 429 ("too many requests").
         /// </summary>
         /// <returns>
         /// A task with an array of <see cref="RenderingSessionProperties"/>.

@@ -845,6 +845,8 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_object_meta_data_entry_get_as_string(IntPtr handle, [MarshalAs(UnmanagedType.LPStr)] out string result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_object_meta_data_get_valid(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_object_meta_data_get_metadata_by_name(IntPtr handle, [MarshalAs(UnmanagedType.LPStr)] string name, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_object_meta_data_get_metadata(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] out IntPtr[] result, out int result_count);
@@ -878,6 +880,10 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_destroy(ulong handle);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_entity_find_component_of_type(ulong handle, Microsoft.Azure.RemoteRendering.ObjectType type, out ulong result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_entity_get_enabled(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_entity_set_enabled(ulong handle, [MarshalAs(UnmanagedType.U1)] bool value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_entity_get_position(ulong handle, out Microsoft.Azure.RemoteRendering.Double3 result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -947,6 +953,8 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_async_base_addref(IntPtr handle);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_async_base_get_valid(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_async_base_get_status(IntPtr handle, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_async_base_get_is_completed(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool result);
@@ -1001,9 +1009,13 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_create_session_async_get_result(IntPtr handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_session_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_session_get_azure_frontend(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_create_azure_frontend_account_info_init(Microsoft.Azure.RemoteRendering.AzureFrontendAccountInfoAbi init, out ulong instance);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_set_message_logged(ulong handle, ulong value, Microsoft.Azure.RemoteRendering.LogHandlerNative value_fn);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1059,7 +1071,7 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_conversion_status_async_get_result(IntPtr handle, out Microsoft.Azure.RemoteRendering.ConversionSessionStatus result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_conversion_status_async_get_message(IntPtr handle, [MarshalAs(UnmanagedType.LPStr)] out string result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_conversion_status_async_get_error_message(IntPtr handle, [MarshalAs(UnmanagedType.LPStr)] out string result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_conversion_status_async_set_destructor_hook(IntPtr handle, ulong value, Microsoft.Azure.RemoteRendering.DestructorHookDelegateNative value_fn);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1335,17 +1347,29 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_set_alpha_clip_threshold(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_near_plane(ulong handle, out float result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_set_near_plane(ulong handle, float value);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_near_plane(ulong handle, out float result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_far_plane(ulong handle, out float result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_set_far_plane(ulong handle, float value);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_set_near_and_far_plane(ulong handle, float near_plane, float far_plane);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_enable_depth(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_set_enable_depth(ulong handle, [MarshalAs(UnmanagedType.U1)] bool value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_stage_space_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_stage_space_settings_get_position(ulong handle, out Microsoft.Azure.RemoteRendering.Double3 result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_stage_space_settings_set_position(ulong handle, Microsoft.Azure.RemoteRendering.Double3 value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_stage_space_settings_get_rotation(ulong handle, out Microsoft.Azure.RemoteRendering.Quaternion result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_stage_space_settings_set_rotation(ulong handle, Microsoft.Azure.RemoteRendering.Quaternion value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_debug_rendering_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_debug_rendering_settings_get_render_frame_count(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1359,6 +1383,8 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_debug_rendering_settings_set_render_wireframe(ulong handle, [MarshalAs(UnmanagedType.U1)] bool value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_outline_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_outline_settings_get_color(ulong handle, out Microsoft.Azure.RemoteRendering.Color4Ub result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_outline_settings_set_color(ulong handle, Microsoft.Azure.RemoteRendering.Color4Ub value);
@@ -1371,13 +1397,19 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_outline_settings_set_pulse_intensity(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_single_sided_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_single_sided_settings_get_mode(ulong handle, out Microsoft.Azure.RemoteRendering.SingleSidedMode result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_single_sided_settings_set_mode(ulong handle, Microsoft.Azure.RemoteRendering.SingleSidedMode value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_sky_reflection_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_sky_reflection_settings_get_sky_reflection_texture(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_sky_reflection_settings_set_sky_reflection_texture(ulong handle, ulong value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_zfighting_mitigation_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_zfighting_mitigation_settings_get_enabled(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1434,6 +1466,8 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_create_component(ulong handle, Microsoft.Azure.RemoteRendering.ObjectType component_type, ulong owner, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_camera_settings(ulong handle, out ulong result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_stage_space_settings(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_sky_reflection_settings(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -3475,7 +3509,7 @@ namespace Microsoft.Azure.RemoteRendering
         public uint HttpResponseCode;
 
         /// <summary>
-        /// Additional error information might be provided through this string, dependeing on the error code.
+        /// Additional error information might be provided through this string, depending on the error code.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ErrorMessage;
@@ -3527,7 +3561,7 @@ namespace Microsoft.Azure.RemoteRendering
         public uint HttpResponseCode;
 
         /// <summary>
-        /// Additional error information might be provided through this string, dependeing on the error code.
+        /// Additional error information might be provided through this string, depending on the error code.
         /// </summary>
         public string ErrorMessage;
 
@@ -4937,39 +4971,12 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, resultStatus);
         }
 
-        #region IDisposable Support
-
-        /// <summary>
-        /// Whether the implementation has been disposed or not.
-        /// </summary>
-        private bool isDisposed = false;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.isDisposed)
-            {
-                if (disposing)
-                {
-                    NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_async_base_dispose(this.handle));
-                }
-
-                NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_async_base_release(this.handle));
-                this.handle = IntPtr.Zero;
-
-                this.isDisposed = true;
-            }
-        }
-
         /// <summary>
         /// Finalizes an instance of the <see cref="AsyncBase"/> class.
         /// </summary>
         ~AsyncBase()
         {
-            this.Dispose(false);
+            NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_async_base_release(this.handle));
         }
 
         /// <summary>
@@ -4977,14 +4984,24 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_async_base_dispose (this.handle));
         }
 
-        #endregion IDisposable Support
+        /// <summary>
+        /// Indicates whether this object is still valid.
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_async_base_get_valid(this.handle, out result));
+                return result;
+            }
+        }
 
         /// <summary>
-        /// Get the current status of operation. Success if finished successfully, InProgress if in progress, otherwise error code of the operation if failed.
+        /// Get the current status of operation. Success if finished successfully, InProgress if in progress, otherwise error code of the operation if failed. If this object is not valid, this returns error AlreadyDeinitialized.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result Status
         {
@@ -4997,7 +5014,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when the task is in one of the two final states: Faulted or RanToCompletion.
+        /// True when the task is in one of the two final states: Faulted or RanToCompletion. This may only be called when this object is valid.
         /// </summary>
         public bool IsCompleted
         {
@@ -5010,7 +5027,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when task is in Success state.
+        /// True when task is in Success state. This may only be called when this object is valid.
         /// </summary>
         public bool IsRanToCompletion
         {
@@ -5023,7 +5040,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when task is not in Success or InProgress states.
+        /// True when task is not in Success or InProgress states. This may only be called when this object is valid.
         /// </summary>
         public bool IsFaulted
         {
@@ -5038,7 +5055,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// AzureFrontend is an authorized connection to the Azure APIs for Remote Rendering. Use the AzureFrontend to create AzureSessions and convert assets. AzureSession keep a reference to the frontend, meaning all rendering sessions must be freed before the frontend will be free'd.
+    /// AzureFrontend is an authorized connection to the Azure APIs for Remote Rendering. All functions may only be called when this object is valid. Use the AzureFrontend to create AzureSessions and convert assets. AzureSession keep a reference to the frontend, meaning all rendering sessions must be freed before the frontend will be free'd.
     /// </summary>
     public partial class AzureFrontend : IDisposable, ICookie
     {
@@ -5057,39 +5074,12 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.AzureFrontend>.Add(this);
         }
 
-        #region IDisposable Support
-
-        /// <summary>
-        /// Whether the implementation has been disposed or not.
-        /// </summary>
-        private bool isDisposed = false;
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.isDisposed)
-            {
-                if (disposing)
-                {
-                    NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_azure_frontend_dispose(this.handle));
-                }
-
-                NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_azure_frontend_release(this.handle));
-                this.handle = default(ulong);
-
-                this.isDisposed = true;
-            }
-        }
-
         /// <summary>
         /// Finalizes an instance of the <see cref="AzureFrontend"/> class.
         /// </summary>
         ~AzureFrontend()
         {
-            this.Dispose(false);
+            NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_azure_frontend_release(this.handle));
         }
 
         /// <summary>
@@ -5097,11 +5087,21 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            NativeLibraryHelpers.CheckStatus(this.handle, NativeLibrary.arr_azure_frontend_dispose (this.handle));
         }
 
-        #endregion IDisposable Support
+        /// <summary>
+        /// Indicates whether this object is valid.
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_azure_frontend_get_valid(this.handle, out result));
+                return result;
+            }
+        }
 
         /// <summary>
         /// Log level to enable. Only messages at this log level or below will be emitted.
@@ -5190,7 +5190,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query the full set of existing rendering sessions for the account associated with the frontend.
+        /// Query the full set of existing rendering sessions for the account associated with the frontend. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SessionPropertiesArrayAsync GetCurrentRenderingSessionsAsync()
         {
@@ -5305,7 +5305,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query state of current asset conversion.
+        /// Query state of current asset conversion. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
         /// </summary>
         /// <param name="paramsIn">
         /// The conversion token returned by StartAssetConversionAsync.
@@ -5340,7 +5340,20 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get associated azure frontend.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_azure_session_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Get associated azure frontend. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AzureFrontend AzureFrontend
         {
@@ -5355,7 +5368,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// String UUID for session. This can be used to connect to the session later or perform independent restful calls with powershell.
+        /// String UUID for session. This can be used to connect to the session later or perform independent restful calls with powershell. This may only be called when this object is valid.
         /// </summary>
         public string SessionUUID
         {
@@ -5368,7 +5381,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Last connection params used in a call to ConnectToRuntime.
+        /// Last connection params used in a call to ConnectToRuntime. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams ConnectToRuntimeParams
         {
@@ -5381,7 +5394,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Connection status of this Session.
+        /// Connection status of this Session. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ConnectionStatus ConnectionStatus
         {
@@ -5394,7 +5407,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Utility function to query if session is connected.
+        /// Utility function to query if session is connected. This may only be called when this object is valid.
         /// </summary>
         public bool IsConnected
         {
@@ -5448,7 +5461,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query the properties of the session (hostname, lease time, size, etc.).
+        /// Query the properties of the session (hostname, lease time, size, etc.). Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SessionPropertiesAsync GetPropertiesAsync()
         {
@@ -5472,7 +5485,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Renew a VM. This will update the lease of the VM to a new time. Time is absolute since starting time of the VM: expiration = start_time + lease_time.
+        /// Renew a VM. This will update the lease of the VM to a new time. Time is absolute since starting time of the VM: expiration = start_time + lease_time. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
         /// </summary>
         /// <param name="updateParams">
         /// 
@@ -5503,7 +5516,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Disconnect this session if connected to the runtime.
+        /// Disconnect this session if connected to the runtime. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result DisconnectFromRuntime()
         {
@@ -5601,7 +5614,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Camera near plane.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Get the camera near plane. This may only be called when this object is valid.
         /// </summary>
         public float NearPlane
         {
@@ -5611,14 +5637,10 @@ namespace Microsoft.Azure.RemoteRendering
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_get_near_plane(this.handle, out result));
                 return result;
             }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_set_near_plane(this.handle, value));
-            }
         }
 
         /// <summary>
-        /// Camera far plane.
+        /// Get the camera far plane. This may only be called when this object is valid.
         /// </summary>
         public float FarPlane
         {
@@ -5628,14 +5650,10 @@ namespace Microsoft.Azure.RemoteRendering
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_get_far_plane(this.handle, out result));
                 return result;
             }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_set_far_plane(this.handle, value));
-            }
         }
 
         /// <summary>
-        /// Enable depth composition with locally rendered content.
+        /// Enable depth composition with locally rendered content. This may only be called when this object is valid.
         /// </summary>
         public bool EnableDepth
         {
@@ -5651,6 +5669,20 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
+        /// <summary>
+        /// Set the near and far plane of the camera. Both values must be >0 and also far must be larger than near.
+        /// </summary>
+        /// <param name="near">
+        /// 
+        /// </param>
+        /// <param name="far">
+        /// 
+        /// </param>
+        public void SetNearAndFarPlane(float nearPlane, float farPlane)
+        {
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_set_near_and_far_plane(this.handle, nearPlane, farPlane));
+        }
+
     }
 
     /// <summary>
@@ -5662,7 +5694,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Gets/sets the flags for this color material. See ColorFlags.
+        /// Gets/sets the flags for this color material. See ColorFlags. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ColorMaterialFeatures ColorFlags
         {
@@ -5679,7 +5711,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent.
+        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4 AlbedoColor
         {
@@ -5696,7 +5728,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'.
+        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture AlbedoTexture
         {
@@ -5715,7 +5747,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures.
+        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordScale
         {
@@ -5732,7 +5764,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordOffset
         {
@@ -5749,7 +5781,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the transparency mode for this material. See enum ColorTransparencyMode.
+        /// Gets/sets the transparency mode for this material. See enum ColorTransparencyMode. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ColorTransparencyMode ColorTransparencyMode
         {
@@ -5766,7 +5798,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float FadeOut
         {
@@ -5783,7 +5815,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the vertex color mix amount in scalar [0..1] range. This scalar defines how much the mesh's vertex color mixes into the final color. If 0.0, the vertex color does not contribute at all, if 1.0 it will be fully multiplied with the albedo color. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets the vertex color mix amount in scalar [0..1] range. This scalar defines how much the mesh's vertex color mixes into the final color. If 0.0, the vertex color does not contribute at all, if 1.0 it will be fully multiplied with the albedo color. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float VertexMix
         {
@@ -5800,7 +5832,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's ColorFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's ColorFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float AlphaClipThreshold
         {
@@ -5827,7 +5859,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// The entity that this component is attached to.
+        /// The entity that this component is attached to. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Entity Owner
         {
@@ -5842,7 +5874,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this component is enabled. The enabled state can be changed during runtime.
+        /// Indicates whether this component is enabled. The enabled state can be changed during runtime. This may only be called when this object is valid.
         /// </summary>
         public bool Enabled
         {
@@ -5859,7 +5891,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The component type.
+        /// The component type. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -5872,7 +5904,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this component is valid.
+        /// Indicates whether this component is valid. This may only be called when this object is valid.
         /// </summary>
         public bool Valid
         {
@@ -5895,7 +5927,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async runtime conection query functions. Result of the connection can be queried from AsyncBase.Status.
+    /// Return value of async runtime connection query functions. Result of the connection can be queried from AsyncBase.Status.
     /// </summary>
     public partial class ConnectToRuntimeAsync : AsyncBase, ICookie
     {
@@ -5959,12 +5991,12 @@ namespace Microsoft.Azure.RemoteRendering
         /// <summary>
         /// Get additional information about the result.
         /// </summary>
-        public string Message
+        public string ErrorMessage
         {
             get
             {
                 string result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_conversion_status_async_get_message(this.handle, out result));
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_conversion_status_async_get_error_message(this.handle, out result));
                 return result;
             }
         }
@@ -6056,7 +6088,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Cut planes are used to cut away parts of meshes to be able to peek inside. Once a cut plane is part of the scene, all rendered pixels that are on the back side of the plane will be discarded. By moving the cut plane around or changing its orientation, one can adjust which parts of the scene are visible. The position of the cut plane is specified through the position of the owning Entity. The orientation is specified through the . Only axis aligned cut planes are supported, however, to get the effect of a rotated cut plane, one can instead rotate the object that is supposed to be cut open.
+    /// Cut planes are used to cut away parts of meshes to be able to peek inside. Once a cut plane is part of the scene, all rendered pixels that are on the back side of the plane will be discarded. By moving the cut plane around or changing its orientation, one can adjust which parts of the scene are visible. The position of the cut plane is specified through the position of the owning Entity. The orientation is specified through the CutPlaneComponent.Normal. Only axis aligned cut planes are supported, however, to get the effect of a rotated cut plane, one can instead rotate the object that is supposed to be cut open.
     /// </summary>
     public partial class CutPlaneComponent : ComponentBase
     {
@@ -6064,7 +6096,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Set the normal axis of the cut plane. Pixels that fall behind the cut plane will be discarded by the renderer.
+        /// Set the normal axis of the cut plane. Pixels that fall behind the cut plane will be discarded by the renderer. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Axis Normal
         {
@@ -6081,7 +6113,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Set the color towards which pixels closer than  will be faded.
+        /// Set the color towards which pixels closer than CutPlaneComponent.FadeLength will be faded. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4Ub FadeColor
         {
@@ -6098,7 +6130,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Sets the distance in local units over which the cut plane will fade the original pixel color towards the .
+        /// Sets the distance in local units over which the cut plane will fade the original pixel color towards the CutPlaneComponent.FadeColor. This may only be called when this object is valid.
         /// </summary>
         public float FadeLength
         {
@@ -6127,7 +6159,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Enables or disables server side rendering of frame count overlay.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_debug_rendering_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables server side rendering of frame count overlay. This may only be called when this object is valid.
         /// </summary>
         public bool RenderFrameCount
         {
@@ -6144,7 +6189,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables server side rendering of polygon count overlay.
+        /// Enables or disables server side rendering of polygon count overlay. This may only be called when this object is valid.
         /// </summary>
         public bool RenderPolygonCount
         {
@@ -6161,7 +6206,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables wireframe rendering of object geometry.
+        /// Enables or disables wireframe rendering of object geometry. This may only be called when this object is valid.
         /// </summary>
         public bool RenderWireframe
         {
@@ -6190,7 +6235,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// An entity represents an object in space. Entities have a transform, ie. a position, rotation and scale. By themselves entities do not have any observable functionality. Instead behavior is added through components (see ), which are attached to entities. For instance attaching a MeshComponent will make a mesh appear at the position of the entity. The most important aspect of the Entity itself is the hierarchy and the resulting hierarchical transform. For example when multiple entities are attached as children to a shared parent entity, all of these entities can be moved, rotated and scaled in unison by changing the transform of the parent entity.
+    /// An entity represents an object in space. Entities have a transform, ie. a position, rotation and scale. By themselves entities do not have any observable functionality. Instead behavior is added through components (see ComponentBase), which are attached to entities. For instance attaching a MeshComponent will make a mesh appear at the position of the entity. The most important aspect of the Entity itself is the hierarchy and the resulting hierarchical transform. For example when multiple entities are attached as children to a shared parent entity, all of these entities can be moved, rotated and scaled in unison by changing the transform of the parent entity.
     /// </summary>
     public partial class Entity : ObjectBase
     {
@@ -6271,6 +6316,23 @@ namespace Microsoft.Azure.RemoteRendering
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_entity_get_components(this.handle, out result_array, out result_length));
                 result = (result_array ?? Enumerable.Empty<ulong>()).Select(handle => Factories.ComponentBaseFactory(handle, transfer:true)).ToArray();
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables the entity and all its components and children.
+        /// </summary>
+        public bool Enabled
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_entity_get_enabled(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_entity_set_enabled(this.handle, value));
             }
         }
 
@@ -6420,7 +6482,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines the derived graphics binding this instance can be cast to.
+        /// Defines the derived graphics binding this instance can be cast to. This may only be called when the frontend is initialized.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.GraphicsApiType Api
         {
@@ -6592,7 +6654,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// The render property flags of this component.
+        /// The render property flags of this component. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalStates Flags
         {
@@ -6609,7 +6671,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The render property flags to override on this component.
+        /// The render property flags to override on this component. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalStates OverrideFlags
         {
@@ -6626,7 +6688,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The tint color of this component.
+        /// The tint color of this component. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4Ub TintColor
         {
@@ -6643,7 +6705,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Hidden feature
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Hidden feature This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState HiddenState
         {
@@ -6660,7 +6722,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Selected feature
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Selected feature This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState SelectedState
         {
@@ -6677,7 +6739,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.SeeThrough feature
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.SeeThrough feature This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState SeeThroughState
         {
@@ -6694,7 +6756,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.UseTintColor feature
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.UseTintColor feature This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState UseTintColorState
         {
@@ -6711,7 +6773,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.DisableCollision feature
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.DisableCollision feature This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState DisableCollisionState
         {
@@ -6765,7 +6827,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// The intensity of the light. This value has no physical measure however it can be considered to be proportional to the physical power of the light source. If the light has a fall-off (point and spotlight) this value also defines the maximum range of light influence. An intensity of 1000 roughly has a range of 100 world units, but note this does not scale linearly.
+        /// The intensity of the light. This value has no physical measure however it can be considered to be proportional to the physical power of the light source. If the light has a fall-off (point and spotlight) this value also defines the maximum range of light influence. An intensity of 1000 roughly has a range of 100 world units, but note this does not scale linearly. This may only be called when this object is valid.
         /// </summary>
         public float Intensity
         {
@@ -6782,7 +6844,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The color of the light in gamma color space. The alpha portion is ignored.
+        /// The color of the light in gamma color space. The alpha portion is ignored. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4Ub Color
         {
@@ -7019,7 +7081,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Returns ObjectType.Material.
+        /// Returns ObjectType.Material. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7045,7 +7107,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Material name.
+        /// Material name. This may only be called when this object is valid.
         /// </summary>
         public string Name
         {
@@ -7062,7 +7124,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Material subtype enum value.
+        /// Material subtype enum value. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.MaterialType MaterialSubType
         {
@@ -7096,7 +7158,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Get the materials of the mesh component. These are materials specifically set to override the default mesh materials. If no material override has been set the material will be null. The material array will always be the same size as Mesh.Materials.Count.
+        /// Get the materials of the mesh component. These are materials specifically set to override the default mesh materials. If no material override has been set the material will be null. The material array will always be the same size as Mesh.Materials.Count. This may only be called when this object is valid.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> Materials
         {
@@ -7112,7 +7174,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query for a list of the used materials of the rendered mesh. The array will either contain the override material of the MeshComponent or, if no override has been set then the default material of the underlying mesh.
+        /// Query for a list of the used materials of the rendered mesh. The array will either contain the override material of the MeshComponent or, if no override has been set then the default material of the underlying mesh. This may only be called when this object is valid.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> UsedMaterials
         {
@@ -7128,7 +7190,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The Mesh used for rendering.
+        /// The Mesh used for rendering. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Mesh Mesh
         {
@@ -7171,7 +7233,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Returns ObjectType.Mesh.
+        /// Returns ObjectType.Mesh. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7197,7 +7259,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The list of materials used for rendering the mesh unless overridden by a MeshComponent.
+        /// The list of materials used for rendering the mesh unless overridden by a MeshComponent. This may only be called when this object is valid.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> Materials
         {
@@ -7213,7 +7275,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the localspace bounds for the mesh.
+        /// Get the localspace bounds for the mesh. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AABB3D Bounds
         {
@@ -7312,7 +7374,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The type of the object.
+        /// The type of the object. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7327,7 +7389,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// An individual metadata entry on an object. Lifetime is managed by the object metadata container.
+    /// An individual metadata entry on an object. Lifetime is managed by the owning metadata container (ObjectMetaData).
     /// </summary>
     public partial class ObjectMetaDataEntry
     {
@@ -7337,7 +7399,7 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Name of this metadata entry.
+        /// Name of this metadata entry. This may only be called when the metadata container is valid.
         /// </summary>
         public string Name
         {
@@ -7350,7 +7412,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Type of this metadata.
+        /// Type of this metadata. This may only be called when the metadata container is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.MetadataValueType Type
         {
@@ -7363,7 +7425,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as boolean.
+        /// Get the value of this metadata as boolean. This may only be called when the metadata container is valid.
         /// </summary>
         public bool AsBool
         {
@@ -7376,7 +7438,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as Int32.
+        /// Get the value of this metadata as Int32. This may only be called when the metadata container is valid.
         /// </summary>
         public int AsInt
         {
@@ -7389,7 +7451,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as Int64.
+        /// Get the value of this metadata as Int64. This may only be called when the metadata container is valid.
         /// </summary>
         public long AsInt64
         {
@@ -7402,7 +7464,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the bool value of this metadata as UInt64.
+        /// Get the bool value of this metadata as UInt64. This may only be called when the metadata container is valid.
         /// </summary>
         public ulong AsUInt64
         {
@@ -7415,7 +7477,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as double.
+        /// Get the value of this metadata as double. This may only be called when the metadata container is valid.
         /// </summary>
         public double AsDouble
         {
@@ -7428,7 +7490,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as string.
+        /// Get the value of this metadata as string. This may only be called when the metadata container is valid.
         /// </summary>
         public string AsString
         {
@@ -7460,7 +7522,20 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get a read-only array of all metadata on an object.
+        /// Indicates whether this object is still valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_object_meta_data_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Get a read-only array of all metadata on an object. This may only be called when this object is valid.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ObjectMetaDataEntry> Metadata
         {
@@ -7476,7 +7551,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query a metadata entry by name.
+        /// Query a metadata entry by name. This may only be called when this object is valid.
         /// </summary>
         /// <param name="name">
         /// Metadata name
@@ -7503,7 +7578,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// The color of the outlines.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_outline_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// The color of the outlines. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4Ub Color
         {
@@ -7520,7 +7608,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The rate (in Hz) at which the outline intensity oscillates.
+        /// The rate (in Hz) at which the outline intensity oscillates. This may only be called when this object is valid.
         /// </summary>
         public float PulseRateHz
         {
@@ -7537,7 +7625,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The intensity with which the outline pulses. This value must be in (0..1) range with 0=no pulsing effect and 1=full amplitude.
+        /// The intensity with which the outline pulses. This value must be in (0..1) range with 0=no pulsing effect and 1=full amplitude. This may only be called when this object is valid.
         /// </summary>
         public float PulseIntensity
         {
@@ -7564,7 +7652,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Gets/sets the material flags. See enum PbrFlags.
+        /// Gets/sets the material flags. See enum PbrFlags. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.PbrMaterialFeatures PbrFlags
         {
@@ -7581,7 +7669,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures.
+        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordScale
         {
@@ -7598,7 +7686,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures.
+        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordOffset
         {
@@ -7615,7 +7703,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent (see PbrFlags.TransparentMaterial).
+        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent (see PbrFlags.TransparentMaterial). This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4 AlbedoColor
         {
@@ -7632,7 +7720,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'.
+        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture AlbedoTexture
         {
@@ -7651,7 +7739,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the vertex alpha mode. See enum PbrVertexAlphaMode. This function has no effect if the mesh does not provide vertex colors or if the PbrFlags.UseVertexColor flag is not set. The default value is PbrVertexAlphaMode.Occlusion.
+        /// Gets/sets the vertex alpha mode. See enum PbrVertexAlphaMode. This function has no effect if the mesh does not provide vertex colors or if the PbrFlags.UseVertexColor flag is not set. The default value is PbrVertexAlphaMode.Occlusion. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.PbrVertexAlphaMode PbrVertexAlphaMode
         {
@@ -7668,7 +7756,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the normalmap texture for this material. This function accepts any texture but note that a valid normalmap encodes the normal vector into RGB portions rather than being a grayscale heightmap. null is used to denote 'no normalmap'.
+        /// Gets/sets the normalmap texture for this material. This function accepts any texture but note that a valid normalmap encodes the normal vector into RGB portions rather than being a grayscale heightmap. null is used to denote 'no normalmap'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture NormalMap
         {
@@ -7687,7 +7775,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scalar amount for ambient occlusion in [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets the scalar amount for ambient occlusion in [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float AOScale
         {
@@ -7704,7 +7792,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the ambient occlusion texture. A valid AO texture is a grayscale texture that defines scalars that are combined with the constant ambient occlusion value (AOScale). null is used to denote 'no ambient occlusion texture'.
+        /// Gets/sets the ambient occlusion texture. A valid AO texture is a grayscale texture that defines scalars that are combined with the constant ambient occlusion value (AOScale). null is used to denote 'no ambient occlusion texture'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture AOMap
         {
@@ -7723,7 +7811,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a constant roughness value on this material. Roughness is a scalar in the [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets a constant roughness value on this material. Roughness is a scalar in the [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float Roughness
         {
@@ -7740,7 +7828,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the roughness texture for this material. A valid roughness texture is a grayscale texture that defines scalars that are combined with the constant roughness value (Roughness property). null is used to denote 'no roughness texture'.
+        /// Gets/sets the roughness texture for this material. A valid roughness texture is a grayscale texture that defines scalars that are combined with the constant roughness value (Roughness property). null is used to denote 'no roughness texture'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture RoughnessMap
         {
@@ -7759,7 +7847,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a constant metalness value on this material. Metalness is a scalar in the [0..1] range, which in most of the use cases is either 0.0 (non-metallic) or 1.0 (metallic). This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets a constant metalness value on this material. Metalness is a scalar in the [0..1] range, which in most of the use cases is either 0.0 (non-metallic) or 1.0 (metallic). This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float Metalness
         {
@@ -7776,7 +7864,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the metalness texture for this material. A valid metalness texture is a grayscale texture that defines scalars that are combined with the constant metalness value (Metalness properties). null is used to denote 'no metalness texture'.
+        /// Gets/sets the metalness texture for this material. A valid metalness texture is a grayscale texture that defines scalars that are combined with the constant metalness value (Metalness properties). null is used to denote 'no metalness texture'. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture MetalnessMap
         {
@@ -7795,7 +7883,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's PbrFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's PbrFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float AlphaClipThreshold
         {
@@ -7812,7 +7900,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1].
+        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
         /// </summary>
         public float FadeOut
         {
@@ -7892,7 +7980,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// If >0 the light emitting shape of the light source is a sphere of given radius as opposed to a point. This shape for instance affects the appearance of specular highlights.
+        /// If >0 the light emitting shape of the light source is a sphere of given radius as opposed to a point. This shape for instance affects the appearance of specular highlights. This may only be called when this object is valid.
         /// </summary>
         public float Radius
         {
@@ -7909,7 +7997,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// If >0 (and also radius > 0) this value defines the length of a light emitting tube. Use case is a neon tube.
+        /// If >0 (and also radius > 0) this value defines the length of a light emitting tube. Use case is a neon tube. This may only be called when this object is valid.
         /// </summary>
         public float Length
         {
@@ -7926,7 +8014,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines a custom interval of min/max distances over which the light's attenuated intensity is scaled linearly down to 0. This feature can be used to enforce a smaller range of influence of a specific light. If not defined (default), these values are implicitly derived from the light's intensity.
+        /// Defines a custom interval of min/max distances over which the light's attenuated intensity is scaled linearly down to 0. This feature can be used to enforce a smaller range of influence of a specific light. If not defined (default), these values are implicitly derived from the light's intensity. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 AttenuationCutoff
         {
@@ -7943,7 +8031,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// In case a valid cubemap texture is passed here, the cubemap is projected using the orientation of the light. The cubemap's color is modulated with the light's color.
+        /// In case a valid cubemap texture is passed here, the cubemap is projected using the orientation of the light. The cubemap's color is modulated with the light's color. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture ProjectedCubeMap
         {
@@ -8029,7 +8117,7 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.RemoteManager>.Add(this);
         }
         /// <summary>
-        /// Log level to enable. Only messages at this log level or below will be emitted.
+        /// Log level to enable. Only messages at this log level or below will be emitted. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LogLevel LogLevel
         {
@@ -8046,7 +8134,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global camera settings.
+        /// Returns global camera settings. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.CameraSettings CameraSettings
         {
@@ -8061,7 +8149,22 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global sky reflection settings.
+        /// Returns global stage space settings. This may only be called when the owner session is valid.
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.StageSpaceSettings StageSpaceSettings
+        {
+            get
+            {
+                ulong result_handle;
+                Microsoft.Azure.RemoteRendering.StageSpaceSettings result_object;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_get_stage_space_settings(this.handle, out result_handle));
+                result_object = (result_handle != default(ulong)) ? new Microsoft.Azure.RemoteRendering.StageSpaceSettings(result_handle, transfer:true) : null;
+                return result_object;
+            }
+        }
+
+        /// <summary>
+        /// Returns global sky reflection settings. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SkyReflectionSettings SkyReflectionSettings
         {
@@ -8076,7 +8179,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global outline settings.
+        /// Returns global outline settings. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.OutlineSettings OutlineSettings
         {
@@ -8091,7 +8194,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global z-fighting mitigation state.
+        /// Returns global z-fighting mitigation state. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ZFightingMitigationSettings ZFightingMitigationSettings
         {
@@ -8106,7 +8209,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global single sided rendering settings.
+        /// Returns global single sided rendering settings. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SingleSidedSettings SingleSidedSettings
         {
@@ -8121,7 +8224,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global single sided rendering settings.
+        /// Returns global single sided rendering settings. This may only be called when the owner session is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.DebugRenderingSettings DebugRenderingSettings
         {
@@ -8375,7 +8478,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The type of the resource.
+        /// The type of the resource. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -8430,7 +8533,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async session proiperty array query functions.
+    /// Return value of async session property array query functions.
     /// </summary>
     public partial class SessionPropertiesArrayAsync : BaseSessionAsync, ICookie
     {
@@ -8547,7 +8650,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Switches the single sided rendering mode.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_single_sided_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Switches the single sided rendering mode. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SingleSidedMode Mode
         {
@@ -8576,7 +8692,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// The sky texture used for reflection. This must be either a cubemap or a 2d texture.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_sky_reflection_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// The sky texture used for reflection. This must be either a cubemap or a 2d texture. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture SkyReflectionTexture
         {
@@ -8604,6 +8733,9 @@ namespace Microsoft.Azure.RemoteRendering
         internal SpotLightComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
+        /// <summary>
+        /// If >0 the light emitting shape of the light source is a sphere of given radius as opposed to a point. This shape for instance affects the appearance of specular highlights. This may only be called when this object is valid.
+        /// </summary>
         public float Radius
         {
             get
@@ -8619,7 +8751,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines the characteristic of the falloff between the inner and the outer cone angle. A higher value results in a sharper transition between inner and outer cone angle. The default of 1.0 defines a linear falloff.
+        /// Defines the characteristic of the falloff between the inner and the outer cone angle. A higher value results in a sharper transition between inner and outer cone angle. The default of 1.0 defines a linear falloff. This may only be called when this object is valid.
         /// </summary>
         public float FalloffExponent
         {
@@ -8635,6 +8767,9 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
+        /// <summary>
+        /// Defines a custom interval of min/max distances over which the light's attenuated intensity is scaled linearly down to 0. This feature can be used to enforce a smaller range of influence of a specific light. If not defined (default), these values are implicitly derived from the light's intensity. This may only be called when this object is valid.
+        /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 AttenuationCutoff
         {
             get
@@ -8650,7 +8785,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// This interval defines the inner and outer angle of the spot light cone both measured in degree. Everything within the inner angle is illuminated by the full brightness of the spot light source and a falloff is applied towards the outer angle that generates a penumbra-like effect.
+        /// This interval defines the inner and outer angle of the spot light cone both measured in degree. Everything within the inner angle is illuminated by the full brightness of the spot light source and a falloff is applied towards the outer angle that generates a penumbra-like effect. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float2 SpotAngleDeg
         {
@@ -8667,7 +8802,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// In case a valid 2d texture is passed here, the texture is projected. The texture's color is modulated with the light's color.
+        /// In case a valid 2d texture is passed here, the texture is projected. The texture's color is modulated with the light's color. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Texture Projected2dTexture
         {
@@ -8682,6 +8817,65 @@ namespace Microsoft.Azure.RemoteRendering
             set
             {
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_set_projected2d_texture(this.handle, value != null ? value.handle : default(ulong)));
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// EXPERIMENTAL: Class that allows changing the stage space origin. To make sure that local and remote content align correctly, any additional transform that is applied on top of the camera transform needs to be set here as well to inform the server. WARNING: This feature is experimental and changing the origin will break local/remote content alignment for a brief moment. Thus, it is currently only intended to be used for world locking purposes like anchors that exhibit only very small changes over time.
+    /// </summary>
+    public partial class StageSpaceSettings
+    {
+        internal ulong handle;
+        internal StageSpaceSettings(ulong ahandle, bool transfer)
+        {
+            this.handle = ahandle;
+        }
+        /// <summary>
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_stage_space_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Stage space origin position. This should be set at the end of each frame to the world space position of the camera's parent. This may only be called when this object is valid.
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.Double3 Position
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.Double3 result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_stage_space_settings_get_position(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_stage_space_settings_set_position(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Stage space origin rotation. This should be set at the end of each frame to the world space rotation of the camera's parent. This may only be called when this object is valid.
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.Quaternion Rotation
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.Quaternion result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_stage_space_settings_get_rotation(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_stage_space_settings_set_rotation(this.handle, value));
             }
         }
 
@@ -8749,7 +8943,7 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Returns ObjectType.Texture.
+        /// Returns ObjectType.Texture. This may only be called when this object is valid.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -8775,7 +8969,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Texture name.
+        /// Texture name. This may only be called when this object is valid.
         /// </summary>
         public string Name
         {
@@ -8853,7 +9047,20 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Enables or disables the mitigation. Refer to the general documentation for a description of how the mitigation works.
+        /// Indicates whether this object is valid
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_zfighting_mitigation_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables the mitigation. Refer to the general documentation for a description of how the mitigation works. This may only be called when this object is valid.
         /// </summary>
         public bool Enabled
         {
@@ -8870,7 +9077,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Activates checkerboard highlighting of potential z-fighting. For debugging purposes.
+        /// Activates checkerboard highlighting of potential z-fighting. For debugging purposes. This may only be called when this object is valid.
         /// </summary>
         public bool Highlighting
         {

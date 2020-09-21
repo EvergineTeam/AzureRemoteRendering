@@ -22,16 +22,16 @@ namespace AzureRemoteRendeging_Demo.Editor
         public override void GenerateUI()
         {
             this.propertyPanelContainer.AddLabel("Title", "AzureFrontendAccount");
-            this.AddProperty(this.propertyType.GetField(nameof(ARRFrontendAccountInfo.AccountDomain)));
-            this.AddProperty(this.propertyType.GetField(nameof(ARRFrontendAccountInfo.AccountId)));
-            this.AddProperty(this.propertyType.GetField(nameof(ARRFrontendAccountInfo.AccountKey)));
-            this.AddProperty(this.propertyType.GetField(nameof(ARRFrontendAccountInfo.AccessToken)));
-            this.AddProperty(this.propertyType.GetField(nameof(ARRFrontendAccountInfo.AuthenticationToken)));
+            this.AddProperty(this.propertyType.GetProperty(nameof(ARRFrontendAccountInfo.AccountDomain)));
+            this.AddProperty(this.propertyType.GetProperty(nameof(ARRFrontendAccountInfo.AccountId)));
+            this.AddProperty(this.propertyType.GetProperty(nameof(ARRFrontendAccountInfo.AccountKey)));
+            this.AddProperty(this.propertyType.GetProperty(nameof(ARRFrontendAccountInfo.AccessToken)));
+            this.AddProperty(this.propertyType.GetProperty(nameof(ARRFrontendAccountInfo.AuthenticationToken)));
         }
 
-        private void AddProperty(FieldInfo fieldInfo)
+        private void AddProperty(MemberInfo memberInfo)
         {
-            this.propertyPanelContainer.Add(fieldInfo, this.property);
+            this.propertyPanelContainer.Add(memberInfo, this.property);
         }
     }
 }

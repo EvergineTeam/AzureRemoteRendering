@@ -22,7 +22,7 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="0.1.41" GeneratePathProperty="true">
+    <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="0.1.53" GeneratePathProperty="true">
       <ExcludeAssets>build</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -44,6 +44,10 @@
     </Content>
     <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x86uwp\release\**" PackagePath="runtimes\win10-x86\nativeassets\uap10.0" Visible="true">
       <Link>runtimes\win10-x86\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64uwp\release\**" PackagePath="runtimes\win10-x64\nativeassets\uap10.0" Visible="true">
+      <Link>runtimes\win10-x64\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64\release\**" PackagePath="runtimes\win10-x64\native" Visible="true">
