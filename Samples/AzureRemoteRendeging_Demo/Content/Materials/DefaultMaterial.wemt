@@ -6,63 +6,73 @@ DefaultProfile:
   Platform: Undefined
 ExportAsRaw: false
 MaterialInfo:
-  Id: 6605bb4d-cab8-46e4-aad7-5325846f19ff
+  Id: 63804932-3410-44e7-a4fc-4dc1a707ccdb
   ActiveDirectives:
-    - LIT
+    - ATEST
     - IBL
+    - LIT
   EffectID: daa1f60a-82ad-40fc-8fbb-7b85caa6de0a
   Layer: 0db59561-b3f5-444f-b5de-e62e3a5b42bf
   Parameters:
     - Name: World
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
       ValueByteArray: AAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAACAPw==
+    - Name: WorldViewProjection
+      Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
+      ValueByteArray: cJc9QAAAAAAAAAAAAAAAAAAAAACYMopADf9kvzD5ZL8AAAAAmjIKwAv/5L8u+eS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: ForwardLightMask
       Type: WaveEngine.Mathematics.UInt2,WaveEngine.Mathematics
       ValueByteArray: AwAAAAAAAAA=
     - Name: ViewProj
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: yql+v3pd8j4ox2I/WsFiPwAAAACT2xZAXFddvrFRXb5ISwlAScdgPoNS0j4hTdI+jAaZtBGMJDUf7ItAvRuPQA==
+      ValueByteArray: cJe9PwAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: EyePosition
       Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
-      ValueByteArray: J4V9wDRxdz++H+u/
+      ValueByteArray: AAAAAAAAAEAAAIBA
+    - Name: MultiviewViewProj
+      Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
+      ValueByteArray: cJe9PwAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
+    - Name: MultiviewEyePosition
+      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      ValueByteArray: AAAAAAAAAEAAAIBA
     - Name: EyeCount
-      Type: System.Int32
+      Type: System.Int32,System.Private.CoreLib
       ValueByteArray: AQAAAA==
     - Name: EV100
-      Type: System.Single
-      ValueByteArray: c6yGvg==
+      Type: System.Single,System.Private.CoreLib
+      ValueByteArray: d6yGvg==
     - Name: Exposure
-      Type: System.Single
-      ValueByteArray: AACAPw==
+      Type: System.Single,System.Private.CoreLib
+      ValueByteArray: AQCAPw==
     - Name: IblMaxMipLevel
-      Type: System.UInt32
-      ValueByteArray: AAAAAA==
+      Type: System.UInt32,System.Private.CoreLib
+      ValueByteArray: CAAAAA==
     - Name: IblLuminance
-      Type: System.Single
-      ValueByteArray: AACAPw==
+      Type: System.Single,System.Private.CoreLib
+      ValueByteArray: AQCAPw==
     - Name: BaseColor
       Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
       ValueByteArray: AACAPwAAgD8AAIA/
     - Name: Alpha
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AACAPw==
     - Name: Metallic
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: Roughness
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: Reflectance
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAPw==
     - Name: ReferenceAlpha
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAPw==
     - Name: ClearCoat
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: ClearCoatRoughness
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: TextureOffset0
       Type: WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics
@@ -74,14 +84,14 @@ MaterialInfo:
       Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
       ValueByteArray: AACAPwAAgD8AAIA/
     - Name: EmissiveIntensity
-      Type: System.Single
+      Type: System.Single,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: LightBufferCount
-      Type: System.UInt32
+      Type: System.UInt32,System.Private.CoreLib
       ValueByteArray: AAAAAA==
     - Name: IrradianceSH
       Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
-      ValueByteArray: QAAAACUAAABaAAADAGAQAA==
+      ValueByteArray: GFwDP5oR+D5ceh0/AAAAAA==
   Samplers:
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
@@ -97,8 +107,10 @@ MaterialInfo:
       Name: null
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
-    - ID: 00000000-0000-0000-0000-000000000000
-      Name: null
+    - ID: 7d1e2792-2031-42bb-a67c-0dbd282be12a
+      Name: IblDFGSampler
+    - ID: 7d1e2792-2031-42bb-a67c-0dbd282be12a
+      Name: IBLSampler
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
   Textures:
@@ -116,8 +128,10 @@ MaterialInfo:
       Name: null
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
-    - ID: 00000000-0000-0000-0000-000000000000
-      Name: null
+    - ID: d81d459c-c433-4ee3-bfe5-b45fbce12736
+      Name: IblDFGTexture
+    - ID: df03a57c-8730-4db9-97c5-92e0afc77206
+      Name: IBLTexture
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
 Profiles: {}

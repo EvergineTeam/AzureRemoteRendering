@@ -16,4 +16,12 @@ Profiles:
     Name: UWP
     NonAlphaCompressionFormat: BC3_UNorm
     Platform: UWP
+  - AdditionalEffectTechniqueCombinations: MULTIVIEW
+    AlphaCompressionFormat: BC3_UNorm
+    CompileEffects: true
+    GraphicsBackend: DirectX11
+    LauncherType: MixedReality
+    Name: UWP.MixedReality
+    NonAlphaCompressionFormat: BC3_UNorm
+    Platform: UWP
 ResourcesPath: Content

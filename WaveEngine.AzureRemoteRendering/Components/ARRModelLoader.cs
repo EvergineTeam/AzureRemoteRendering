@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using WaveEngine.Framework;
+using WaveEngine.Framework.Physics3D;
+using WaveEngine.Mathematics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
 
 namespace WaveEngine.AzureRemoteRendering.Components
@@ -31,6 +33,8 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
         private float progress;
 
+        private Task loadingTask;
+
         /// <summary>
         /// Gets or sets the URL for the model. Either builtin:// or a URL pointing at a converted model.
         /// Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
@@ -54,9 +58,17 @@ namespace WaveEngine.AzureRemoteRendering.Components
         }
 
         /// <summary>
-        /// Gets the remote entity that represents the model
+        /// Gets the remote entity that represents the model.
         /// </summary>
         public ARREntity RemoteEntity { get; private set; }
+
+        /// <summary>
+        /// Gets the remote entity model local bounding box.
+        /// <para>
+        /// This property has a valid value once <see cref="IsModelLoaded"/> is <c>true</c>.
+        /// </para>
+        /// </summary>
+        public BoundingBox? LocalBounds { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the model is loaded in <see cref="AzureRemoteRenderingService.CurrentSession"/>.
@@ -105,12 +117,14 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 return;
             }
 
-            if (this.RemoteEntity != null)
+            if (this.RemoteEntity != null || this.loadingTask != null)
             {
                 return;
             }
 
-            await this.LoadRemoteEntity();
+            this.loadingTask = this.LoadRemoteEntity();
+            await this.loadingTask;
+            this.loadingTask = null;
         }
 
         private void DestroyRemoteEntity()
@@ -124,6 +138,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
             }
 
             this.RemoteEntity = null;
+            this.LocalBounds = null;
             this.Progress = 0f;
         }
 
@@ -140,9 +155,14 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 var loadModelProgress = new Progress<float>((progress) => this.Progress = progress);
                 var parentEntitySync = this.Owner.FindComponentInParents<ARREntitySync>(skipOwner: true);
                 var parentRemoteEntity = parentEntitySync?.IsRemoteEntityValid == true ? parentEntitySync.RemoteEntity : null;
-                this.RemoteEntity = await arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress);
-                this.entitySync?.Bind(this.RemoteEntity, true);
+                var remoteEntity = await arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress);
+                this.entitySync?.Bind(remoteEntity, false);
+                this.entitySync?.SyncToRemote();
 
+                var localBounds = await remoteEntity.QueryLocalBoundsAsync().AsTask();
+                this.LocalBounds = localBounds.ToWave();
+
+                this.RemoteEntity = remoteEntity;
                 this.Loaded?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
