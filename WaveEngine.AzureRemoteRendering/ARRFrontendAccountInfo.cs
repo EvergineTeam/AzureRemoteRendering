@@ -1,9 +1,11 @@
-﻿using Microsoft.Azure.RemoteRendering;
+﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+
+using Microsoft.Azure.RemoteRendering;
 
 namespace WaveEngine.AzureRemoteRendering
 {
     /// <summary>
-    /// Object to store Azure Frontend account info
+    /// Object to store Azure Frontend account info.
     /// </summary>
     public class ARRFrontendAccountInfo
     {
@@ -38,13 +40,13 @@ namespace WaveEngine.AzureRemoteRendering
         public string AccessToken { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether all the requiredInformation is available
+        /// Gets a value indicating whether all the requiredInformation is available.
         /// </summary>
         public bool HasRequiredInfo
         {
-            get => !string.IsNullOrEmpty(AccountId) &&
-                   !string.IsNullOrEmpty(AccountDomain) &&
-                  (!string.IsNullOrEmpty(AccountKey) || !string.IsNullOrEmpty(AccessToken) || !string.IsNullOrEmpty(AuthenticationToken));
+            get => !string.IsNullOrEmpty(this.AccountId) &&
+                   !string.IsNullOrEmpty(this.AccountDomain) &&
+                  (!string.IsNullOrEmpty(this.AccountKey) || !string.IsNullOrEmpty(this.AccessToken) || !string.IsNullOrEmpty(this.AuthenticationToken));
         }
 
         internal AzureFrontendAccountInfo Convert()

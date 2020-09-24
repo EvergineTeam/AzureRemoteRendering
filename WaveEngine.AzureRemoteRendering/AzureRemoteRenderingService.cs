@@ -287,7 +287,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="accountInfo">The Azure Frontend credentials.</param>
         public void Initialize(ARRFrontendAccountInfo accountInfo)
         {
-            if(accountInfo == null)
+            if (accountInfo == null)
             {
                 throw new ArgumentNullException(nameof(accountInfo));
             }

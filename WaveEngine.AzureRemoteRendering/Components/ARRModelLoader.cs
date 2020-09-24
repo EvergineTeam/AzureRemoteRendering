@@ -1,7 +1,8 @@
-﻿using System;
+﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+
+using System;
 using System.Threading.Tasks;
 using WaveEngine.Framework;
-using WaveEngine.Framework.Physics3D;
 using WaveEngine.Mathematics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
 
@@ -42,12 +43,12 @@ namespace WaveEngine.AzureRemoteRendering.Components
         public string Url { get; set; } = "builtin://Engine";
 
         /// <summary>
-        /// Gets a percentage of the loading progress
+        /// Gets a percentage of the loading progress.
         /// </summary>
         public float Progress
         {
             get => this.progress;
-            set
+            private set
             {
                 if (this.progress != value)
                 {
@@ -155,7 +156,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 var loadModelProgress = new Progress<float>((progress) => this.Progress = progress);
                 var parentEntitySync = this.Owner.FindComponentInParents<ARREntitySync>(skipOwner: true);
                 var parentRemoteEntity = parentEntitySync?.IsRemoteEntityValid == true ? parentEntitySync.RemoteEntity : null;
-                var remoteEntity = await arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress);
+                var remoteEntity = await this.arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress);
                 this.entitySync?.Bind(remoteEntity, false);
                 this.entitySync?.SyncToRemote();
 

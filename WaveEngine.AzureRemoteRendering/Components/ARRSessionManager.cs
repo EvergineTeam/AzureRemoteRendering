@@ -27,7 +27,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         public ARRFrontendAccountInfo AccountInfo { get; set; } = new ARRFrontendAccountInfo();
 
         /// <summary>
-        /// Gets or sets a value indicating that a <see cref="AzureSession"/> will be reused or created once this component is activated.
+        /// Gets or sets a value indicating whether a <see cref="AzureSession"/> will be reused or created once this component is activated.
         /// </summary>
         public bool CreateAndConnectAutomatically { get; set; }
 
@@ -46,7 +46,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             base.OnActivated();
 
-            if (Application.Current.IsEditor || 
+            if (Application.Current.IsEditor ||
                 !this.arrService.IsAttached)
             {
                 return;
@@ -78,7 +78,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
             var createNewSession = true;
             if (!string.IsNullOrEmpty(existingSessionId))
             {
-                if (await arrService.OpenRenderingSessionAsync(existingSessionId))
+                if (await this.arrService.OpenRenderingSessionAsync(existingSessionId))
                 {
                     createNewSession = false;
                 }
@@ -90,9 +90,8 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
             if (createNewSession)
             {
-                if (!await arrService.CreateNewRenderingSessionAsync(this.InitialLeaseTime, this.VMSize))
+                if (!await this.arrService.CreateNewRenderingSessionAsync(this.InitialLeaseTime, this.VMSize))
                 {
-
                     Trace.TraceError($"[{nameof(ARRSessionManager)}] Failed to create rendering session");
                     return false;
                 }
