@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.HLSLEverywhere" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.XAudio2" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Forms" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Targets" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Targets.Windows" Version="3.0.0.5947-preview4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="$(DefineConstants.Contains('WAVEENGINE_EDITOR'))">
+    <ProjectReference Include="..\AzureRemoteRendering_Demo.Editor\AzureRemoteRendering_Demo.Editor.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\..\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.Reference.targets" />
+</Project>
