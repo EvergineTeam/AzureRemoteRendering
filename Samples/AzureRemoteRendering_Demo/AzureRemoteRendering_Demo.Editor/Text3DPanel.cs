@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using AzureRemoteRendering_Demo.Toolkit.Components.GUI;
+using System.Collections.Generic;
 using System.Linq;
 using WaveEngine.Editor.Extension;
 using WaveEngine.Editor.Extension.Attributes;
-using AzureRemoteRendering_Demo.Toolkit.Components.GUI;
+using WaveEngine.Framework;
+using WaveEngine.Platform;
 
-namespace AzureRemoteRendering_Demo.Editor
+namespace WaveEngine_MRTK_Demo.Editor
 {
     [CustomPanelEditor(typeof(Text3D))]
     public class Text3DPanel : PanelEditor
@@ -16,8 +18,9 @@ namespace AzureRemoteRendering_Demo.Editor
         protected override void Loaded()
         {
             base.Loaded();
+            var assetsRootPath = Application.Current.Container.Resolve<AssetsDirectory>().RootPath;
             this.fontsPathByName = new Dictionary<string, string>() { { "Default", string.Empty } };
-            foreach (var item in WaveContentUtils.FindFonts())
+            foreach (var item in WaveContentUtils.FindFonts(assetsRootPath))
             {
                 this.fontsPathByName.Add(item.Key, item.Value);
             }
@@ -32,6 +35,11 @@ namespace AzureRemoteRendering_Demo.Editor
                 this.fontsPathByName.Keys,
                 () => this.fontsPathByName.FirstOrDefault(x => x.Value == this.Instance.FontFamilySource).Key,
                 x => this.Instance.FontFamilySource = this.fontsPathByName[x]);
+
+            this.propertyPanelContainer.Find(nameof(Text3D.Width)).GetIsVisible = () => this.Instance.CustomWidth;
+            this.propertyPanelContainer.Find(nameof(Text3D.HorizontalAlignment)).GetIsVisible = () => this.Instance.CustomWidth;
+            this.propertyPanelContainer.Find(nameof(Text3D.Height)).GetIsVisible = () => this.Instance.CustomHeight;
+            this.propertyPanelContainer.Find(nameof(Text3D.VerticalAlignment)).GetIsVisible = () => this.Instance.CustomHeight;
         }
     }
 }

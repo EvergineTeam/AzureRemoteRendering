@@ -20,7 +20,7 @@ namespace AzureRemoteRendering_Demo.UWP
         private void OnSwapChainPanelLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // Create app
-            MyApplication application = new MyApplication();
+            MainApplication application = new MainApplication();
 
             // Create Services
             UWPWindowsSystem windowsSystem = new UWPWindowsSystem();
@@ -67,6 +67,7 @@ namespace AzureRemoteRendering_Demo.UWP
                 RefreshRate = 60
             };
             var swapChain = graphicsContext.CreateSwapChain(swapChainDescription);
+            swapChain.FrameBuffer.SwapchainAssociated = false;
             swapChain.VerticalSync = true;
             surface.NativeSurface.SwapChain = swapChain;
 

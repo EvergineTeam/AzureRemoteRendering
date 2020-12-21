@@ -29,7 +29,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         /// <summary>
         /// Gets or sets a value indicating whether a <see cref="AzureSession"/> will be reused or created once this component is activated.
         /// </summary>
-        public bool CreateAndConnectAutomatically { get; set; }
+        public bool CreateAndConnectAutomatically { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.

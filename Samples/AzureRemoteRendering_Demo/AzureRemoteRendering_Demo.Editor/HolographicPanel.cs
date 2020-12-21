@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using WaveEngine.Common.Graphics;
 using WaveEngine.Editor.Extension;
 using WaveEngine.Editor.Extension.Attributes;
 using WaveEngine.MRTK.Effects;
 
-namespace AzureRemoteRendering_Demo.Editor
+namespace WaveEngine_MRTK_Demo.Editor
 {
     [CustomPanelEditor(typeof(HoloGraphic))]
     public class HolographicPanel : PanelEditor
@@ -34,7 +32,7 @@ namespace AzureRemoteRendering_Demo.Editor
         {
             this.AddMember(nameof(HoloGraphic.Albedo));
 
-            if (this.AddDirectiveCheckbox("Albedo Map", "ALBEDO_MAP"))
+            if (this.AddDirectiveCheckbox("Albedo Map", HoloGraphic.AlbedoMapDirective))
             {
                 this.AddMember(nameof(HoloGraphic.Texture));
                 this.AddMember(nameof(HoloGraphic.Sampler));
@@ -43,31 +41,35 @@ namespace AzureRemoteRendering_Demo.Editor
             }
 
             // Rendering Options
-            if (this.AddDirectiveCheckbox("Directional Light", "DIRECTIONAL_LIGHT"))
+            if (this.AddDirectiveCheckbox("Directional Light", HoloGraphic.DirectionalLightDirective))
             {
                 this.AddMember(nameof(HoloGraphic.Metallic));
                 this.AddMember(nameof(HoloGraphic.Smoothness));
-                this.AddMember(nameof(HoloGraphic.LightColor));
             }
 
             // Fluent Options
-            var hoverLight = this.AddDirectiveCheckbox("Hover Light", "HOVER_LIGHT");
+            var hoverLight = this.AddDirectiveCheckbox("Hover Light", HoloGraphic.HoverLightDirective);
             if (hoverLight &&
-                this.AddDirectiveCheckbox("Override Color", "HOVER_COLOR_OVERRIDE"))
+                this.AddDirectiveCheckbox("Override Color", HoloGraphic.HoverColorOverrideDirective))
             {
                 this.AddMember(nameof(HoloGraphic.HoverColorOverride));
             }
 
-            var proximityLight = this.AddDirectiveCheckbox("Proximity Light", "PROXIMITY_LIGHT");
-            if (proximityLight &&
-                this.AddDirectiveCheckbox("Override Color", "PROXIMITY_LIGHT_COLOR_OVERRIDE"))
+            var proximityLight = this.AddDirectiveCheckbox("Proximity Light", HoloGraphic.ProximityLightDirective);
+            if (proximityLight)
             {
-                this.AddMember(nameof(HoloGraphic.ProximityLightCenterColorOverride));
-                this.AddMember(nameof(HoloGraphic.ProximityLightMiddleColorOverride));
-                this.AddMember(nameof(HoloGraphic.ProximityLightOuterColorOverride));
+                this.AddDirectiveCheckbox("Two Sided", HoloGraphic.ProximityLightTwoSidedDirective);
+                this.AddDirectiveCheckbox("Substractive", HoloGraphic.ProximityLightSubtractiveDirective);
+
+                if (this.AddDirectiveCheckbox("Override Color", HoloGraphic.ProximityLightColorOverrideDirective))
+                {
+                    this.AddMember(nameof(HoloGraphic.ProximityLightCenterColorOverride));
+                    this.AddMember(nameof(HoloGraphic.ProximityLightMiddleColorOverride));
+                    this.AddMember(nameof(HoloGraphic.ProximityLightOuterColorOverride));
+                }
             }
 
-            var borderLight = this.AddDirectiveCheckbox("Border Light", "BORDER_LIGHT");
+            var borderLight = this.AddDirectiveCheckbox("Border Light", HoloGraphic.BorderLightDirective);
             if (borderLight)
             {
                 this.AddMember(nameof(HoloGraphic.BorderWidth));
@@ -79,12 +81,12 @@ namespace AzureRemoteRendering_Demo.Editor
                 this.AddMember(nameof(HoloGraphic.FluentLightIntensity));
             }
 
-            var roundCorners = this.AddDirectiveCheckbox("Round Corners", "ROUND_CORNERS");
+            var roundCorners = this.AddDirectiveCheckbox("Round Corners", HoloGraphic.RoundCornersDirective);
             if (roundCorners)
             {
-                if (this.AddDirectiveCheckbox("Independent Corners", "INDEPENDENT_CORNERS"))
+                if (this.AddDirectiveCheckbox("Independent Corners", HoloGraphic.IndependentCornersDirective))
                 {
-                    this.AddMember(nameof(HoloGraphic.Parameters_RoundCornerRadious));
+                    this.AddMember(nameof(HoloGraphic.Parameters_RoundCornersRadious));
                 }
                 else
                 {
@@ -103,7 +105,7 @@ namespace AzureRemoteRendering_Demo.Editor
                 this.AddMember(nameof(HoloGraphic.EdgeSmoothingValue));
             }
 
-            if (this.AddDirectiveCheckbox("Inner Glow", "INNER_GLOW"))
+            if (this.AddDirectiveCheckbox("Inner Glow", HoloGraphic.InnerGlowDirective))
             {
                 this.AddMember(nameof(HoloGraphic.InnerGlowColor));
                 this.AddMember(nameof(HoloGraphic.InnerGlowPower));
@@ -111,7 +113,7 @@ namespace AzureRemoteRendering_Demo.Editor
 
             // TODO: In Unity this is related to nearPlaneFade.
             // if (this.AddDirectiveCheckbox("Near Plane Fade", "NEAR_PLANE_FADE"))
-            if (this.AddDirectiveCheckbox("Near Light Fade", "NEAR_LIGHT_FADE"))
+            if (this.AddDirectiveCheckbox("Near Light Fade", HoloGraphic.NearLightFadeDirective))
             {
                 // if (this.AddDirectiveCheckbox("Near Light Fade", "NEAR_LIGHT_FADE"))
                 this.AddMember(nameof(HoloGraphic.FadeBeginDistance));
