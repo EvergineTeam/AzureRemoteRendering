@@ -6,15 +6,15 @@
     <GenerateWaveAssets>False</GenerateWaveAssets>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WaveEngine.Bullet" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Common" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Components" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Framework" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Platform" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.Targets" Version="3.0.0.5947-preview4" />
-    <PackageReference Include="WaveEngine.MRTK" Version="3.0.0.6006-preview4" />
-    <PackageReference Include="WaveEngine.NoesisGUI" Version="3.0.0.5947-preview4" />
+    <PackageReference Include="WaveEngine.Bullet" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Common" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Components" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Framework" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Mathematics" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Platform" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.Targets" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="WaveEngine.MRTK" Version="3.1.0.6774-preview2" />
+    <PackageReference Include="WaveEngine.NoesisGUI" Version="3.1.0.6768-preview2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.csproj" />

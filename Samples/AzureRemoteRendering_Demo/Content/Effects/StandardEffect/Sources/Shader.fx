@@ -14,66 +14,66 @@
 [directives:AmbientOcclusion AO_OFF AO]
 [directives:Multiview MULTIVIEW_OFF MULTIVIEW]
 [directives:LowProfile LOW_PROFILE_OFF LOW_PROFILE]
+[directives:ColorSpace GAMMA_COLORSPACE_OFF GAMMA_COLORSPACE]
 
 struct LightProperties
 {
-	float3 	Position;
+	float3	Position;
 	float	Falloff;
-	float3 	Color;
+	float3	Color;
 	float	Intensity;
-	float3 	Direction;
+	float3	Direction;
 	uint	IESindex;
-	float2 	Scale;
-	uint 	LightType;
-	float 	Radius;
+	float2	Scale;
+	uint	LightType;
+	float	Radius;
 	float3	Left;
 	uint	padding0;
 };
 
 cbuffer PerDrawCall : register(b0)
 {
-	float4x4     World                : packoffset(c0.x); [World]
-	float4x4     WorldViewProjection  : packoffset(c4.x); [WorldViewProjection]
-	uint2        ForwardLightMask     : packoffset(c8.x); [ForwardLightMask]
+	float4x4 World                : packoffset(c0.x); [World]
+	uint2    ForwardLightMask     : packoffset(c4.x); [ForwardLightMask]
 };
 
 cbuffer PerCamera : register(b1)
 {
 	float4x4  ViewProj					: packoffset(c0.x); [ViewProjection]
-	float3    EyePosition   			: packoffset(c4.x); [CameraPosition]
-	float4x4  MultiviewViewProj[2]		: packoffset(c5.x); [StereoCameraViewProjection]
-	float3    MultiviewEyePosition[2]   : packoffset(c13.x); [StereoCameraPosition]
-	int       EyeCount : packoffset(c15.x); [StereoEyeCount]
-	float     EV100 : packoffset(c15.y); [EV100]
-	float     Exposure : packoffset(c15.z); [Exposure]
-	uint      IblMaxMipLevel   			: packoffset(c15.w); [IBLMipMapLevel]
-	float     IblLuminance : packoffset(c16.x); [IBLLuminance]
+	float3    EyePosition				: packoffset(c4.x); [CameraPosition]
+	int       EyeCount					: packoffset(c4.w); [MultiviewCount]
+	float     EV100						: packoffset(c5.x); [EV100]
+	float     Exposure					: packoffset(c5.y); [CameraExposure]
+	uint      IblMaxMipLevel			: packoffset(c5.z); [IBLMipMapLevel]
+	float     IblLuminance				: packoffset(c5.w); [IBLLuminance]
+	float4x4  MultiviewViewProj[6]		: packoffset(c6.x); [MultiviewViewProjection]
+	float4    MultiviewEyePosition[6]	: packoffset(c30.x); [MultiviewPosition]
 };
 
 cbuffer Parameters : register(b2)
 {
-	float3   BaseColor				: packoffset(c0.x); [Default(1, 1, 1)]
-	float    Alpha : packoffset(c0.w); [Default(1)]
+	float3	BaseColor			: packoffset(c0.x); [Default(1, 1, 1)]
+	float	Alpha				: packoffset(c0.w); [Default(1)]
 
-	float    Metallic : packoffset(c1.x);
-	float    Roughness : packoffset(c1.y);
-	float    Reflectance : packoffset(c1.z); [Default(0.5)]
-	float    ReferenceAlpha : packoffset(c1.w);
+	float	Metallic			: packoffset(c1.x);
+	float	Roughness			: packoffset(c1.y);
+	float	Reflectance			: packoffset(c1.z); [Default(0.5)]
+	float	ReferenceAlpha		: packoffset(c1.w);
 
-	float     ClearCoat : packoffset(c2.x);
-	float     ClearCoatRoughness : packoffset(c2.y);
+	float	ClearCoat			: packoffset(c2.x);
+	float	ClearCoatRoughness	: packoffset(c2.y);
 
-	float2    TextureOffset0		: packoffset(c2.z);
-	float2    TextureOffset1		: packoffset(c3.x);
+	float2	TextureOffset0		: packoffset(c2.z);
+	float2	TextureOffset1		: packoffset(c3.x);
 
-	float3   Emissive				: packoffset(c4.x); [Default(1, 1, 1)]
-	float    EmissiveIntensity : packoffset(c4.w); [Default(3)]
+	float3	Emissive			: packoffset(c4.x); [Default(1, 1, 1)]
+	float	EmissiveIntensity	: packoffset(c4.w); [Default(3)]
 };
 
 cbuffer LightBuffer : register(b3)
 {
-	uint LightBufferCount			: packoffset(c0.x); [LightCount]
-	LightProperties Lights[64]		: packoffset(c1.x); [LightBuffer]
+	uint LightBufferCount		: packoffset(c0.x); [LightCount]
+	LightProperties Lights[64]	: packoffset(c1.x); [LightBuffer]
 };
 
 cbuffer IrradianceSHBuffer : register(b4)
@@ -106,13 +106,119 @@ SamplerState ClearCoatNormalSampler		: register(s6);
 Texture2D IblDFGTexture					: register(t7); [DFGLut]
 SamplerState IblDFGSampler				: register(s7);
 
-TextureCube IBLTexture					: register(t8); [IBLRadiance]
-SamplerState IBLSampler					: register(s8);
+TextureCube IBLRadianceTexture			: register(t8); [IBLRadiance]
+SamplerState IBLRadianceSampler			: register(s8);
 
-TextureCube IrradianceTexture           : register(t9); //[IBLIrradiance]
-SamplerState IrradianceSampler          : register(s9);
+TextureCube IBLIrradianceTexture			: register(t9); [IBLIrradiance]
+SamplerState IBLIrradianceSampler			: register(s9);
 
 [End_ResourceLayout]
+
+[Begin_Pass:ZPrePass]
+[profile 10_0]
+[entrypoints VS = VertexFunction PS = PixelFunction]
+
+struct VSInputPbr
+{
+	float3      Position            : POSITION;
+#if NORMAL || MT_RG_TEXTURED
+	float2      TexCoord0           : TEXCOORD0;
+#endif
+	float3      Normal              : NORMAL;
+#if NORMAL
+	float4      Tangent             : TANGENT;
+#endif
+	uint        InstId              : SV_InstanceID;
+};
+
+struct VSOutputPbr
+{
+	float4 PositionProj : SV_POSITION;
+	float3 NormalWS		: NORMAL;
+#if NORMAL
+	float3 TangentWS	: TANGENT;
+	float3 BitangentWS	: BINORMAL;
+#endif
+#if NORMAL || MT_RG_TEXTURED
+	float2 TexCoord0    : TEXCOORD0;
+#endif
+	
+	#if MULTIVIEW
+	uint ViewId         : SV_RenderTargetArrayIndex;
+	#endif
+};
+
+
+VSOutputPbr VertexFunction(VSInputPbr input)
+{
+	VSOutputPbr output = (VSOutputPbr)0;
+
+#if MULTIVIEW
+	const int vid = input.InstId % EyeCount;
+	const float4x4 viewProj = MultiviewViewProj[vid];
+
+	// Note which view this vertex has been sent to. Used for matrix lookup.
+	// Taking the modulo of the instance ID allows geometry instancing to be used
+	// along with stereo instanced drawing; in that case, two copies of each 
+	// instance would be drawn, one for left and one for right.
+
+	output.ViewId = vid;
+#else
+	float4x4 viewProj = ViewProj;
+#endif
+
+	const float4 transformedPosWorld = mul(float4(input.Position, 1), World);
+
+	output.PositionProj = mul(transformedPosWorld, viewProj);	
+	
+	output.NormalWS = mul(float4(input.Normal, 0), World).xyz;
+	#if NORMAL
+	output.TangentWS = normalize(mul(float4(input.Tangent.xyz, 0), World).xyz);
+	output.BitangentWS = normalize(cross(output.NormalWS, output.TangentWS) * input.Tangent.w);
+	#endif
+
+#if NORMAL || MT_RG_TEXTURED
+	output.TexCoord0 = input.TexCoord0 + TextureOffset0;
+#endif
+
+	return output;
+}
+
+float2 OctWrap(float2 v)
+{
+	return (1.0 - abs(v.yx)) * (v.xy >= 0.0 ? 1.0 : -1.0);
+}
+
+float2 Encode(float3 n)
+{
+	n /= (abs(n.x) + abs(n.y) + abs(n.z));
+	n.xy = n.z >= 0.0 ? n.xy : OctWrap(n.xy);
+	n.xy = n.xy * 0.5 + 0.5;
+	return n.xy;
+}
+
+float4 PixelFunction(VSOutputPbr input) : SV_Target
+{
+	float3 normal = input.NormalWS;
+#if NORMAL
+	float3 normalTex = NormalTexture.Sample(NormalSampler, input.TexCoord0).rgb * 2 - 1;
+	float3x3 tangentToWorld = float3x3(normalize(input.TangentWS), normalize(input.BitangentWS), normalize(input.NormalWS));
+	normal = normalize(mul(normalTex, tangentToWorld));
+#endif
+
+	float roughness = Roughness;
+	float metallic = Metallic;
+#if MT_RG_TEXTURED
+	float2 metallicAndRoughness = MetallicRoughnessTexture.Sample(MetallicRoughnessSampler, input.TexCoord0).yz;
+	roughness = metallicAndRoughness.x;
+	metallic = metallicAndRoughness.y;
+#endif
+
+	return float4(Encode(normal),roughness, metallic);
+}
+
+[End_Pass]
+
 
 [Begin_Pass:Default]
 
@@ -194,22 +300,22 @@ struct VSOutputPbr
 #endif
 };
 
-float4 LinearToSrgb(const float4 color)
+float4 LinearToGamma(const float4 color)
 {
 	return float4(pow(abs(color.rgb), 1.0 / 2.2), color.a);
 }
 
-float4 SrgbToLinear(const float4 color)
+float4 GammaToLinear(const float4 color)
 {
 	return float4(pow(color.rgb, 2.2), color.a);
 }
 
-float3 LinearToSrgb(const float3 color)
+float3 LinearToGamma(const float3 color)
 {
 	return pow(color, 1 / 2.2);
 }
 
-float3 SrgbToLinear(const float3 color)
+float3 GammaToLinear(const float3 color)
 {
 	return pow(color, 2.2);
 }
@@ -219,12 +325,8 @@ VSOutputPbr VertexFunction(VSInputPbr input)
 	VSOutputPbr output = (VSOutputPbr)0;
 
 #if MULTIVIEW
-	const int iid = input.InstId / EyeCount;
 	const int vid = input.InstId % EyeCount;
-
 	const float4x4 viewProj = MultiviewViewProj[vid];
-
-	float4x4 worldViewProj = mul(World, viewProj);
 
 	// Note which view this vertex has been sent to. Used for matrix lookup.
 	// Taking the modulo of the instance ID allows geometry instancing to be used
@@ -233,7 +335,6 @@ VSOutputPbr VertexFunction(VSInputPbr input)
 
 	output.ViewId = vid;
 #else
-	float4x4 worldViewProj = WorldViewProjection;
 	float4x4 viewProj = ViewProj;
 #endif
 
@@ -258,7 +359,7 @@ VSOutputPbr VertexFunction(VSInputPbr input)
 #endif
 
 #if VCOLOR
-	output.Color = SrgbToLinear(input.Color);
+	output.Color = GammaToLinear(input.Color);
 #endif
 
 	return output;
@@ -274,17 +375,11 @@ struct PixelParams
 	float3  dfg;
 	float3  energyCompensation;
 
-#if CLEAR || CLEAR_NORMAL
+	#if CLEAR || CLEAR_NORMAL
 	float clearCoat;
 	float clearCoatPerceptualRoughness;
 	float clearCoatRoughness;
-#endif
-
-	//#ifdef ANISOTROPY_ENABLED
-	//    float3  anisotropicT;
-	//    float3  anisotropicB;
-	//    float anisotropy;
-	//#endif
+	#endif
 #endif
 };
 
@@ -306,27 +401,18 @@ struct MaterialInputs
 	float roughness;
 	float metallic;
 	float reflectance;
-	//float3 specularColor;
-	//float glossiness;
 	float ambientOcclusion;
 
-#if CLEAR || CLEAR_NORMAL
+	#if CLEAR || CLEAR_NORMAL
 	float clearCoat;
 	float clearCoatRoughness;
 	float3 clearCoatNormal;
-#endif
+	#endif
 #endif
 
 #if EMIS	
 	float4  emissive;
 #endif
-
-	//#ifdef ANISOTROPY_ENABLED
-	//    float anisotropy;
-	//    #ifdef HAS_ANISOTROPY_TEXTURE
-	//    float3  anisotropyDirection;
-	//    #endif    
-	//#endif
 };
 
 struct ShadingParams
@@ -406,21 +492,8 @@ void GetClearCoatPixelParams(const MaterialInputs material, inout PixelParams pi
 	float clearCoatPerceptualRoughness = material.clearCoatRoughness;
 	clearCoatPerceptualRoughness = clamp(clearCoatPerceptualRoughness, MinPerceptualRoughness, 1.0);
 
-	//#if defined(GEOMETRIC_SPECULAR_AA)
-	//    clearCoatPerceptualRoughness =
-	//            normalFiltering(clearCoatPerceptualRoughness, getWorldGeometricNormalVector());
-	//#endif
-
 	pixel.clearCoatPerceptualRoughness = clearCoatPerceptualRoughness;
 	pixel.clearCoatRoughness = PerceptualRoughnessToRoughness(clearCoatPerceptualRoughness);
-
-	////#if defined(CLEAR_COAT_IOR_CHANGE)
-	////    // The base layer's f0 is computed assuming an interface from air to an IOR
-	////    // of 1.5, but the clear coat layer forms an interface from IOR 1.5 to IOR
-	////    // 1.5. We recompute f0 by first computing its IOR, then reconverting to f0
-	////    // by using the correct interface
-	////    pixel.f0 = mix(pixel.f0, f0ClearCoatToSurface(pixel.f0), pixel.clearCoat);
-	////#endif
 #endif
 }
 
@@ -430,10 +503,6 @@ void GetRoughnessPixelParams(const MaterialInputs material, inout PixelParams pi
 
 	// Clamp the roughness to a minimum value to avoid divisions by 0 during lighting
 	perceptualRoughness = clamp(perceptualRoughness, MinPerceptualRoughness, 1.0);
-
-	//#if defined(GEOMETRIC_SPECULAR_AA)
-	//    perceptualRoughness = normalFiltering(perceptualRoughness, getWorldGeometricNormalVector());
-	//#endif
 
 #if (CLEAR || CLEAR_NORMAL)
 // This is a hack but it will do: the base layer must be at least as rough
@@ -447,31 +516,14 @@ void GetRoughnessPixelParams(const MaterialInputs material, inout PixelParams pi
 	pixel.perceptualRoughness = perceptualRoughness;
 	pixel.roughness = PerceptualRoughnessToRoughness(perceptualRoughness);
 }
-#endif  
-
-//void getAnisotropyPixelParams(const VSOutputPbr input, const MaterialInputs material, inout PixelParams pixel) 
-//{
-//#ifdef ANISOTROPY_ENABLED
-//    float3 direction = material.anisotropyDirection;
-//    pixel.anisotropy = material.anisotropy;
-//    pixel.anisotropicT = normalize((input.TBN * direction);
-//    pixel.anisotropicB = normalize(cross(getWorldGeometricNormalVector(), pixel.anisotropicT));
-//#endif
-//}
+#endif
 
 #if LIT || IBL
 void GetEnergyCompensationPixelParams(const ShadingParams shading, inout PixelParams pixel)
 {
 	// Pre-filtered DFG term used for image-based lighting
 	pixel.dfg = PrefilteredDFG(pixel.perceptualRoughness, shading.NoV);
-
-	//#if !defined(SHADING_MODEL_CLOTH)
-		// Energy compensation for multiple scattering in a microfacet model
-		// See "Multiple-Scattering Microfacet BSDFs with the Smith Model"
 	pixel.energyCompensation = 1.0 + pixel.f0 * (1.0 / pixel.dfg.y - 1.0);
-	//#else
-		//pixel.energyCompensation = float3(1.0, 1.0, 1.0);
-	//#endif
 }
 #endif
 
@@ -482,8 +534,6 @@ void GetPixelParams(const ShadingParams shading, const MaterialInputs material, 
 #if LIT || IBL
 	GetClearCoatPixelParams(material, pixel);
 	GetRoughnessPixelParams(material, pixel);
-	//GetSubsurfacePixelParams(material, pixel);
-	//GetAnisotropyPixelParams(material, pixel);
 	GetEnergyCompensationPixelParams(shading, pixel);
 #endif
 }
@@ -494,7 +544,7 @@ void InitMaterial(const VSOutputPbr input, inout MaterialInputs material)
 	material.baseColor = float4(BaseColor, Alpha);
 #if DIFF
 	float4 baseColorTexture = BaseColorTexture.Sample(BaseColorSampler, input.TexCoord0);
-	baseColorTexture.rgb = SrgbToLinear(baseColorTexture.rgb);
+	baseColorTexture.rgb = GammaToLinear(baseColorTexture.rgb);
 	material.baseColor *= baseColorTexture;
 #endif
 
@@ -558,7 +608,7 @@ void ComputeShadingParams(const VSOutputPbr input, inout ShadingParams shading)
 #if MULTIVIEW
 	int iid = input.ViewId / EyeCount;
 	int vid = input.ViewId % EyeCount;
-	float3 cameraPosition = MultiviewEyePosition[vid];
+	float3 cameraPosition = MultiviewEyePosition[vid].xyz;
 #else
 	float3 cameraPosition = EyePosition;
 #endif
@@ -613,12 +663,7 @@ float ComputeSpecularAO(float NoV, float visibility, float roughness) {
 
 float3 SpecularDFG(const PixelParams pixel)
 {
-
-	//#if defined(SHADING_MODEL_CLOTH)
-	//    return pixel.f0 * pixel.dfg.z;
-	//#else
 	return lerp(pixel.dfg.xxx, pixel.dfg.yyy, pixel.f0);
-	//#endif
 }
 
 float3 GetSpecularDominantDirection(const float3 n, const float3 r, float roughness)
@@ -628,11 +673,7 @@ float3 GetSpecularDominantDirection(const float3 n, const float3 r, float roughn
 
 float3 GetReflectedVector(const ShadingParams shading, const PixelParams pixel, const float3 n)
 {
-	//#if defined(MATERIAL_HAS_ANISOTROPY)
-	//    vec3 r = getReflectedVector(pixel, shading_view, n);
-	//#else
 	float3 r = shading.reflected;
-	//#endif
 	return GetSpecularDominantDirection(n, r, pixel.roughness);
 }
 
@@ -647,7 +688,7 @@ float3 PrefilteredRadiance(const float3 r, float perceptualRoughness)
 	// where roughness = perceptualRoughness^2
 	// using all the mip levels requires seamless cubemap sampling
 	float lod = IblMaxMipLevel * perceptualRoughness;
-	return IBLTexture.SampleLevel(IBLSampler, r, lod).rgb;
+	return IBLRadianceTexture.SampleLevel(IBLRadianceSampler, r, lod).rgb;
 }
 
 float3 GtaoMultiBounce(float visibility, const float3 albedo)
@@ -700,17 +741,14 @@ float3 Irradiance_SphericalHarmonics(const float3 n)
 
 float3 Irradiance_Cubemap(const float3 n)
 {
-	return IrradianceTexture.Sample(IrradianceSampler, n).rgb;
+	return IBLIrradianceTexture.Sample(IBLIrradianceSampler, n).rgb;
 }
 
 float3 DiffuseIrradiance(const float3 n)
 {
-	//#if IBL
-	return Irradiance_SphericalHarmonics(n);
-	//#elif IBL_SH
-		//return Irradiance_SphericalHarmonics(n);
-		//return Irradiance_Cubemap(n);
-	//#endif
+	#if IBL
+	return Irradiance_Cubemap(n);
+	#endif
 }
 
 float Pow5(float x)
@@ -727,11 +765,6 @@ float F_Schlick(const float f0, float f90, float VoH)
 
 void EvaluateClearCoatIBL(const ShadingParams shading, const PixelParams pixel, float specularAO, inout float3 Fd, inout float3 Fr)
 {
-	//#if IBL_INTEGRATION == IBL_INTEGRATION_IMPORTANCE_SAMPLING
-	//    isEvaluateClearCoatIBL(pixel, specularAO, Fd, Fr);
-	//    return;
-	//#endif
-
 #if CLEAR || CLEAR_NORMAL  
 	// We want to use the geometric normal for the clear coat layer
 	float clearCoatNoV = ClampNoV(dot(shading.clearCoatNormal, shading.view));
@@ -750,7 +783,6 @@ void EvaluateClearCoatIBL(const ShadingParams shading, const PixelParams pixel, 
 void EvaluateIBL(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, inout float3 color)
 {
 	float3 n = shading.normal;
-	//float ssao = float(1);
 	float diffuseAO = material.ambientOcclusion;
 	float specularAO = ComputeSpecularAO(shading.NoV, diffuseAO, pixel.roughness);
 
@@ -765,16 +797,12 @@ void EvaluateIBL(const ShadingParams shading, const MaterialInputs material, con
 
 	// diffuse layer
 	float diffuseBRDF = SingleBounceAO(diffuseAO); // Fd_Lambert() is baked in the SH below
-	//evaluateClothIndirectDiffuseBRDF(pixel, diffuseBRDF);
 
 	float3 diffuseIrradiance = DiffuseIrradiance(n);
 	float3 Fd = pixel.diffuseColor * diffuseIrradiance * (1.0 - E) * diffuseBRDF;
 
 	// clear coat layer
 	EvaluateClearCoatIBL(shading, pixel, specularAO, Fd, Fr);
-
-	// subsurface layer
-	//evaluateSubsurfaceIBL(pixel, diffuseIrradiance, Fd, Fr);
 
 	// extra ambient occlusion term
 	MultiBounceAO(diffuseAO, pixel.diffuseColor, Fd);
@@ -953,9 +981,7 @@ float V_Kelemen(float LoH)
 
 float VisibilityClearCoat(float LoH)
 {
-	//#if BRDF_CLEAR_COAT_V == SPECULAR_V_KELEMEN
 	return V_Kelemen(LoH);
-	//#endif
 }
 
 float ClearCoatLobe(const ShadingParams shading, const PixelParams pixel, const SurfaceToLight light, out float Fcc)
@@ -972,7 +998,7 @@ float ClearCoatLobe(const ShadingParams shading, const PixelParams pixel, const 
 	float D = DistributionClearCoat(shading.normal, pixel.clearCoatRoughness, clearCoatNoH, light.H);
 	float V = VisibilityClearCoat(light.LoH);
 	float F = F_Schlick(0.04, 1.0, light.LoH) * pixel.clearCoat; // fix IOR to 1.5
-	
+
 	Fcc = F;
 	return D * V * F;
 }
@@ -995,7 +1021,7 @@ float3 SurfaceShading(const ShadingParams shading, const PixelParams pixel, cons
 	// squared to take into account both entering through and exiting through
 	// the clear coat layer
 	float attenuation = 1.0 - Fcc;
-	
+
 #if CLEAR_NORMAL
 	float3 color = (Fd + Fr * pixel.energyCompensation) * attenuation * surfaceToLight.NoL;
 
@@ -1019,7 +1045,7 @@ float3 SurfaceShading(const ShadingParams shading, const PixelParams pixel, cons
 }
 
 float3 SurfaceShadingAreaLight(const ShadingParams shading, const PixelParams pixel, const SurfaceToLight surfaceToLight, float3 lightColor, float specularAttenuation)
-{		
+{
 	float3 Fd = DiffuseLobe(pixel);
 	float3 Fr = SpecularLobe(shading, pixel, surfaceToLight) * specularAttenuation * surfaceToLight.NoL;
 
@@ -1150,7 +1176,7 @@ float TraceTriangle(float3 o, float3 d, float3 A, float3 B, float3 C)
 {
 	float3 planeNormal = normalize(cross(B - A, C - B));
 	float t = TracePlane(o, d, A, planeNormal);
-	float3 p = o + d*t;
+	float3 p = o + d * t;
 
 	float3 N1 = normalize(cross(B - A, p - B));
 	float3 N2 = normalize(cross(C - B, p - C));
@@ -1183,14 +1209,14 @@ void PointLight(const ShadingParams shading, const MaterialInputs material, cons
 	float3 L = normalize(posToLight);
 	float attenuation = GetDistanceAttenuation(posToLight, lightProperties.Falloff);
 	float NoL = saturate(dot(shading.normal, L));
-	
+
 	[branch]
 	if (NoL * attenuation > 0)
 	{
 		float3 lightColor = lightProperties.Color * ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * attenuation;
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
 		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
-	}	
+	}
 }
 
 float GetAngleAttenuation(const float3 lightDir, const float3 l, const float2 scaleOffset)
@@ -1208,7 +1234,7 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 	float attenuation = GetDistanceAttenuation(posToLight, lightProperties.Falloff);
 	attenuation *= GetAngleAttenuation(-lightProperties.Direction, L, lightProperties.Scale);
 	float NoL = saturate(dot(shading.normal, L));
-	
+
 	[branch]
 	if (NoL * attenuation > 0)
 	{
@@ -1222,7 +1248,7 @@ void DirectionalLight(const ShadingParams shading, const MaterialInputs material
 {
 	float3 L = lightProperties.Direction;
 	float NoL = saturate(dot(shading.normal, L));
-	
+
 	[branch]
 	if (NoL > 0)
 	{
@@ -1238,10 +1264,10 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 	float lightWidth = lightProperties.Scale.x * 0.5;
 	float lightRadius = lightProperties.Radius;
 	float3 lightPosition = lightProperties.Position;
-	
+
 	float3 P0 = lightPosition - lightLeft * lightWidth;
 	float3 P1 = lightPosition + lightLeft * lightWidth;
-	
+
 	float3 forward = normalize(ClosestPointOnLine(P0, P1, shading.position) - shading.position);
 	float3 lightUp = cross(lightLeft, forward);
 
@@ -1249,31 +1275,31 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 	float3 p1 = lightPosition - lightLeft * lightWidth - lightRadius * lightUp;
 	float3 p2 = lightPosition + lightLeft * lightWidth - lightRadius * lightUp;
 	float3 p3 = lightPosition + lightLeft * lightWidth + lightRadius * lightUp;
-	
+
 	float solidAngle = RectangleSolidAngle(shading.position, p0, p1, p2, p3);
-	
+
 	float fLight = solidAngle * 0.2 * (
-			saturate(dot(normalize(p0 - shading.position), shading.normal)) +
-			saturate(dot(normalize(p1 - shading.position), shading.normal)) +
-			saturate(dot(normalize(p2 - shading.position), shading.normal)) +
-			saturate(dot(normalize(p3 - shading.position), shading.normal)) +
-			saturate(dot(normalize(lightPosition - shading.position), shading.normal)));
-	
+		saturate(dot(normalize(p0 - shading.position), shading.normal)) +
+		saturate(dot(normalize(p1 - shading.position), shading.normal)) +
+		saturate(dot(normalize(p2 - shading.position), shading.normal)) +
+		saturate(dot(normalize(p3 - shading.position), shading.normal)) +
+		saturate(dot(normalize(lightPosition - shading.position), shading.normal)));
+
 	float3 spherePosition = ClosestPointOnSegment(P0, P1, shading.position);
 	float3 sphereUnormL = spherePosition - shading.position;
 	float3 sphereL = normalize(sphereUnormL);
 	float sqrSphereDistance = dot(sphereUnormL, sphereUnormL);
-	
+
 	float fLightSphere = PI * saturate(dot(sphereL, shading.normal)) * ((lightRadius * lightRadius) / sqrSphereDistance);
-	fLight += fLightSphere;	
+	fLight += fLightSphere;
 	fLight *= GetSquareFalloffAttenuation(sqrSphereDistance, lightProperties.Falloff);
-	
+
 	[branch]
 	if (fLight > 0)
 	{
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
-		
+
 		// First, the closest point to the ray on the segment
 		float3 L0 = P0 - shading.position;
 		float3 L1 = P1 - shading.position;
@@ -1288,12 +1314,12 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 		float3 centerToRay = dot(L, r) * r - L;
 		float3 closestPoint = L + centerToRay * saturate(lightRadius / length(centerToRay));
 		L = normalize(closestPoint);
-		
+
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-		
-		float3 lightColor = lightProperties.Color;		
-		lightColor *=  ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-		
+
+		float3 lightColor = lightProperties.Color;
+		lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
+
 		color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, 1);
 	}
 }
@@ -1301,21 +1327,21 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 void RectangleLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
 {
 	float3 lunormalized = lightProperties.Position - shading.position;
-	
+
 	float halfwidth = lightProperties.Scale.x * 0.5;
 	float halfheight = lightProperties.Scale.y * 0.5;
 	float3 lightPlaneNormal = lightProperties.Direction;
 	float3 lightLeft = lightProperties.Left;
 	float3 lightUp = cross(lightLeft, lightPlaneNormal);
 	float3 lightPosition = lightProperties.Position;
-	
+
 	float3 p0 = lightPosition + lightLeft * -halfwidth + lightUp * halfheight;
 	float3 p1 = lightPosition + lightLeft * -halfwidth + lightUp * -halfheight;
 	float3 p2 = lightPosition + lightLeft * halfwidth + lightUp * -halfheight;
 	float3 p3 = lightPosition + lightLeft * halfwidth + lightUp * halfheight;
-	
+
 	float solidAngle = RectangleSolidAngle(shading.position, p0, p1, p2, p3);
-	
+
 	if (dot(lightPlaneNormal, shading.position - lightPosition) < 0)
 	{
 		float fLight = solidAngle * 0.2 * (
@@ -1325,18 +1351,18 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 			saturate(dot(normalize(p3 - shading.position), shading.normal)) +
 			saturate(dot(normalize(lightPosition - shading.position), shading.normal)));
 
-		float sqrDist = dot(lunormalized,lunormalized);
-		fLight *= GetSquareFalloffAttenuation(sqrDist, lightProperties.Falloff);				
+		float sqrDist = dot(lunormalized, lunormalized);
+		fLight *= GetSquareFalloffAttenuation(sqrDist, lightProperties.Falloff);
 
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
 		float specularAttenuation = saturate(abs(dot(lightPlaneNormal, r))); // if ray is perpendicular to light plane, it would break specular, so fade in that case
-		
+
 		float3 L;
-		
+
 		// We approximate L by the closest point on the reflection ray to the light source (representative point technique) to achieve a nice looking specular reflection
 		[branch]
-		if((specularAttenuation * fLight) > 0)
+		if ((specularAttenuation * fLight) > 0)
 		{
 			float traced = TraceRectangle(shading.position, r, p0, p1, p2, p3);
 			[branch]
@@ -1344,7 +1370,7 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 			{
 				// Trace succeeded so the light vector L is the reflection vector itself
 				L = r;
-			}			
+			}
 			else
 			{
 				// The trace didn't succeed, so we need to find the closest point to the ray on the rectangle
@@ -1381,12 +1407,12 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 				L = min - shading.position;
 				L = normalize(L); // TODO: Is it necessary?
 			}
-			
+
 			SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-			
-			float3 lightColor = lightProperties.Color;		
-			lightColor *=  ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-				
+
+			float3 lightColor = lightProperties.Color;
+			lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
+
 			color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, specularAttenuation);
 		}
 	}
@@ -1398,23 +1424,23 @@ void DiskLight(const ShadingParams shading, const MaterialInputs material, const
 	float sqrDist = dot(Lunnormalized, Lunnormalized);
 	float3 L = normalize(Lunnormalized);
 	float radius = lightProperties.Radius;
-	
+
 	float cosTheta = clamp(dot(shading.normal, L), -0.999, 0.999);
 	float sqrLightRadius = radius * radius;
 	float sinSigmaSqr = min(sqrLightRadius / sqrDist, 0.9999);
 	float fLight = illuminanceSphereOrDisk(cosTheta, sinSigmaSqr) * saturate(dot(lightProperties.Direction, L));
 	fLight *= GetSquareFalloffAttenuation(sqrDist, lightProperties.Falloff);
-	
+
 	[branch]
-	if(fLight > 0)
-	{	
+	if (fLight > 0)
+	{
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
-		
+
 		float specularAttenuation = saturate(abs(dot(lightProperties.Direction, r)));
 
 		[branch]
-		if(specularAttenuation > 0)
+		if (specularAttenuation > 0)
 		{
 			float t = TracePlane(shading.position, r, lightProperties.Position, lightProperties.Direction);
 			float3 p = shading.position + r * t;
@@ -1422,12 +1448,12 @@ void DiskLight(const ShadingParams shading, const MaterialInputs material, const
 			float3 closestPoint = Lunnormalized + centerToRay * saturate(radius / length(centerToRay));
 			L = normalize(closestPoint);
 			SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-		
-			float3 lightColor = lightProperties.Color;		
-			lightColor *=  ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-			
+
+			float3 lightColor = lightProperties.Color;
+			lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
+
 			color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, specularAttenuation);
-		}		
+		}
 	}
 }
 
@@ -1437,33 +1463,33 @@ void SphereLight(const ShadingParams shading, const MaterialInputs material, con
 	float sqrDist = dot(Lunnormalized, Lunnormalized);
 	float3 L = normalize(Lunnormalized);
 	float radius = lightProperties.Radius;
-	
+
 	float cosTheta = clamp(dot(shading.normal, L), -0.999, 0.999);
 	float sqrLightRadius = radius * radius;
 	float sinSigmaSqr = min(sqrLightRadius / sqrDist, 0.9999);
 	float fLight = illuminanceSphereOrDisk(cosTheta, sinSigmaSqr);
 	fLight *= GetSquareFalloffAttenuation(sqrDist, lightProperties.Falloff);
 
-	if(fLight > 0)
-	{		
+	if (fLight > 0)
+	{
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
-			
+
 		float3 centerToRay = dot(Lunnormalized, r) * r - Lunnormalized;
 		float3 closestPoint = Lunnormalized + centerToRay * saturate(radius / length(centerToRay));
 		L = normalize(closestPoint);
-		
-		
+
+
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-	
-		float3 lightColor = lightProperties.Color;		
-		lightColor *=  ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-		
+
+		float3 lightColor = lightProperties.Color;
+		lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
+
 		color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, 1);
 	}
 }
 
-uint findIndexLSB(uint value) 
+uint findIndexLSB(uint value)
 {
 	// http://graphics.stanford.edu/~seander/bithacks.html#ZerosOnRightMultLookup
 	const uint MultiplyDeBruijnBitPosition[32] =
@@ -1500,50 +1526,50 @@ void EvaluateDirectLights(const ShadingParams shading, const MaterialInputs mate
 				bucket_bits ^= 1 << bucket_bit_index;
 
 				LightProperties lightProperties = Lights[light_index];
-				
+
 				[branch]
 				switch (lightProperties.LightType)
 				{
-					case DIRECTIONAL_LIGHT:
-					{
-						DirectionalLight(shading, material, pixel, lightProperties, color);	
-						break;
-					}
-					case POINT_LIGHT:
-					{
-						PointLight(shading, material, pixel, lightProperties, color);
-						break;
-					}
-	
-					case SPOT_LIGHT:
-					{
-						SpotLight(shading, material, pixel, lightProperties, color);
-						break;
-					}
+				case DIRECTIONAL_LIGHT:
+				{
+					DirectionalLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
+				case POINT_LIGHT:
+				{
+					PointLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
 
-					case TUBE_LIGHT:
-					{
-						TubeLight(shading, material, pixel, lightProperties, color);						
-						break;
-					}
-					
-					case RECTANGLE_LIGHT:
-					{
-						RectangleLight(shading, material, pixel, lightProperties, color);
-						break;
-					}						
-					
-					case DISK_LIGHT:
-					{						
-						DiskLight(shading, material, pixel, lightProperties, color);
-						break;
-					}
-		
-					case SPHERE_LIGHT:
-					{
-						SphereLight(shading, material, pixel, lightProperties, color);
-						break;
-					}
+				case SPOT_LIGHT:
+				{
+					SpotLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
+
+				case TUBE_LIGHT:
+				{
+					TubeLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
+
+				case RECTANGLE_LIGHT:
+				{
+					RectangleLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
+
+				case DISK_LIGHT:
+				{
+					DiskLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
+
+				case SPHERE_LIGHT:
+				{
+					SphereLight(shading, material, pixel, lightProperties, color);
+					break;
+				}
 				}
 			}
 		}
@@ -1607,8 +1633,8 @@ float4 EvaluateMaterial(const ShadingParams shading, const MaterialInputs materi
 
 float4 PixelFunction(VSOutputPbr input) : SV_Target
 {
-	ShadingParams shading = (ShadingParams)0;
-	ComputeShadingParams(input, shading);
+	ShadingParams shading = (ShadingParams)0;	
+	ComputeShadingParams(input, shading);	
 
 	MaterialInputs material = (MaterialInputs)0;
 	InitMaterial(input, material);
@@ -1616,8 +1642,12 @@ float4 PixelFunction(VSOutputPbr input) : SV_Target
 	PrepareMaterial(material, shading);
 
 	float4 color = EvaluateMaterial(shading, material);
-	color = LinearToSrgb(color);
 	color.rgb *= Alpha;
+
+#if GAMMA_COLORSPACE
+	color = LinearToGamma(color);
+#endif
+
 	return color;
 }
 [End_Pass]

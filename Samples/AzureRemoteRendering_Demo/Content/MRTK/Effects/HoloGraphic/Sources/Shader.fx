@@ -5,6 +5,7 @@
 [directives:BORDER_LIGHT_OPAQUE            BORDER_LIGHT_OPAQUE_OFF            BORDER_LIGHT_OPAQUE            ]
 [directives:INNER_GLOW                     INNER_GLOW_OFF                     INNER_GLOW                     ]
 [directives:ROUND_CORNERS                  ROUND_CORNERS_OFF                  ROUND_CORNERS                  ]
+[directives:INDEPENDENT_CORNERS			   INDEPENDENT_CORNERS_OFF			  INDEPENDENT_CORNERS			 ]
 [directives:IGNORE_Z_SCALE                 IGNORE_Z_SCALE_OFF                 IGNORE_Z_SCALE                 ]
 [directives:NEAR_LIGHT_FADE                NEAR_LIGHT_FADE_OFF                NEAR_LIGHT_FADE                ]
 [directives:HOVER_LIGHT                    HOVER_LIGHT_OFF                    HOVER_LIGHT                    ]
@@ -17,6 +18,7 @@
 [directives:DIRECTIONAL_LIGHT              DIRECTIONAL_LIGHT_OFF              DIRECTIONAL_LIGHT              ]
 [directives:ALBEDO_MAP                     ALBEDO_MAP_OFF                     ALBEDO_MAP                     ]
 [directives:Multiview                      MULTIVIEW_OFF                      MULTIVIEW                      ]
+[directives:ColorSpace 					   GAMMA_COLORSPACE_OFF 			  GAMMA_COLORSPACE				 ]
 
 	cbuffer PerDrawCall : register(b0)
 	{
@@ -26,7 +28,7 @@
 
 	cbuffer Parameters : register(b1)
 	{
-		float3 Color				: packoffset(c0);   [Default(0.3, 0.3, 1.0)]
+		float3 Color				: packoffset(c0);   [Default(0.070740278, 0.070740278, 1.0)]
 		float Alpha             	: packoffset(c0.w); [Default(1.0)]
 
 		float3 InnerGlowColor   	: packoffset(c1);   [Default(1.0, 1.0, 1.0)]
@@ -41,39 +43,46 @@
 		float RoundCornerMargin 	: packoffset(c3.y); [Default(0.01)]  //Range(0.0, 0.5)
 		float Cutoff				: packoffset(c3.z); [Default(0.5)]	 //Range(0.0, 0.5)
 
+		// INDEPENDENT_CORNERS
+		float4 RoundCornersRadious 	: packoffset(c4);   [Default(0.5 ,0.5, 0.5, 0.5)]
+
 		// BORDER_LIGHT OR ROUND_CORNERS
 		float EdgeSmoothingValue	: packoffset(c3.w); [Default(0.002)] //Range(0.0, 0.2)
 		
 		//NEAR_LIGHT_FADE
-		float FadeBeginDistance     : packoffset(c4.x); [Default(0.01)] //Range(0.0, 10.0)
-        float FadeCompleteDistance  : packoffset(c4.y); [Default(0.1)]  //Range(0.0, 10.0)
-        float FadeMinValue          : packoffset(c4.z); [Default(0.0)]  //Range(0.0, 1.0)
+		float FadeBeginDistance     : packoffset(c5.x); [Default(0.01)] //Range(0.0, 10.0)
+        float FadeCompleteDistance  : packoffset(c5.y); [Default(0.1)]  //Range(0.0, 10.0)
+        float FadeMinValue          : packoffset(c5.z); [Default(0.0)]  //Range(0.0, 1.0)
         
         //HOVER_LIGHT
-        float3 HoverColorOverride   : packoffset(c5);   [Default(0.24, 0.24, 0.24)]
+        float3 HoverColorOverride   : packoffset(c6);   [Default(0.043297691, 0.043297691, 0.043297691)]
         
         //PROXIMITY_LIGHT
-        float4 ProximityLightCenterColorOverride : packoffset(c6); [Default(0.21, 0.55, 0.98, 0.0)]
-		float4 ProximityLightMiddleColorOverride : packoffset(c7); [Default(0.18, 0.51, 1.00, 0.2)]
-		float4 ProximityLightOuterColorOverride  : packoffset(c8); [Default(0.32, 0.12, 0.74, 1.0)]
-		
-		//DIRECTIONAL_LIGHT
-        float4 LightColor0 : packoffset(c9); [Default(0.5, 0.5, 0.5, 1)]
+        float4 ProximityLightCenterColorOverride : packoffset(c7); [Default(0.032276204, 0.268409521, 0.956527293, 0.0)]
+		float4 ProximityLightMiddleColorOverride : packoffset(c8); [Default(0.022993205, 0.227328762, 1.00, 0.2)]
+		float4 ProximityLightOuterColorOverride  : packoffset(c9); [Default(0.081532349, 0.009423207, 0.51559629, 1.0)]
         
+        //DIRECTIONAL_LIGHT
         float Metallic   : packoffset(c10.x); [Default(0.0)]
         float Smoothness : packoffset(c10.y); [Default(0.5)]
         
         float2 Tiling           : packoffset(c11.x);   [Default(1.0, 1.0)]
 		float2 Offset           : packoffset(c11.z);   [Default(0.0, 0.0)]
-        
-        float4 HoverLightData[6]     : packoffset(c20);
-        float4 ProximityLightData[12] : packoffset(c26);
 	};
 	
 	cbuffer PerCamera : register(b2)
 	{
-		float4x4  MultiviewViewProj[2]		: packoffset(c0.x);  [StereoCameraViewProjection]
-		int       EyeCount                  : packoffset(c10.x); [StereoEyeCount]
+		float4x4  MultiviewViewProj[6]		: packoffset(c0.x);  [MultiviewViewProjection]
+		int       EyeCount                  : packoffset(c10.x); [MultiviewCount]
+	};
+	
+	cbuffer PerScene : register(b3)
+	{
+		float3 SunDirection  	: packoffset(c0); [SunDirection]
+		float3 SunColor     	: packoffset(c1); [SunColor]
+        
+        float4 HoverLightData[6]     : packoffset(c2);
+        float4 ProximityLightData[12] : packoffset(c8);
 	};
 
 	Texture2D Texture		: register(t0);
@@ -104,7 +113,12 @@
 #endif
 
 	[profile 11_0]
-	[entrypoints VS=VS PS=PS]
+	[entrypoints VS=VS PS=PS]	
+
+	float3 GammaToLinear(const float3 color)
+	{
+		return pow(color, 2.2);
+	}
 
 #if HOVER_LIGHT || NEAR_LIGHT_FADE
 	#if MULTI_HOVER_LIGHT
@@ -356,7 +370,37 @@
 #if ROUND_CORNERS
         float2 halfScale = input.scale.xy * 0.5;
         float2 roundCornerPosition = distanceToEdge * halfScale;
-        float cornerCircleRadius = saturate(max(RoundCornerRadious - RoundCornerMargin, 0.01)) * input.scale.z;
+        
+        float currentCornerRadious;
+        
+#if INDEPENDENT_CORNERS
+        if (input.uv.x < 0.5)
+        {
+            if (input.uv.y > 0.5)
+            {
+                currentCornerRadious = RoundCornersRadious.x;
+            }
+            else
+            {
+                currentCornerRadious = RoundCornersRadious.w;
+            }
+        }
+        else
+        {
+            if (input.uv.y > 0.5)
+            {
+                currentCornerRadious = RoundCornersRadious.y;
+            }
+            else
+            {
+                currentCornerRadious = RoundCornersRadious.z;
+            }
+        }
+#else
+		currentCornerRadious = RoundCornerRadious;
+#endif
+        currentCornerRadious = clamp(currentCornerRadious, 0, 0.5);
+        float cornerCircleRadius = saturate(max(currentCornerRadious - RoundCornerMargin, 0.01)) * input.scale.z;
         float2 cornerCircleDistance = halfScale - (RoundCornerMargin * input.scale.z) - cornerCircleRadius;
         float roundCornerClip = RoundCornersF(roundCornerPosition, cornerCircleDistance, cornerCircleRadius);
 #endif
@@ -419,7 +463,7 @@
 		float borderValue;
 #if ROUND_CORNERS
 		float borderMargin = RoundCornerMargin + BorderWidth * 0.5;
-		cornerCircleRadius = saturate(max(RoundCornerRadious - borderMargin, 0.01)) * input.scale.z;
+		cornerCircleRadius = saturate(max(currentCornerRadious - borderMargin, 0.01)) * input.scale.z;
         cornerCircleDistance = halfScale - (borderMargin * input.scale.z) - cornerCircleRadius;
         borderValue =  1.0 - RoundCornersSmooth(roundCornerPosition, cornerCircleDistance, cornerCircleRadius);
 #else
@@ -456,7 +500,7 @@
 		
 // Blinn phong lighting.
 #if DIRECTIONAL_LIGHT
-        float3 directionalLightDirection = normalize(float3(0.3, 0.8, 0.6));//_WorldSpaceLightPos0;
+		float3 directionalLightDirection = SunDirection;
 
         float diffuse = max(0.0, dot(worldNormal, directionalLightDirection));
 #if SPECULAR_HIGHLIGHTS
@@ -487,13 +531,13 @@
 #else
     	float3 ambient = float3(0.7, 0.7, 0.7);//glstate_lightmodel_ambient + float3(0.25, 0.25, 0.25);
 #endif
-		float minProperty = min(Smoothness, Metallic);
 	
 #if DIRECTIONAL_LIGHT
+		float minProperty = min(Smoothness, Metallic);
 	    float oneMinusMetallic = (1.0 - Metallic);
 	    output.rgb = lerp(output.rgb, ibl, minProperty);
 	
-	    float3 directionalLightColor = LightColor0.rgb;
+	    float3 directionalLightColor = SunColor;
 	
 	    output.rgb *= lerp((ambient + directionalLightColor * diffuse + directionalLightColor * specular) * max(oneMinusMetallic, MinMetallicLightContribution), albedo, minProperty);
 	    output.rgb += (directionalLightColor * albedo * specular) + (directionalLightColor * specular * Smoothness);
@@ -523,6 +567,10 @@
 
 	
 		output.rgb *= clamp(output.a, 0, 1);
+		
+#if !GAMMA_COLORSPACE
+		output.rgb = GammaToLinear(output.rgb);
+#endif
 	
 		return output;
 	}

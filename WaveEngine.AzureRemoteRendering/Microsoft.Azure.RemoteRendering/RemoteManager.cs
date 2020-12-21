@@ -42,7 +42,7 @@ namespace Microsoft.Azure.RemoteRendering
 
             if( r != Result.Success )
             {
-                throw new RRException(r, "Could not initialze remote rendering.");
+                throw new RRException(r, "Could not initialize remote rendering.");
             }
 
             IsInitialized = true;

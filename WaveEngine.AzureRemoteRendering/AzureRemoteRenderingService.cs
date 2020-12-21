@@ -121,6 +121,11 @@ namespace WaveEngine.AzureRemoteRendering
                 return false;
             }
 
+            if (Application.Current.IsEditor)
+            {
+                return true;
+            }
+
             if (this.graphicsContext.BackendType != GraphicsBackend.DirectX11)
             {
                 throw new InvalidOperationException(

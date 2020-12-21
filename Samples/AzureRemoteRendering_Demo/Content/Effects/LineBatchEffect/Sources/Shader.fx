@@ -5,13 +5,13 @@
 	cbuffer Matrices : register(b0)
 	{
 	    float4x4	World					: packoffset(c0); [World]
-		float4x4    WorldViewProjection		: packoffset(c4.x); [WorldViewProjection]
+		float4x4    WorldViewProjection		: packoffset(c4.x); [UnjitteredWorldViewProjection]
 	};
 
 	cbuffer PerCamera : register(b1)
 	{
-		float4x4	ViewProj[2]	: packoffset(c0); [StereoCameraViewProjection]
-		int			EyeCount	: packoffset(c8); [StereoEyeCount]
+		float4x4	ViewProj[6]	: packoffset(c0); [MultiviewViewProjection]
+		int			EyeCount	: packoffset(c24); [MultiviewCount]
 	};
 
 [End_ResourceLayout]

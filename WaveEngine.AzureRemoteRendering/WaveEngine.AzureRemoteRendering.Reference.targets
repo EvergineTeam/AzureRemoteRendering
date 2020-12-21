@@ -1,6 +1,6 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <ItemGroup Condition="$(TargetFrameworkIdentifier) == '.NETFramework' OR $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('netstandard'))">
+  <ItemGroup Condition="$(TargetFrameworkIdentifier) == '.NETFramework' OR $(TargetFramework.StartsWith('net5')) OR $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('netstandard'))">
     <Content Include="$(MSBuildThisFileDirectory)bin\$(Configuration)\netstandard2.0\runtimes\win10-x64\native\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>

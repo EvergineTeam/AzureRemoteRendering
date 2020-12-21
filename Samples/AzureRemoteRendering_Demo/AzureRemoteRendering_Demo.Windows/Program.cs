@@ -11,7 +11,7 @@ namespace AzureRemoteRendering_Demo.Windows
         static void Main(string[] args)
         {
             // Create app
-            MyApplication application = new MyApplication();
+            MainApplication application = new MainApplication();
 
             // Create Services
             uint width = 1280;
@@ -60,6 +60,7 @@ namespace AzureRemoteRendering_Demo.Windows
                 RefreshRate = 60
             };
             var swapChain = graphicsContext.CreateSwapChain(swapChainDescription);
+            swapChain.FrameBuffer.SwapchainAssociated = false;
             swapChain.VerticalSync = true;
 
             var graphicsPresenter = application.Container.Resolve<GraphicsPresenter>();

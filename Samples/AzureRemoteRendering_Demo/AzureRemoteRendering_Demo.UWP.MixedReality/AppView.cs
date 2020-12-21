@@ -15,7 +15,7 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality
     internal class AppView : IFrameworkView
     {
         private MixedRealityPlatform xrDevice;
-        private MyApplication application;
+        private MainApplication application;
         private MixedRealityWindowsSystem windowsSystem;
 
         private bool isApplicationInitilized;
@@ -34,7 +34,7 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality
             // At this point we have access to the device and we can create device-dependent
             // resources.
             // Create app
-            application = new MyApplication();
+            application = new MainApplication();
 
             // Create Services
             xrDevice = new MixedRealityPlatform();
@@ -141,14 +141,14 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality
             //
         }
 
-        private static void ConfigureGraphicsContext(MyApplication application)
+        private static void ConfigureGraphicsContext(MainApplication application)
         {
             GraphicsContext graphicsContext = new DX11GraphicsContext();
             graphicsContext.CreateDevice();
             application.Container.RegisterInstance(graphicsContext);
         }
 
-        private static void ConfigureMixedRealityDisplay(MyApplication application, MixedRealityPlatform xrDevice)
+        private static void ConfigureMixedRealityDisplay(MainApplication application, MixedRealityPlatform xrDevice)
         {
             var graphicsPresenter = application.Container.Resolve<GraphicsPresenter>();
             graphicsPresenter.AddDisplay("DefaultDisplay", xrDevice.Display);

@@ -52,83 +52,321 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         KeyNotFound = 77,
         /// <summary>
-        /// General return values start.
+        /// Internal: Start of the range of core result values.
         /// </summary>
         CoreReturnValueStart = 78,
+        /// <summary>
+        /// Operation completed successfully.
+        /// </summary>
         Success = 79,
+        /// <summary>
+        /// General failure.
+        /// </summary>
         Fail = 80,
+        /// <summary>
+        /// The user canceled the operation.
+        /// </summary>
         Cancelled = 81,
+        /// <summary>
+        /// Incorrect user input for the operation.
+        /// </summary>
         InvalidParam = 82,
+        /// <summary>
+        /// An object with incorrect type was passed in.
+        /// </summary>
         InvalidType = 83,
-        BufferTooSmall = 84,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        BufferTooSmall_Deprecated = 84,
+        /// <summary>
+        /// Operation requires an active connection.
+        /// </summary>
+        /// <remarks>
+        /// If the connection to the server has been lost, this error can occur for most operations,
+        /// since only few operations are possible without a connection.
+        /// </remarks>
         NoConnection = 85,
+        /// <summary>
+        /// Internal.
+        /// </summary>
         ApiUnavailable = 86,
+        /// <summary>
+        /// Static initialization of remote rendering has been called multiple times.
+        /// </summary>
         AlreadyInitialized = 87,
+        /// <summary>
+        /// Static de-initialization of remote rendering has already been performed.
+        /// </summary>
         AlreadyDeinitialized = 88,
+        /// <summary>
+        /// The string passed into the API is longer than allowed.
+        /// </summary>
         StringTooLong = 89,
+        /// <summary>
+        /// The index passed into the API is outside the valid range.
+        /// </summary>
         IndexOutOfRange = 90,
+        /// <summary>
+        /// An async operation has not yet finished.
+        /// </summary>
         InProgress = 91,
+        /// <summary>
+        /// Static initialization of remote rendering hasn't been done yet.
+        /// </summary>
         NotInitialized = 92,
+        /// <summary>
+        /// Internal: Last used value of the range of core result values.
+        /// </summary>
         CoreReturnValueLast = 93,
+        /// <summary>
+        /// Internal: Maximum value of the range of core result values.
+        /// </summary>
         CoreReturnValueEnd = 94,
+        /// <summary>
+        /// Internal: Start of the range of file load result values.
+        /// </summary>
         LoadFileReturnValueStart = 95,
+        /// <summary>
+        /// The requested file did not exist.
+        /// </summary>
         FileNotFound = 96,
+        /// <summary>
+        /// The requested file is either corrupt or uses an old version that is not supported anymore.
+        /// </summary>
         InvalidVersion = 97,
-        IncompatibleVersion = 98,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        IncompatibleVersion_Deprecated = 98,
+        /// <summary>
+        /// The requested file is either corrupt or not recognized.
+        /// </summary>
         FailedToOpenFile = 99,
+        /// <summary>
+        /// Downloading the file from the provided URL failed.
+        /// </summary>
         FileDownloadFailed = 100,
+        /// <summary>
+        /// Loading this model would exceed GPU memory limits. Request a larger server, or reduce the amount of loaded models.
+        /// </summary>
         ExceedsMemoryLimit = 101,
-        LoadFileReturnValueLast = 102,
-        LoadFileReturnValueEnd = 103,
-        ObjectReturnValueStart = 104,
-        InvalidId = 105,
-        InvalidParentId = 106,
-        AlreadyExists = 107,
-        CyclicReference = 108,
-        ObjectLocked = 109,
-        ObjectReturnValueLast = 110,
-        ObjectReturnValueEnd = 111,
-        ConnectionReturnValueStart = 112,
-        NoServerCertificate = 113,
-        HandshakePortBusy = 114,
-        HandshakeUnreachable = 115,
-        HandshakeConnectionFailed = 116,
-        AuthenticationFailed = 117,
-        RemotingVersionMismatch = 118,
-        IncompatibleTransportProtocols = 119,
-        HandshakeFailed = 120,
-        TransportPortBusy = 121,
-        TransportUnreachable = 122,
-        TransportConnectionFailed = 123,
-        ProtocolVersionMismatch = 124,
-        ProtocolError = 125,
-        VideoCodecNotAvailable = 126,
-        ConnectionLost = 127,
-        DeviceLost = 128,
-        DisconnectRequest = 129,
-        Timeout = 130,
-        AlreadyConnected = 131,
-        ArrVersionMismatch = 132,
-        HandshakeNetworkUnreachable = 133,
-        HandshakeConnectionRefused = 134,
-        VideoFormatNotAvailable = 135,
-        PeerDisconnectRequest = 136,
-        PeerDisconnectTimeout = 137,
-        ConnectionReturnValueLast = 138,
-        ConnectionReturnValueEnd = 139,
-        ManagerReturnValueStart = 140,
-        InvalidToolId = 141,
-        ManagerAlreadyCreated = 142,
-        ManagerNotCreatedYet = 143,
-        OtherSessionConnected = 144,
-        BadStateTransition = 145,
-        ManagerReturnValueLast = 146,
-        ManagerReturnValueEnd = 147,
-        SessionReturnValueStart = 148,
-        InvalidToken = 149,
-        InvalidUrl = 150,
-        SessionReturnValueLast = 151,
-        SessionReturnValueEnd = 152,
+        /// <summary>
+        /// The target file cannot be written
+        /// </summary>
+        CannotWriteTargetFile = 102,
+        /// <summary>
+        /// The target file is corrupt or in an unsupported format
+        /// </summary>
+        FileCorrupt = 103,
+        /// <summary>
+        /// Internal: Last used value of the range of file load result values.
+        /// </summary>
+        LoadFileReturnValueLast = 104,
+        /// <summary>
+        /// Internal: Maximum value of the range of file load result values.
+        /// </summary>
+        LoadFileReturnValueEnd = 105,
+        /// <summary>
+        /// Internal: Start of the range of object result values.
+        /// </summary>
+        ObjectReturnValueStart = 106,
+        /// <summary>
+        /// The provided object ID is not valid (anymore).
+        /// </summary>
+        InvalidId = 107,
+        /// <summary>
+        /// The parent entity with the provided ID does not exist.
+        /// </summary>
+        InvalidParentId = 108,
+        /// <summary>
+        /// An object of the same type already exists on the target.
+        /// </summary>
+        AlreadyExists = 109,
+        /// <summary>
+        /// Re-parenting this entity to the target entity would create a cycle in the entity hierarchy.
+        /// </summary>
+        CyclicReference = 110,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        ObjectLocked_Deprecated = 111,
+        /// <summary>
+        /// Internal: Last used value of the range of object result values.
+        /// </summary>
+        ObjectReturnValueLast = 112,
+        /// <summary>
+        /// Internal: Maximum value of the range of object result values.
+        /// </summary>
+        ObjectReturnValueEnd = 113,
+        /// <summary>
+        /// Internal: Start of the range of connection result values.
+        /// </summary>
+        ConnectionReturnValueStart = 114,
+        /// <summary>
+        /// Internal: Secure connection enabled, but certificate was missing, invalid, or not usable.
+        /// </summary>
+        NoServerCertificate = 115,
+        /// <summary>
+        /// Internal: Handshake port could not be opened for accepting connections.
+        /// </summary>
+        HandshakePortBusy = 116,
+        /// <summary>
+        /// Handshake server is unreachable.
+        /// </summary>
+        HandshakeUnreachable = 117,
+        /// <summary>
+        /// Handshake server closed the connection prematurely; likely due to TLS/Plain mismatch or invalid certificate.
+        /// </summary>
+        HandshakeConnectionFailed = 118,
+        /// <summary>
+        /// Authentication with the handshake server failed.
+        /// </summary>
+        AuthenticationFailed = 119,
+        /// <summary>
+        /// No common compatible remoting version could be determined during handshake.
+        /// </summary>
+        RemotingVersionMismatch = 120,
+        /// <summary>
+        /// No common transport protocol could be determined during handshake.
+        /// </summary>
+        IncompatibleTransportProtocols = 121,
+        /// <summary>
+        /// Handshake failed. Reason not further specified.
+        /// </summary>
+        HandshakeFailed = 122,
+        /// <summary>
+        /// Internal: Transport port could not be opened for accepting connections.
+        /// </summary>
+        TransportPortBusy = 123,
+        /// <summary>
+        /// Transport server is unreachable.
+        /// </summary>
+        TransportUnreachable = 124,
+        /// <summary>
+        /// Transport connection was closed before all communication channels had been set up.
+        /// </summary>
+        TransportConnectionFailed = 125,
+        /// <summary>
+        /// Transport connection was closed due to protocol version mismatch.
+        /// </summary>
+        ProtocolVersionMismatch = 126,
+        /// <summary>
+        /// A protocol error occurred that was severe enough to invalidate the current connection or connection attempt.
+        /// </summary>
+        ProtocolError = 127,
+        /// <summary>
+        /// Transport connection was closed due to the requested video codec not being available.
+        /// </summary>
+        VideoCodecNotAvailable = 128,
+        /// <summary>
+        /// Connection has been closed by peer.
+        /// </summary>
+        ConnectionLost = 129,
+        /// <summary>
+        /// Connection has been closed due to graphics device loss.
+        /// </summary>
+        DeviceLost = 130,
+        /// <summary>
+        /// Connection has been closed by request.
+        /// </summary>
+        DisconnectRequest = 131,
+        /// <summary>
+        /// Internal.
+        /// </summary>
+        Timeout = 132,
+        /// <summary>
+        /// A connection has been established before.
+        /// </summary>
+        AlreadyConnected = 133,
+        /// <summary>
+        /// The client SDK version is not supported anymore. Please update.
+        /// </summary>
+        ArrVersionMismatch = 134,
+        /// <summary>
+        /// Network is unreachable. This usually means the client knows no route to reach the remote host.
+        /// </summary>
+        HandshakeNetworkUnreachable = 135,
+        /// <summary>
+        /// No connection could be made because the remote side actively refused it. Usually this means that no host application is running.
+        /// </summary>
+        HandshakeConnectionRefused = 136,
+        /// <summary>
+        /// Transport connection was closed due to the requested video format not being available.
+        /// </summary>
+        VideoFormatNotAvailable = 137,
+        /// <summary>
+        /// Disconnecting after receiving a disconnect request from the peer.
+        /// </summary>
+        PeerDisconnectRequest = 138,
+        /// <summary>
+        /// Timed out while waiting for peer to close connection.
+        /// </summary>
+        PeerDisconnectTimeout = 139,
+        /// <summary>
+        /// Internal: Last used value of the range of connection result values.
+        /// </summary>
+        ConnectionReturnValueLast = 140,
+        /// <summary>
+        /// Internal: Maximum value of the range of connection result values.
+        /// </summary>
+        ConnectionReturnValueEnd = 141,
+        /// <summary>
+        /// Internal: Start of the range of manager result values.
+        /// </summary>
+        ManagerReturnValueStart = 142,
+        /// <summary>
+        /// Internal: Invalid tool ID.
+        /// </summary>
+        InvalidToolId = 143,
+        /// <summary>
+        /// The remote rendering manager has already been created.
+        /// </summary>
+        ManagerAlreadyCreated = 144,
+        /// <summary>
+        /// The remote rendering manager has not been created yet.
+        /// </summary>
+        ManagerNotCreatedYet = 145,
+        /// <summary>
+        /// Another session is already connected to this runtime.
+        /// </summary>
+        OtherSessionConnected = 146,
+        /// <summary>
+        /// Internal.
+        /// </summary>
+        BadStateTransition = 147,
+        /// <summary>
+        /// An internal tool failed to start
+        /// </summary>
+        FailedToStartTool = 148,
+        /// <summary>
+        /// Internal: Last used value of the range of manager result values.
+        /// </summary>
+        ManagerReturnValueLast = 149,
+        /// <summary>
+        /// Internal: Maximum value of the range of manager result values.
+        /// </summary>
+        ManagerReturnValueEnd = 150,
+        /// <summary>
+        /// Internal: Start of the range of session result values.
+        /// </summary>
+        SessionReturnValueStart = 151,
+        /// <summary>
+        /// The secure connection failed. Check the account settings.
+        /// </summary>
+        InvalidToken = 152,
+        /// <summary>
+        /// The user provided URL is malformed.
+        /// </summary>
+        InvalidUrl = 153,
+        /// <summary>
+        /// Internal: Last used value of the range of session result values.
+        /// </summary>
+        SessionReturnValueLast = 154,
+        /// <summary>
+        /// Internal: Maximum value of the range of session result values.
+        /// </summary>
+        SessionReturnValueEnd = 155,
     }
 
     internal static class NativeLibraryHelpers
@@ -204,8 +442,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.InvalidParam, message, requestCorrelationVector, responseCorrelationVector);
                 case status.InvalidType:
                     throw new RRException(Result.InvalidType, message, requestCorrelationVector, responseCorrelationVector);
-                case status.BufferTooSmall:
-                    throw new RRException(Result.BufferTooSmall, message, requestCorrelationVector, responseCorrelationVector);
+                case status.BufferTooSmall_Deprecated:
+                    throw new RRException(Result.BufferTooSmall_Deprecated, message, requestCorrelationVector, responseCorrelationVector);
                 case status.NoConnection:
                     throw new RRException(Result.NoConnection, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ApiUnavailable:
@@ -232,14 +470,18 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.FileNotFound, message, requestCorrelationVector, responseCorrelationVector);
                 case status.InvalidVersion:
                     throw new RRException(Result.InvalidVersion, message, requestCorrelationVector, responseCorrelationVector);
-                case status.IncompatibleVersion:
-                    throw new RRException(Result.IncompatibleVersion, message, requestCorrelationVector, responseCorrelationVector);
+                case status.IncompatibleVersion_Deprecated:
+                    throw new RRException(Result.IncompatibleVersion_Deprecated, message, requestCorrelationVector, responseCorrelationVector);
                 case status.FailedToOpenFile:
                     throw new RRException(Result.FailedToOpenFile, message, requestCorrelationVector, responseCorrelationVector);
                 case status.FileDownloadFailed:
                     throw new RRException(Result.FileDownloadFailed, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ExceedsMemoryLimit:
                     throw new RRException(Result.ExceedsMemoryLimit, message, requestCorrelationVector, responseCorrelationVector);
+                case status.CannotWriteTargetFile:
+                    throw new RRException(Result.CannotWriteTargetFile, message, requestCorrelationVector, responseCorrelationVector);
+                case status.FileCorrupt:
+                    throw new RRException(Result.FileCorrupt, message, requestCorrelationVector, responseCorrelationVector);
                 case status.LoadFileReturnValueLast:
                     throw new RRException(Result.LoadFileReturnValueLast, message, requestCorrelationVector, responseCorrelationVector);
                 case status.LoadFileReturnValueEnd:
@@ -254,8 +496,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.AlreadyExists, message, requestCorrelationVector, responseCorrelationVector);
                 case status.CyclicReference:
                     throw new RRException(Result.CyclicReference, message, requestCorrelationVector, responseCorrelationVector);
-                case status.ObjectLocked:
-                    throw new RRException(Result.ObjectLocked, message, requestCorrelationVector, responseCorrelationVector);
+                case status.ObjectLocked_Deprecated:
+                    throw new RRException(Result.ObjectLocked_Deprecated, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ObjectReturnValueLast:
                     throw new RRException(Result.ObjectReturnValueLast, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ObjectReturnValueEnd:
@@ -328,6 +570,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.OtherSessionConnected, message, requestCorrelationVector, responseCorrelationVector);
                 case status.BadStateTransition:
                     throw new RRException(Result.BadStateTransition, message, requestCorrelationVector, responseCorrelationVector);
+                case status.FailedToStartTool:
+                    throw new RRException(Result.FailedToStartTool, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ManagerReturnValueLast:
                     throw new RRException(Result.ManagerReturnValueLast, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ManagerReturnValueEnd:
@@ -384,8 +628,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.InvalidParam, fullMessage);
                 case status.InvalidType:
                     throw new RRException(Result.InvalidType, fullMessage);
-                case status.BufferTooSmall:
-                    throw new RRException(Result.BufferTooSmall, fullMessage);
+                case status.BufferTooSmall_Deprecated:
+                    throw new RRException(Result.BufferTooSmall_Deprecated, fullMessage);
                 case status.NoConnection:
                     throw new RRException(Result.NoConnection, fullMessage);
                 case status.ApiUnavailable:
@@ -412,14 +656,18 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.FileNotFound, fullMessage);
                 case status.InvalidVersion:
                     throw new RRException(Result.InvalidVersion, fullMessage);
-                case status.IncompatibleVersion:
-                    throw new RRException(Result.IncompatibleVersion, fullMessage);
+                case status.IncompatibleVersion_Deprecated:
+                    throw new RRException(Result.IncompatibleVersion_Deprecated, fullMessage);
                 case status.FailedToOpenFile:
                     throw new RRException(Result.FailedToOpenFile, fullMessage);
                 case status.FileDownloadFailed:
                     throw new RRException(Result.FileDownloadFailed, fullMessage);
                 case status.ExceedsMemoryLimit:
                     throw new RRException(Result.ExceedsMemoryLimit, fullMessage);
+                case status.CannotWriteTargetFile:
+                    throw new RRException(Result.CannotWriteTargetFile, fullMessage);
+                case status.FileCorrupt:
+                    throw new RRException(Result.FileCorrupt, fullMessage);
                 case status.LoadFileReturnValueLast:
                     throw new RRException(Result.LoadFileReturnValueLast, fullMessage);
                 case status.LoadFileReturnValueEnd:
@@ -434,8 +682,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.AlreadyExists, fullMessage);
                 case status.CyclicReference:
                     throw new RRException(Result.CyclicReference, fullMessage);
-                case status.ObjectLocked:
-                    throw new RRException(Result.ObjectLocked, fullMessage);
+                case status.ObjectLocked_Deprecated:
+                    throw new RRException(Result.ObjectLocked_Deprecated, fullMessage);
                 case status.ObjectReturnValueLast:
                     throw new RRException(Result.ObjectReturnValueLast, fullMessage);
                 case status.ObjectReturnValueEnd:
@@ -508,6 +756,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.OtherSessionConnected, fullMessage);
                 case status.BadStateTransition:
                     throw new RRException(Result.BadStateTransition, fullMessage);
+                case status.FailedToStartTool:
+                    throw new RRException(Result.FailedToStartTool, fullMessage);
                 case status.ManagerReturnValueLast:
                     throw new RRException(Result.ManagerReturnValueLast, fullMessage);
                 case status.ManagerReturnValueEnd:
@@ -595,7 +845,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void DestructorHookDelegateNative(ulong cookie);
 
     /// <summary>
-    /// Delegate for monitoring the progress of an asynchonrous operation.
+    /// Delegate for monitoring the progress of an asynchronous operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -603,11 +853,12 @@ namespace Microsoft.Azure.RemoteRendering
     /// <param name="progress">
     /// Progress fraction between 0 and 1 for how close the operation is to finishing.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LoadModelAsync"/>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void ProgressHandlerNative(ulong cookie, float progress);
 
     /// <summary>
-    /// Delegate for receiving incoming log messages.
+    /// Delegate for receiving log messages.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -616,8 +867,10 @@ namespace Microsoft.Azure.RemoteRendering
     /// Level of the log message.
     /// </param>
     /// <param name="message">
-    /// Message as an IntPtr to the underlying utf8 char array.
+    /// Message as an IntPtr to the underlying UTF-8 char array.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager"/>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void LogHandlerNative(ulong cookie, Microsoft.Azure.RemoteRendering.LogLevel level, System.IntPtr message);
 
@@ -631,13 +884,14 @@ namespace Microsoft.Azure.RemoteRendering
     /// The new connection status.
     /// </param>
     /// <param name="error">
-    /// Additional error information in the case of a spurious disconnect.
+    /// Additional error information in case of an unintended disconnect.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void ConnectionStatusHandlerNative(ulong cookie, Microsoft.Azure.RemoteRendering.ConnectionStatus status, Microsoft.Azure.RemoteRendering.Result error);
 
     /// <summary>
-    /// Delegate for receiving notification when an update tick has completed on a RemoteManager.
+    /// Delegate for receiving notification when an update tick has completed on a <see cref="RemoteManager"/>.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -646,7 +900,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void UpdatedHandlerNative(ulong cookie);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="BoundsQueryAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -658,7 +912,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void BoundsQueryHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="MetadataQueryAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -670,7 +924,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void MetadataHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="LoadModelAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -682,7 +936,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void LoadModelHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="LoadTextureAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -694,7 +948,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void LoadTextureHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of <see cref="RaycastQueryAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -706,7 +960,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void RaycastQueryHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="PerformanceAssessmentAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -718,7 +972,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void PerformanceAssessmentHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="SessionAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -730,7 +984,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void SessionHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a async <see cref="CreateSessionAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -750,11 +1004,12 @@ namespace Microsoft.Azure.RemoteRendering
     /// <param name="args">
     /// The callback handle.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.TokenRequired"/>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void TokenRequiredDelegateNative(ulong cookie, IntPtr args);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="SessionPropertiesArrayAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -766,7 +1021,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void SessionPropertiesArrayHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="StartAssetConversionAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -778,7 +1033,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void StartAssetConversionHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="ConversionStatusAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -790,7 +1045,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void ConversionStatusHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of an <see cref="ArrInspectorAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -802,7 +1057,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void ArrInspectorHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="SessionPropertiesAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -814,7 +1069,7 @@ namespace Microsoft.Azure.RemoteRendering
     internal delegate void SessionPropertiesHandlerNative(ulong cookie, IntPtr async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="ConnectToRuntimeAsync"/> operation.
     /// </summary>
     /// <param name="cookie">
     /// The callback cookie.
@@ -867,6 +1122,8 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_entity_get_components(ulong handle, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] out ulong[] result, out int result_count);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_get_owner(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_get_enabled(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
@@ -874,8 +1131,6 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_set_enabled(ulong handle, [MarshalAs(UnmanagedType.U1)] bool value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_get_type(ulong handle, out Microsoft.Azure.RemoteRendering.ObjectType result);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_component_base_destroy(ulong handle);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -995,7 +1250,7 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_performance_assessment_async_set_completed(IntPtr handle, ulong value, Microsoft.Azure.RemoteRendering.PerformanceAssessmentHandlerNative value_fn);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_performance_assessment_async_get_result(IntPtr handle, out Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_performance_assessment_async_get_result(IntPtr handle, out Microsoft.Azure.RemoteRendering.PerformanceAssessment result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_performance_assessment_async_set_destructor_hook(IntPtr handle, ulong value, Microsoft.Azure.RemoteRendering.DestructorHookDelegateNative value_fn);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1049,7 +1304,7 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_open_rendering_session(ulong handle, [MarshalAs(UnmanagedType.LPStr)] string session_id, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_create_new_rendering_session_async(ulong handle, Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi params_in, out IntPtr result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_create_new_rendering_session_async(ulong handle, Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams params_in, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_azure_frontend_create_new_rendering_session_unsafe_async(ulong handle, Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsUnsafeAbi params_in, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1149,13 +1404,9 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_cut_plane_component_set_fade_length(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_flags(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalStates result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_cut_plane_component_get_cut_plane_filter_mask(ulong handle, out byte result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_flags(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalStates value);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_override_flags(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalStates result);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_override_flags(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalStates value);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_cut_plane_component_set_cut_plane_filter_mask(ulong handle, byte value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_state(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalStates feature, Microsoft.Azure.RemoteRendering.HierarchicalEnableState enabled_state);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1164,6 +1415,10 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_tint_color(ulong handle, out Microsoft.Azure.RemoteRendering.Color4Ub result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_tint_color(ulong handle, Microsoft.Azure.RemoteRendering.Color4Ub value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_cut_plane_filter_mask(ulong handle, out byte result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_cut_plane_filter_mask(ulong handle, byte value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_hidden_state(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalEnableState result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1181,9 +1436,17 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_use_tint_color_state(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalEnableState value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_use_cut_plane_filter_mask_state(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalEnableState result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_use_cut_plane_filter_mask_state(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalEnableState value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_disable_collision_state(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalEnableState result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_disable_collision_state(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalEnableState value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_get_shell_state(ulong handle, out Microsoft.Azure.RemoteRendering.HierarchicalEnableState result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_hierarchical_state_override_component_set_shell_state(ulong handle, Microsoft.Azure.RemoteRendering.HierarchicalEnableState value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_point_light_component_get_radius(ulong handle, out float result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1205,6 +1468,10 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_set_radius(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_get_spot_angle_deg(ulong handle, out Microsoft.Azure.RemoteRendering.Float2 result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_set_spot_angle_deg(ulong handle, Microsoft.Azure.RemoteRendering.Float2 value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_get_falloff_exponent(ulong handle, out float result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_set_falloff_exponent(ulong handle, float value);
@@ -1212,10 +1479,6 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_get_attenuation_cutoff(ulong handle, out Microsoft.Azure.RemoteRendering.Float2 result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_set_attenuation_cutoff(ulong handle, Microsoft.Azure.RemoteRendering.Float2 value);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_get_spot_angle_deg(ulong handle, out Microsoft.Azure.RemoteRendering.Float2 result);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_set_spot_angle_deg(ulong handle, Microsoft.Azure.RemoteRendering.Float2 value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_spot_light_component_get_projected2d_texture(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1311,6 +1574,14 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_pbr_material_set_fade_out(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_pbr_material_get_fresnel_effect_color(ulong handle, out Microsoft.Azure.RemoteRendering.Color4 result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_pbr_material_set_fresnel_effect_color(ulong handle, Microsoft.Azure.RemoteRendering.Color4 value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_pbr_material_get_fresnel_effect_exponent(ulong handle, out float result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_pbr_material_set_fresnel_effect_exponent(ulong handle, float value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_get_color_flags(ulong handle, out Microsoft.Azure.RemoteRendering.ColorMaterialFeatures result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_set_color_flags(ulong handle, Microsoft.Azure.RemoteRendering.ColorMaterialFeatures value);
@@ -1346,6 +1617,14 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_get_alpha_clip_threshold(ulong handle, out float result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_set_alpha_clip_threshold(ulong handle, float value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_get_fresnel_effect_color(ulong handle, out Microsoft.Azure.RemoteRendering.Color4 result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_set_fresnel_effect_color(ulong handle, Microsoft.Azure.RemoteRendering.Color4 value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_get_fresnel_effect_exponent(ulong handle, out float result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_color_material_set_fresnel_effect_exponent(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_camera_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1397,6 +1676,16 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_outline_settings_set_pulse_intensity(ulong handle, float value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_shell_rendering_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_shell_rendering_settings_get_opacity(ulong handle, out float result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_shell_rendering_settings_set_opacity(ulong handle, float value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_shell_rendering_settings_get_desaturation(ulong handle, out float result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_shell_rendering_settings_set_desaturation(ulong handle, float value);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_single_sided_settings_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_single_sided_settings_get_mode(ulong handle, out Microsoft.Azure.RemoteRendering.SingleSidedMode result);
@@ -1447,15 +1736,15 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_set_log_level(ulong handle, Microsoft.Azure.RemoteRendering.LogLevel value);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_model_from_sasasync(ulong handle, Microsoft.Azure.RemoteRendering.LoadModelFromSASParamsAbi params_in, out IntPtr result);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_model_async(ulong handle, Microsoft.Azure.RemoteRendering.LoadModelParamsAbi params_in, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_texture_from_sasasync(ulong handle, Microsoft.Azure.RemoteRendering.LoadTextureFromSASParamsAbi params_in, out IntPtr result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_model_from_sasasync(ulong handle, Microsoft.Azure.RemoteRendering.LoadModelFromSASParamsAbi params_in, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_texture_async(ulong handle, Microsoft.Azure.RemoteRendering.LoadTextureParamsAbi params_in, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_ray_cast_query_async(ulong handle, Microsoft.Azure.RemoteRendering.RayCastAbi cast, out IntPtr result);
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_load_texture_from_sasasync(ulong handle, Microsoft.Azure.RemoteRendering.LoadTextureFromSASParamsAbi params_in, out IntPtr result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_ray_cast_query_async(ulong handle, Microsoft.Azure.RemoteRendering.RayCast cast, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_query_server_performance_assessment_async(ulong handle, out IntPtr result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1474,6 +1763,8 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_outline_settings(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_zfighting_mitigation_settings(ulong handle, out ulong result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_shell_rendering_settings(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_remote_manager_get_single_sided_settings(ulong handle, out ulong result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -2102,8 +2393,12 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// 4-component color vector (red, green, blue, alpha) with single precision components.
+    /// 4-component color (red, green, blue, alpha) with single precision.
     /// </summary>
+    /// <remarks>
+    /// Values are in 0..1 range, but can go above that range to represent high-dynamic range (HDR) colors.
+    /// The color values are assumed to be in 'linear space', not in 'Gamma space'.
+    /// </remarks>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Color4
     {
@@ -2114,6 +2409,50 @@ namespace Microsoft.Azure.RemoteRendering
         public float b;
 
         public float a;
+
+    }
+
+    /// <summary>
+    /// 4 component color (red, green, blue, alpha) based on 8 bit components [0..255].
+    /// </summary>
+    /// <remarks>
+    /// Values are in 0..255 range and represent low-dynamic range (LDR) colors.
+    /// The color values are assumed to be in 'Gamma space'.
+    /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct Color4UbChannels
+    {
+        public byte r;
+
+        public byte g;
+
+        public byte b;
+
+        public byte a;
+
+    }
+
+    /// <summary>
+    /// 4 component color (red, green, blue, alpha) based on 8 bit components [0..255].
+    /// </summary>
+    /// <remarks>
+    /// Values are in 0..255 range and represent low-dynamic range (LDR) colors.
+    /// The color values are assumed to be in 'Gamma space'.
+    /// </remarks>
+    [StructLayout(LayoutKind.Explicit)]
+    public partial struct Color4Ub
+    {
+        [FieldOffset(0)]
+        /// <summary>
+        /// Interprets the color as r,g,b,a byte values.
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.Color4UbChannels channels;
+
+        [FieldOffset(0)]
+        /// <summary>
+        /// Interprets the color as a single 32bit integer. Used for assignments and comparisons.
+        /// </summary>
+        public int bytes;
 
     }
 
@@ -2150,53 +2489,20 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Axis aligned bounding box, based on double precision min and max position.
+    /// Axis-aligned bounding box, based on double precision min and max position.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct AABB3D
     {
         /// <summary>
-        /// Position of the minimum corner (double precision).
+        /// Position of the minimum corner.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Double3 min;
 
         /// <summary>
-        /// Position of the maximum corner (double precision).
+        /// Position of the maximum corner.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Double3 max;
-
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct Color4UbChannels
-    {
-        public byte r;
-
-        public byte g;
-
-        public byte b;
-
-        public byte a;
-
-    }
-
-    /// <summary>
-    /// 4-component color vector based on 8 bit components [0..255].
-    /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
-    public partial struct Color4Ub
-    {
-        [FieldOffset(0)]
-        /// <summary>
-        /// Interpret the color as r,g,b,a byte values.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.Color4UbChannels channels;
-
-        [FieldOffset(0)]
-        /// <summary>
-        /// Interpret the color as a single 32bit integer. Used for assignment or comparison.
-        /// </summary>
-        public int bytes;
 
     }
 
@@ -2207,56 +2513,81 @@ namespace Microsoft.Azure.RemoteRendering
     public partial struct ARRTimeSpan
     {
         /// <summary>
-        /// Hour, 0 - 23
+        /// Hour: 0 - 23
         /// </summary>
         public int hour;
 
         /// <summary>
-        /// Minute 0 - 59
+        /// Minute: 0 - 59
         /// </summary>
         public int minute;
 
         /// <summary>
-        /// Second 0 - 59
+        /// Second: 0 - 59
         /// </summary>
         public int second;
 
     }
 
     /// <summary>
-    /// Frame statistics to do client-side performance assessment. See GraphicsBinding.GetLastFrameStatistics.
+    /// Frame statistics to do client-side performance assessment. See <see cref="GraphicsBinding.GetLastFrameStatistics(FrameStatistics)"/>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding.GetLastFrameStatistics(Microsoft.Azure.RemoteRendering.FrameStatistics)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/performance-queries">Server-side performance queries</seealso>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct FrameStatistics
     {
         /// <summary>
         /// Time between the client's request for a new remote frame and the arrival of the requested frame.
         /// </summary>
+        /// <remarks>
+        /// This includes, but is not limited to, the network round-trip latency and delays caused by operations necessary
+        /// on the server side before sending, and on the client side after receiving (rendering, video encoding/decoding, etc).
+        /// </remarks>
         public float latencyPoseToReceive;
 
         /// <summary>
-        /// Time between arrival of new frame and its actual usage.
+        /// Time between arrival of a new frame and its actual usage.
         /// </summary>
+        /// <remarks>
+        /// Gives the latency between the availability of new frame data and
+        /// its actual use. This contains client-side CPU drawcall time, frame reprojection, etc.
+        /// </remarks>
         public float latencyReceiveToPresent;
 
         /// <summary>
-        /// Gives the remaining latency until the finished frame is displayed.
+        /// The latency until the finished frame is displayed.
         /// </summary>
+        /// <remarks>
+        /// This mainly contains aspects like GPU workload and waiting for V-sync but
+        /// can also encompass overhead introduced by the rendering infrastructure.
+        /// For example, some game engines introduce a scheduling overhead in this phase.
+        /// </remarks>
         public float latencyPresentToDisplay;
 
         /// <summary>
-        /// The time between subsequent calls to PresentFrame on the CPU. Values greater than the display duration (for example 16.6 ms on a 60-Hz client device) indicate issues caused by the client application not finishing its CPU workload in time.
+        /// The time between subsequent calls to PresentFrame on the CPU.
         /// </summary>
+        /// <remarks>
+        /// Values greater than the display duration (for example 16.6 ms on a 60-Hz client device)
+        /// indicate issues caused by the client application not finishing its CPU workload in time.
+        /// </remarks>
         public float timeSinceLastPresent;
 
         /// <summary>
-        /// Number of received frames in the last second that were used on the device more than once. Non-zero values indicate that frames had to be reprojected either due to network jitter or excessive server rendering time.
+        /// Number of received frames in the last second that were used on the device more than once.
         /// </summary>
+        /// <remarks>
+        /// Non-zero values indicate that frames had to be reprojected either due to network jitter or excessive server rendering time.
+        /// </remarks>
         public uint videoFrameReusedCount;
 
         /// <summary>
-        /// Number of received frames in the last second that were decoded, but not shown on display because a newer frame has arrived. Non-zero values indicate that network jittering caused multiple frames to be delayed and then arrive on the client device together in a burst.
+        /// Number of received frames in the last second that were decoded, but not shown on display because a newer frame has arrived.
         /// </summary>
+        /// <remarks>
+        /// Non-zero values indicate that network jitter caused multiple frames to be delayed and then arrived on the client device together in a burst.
+        /// </remarks>
         public uint videoFramesSkipped;
 
         /// <summary>
@@ -2265,57 +2596,33 @@ namespace Microsoft.Azure.RemoteRendering
         public uint videoFramesReceived;
 
         /// <summary>
-        /// Very similar to videoFramesSkipped, but the reason for being discarded is that a frame came in so late that is cannot even be correlated with any pending pose anymore. If this happens, there is some severe network contention.
+        /// Very similar to <see cref="FrameStatistics.videoFramesSkipped"/>, but the reason for being discarded is that a frame came in so late that it couldn't even be correlated with any pending pose anymore. If this happens, there is some severe network contention.
         /// </summary>
         public uint videoFramesDiscarded;
 
         /// <summary>
-        /// Minimum amount of time between two consecutive frames arriving during the last second. Together with videoFrameMaxDelta, this range gives an indication of jitter caused either by the network or video codec.
+        /// Minimum amount of time between two consecutive frames arriving during the last second.
         /// </summary>
+        /// <remarks>
+        /// Together with <see cref="FrameStatistics.videoFrameMaxDelta"/> this range gives an indication of jitter caused either by the network or video codec.
+        /// </remarks>
         public float videoFrameMinDelta;
 
         /// <summary>
-        /// Maximum amount of time between two consecutive frames arriving during the last second. Together with videoFrameMinDelta, this range gives an indication of jitter caused either by the network or video codec.
+        /// Maximum amount of time between two consecutive frames arriving during the last second.
         /// </summary>
+        /// <remarks>
+        /// Together with <see cref="FrameStatistics.videoFrameMinDelta"/> this range gives an indication of jitter caused either by the network or video codec.
+        /// </remarks>
         public float videoFrameMaxDelta;
 
     }
 
     /// <summary>
-    /// Helper struct for the PerformanceAssessment struct to describe a single performance value.
+    /// Describes a single performance assessment value. See <see cref="PerformanceAssessment"/>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PerformanceAssessment"/>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct PerformanceInformationAbi
-    {
-        /// <summary>
-        /// Aggregated value to assess.
-        /// </summary>
-        public float aggregate;
-
-        /// <summary>
-        /// Rating value for the respective aggregate value.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceRating rating;
-
-        public Microsoft.Azure.RemoteRendering.PerformanceInformation Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.PerformanceInformationAbi.Convert(this);
-        }
-
-        public static Microsoft.Azure.RemoteRendering.PerformanceInformation Convert(Microsoft.Azure.RemoteRendering.PerformanceInformationAbi value)
-        {
-            Microsoft.Azure.RemoteRendering.PerformanceInformation result = new Microsoft.Azure.RemoteRendering.PerformanceInformation();
-
-            result.aggregate = value.aggregate;
-            result.rating = value.rating;
-
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// Helper struct for the PerformanceAssessment struct to describe a single performance value.
-    /// </summary>
     public partial struct PerformanceInformation
     {
         /// <summary>
@@ -2324,97 +2631,17 @@ namespace Microsoft.Azure.RemoteRendering
         public float aggregate;
 
         /// <summary>
-        /// Rating value for the respective aggregate value.
+        /// Rating for the aggregate value.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.PerformanceRating rating;
 
-        internal Microsoft.Azure.RemoteRendering.PerformanceInformationAbi Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.PerformanceInformation.Convert(this);
-        }
-
-        internal static Microsoft.Azure.RemoteRendering.PerformanceInformationAbi Convert(Microsoft.Azure.RemoteRendering.PerformanceInformation value)
-        {
-            Microsoft.Azure.RemoteRendering.PerformanceInformationAbi result = new Microsoft.Azure.RemoteRendering.PerformanceInformationAbi();
-
-            result.aggregate = value.aggregate;
-            result.rating = value.rating;
-
-            return result;
-        }
     }
 
     /// <summary>
-    /// Performance assessment of Remote Rendering statistics, see GraphicsBinding::GetServerPerformanceAssessment.
+    /// Performance assessment of Remote Rendering statistics. See <see cref="RemoteManager.QueryServerPerformanceAssessmentAsync"/>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.QueryServerPerformanceAssessmentAsync"/>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct PerformanceAssessmentAbi
-    {
-        /// <summary>
-        /// Average CPU time per frame in milliseconds.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi timeCPU;
-
-        /// <summary>
-        /// Average GPU time per frame in milliseconds.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi timeGPU;
-
-        /// <summary>
-        /// Total CPU utilization in percent on the server host machine.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi utilizationCPU;
-
-        /// <summary>
-        /// Total GPU utilization in percent on the server host machine.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi utilizationGPU;
-
-        /// <summary>
-        /// Total main memory utilization in percent on the server host machine.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi memoryCPU;
-
-        /// <summary>
-        /// Total dedicated video memory utilization in percent of the server GPU.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi memoryGPU;
-
-        /// <summary>
-        /// The approximate average roundtrip network latency in milliseconds. The value is computed by subtracting actual server rendering time from the latencyPoseToReceive value of FrameStatistics. While this approximation is not accurate, it gives some indication of the network latency isolated from the latency values computed on the client. See chapter "Server-side performance queries" in the general documentation for more detailed information.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi networkLatency;
-
-        /// <summary>
-        /// The number of triangles rendered in one frame. This number also includes the triangles that are culled later during rendering. That means, this number does not vary a lot across different camera positions, but the performance on the other hand may vary a lot, depending on the triangle culling rate.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.PerformanceInformationAbi polygonsRendered;
-
-        public Microsoft.Azure.RemoteRendering.PerformanceAssessment Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi.Convert(this);
-        }
-
-        public static Microsoft.Azure.RemoteRendering.PerformanceAssessment Convert(Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi value)
-        {
-            Microsoft.Azure.RemoteRendering.PerformanceAssessment result = new Microsoft.Azure.RemoteRendering.PerformanceAssessment();
-
-            result.timeCPU = value.timeCPU.Convert();
-            result.timeGPU = value.timeGPU.Convert();
-            result.utilizationCPU = value.utilizationCPU.Convert();
-            result.utilizationGPU = value.utilizationGPU.Convert();
-            result.memoryCPU = value.memoryCPU.Convert();
-            result.memoryGPU = value.memoryGPU.Convert();
-            result.networkLatency = value.networkLatency.Convert();
-            result.polygonsRendered = value.polygonsRendered.Convert();
-
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// Performance assessment of Remote Rendering statistics, see GraphicsBinding::GetServerPerformanceAssessment.
-    /// </summary>
     public partial struct PerformanceAssessment
     {
         /// <summary>
@@ -2448,40 +2675,32 @@ namespace Microsoft.Azure.RemoteRendering
         public Microsoft.Azure.RemoteRendering.PerformanceInformation memoryGPU;
 
         /// <summary>
-        /// The approximate average roundtrip network latency in milliseconds. The value is computed by subtracting actual server rendering time from the latencyPoseToReceive value of FrameStatistics. While this approximation is not accurate, it gives some indication of the network latency isolated from the latency values computed on the client. See chapter "Server-side performance queries" in the general documentation for more detailed information.
+        /// Approximate average round-trip network latency in milliseconds.
         /// </summary>
+        /// <remarks>
+        /// The value is computed by subtracting actual server rendering time from <see cref="FrameStatistics.latencyPoseToReceive"/>.
+        /// While this approximation is not accurate, it gives some indication of the network latency isolated from the latency values computed on the client.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/performance-queries">Server-side performance queries</seealso>
         public Microsoft.Azure.RemoteRendering.PerformanceInformation networkLatency;
 
         /// <summary>
-        /// The number of triangles rendered in one frame. This number also includes the triangles that are culled later during rendering. That means, this number does not vary a lot across different camera positions, but the performance on the other hand may vary a lot, depending on the triangle culling rate.
+        /// Number of triangles rendered in one frame.
         /// </summary>
+        /// <remarks>
+        /// This number also includes the triangles that are culled during rendering.
+        /// That means, this number does not vary a lot across different camera positions, but the performance on the other hand may vary a lot,
+        /// depending on the triangle culling rate.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/reference/limits">Remote Rendering limitations</seealso>
         public Microsoft.Azure.RemoteRendering.PerformanceInformation polygonsRendered;
 
-        internal Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.PerformanceAssessment.Convert(this);
-        }
-
-        internal static Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi Convert(Microsoft.Azure.RemoteRendering.PerformanceAssessment value)
-        {
-            Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi result = new Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi();
-
-            result.timeCPU = value.timeCPU.Convert();
-            result.timeGPU = value.timeGPU.Convert();
-            result.utilizationCPU = value.utilizationCPU.Convert();
-            result.utilizationGPU = value.utilizationGPU.Convert();
-            result.memoryCPU = value.memoryCPU.Convert();
-            result.memoryGPU = value.memoryGPU.Convert();
-            result.networkLatency = value.networkLatency.Convert();
-            result.polygonsRendered = value.polygonsRendered.Convert();
-
-            return result;
-        }
     }
 
     /// <summary>
-    /// Update structure that must be filled out and passed to the Update function of the GraphicsBindingSimD3d11 graphics binding.
+    /// When <see cref="GraphicsBindingSimD3d11"/> is used, this must be filled out and passed to <see cref="GraphicsBindingSimD3d11.Update(SimulationUpdate,SimulationUpdate)"/> once per frame.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBindingSimD3d11.Update(Microsoft.Azure.RemoteRendering.SimulationUpdate,Microsoft.Azure.RemoteRendering.SimulationUpdate)"/>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct SimulationUpdate
     {
@@ -2491,22 +2710,22 @@ namespace Microsoft.Azure.RemoteRendering
         public uint frameId;
 
         /// <summary>
-        /// Distance (in units) to the camera's near clipping plane.
+        /// Distance (in meters) to the camera's near clipping plane.
         /// </summary>
         public float nearPlaneDistance;
 
         /// <summary>
-        /// Distance (in units) to the camera's far clipping plane.
+        /// Distance (in meters) to the camera's far clipping plane.
         /// </summary>
         public float farPlaneDistance;
 
         /// <summary>
-        /// Video resolution width.
+        /// Horizontal resolution.
         /// </summary>
         public int renderTargetWidth;
 
         /// <summary>
-        /// Video resolution height.
+        /// Vertical resolution.
         /// </summary>
         public int renderTargetHeight;
 
@@ -2523,58 +2742,11 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// A raycast can be performed with RemoteManager.RayCastQueryAsync to query the server for objects along a line.
+    /// Parameters for doing a raycast.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.RayCastQueryAsync(Microsoft.Azure.RemoteRendering.RayCast)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial Queries</seealso>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RayCastAbi
-    {
-        /// <summary>
-        /// Start position for the raycast in world space.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.Double3 StartPos;
-
-        /// <summary>
-        /// End position of the raycast in world space.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.Double3 EndPos;
-
-        /// <summary>
-        /// Raycast hit collection type.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.HitCollectionPolicy HitCollection;
-
-        /// <summary>
-        /// Maximum collected hits.
-        /// </summary>
-        public uint MaxHits;
-
-        /// <summary>
-        /// Reserved for future use.
-        /// </summary>
-        public uint CollisionMask;
-
-        public Microsoft.Azure.RemoteRendering.RayCast Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.RayCastAbi.Convert(this);
-        }
-
-        public static Microsoft.Azure.RemoteRendering.RayCast Convert(Microsoft.Azure.RemoteRendering.RayCastAbi value)
-        {
-            Microsoft.Azure.RemoteRendering.RayCast result = new Microsoft.Azure.RemoteRendering.RayCast();
-
-            result.StartPos = value.StartPos;
-            result.EndPos = value.EndPos;
-            result.HitCollection = value.HitCollection;
-            result.MaxHits = value.MaxHits;
-            result.CollisionMask = value.CollisionMask;
-
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// A raycast can be performed with RemoteManager.RayCastQueryAsync to query the server for objects along a line.
-    /// </summary>
     public partial struct RayCast
     {
         /// <summary>
@@ -2588,12 +2760,12 @@ namespace Microsoft.Azure.RemoteRendering
         public Microsoft.Azure.RemoteRendering.Double3 EndPos;
 
         /// <summary>
-        /// Raycast hit collection type.
+        /// See <see cref="HitCollectionPolicy"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HitCollectionPolicy HitCollection;
 
         /// <summary>
-        /// Maximum collected hits.
+        /// The maximum number of hits to collect. Only needed for <see cref="HitCollectionPolicy.AllHits"/>.
         /// </summary>
         public uint MaxHits;
 
@@ -2602,54 +2774,46 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         public uint CollisionMask;
 
-        internal Microsoft.Azure.RemoteRendering.RayCastAbi Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.RayCast.Convert(this);
-        }
-
-        internal static Microsoft.Azure.RemoteRendering.RayCastAbi Convert(Microsoft.Azure.RemoteRendering.RayCast value)
-        {
-            Microsoft.Azure.RemoteRendering.RayCastAbi result = new Microsoft.Azure.RemoteRendering.RayCastAbi();
-
-            result.StartPos = value.StartPos;
-            result.EndPos = value.EndPos;
-            result.HitCollection = value.HitCollection;
-            result.MaxHits = value.MaxHits;
-            result.CollisionMask = value.CollisionMask;
-
-            return result;
-        }
     }
 
     /// <summary>
-    /// RayCastHit is generated by performing an RemoteManager.RayCastQueryAsync.  It contains information about an intersected object.
+    /// Contains information about a single raycast hit.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.RayCastQueryAsync(Microsoft.Azure.RemoteRendering.RayCast)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial Queries</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct RayCastHitAbi
     {
         /// <summary>
-        /// Intersected object.
+        /// The <see cref="Entity"/> that was hit with the raycast.
         /// </summary>
         public ulong HitObject;
 
         /// <summary>
-        /// Sub Part Id of intersected object. This can be used to get an intersected Material by querying for a MeshComponent on the intersected object and getting MeshComponent.UsedMaterials[SubPartId].
+        /// The ID or index of the part that was hit.
         /// </summary>
+        /// <remarks>
+        /// This can be used to get the <see cref="Material"/> at the raycast intersection.
+        /// First query for the <see cref="MeshComponent"/>, then query for the material using <c>MeshComponent.UsedMaterials[SubPartId].</c>
+        /// </remarks>
         public int SubPartId;
 
         /// <summary>
-        /// Hit position on HitObject in world space.
+        /// The world space position where <see cref="RayCastHit.HitObject"/> was hit.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Double3 HitPosition;
 
         /// <summary>
-        /// Hit normal on HitObject in world space.
+        /// The world space normal where <see cref="RayCastHit.HitObject"/> was hit.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float3 HitNormal;
 
         /// <summary>
-        /// Distance along the ray to the hit. This is in world units such that Normalize(End - Start) * DistanceToHit == HitPosition.
+        /// Distance along the normalized ray direction to the hit.
         /// </summary>
+        /// <remarks>
+        /// <see cref="RayCast.StartPos"/> + normalize(<see cref="RayCast.EndPos"/> - <see cref="RayCast.StartPos"/>) * <see cref="RayCastHit.DistanceToHit"/> == <see cref="RayCastHit.HitPosition"/>
+        /// </remarks>
         public double DistanceToHit;
 
         public Microsoft.Azure.RemoteRendering.RayCastHit Convert()
@@ -2672,33 +2836,42 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// RayCastHit is generated by performing an RemoteManager.RayCastQueryAsync.  It contains information about an intersected object.
+    /// Contains information about a single raycast hit.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.RayCastQueryAsync(Microsoft.Azure.RemoteRendering.RayCast)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial Queries</seealso>
     public partial struct RayCastHit
     {
         /// <summary>
-        /// Intersected object.
+        /// The <see cref="Entity"/> that was hit with the raycast.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Entity HitObject;
 
         /// <summary>
-        /// Sub Part Id of intersected object. This can be used to get an intersected Material by querying for a MeshComponent on the intersected object and getting MeshComponent.UsedMaterials[SubPartId].
+        /// The ID or index of the part that was hit.
         /// </summary>
+        /// <remarks>
+        /// This can be used to get the <see cref="Material"/> at the raycast intersection.
+        /// First query for the <see cref="MeshComponent"/>, then query for the material using <c>MeshComponent.UsedMaterials[SubPartId].</c>
+        /// </remarks>
         public int SubPartId;
 
         /// <summary>
-        /// Hit position on HitObject in world space.
+        /// The world space position where <see cref="RayCastHit.HitObject"/> was hit.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Double3 HitPosition;
 
         /// <summary>
-        /// Hit normal on HitObject in world space.
+        /// The world space normal where <see cref="RayCastHit.HitObject"/> was hit.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Float3 HitNormal;
 
         /// <summary>
-        /// Distance along the ray to the hit. This is in world units such that Normalize(End - Start) * DistanceToHit == HitPosition.
+        /// Distance along the normalized ray direction to the hit.
         /// </summary>
+        /// <remarks>
+        /// <see cref="RayCast.StartPos"/> + normalize(<see cref="RayCast.EndPos"/> - <see cref="RayCast.StartPos"/>) * <see cref="RayCastHit.DistanceToHit"/> == <see cref="RayCastHit.HitPosition"/>
+        /// </remarks>
         public double DistanceToHit;
 
         internal Microsoft.Azure.RemoteRendering.RayCastHitAbi Convert()
@@ -2721,40 +2894,54 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// The account information and domain to associate an AzureFrontend instance with.
+    /// Account information and domain to associate an <see cref="AzureFrontend"/> instance with.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AzureFrontendAccountInfoAbi
     {
         /// <summary>
-        /// Domain that will be used to generate sessions for the Azure Remote Rendering service. The domain is of the form [region].mixedreality.azure.com. Region should be selected based on the region currently closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.
+        /// Domain that will be used to generate sessions for the Azure Remote Rendering service.
         /// </summary>
+        /// <remarks>
+        /// The domain is of the form [region].mixedreality.azure.com.
+        /// [region] should be selected based on the region closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AccountDomain;
 
         /// <summary>
-        /// Account-level ID for the Azure Remote Rendering service.
+        /// The ID of the account that's being used with the Azure Remote Rendering service.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AccountId;
 
         /// <summary>
-        /// Account-level key for the Azure Remote Rendering service. Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
+        /// The key of the account that's being used with the Azure Remote Rendering service.
         /// </summary>
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AccountKey;
 
         /// <summary>
-        /// Authentication token for Azure Active Directory (AAD). Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
+        /// An access token for the account that's being used with the Azure Remote Rendering service.
         /// </summary>
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string AuthenticationToken;
-
-        /// <summary>
-        /// Access token for the Azure Remote Rendering service. Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
-        /// </summary>
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AccessToken;
+
+        /// <summary>
+        /// An authentication token for Azure Active Directory (AAD).
+        /// </summary>
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string AuthenticationToken;
 
         public Microsoft.Azure.RemoteRendering.AzureFrontendAccountInfo Convert()
         {
@@ -2768,42 +2955,56 @@ namespace Microsoft.Azure.RemoteRendering
             result.AccountDomain = value.AccountDomain;
             result.AccountId = value.AccountId;
             result.AccountKey = value.AccountKey;
-            result.AuthenticationToken = value.AuthenticationToken;
             result.AccessToken = value.AccessToken;
+            result.AuthenticationToken = value.AuthenticationToken;
 
             return result;
         }
     }
 
     /// <summary>
-    /// The account information and domain to associate an AzureFrontend instance with.
+    /// Account information and domain to associate an <see cref="AzureFrontend"/> instance with.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
     public partial struct AzureFrontendAccountInfo
     {
         /// <summary>
-        /// Domain that will be used to generate sessions for the Azure Remote Rendering service. The domain is of the form [region].mixedreality.azure.com. Region should be selected based on the region currently closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.
+        /// Domain that will be used to generate sessions for the Azure Remote Rendering service.
         /// </summary>
+        /// <remarks>
+        /// The domain is of the form [region].mixedreality.azure.com.
+        /// [region] should be selected based on the region closest to the user. For example, westus2.mixedreality.azure.com or westeurope.mixedreality.azure.com.
+        /// </remarks>
         public string AccountDomain;
 
         /// <summary>
-        /// Account-level ID for the Azure Remote Rendering service.
+        /// The ID of the account that's being used with the Azure Remote Rendering service.
         /// </summary>
         public string AccountId;
 
         /// <summary>
-        /// Account-level key for the Azure Remote Rendering service. Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
+        /// The key of the account that's being used with the Azure Remote Rendering service.
         /// </summary>
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
         public string AccountKey;
 
         /// <summary>
-        /// Authentication token for Azure Active Directory (AAD). Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
+        /// An access token for the account that's being used with the Azure Remote Rendering service.
         /// </summary>
-        public string AuthenticationToken;
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
+        public string AccessToken;
 
         /// <summary>
-        /// Access token for the Azure Remote Rendering service. Among AccountKey, AccessToken and AuthenticationToken, only one needs to be set.
+        /// An authentication token for Azure Active Directory (AAD).
         /// </summary>
-        public string AccessToken;
+        /// <remarks>
+        /// Only one of AccountKey, AccessToken or AuthenticationToken needs to be set.
+        /// </remarks>
+        public string AuthenticationToken;
 
         internal Microsoft.Azure.RemoteRendering.AzureFrontendAccountInfoAbi Convert()
         {
@@ -2817,26 +3018,28 @@ namespace Microsoft.Azure.RemoteRendering
             result.AccountDomain = value.AccountDomain;
             result.AccountId = value.AccountId;
             result.AccountKey = value.AccountKey;
-            result.AuthenticationToken = value.AuthenticationToken;
             result.AccessToken = value.AccessToken;
+            result.AuthenticationToken = value.AuthenticationToken;
 
             return result;
         }
     }
 
     /// <summary>
-    /// Parameters for connecting to a runtime session.
+    /// Parameters for connecting to the runtime of an <see cref="AzureSession"/>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.ConnectToRuntime(Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering Sessions</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct ConnectToRuntimeParamsAbi
     {
         /// <summary>
-        /// Mode for the rendering session.
+        /// Rendering mode to be used.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ServiceRenderMode mode;
 
         /// <summary>
-        /// Internal flag used to ignore SSL certification. Should be set to false (default) for most applications.
+        /// Internal flag used to ignore SSL certification. Should be set to <c>false</c> (default) for most applications.
         /// </summary>
         [MarshalAs(UnmanagedType.U1)]
         public bool ignoreCertificateValidation;
@@ -2858,17 +3061,19 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for connecting to a runtime session.
+    /// Parameters for connecting to the runtime of an <see cref="AzureSession"/>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.ConnectToRuntime(Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering Sessions</seealso>
     public partial struct ConnectToRuntimeParams
     {
         /// <summary>
-        /// Mode for the rendering session.
+        /// Rendering mode to be used.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ServiceRenderMode mode;
 
         /// <summary>
-        /// Internal flag used to ignore SSL certification. Should be set to false (default) for most applications.
+        /// Internal flag used to ignore SSL certification. Should be set to <c>false</c> (default) for most applications.
         /// </summary>
         public bool ignoreCertificateValidation;
 
@@ -2891,6 +3096,11 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for converting an asset.
     /// </summary>
+    /// <remarks>
+    /// This structure is deprecated.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.StartAssetConversionAsync_Deprecated(Microsoft.Azure.RemoteRendering.AssetConversionParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/configure-model-conversion">Configure the model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionParamsAbi
     {
@@ -2901,13 +3111,13 @@ namespace Microsoft.Azure.RemoteRendering
         public string ModelName;
 
         /// <summary>
-        /// Input container (public) URIs or URIs with embedded SAS token.
+        /// Input container, (public) URIs or URIs with an embedded SAS token.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ModelUrl;
 
         /// <summary>
-        /// Output container SAS url.
+        /// Output container SAS URI.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AssetContainerUrl;
@@ -2946,6 +3156,11 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for converting an asset.
     /// </summary>
+    /// <remarks>
+    /// This structure is deprecated.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.StartAssetConversionAsync_Deprecated(Microsoft.Azure.RemoteRendering.AssetConversionParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/configure-model-conversion">Configure the model conversion</seealso>
     public partial struct AssetConversionParams
     {
         /// <summary>
@@ -2954,12 +3169,12 @@ namespace Microsoft.Azure.RemoteRendering
         public string ModelName;
 
         /// <summary>
-        /// Input container (public) URIs or URIs with embedded SAS token.
+        /// Input container, (public) URIs or URIs with an embedded SAS token.
         /// </summary>
         public string ModelUrl;
 
         /// <summary>
-        /// Output container SAS url.
+        /// Output container SAS URI.
         /// </summary>
         public string AssetContainerUrl;
 
@@ -2995,23 +3210,28 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for referencing a blob container for asset conversion.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionInputParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionOutputParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionInputSasParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionOutputSasParams"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionBlobContainerAbi
     {
         /// <summary>
-        /// Storage account to load from.
+        /// Name of the Azure Storage account to access.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string StorageAccountName;
 
         /// <summary>
-        /// Blob container in storage account to load from.
+        /// The blob container inside the Azure Storage account to access.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string BlobContainerName;
 
         /// <summary>
-        /// Folder containing the asset in the blob container.
+        /// The folder to reference inside the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string FolderPath;
@@ -3036,20 +3256,25 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for referencing a blob container for asset conversion.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionInputParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionOutputParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionInputSasParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionOutputSasParams"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     public partial struct AssetConversionBlobContainer
     {
         /// <summary>
-        /// Storage account to load from.
+        /// Name of the Azure Storage account to access.
         /// </summary>
         public string StorageAccountName;
 
         /// <summary>
-        /// Blob container in storage account to load from.
+        /// The blob container inside the Azure Storage account to access.
         /// </summary>
         public string BlobContainerName;
 
         /// <summary>
-        /// Folder containing the asset in the blob container.
+        /// The folder to reference inside the blob container.
         /// </summary>
         public string FolderPath;
 
@@ -3073,16 +3298,18 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Input parameters for specifying an asset to convert.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionInputParamsAbi
     {
         /// <summary>
-        /// Location of the input container containing the asset.
+        /// The blob container from which to read the source asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainerAbi BlobContainerInformation;
 
         /// <summary>
-        /// Input asset path.
+        /// Path to the source asset within the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string InputAssetPath;
@@ -3106,15 +3333,17 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Input parameters for specifying an asset to convert.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     public partial struct AssetConversionInputParams
     {
         /// <summary>
-        /// Location of the input container containing the asset.
+        /// The blob container from which to read the source asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer BlobContainerInformation;
 
         /// <summary>
-        /// Input asset path.
+        /// Path to the source asset within the blob container.
         /// </summary>
         public string InputAssetPath;
 
@@ -3137,16 +3366,18 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for specifying the output location of a converted asset.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionOutputParamsAbi
     {
         /// <summary>
-        /// Location of the output container to place the converted asset.
+        /// The blob container to which to write the converted asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainerAbi BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Output path for the converted asset within the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string OutputAssetPath;
@@ -3170,15 +3401,17 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for specifying the output location of a converted asset.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     public partial struct AssetConversionOutputParams
     {
         /// <summary>
-        /// Location of the output container to place the converted asset.
+        /// The blob container to which to write the converted asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Output path for the converted asset within the blob container.
         /// </summary>
         public string OutputAssetPath;
 
@@ -3201,22 +3434,24 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Input parameters for specifying an asset to convert.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionInputSasParamsAbi
     {
         /// <summary>
-        /// Location of the input container containing the asset.
+        /// The blob container from which to read the source asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainerAbi BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Path to the source asset within the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string InputAssetPath;
 
         /// <summary>
-        /// SAS token for read access to the input container.
+        /// SAS token for read access to the container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ContainerReadListSas;
@@ -3241,20 +3476,22 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Input parameters for specifying an asset to convert.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     public partial struct AssetConversionInputSasParams
     {
         /// <summary>
-        /// Location of the input container containing the asset.
+        /// The blob container from which to read the source asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Path to the source asset within the blob container.
         /// </summary>
         public string InputAssetPath;
 
         /// <summary>
-        /// SAS token for read access to the input container.
+        /// SAS token for read access to the container.
         /// </summary>
         public string ContainerReadListSas;
 
@@ -3278,22 +3515,24 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for specifying the output location of a converted asset.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct AssetConversionOutputSasParamsAbi
     {
         /// <summary>
-        /// Location of the output container to place the converted asset.
+        /// The blob container to which to write the converted asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainerAbi BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Output path for the converted asset within the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string OutputAssetPath;
 
         /// <summary>
-        /// SAS Token granting write access to the output container.
+        /// SAS token granting write access to the container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ContainerWriteSas;
@@ -3318,20 +3557,22 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for specifying the output location of a converted asset.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/blob-storage">Use Azure Blob Storage for model conversion</seealso>
     public partial struct AssetConversionOutputSasParams
     {
         /// <summary>
-        /// Location of the output container to place the converted asset.
+        /// The blob container to which to write the converted asset.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AssetConversionBlobContainer BlobContainerInformation;
 
         /// <summary>
-        /// Output asset path.
+        /// Output path for the converted asset within the blob container.
         /// </summary>
         public string OutputAssetPath;
 
         /// <summary>
-        /// SAS Token granting write access to the output container.
+        /// SAS token granting write access to the container.
         /// </summary>
         public string ContainerWriteSas;
 
@@ -3355,80 +3596,36 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for creating a rendering session.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.CreateNewRenderingSessionAsync(Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/reference/vm-sizes">Server sizes</seealso>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RenderingSessionCreationParamsAbi
-    {
-        /// <summary>
-        /// A timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
-
-        /// <summary>
-        /// The VM size.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.RenderingSessionVmSize Size;
-
-        public Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi.Convert(this);
-        }
-
-        public static Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams Convert(Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi value)
-        {
-            Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams result = new Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams();
-
-            result.MaxLease = value.MaxLease;
-            result.Size = value.Size;
-
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// Parameters for creating a rendering session.
-    /// </summary>
     public partial struct RenderingSessionCreationParams
     {
         /// <summary>
-        /// A timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.
+        /// Specifies how long the rendering session should be active before it is shut down.
         /// </summary>
+        /// <remarks>
+        /// The lease time starts the moment that the rendering server has finished booting.
+        /// From that point on, it will be active for the specified lease time, unless it is either manually shut down earlier,
+        /// or the lease time is extended beyond the original request.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
 
         /// <summary>
-        /// The VM size.
+        /// On what type of server to create the rendering session.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.RenderingSessionVmSize Size;
 
-        internal Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi Convert()
-        {
-            return Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams.Convert(this);
-        }
-
-        internal static Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi Convert(Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams value)
-        {
-            Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi result = new Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi();
-
-            result.MaxLease = value.MaxLease;
-            result.Size = value.Size;
-
-            return result;
-        }
     }
 
     /// <summary>
-    /// Unsafe parameters for creating a rendering session. Internal dev use only.
+    /// Internal struct.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal struct RenderingSessionCreationParamsUnsafeAbi
     {
-        /// <summary>
-        /// A timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.
-        /// </summary>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
 
-        /// <summary>
-        /// VM Size as it would be embedded into the json payload to the underlying RESTful API.
-        /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string Size;
 
@@ -3449,18 +3646,12 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Unsafe parameters for creating a rendering session. Internal dev use only.
+    /// Internal struct.
     /// </summary>
     public partial struct RenderingSessionCreationParamsUnsafe
     {
-        /// <summary>
-        /// A timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.
-        /// </summary>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
 
-        /// <summary>
-        /// VM Size as it would be embedded into the json payload to the underlying RESTful API.
-        /// </summary>
         public string Size;
 
         internal Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsUnsafeAbi Convert()
@@ -3482,24 +3673,32 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for updating a rendering session.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.RenewAsync(Microsoft.Azure.RemoteRendering.RenderingSessionUpdateParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering Sessions</seealso>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct RenderingSessionUpdateParams
     {
         /// <summary>
-        /// A timeout value when the VM will be decommissioned automatically. The expiration time is VM start time + MaxLease.
+        /// The new lease time to use for the rendering session.
         /// </summary>
+        /// <remarks>
+        /// This replaces any previously set lease time. To extend the lease, pass in a larger value than before. You can also shorten the previously requested lease time by passing in a smaller value.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
 
     }
 
     /// <summary>
-    /// Extended return value information for AzureSession and AzureFrontend async calls.
+    /// Extended return value information for <see cref="AzureSession"/> and <see cref="AzureFrontend"/> async calls.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.BaseSessionAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
     [StructLayout(LayoutKind.Sequential)]
     internal struct SessionGeneralContextAbi
     {
         /// <summary>
-        /// Error information if the session operation was unsuccessful.
+        /// See <see cref="Result"/> for details in case of failure.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result Result;
 
@@ -3509,7 +3708,7 @@ namespace Microsoft.Azure.RemoteRendering
         public uint HttpResponseCode;
 
         /// <summary>
-        /// Additional error information might be provided through this string, depending on the error code.
+        /// Depending on the type of error, this string may contain additional information.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ErrorMessage;
@@ -3517,12 +3716,18 @@ namespace Microsoft.Azure.RemoteRendering
         /// <summary>
         /// Request correlation vector, as reported by the service.
         /// </summary>
+        /// <remarks>
+        /// If you request assistance from the Remote Rendering service team, you may be asked to provide this information, for the team to be able to find all relevant data to debug an issue.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string RequestCorrelationVector;
 
         /// <summary>
         /// Response correlation vector, as reported by the service.
         /// </summary>
+        /// <remarks>
+        /// If you request assistance from the Remote Rendering service team, you may be asked to provide this information, for the team to be able to find all relevant data to debug an issue.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ResponseCorrelationVector;
 
@@ -3546,12 +3751,15 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Extended return value information for AzureSession and AzureFrontend async calls.
+    /// Extended return value information for <see cref="AzureSession"/> and <see cref="AzureFrontend"/> async calls.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.BaseSessionAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
     public partial struct SessionGeneralContext
     {
         /// <summary>
-        /// Error information if the session operation was unsuccessful.
+        /// See <see cref="Result"/> for details in case of failure.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result Result;
 
@@ -3561,18 +3769,24 @@ namespace Microsoft.Azure.RemoteRendering
         public uint HttpResponseCode;
 
         /// <summary>
-        /// Additional error information might be provided through this string, depending on the error code.
+        /// Depending on the type of error, this string may contain additional information.
         /// </summary>
         public string ErrorMessage;
 
         /// <summary>
         /// Request correlation vector, as reported by the service.
         /// </summary>
+        /// <remarks>
+        /// If you request assistance from the Remote Rendering service team, you may be asked to provide this information, for the team to be able to find all relevant data to debug an issue.
+        /// </remarks>
         public string RequestCorrelationVector;
 
         /// <summary>
         /// Response correlation vector, as reported by the service.
         /// </summary>
+        /// <remarks>
+        /// If you request assistance from the Remote Rendering service team, you may be asked to provide this information, for the team to be able to find all relevant data to debug an issue.
+        /// </remarks>
         public string ResponseCorrelationVector;
 
         internal Microsoft.Azure.RemoteRendering.SessionGeneralContextAbi Convert()
@@ -3595,54 +3809,74 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Properties for a rendering session, queried through AzureSession.GetRenderingSessionPropertiesAsync().
+    /// Properties of a rendering session.
     /// </summary>
+    /// <remarks>
+    /// This information can be queried through <see cref="AzureSession.GetPropertiesAsync"/>.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.GetPropertiesAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SessionPropertiesAsync"/>
     [StructLayout(LayoutKind.Sequential)]
     internal struct RenderingSessionPropertiesAbi
     {
         /// <summary>
-        /// Session status.
+        /// See <see cref="RenderingSessionStatus"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.RenderingSessionStatus Status;
 
         /// <summary>
-        /// Session size.
+        /// See <see cref="RenderingSessionVmSize"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.RenderingSessionVmSize Size;
 
         /// <summary>
-        /// Session hostname.
+        /// The name of the host machine on which the session is running.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string Hostname;
 
         /// <summary>
-        /// Session message. If the Session Status is Error or Expired, the message will contain more information.
+        /// Session message.
         /// </summary>
+        /// <remarks>
+        /// If the <see cref="RenderingSessionProperties.Status"/> is <see cref="RenderingSessionStatus.Error"/> or <see cref="RenderingSessionStatus.Expired"/>, the message may contain additional information.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string Message;
 
         /// <summary>
-        /// String representation of the VM size. Used for internal prototyping.
+        /// String representation of the server size.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/reference/vm-sizes">Server sizes</seealso>
         [MarshalAs(UnmanagedType.LPStr)]
         public string SizeString;
 
         /// <summary>
-        /// Session UUID.
+        /// A string holding a unique ID for the session.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string Id;
 
         /// <summary>
-        /// Elapsed time.
+        /// How long the session has been active.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan ElapsedTime;
 
         /// <summary>
-        /// Maximum lease time for this session.
+        /// The currently set lease duration for the session. If <see cref="RenderingSessionProperties.ElapsedTime"/> reaches this value, the session will be shut down automatically.
         /// </summary>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.RenewAsync(Microsoft.Azure.RemoteRendering.RenderingSessionUpdateParams)"/>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
+
+        /// <summary>
+        /// Session handshake port.
+        /// </summary>
+        public int HandshakePort;
+
+        /// <summary>
+        /// ArrInspector port.
+        /// </summary>
+        public int ArrInspectorPort;
 
         public Microsoft.Azure.RemoteRendering.RenderingSessionProperties Convert()
         {
@@ -3661,55 +3895,77 @@ namespace Microsoft.Azure.RemoteRendering
             result.Id = value.Id;
             result.ElapsedTime = value.ElapsedTime;
             result.MaxLease = value.MaxLease;
+            result.HandshakePort = value.HandshakePort;
+            result.ArrInspectorPort = value.ArrInspectorPort;
 
             return result;
         }
     }
 
     /// <summary>
-    /// Properties for a rendering session, queried through AzureSession.GetRenderingSessionPropertiesAsync().
+    /// Properties of a rendering session.
     /// </summary>
+    /// <remarks>
+    /// This information can be queried through <see cref="AzureSession.GetPropertiesAsync"/>.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.GetPropertiesAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SessionPropertiesAsync"/>
     public partial struct RenderingSessionProperties
     {
         /// <summary>
-        /// Session status.
+        /// See <see cref="RenderingSessionStatus"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.RenderingSessionStatus Status;
 
         /// <summary>
-        /// Session size.
+        /// See <see cref="RenderingSessionVmSize"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.RenderingSessionVmSize Size;
 
         /// <summary>
-        /// Session hostname.
+        /// The name of the host machine on which the session is running.
         /// </summary>
         public string Hostname;
 
         /// <summary>
-        /// Session message. If the Session Status is Error or Expired, the message will contain more information.
+        /// Session message.
         /// </summary>
+        /// <remarks>
+        /// If the <see cref="RenderingSessionProperties.Status"/> is <see cref="RenderingSessionStatus.Error"/> or <see cref="RenderingSessionStatus.Expired"/>, the message may contain additional information.
+        /// </remarks>
         public string Message;
 
         /// <summary>
-        /// String representation of the VM size. Used for internal prototyping.
+        /// String representation of the server size.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/reference/vm-sizes">Server sizes</seealso>
         public string SizeString;
 
         /// <summary>
-        /// Session UUID.
+        /// A string holding a unique ID for the session.
         /// </summary>
         public string Id;
 
         /// <summary>
-        /// Elapsed time.
+        /// How long the session has been active.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan ElapsedTime;
 
         /// <summary>
-        /// Maximum lease time for this session.
+        /// The currently set lease duration for the session. If <see cref="RenderingSessionProperties.ElapsedTime"/> reaches this value, the session will be shut down automatically.
         /// </summary>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.RenewAsync(Microsoft.Azure.RemoteRendering.RenderingSessionUpdateParams)"/>
         public Microsoft.Azure.RemoteRendering.ARRTimeSpan MaxLease;
+
+        /// <summary>
+        /// Session handshake port.
+        /// </summary>
+        public int HandshakePort;
+
+        /// <summary>
+        /// ArrInspector port.
+        /// </summary>
+        public int ArrInspectorPort;
 
         internal Microsoft.Azure.RemoteRendering.RenderingSessionPropertiesAbi Convert()
         {
@@ -3728,31 +3984,35 @@ namespace Microsoft.Azure.RemoteRendering
             result.Id = value.Id;
             result.ElapsedTime = value.ElapsedTime;
             result.MaxLease = value.MaxLease;
+            result.HandshakePort = value.HandshakePort;
+            result.ArrInspectorPort = value.ArrInspectorPort;
 
             return result;
         }
     }
 
     /// <summary>
-    /// Parameters for loading from blobstore.
+    /// Parameters for loading data from Azure blob storage.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
     [StructLayout(LayoutKind.Sequential)]
     internal struct LoadFromBlobParamsAbi
     {
         /// <summary>
-        /// Storage account to load from.
+        /// Name of the Azure Storage account to load data from.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string StorageAccountName;
 
         /// <summary>
-        /// Blob container in storage account to load from.
+        /// Name of the blob container in the storage account.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string BlobContainerName;
 
         /// <summary>
-        /// Path to the asset in the blob container.
+        /// Path to the asset inside the blob container.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         public string AssetPath;
@@ -3775,22 +4035,24 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading from blobstore.
+    /// Parameters for loading data from Azure blob storage.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
     public partial struct LoadFromBlobParams
     {
         /// <summary>
-        /// Storage account to load from.
+        /// Name of the Azure Storage account to load data from.
         /// </summary>
         public string StorageAccountName;
 
         /// <summary>
-        /// Blob container in storage account to load from.
+        /// Name of the blob container in the storage account.
         /// </summary>
         public string BlobContainerName;
 
         /// <summary>
-        /// Path to the asset in the blob container.
+        /// Path to the asset inside the blob container.
         /// </summary>
         public string AssetPath;
 
@@ -3812,20 +4074,29 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a model.
+    /// Parameters for loading a model using a URL.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct LoadModelFromSASParamsAbi
     {
         /// <summary>
-        /// URL for the model.  Either builtin:// or a URL pointing at a converted model. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// URL to the model.
         /// </summary>
+        /// <remarks>
+        /// Either 'builtin://xyz' or a URL pointing to a converted model. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string ModelUrl;
 
         /// <summary>
-        /// Optional parent of the model.  At initialization, the loaded model will either be parented to Parent or, if Parent is set to null, to the global scenegraph.
+        /// Optional parent <see cref="Entity"/> for the model.
         /// </summary>
+        /// <remarks>
+        /// If not null, the loaded model will be attached to Parent as a child object.
+        /// Otherwise, it will become a top level entity.
+        /// </remarks>
         public ulong Parent;
 
         public Microsoft.Azure.RemoteRendering.LoadModelFromSASParams Convert()
@@ -3845,18 +4116,27 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a model.
+    /// Parameters for loading a model using a URL.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
     public partial struct LoadModelFromSASParams
     {
         /// <summary>
-        /// URL for the model.  Either builtin:// or a URL pointing at a converted model. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// URL to the model.
         /// </summary>
+        /// <remarks>
+        /// Either 'builtin://xyz' or a URL pointing to a converted model. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// </remarks>
         public string ModelUrl;
 
         /// <summary>
-        /// Optional parent of the model.  At initialization, the loaded model will either be parented to Parent or, if Parent is set to null, to the global scenegraph.
+        /// Optional parent <see cref="Entity"/> for the model.
         /// </summary>
+        /// <remarks>
+        /// If not null, the loaded model will be attached to Parent as a child object.
+        /// Otherwise, it will become a top level entity.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Entity Parent;
 
         internal Microsoft.Azure.RemoteRendering.LoadModelFromSASParamsAbi Convert()
@@ -3876,19 +4156,25 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a model from blob storage.
+    /// Parameters for loading a model from Azure blob storage.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct LoadModelParamsAbi
     {
         /// <summary>
-        /// Blob storage location of the model.
+        /// See <see cref="LoadFromBlobParams"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LoadFromBlobParamsAbi Blob;
 
         /// <summary>
-        /// Optional parent of the model.  At initialization, the loaded model will either be parented to Parent or, if Parent is set to null, to the global scenegraph.
+        /// Optional parent <see cref="Entity"/> for the model.
         /// </summary>
+        /// <remarks>
+        /// If not null, the loaded model will be attached to Parent as a child object.
+        /// Otherwise, it will become a top level entity.
+        /// </remarks>
         public ulong Parent;
 
         public Microsoft.Azure.RemoteRendering.LoadModelParams Convert()
@@ -3908,18 +4194,24 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a model from blob storage.
+    /// Parameters for loading a model from Azure blob storage.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
     public partial struct LoadModelParams
     {
         /// <summary>
-        /// Blob storage location of the model.
+        /// See <see cref="LoadFromBlobParams"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LoadFromBlobParams Blob;
 
         /// <summary>
-        /// Optional parent of the model.  At initialization, the loaded model will either be parented to Parent or, if Parent is set to null, to the global scenegraph.
+        /// Optional parent <see cref="Entity"/> for the model.
         /// </summary>
+        /// <remarks>
+        /// If not null, the loaded model will be attached to Parent as a child object.
+        /// Otherwise, it will become a top level entity.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Entity Parent;
 
         internal Microsoft.Azure.RemoteRendering.LoadModelParamsAbi Convert()
@@ -3939,20 +4231,28 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a texture.
+    /// Parameters for loading a texture using a URL.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct LoadTextureFromSASParamsAbi
     {
         /// <summary>
-        /// URL for the texture.  Either builtin:// or a URL pointing at a converted texture. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// URL to the texture.
         /// </summary>
+        /// <remarks>
+        /// Either 'builtin://xyz' or a URL pointing to a texture. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// </remarks>
         [MarshalAs(UnmanagedType.LPStr)]
         public string TextureUrl;
 
         /// <summary>
-        /// Type of the texture.
+        /// The expected texture type.
         /// </summary>
+        /// <remarks>
+        /// This has to match the data that is stored in the referenced file.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.TextureType TextureType;
 
         public Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams Convert()
@@ -3972,18 +4272,26 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Parameters for loading a texture.
+    /// Parameters for loading a texture using a URL.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
     public partial struct LoadTextureFromSASParams
     {
         /// <summary>
-        /// URL for the texture.  Either builtin:// or a URL pointing at a converted texture. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// URL to the texture.
         /// </summary>
+        /// <remarks>
+        /// Either 'builtin://xyz' or a URL pointing to a texture. Both raw (public) URIs to blob store and URIs with embedded SAS tokens to blob store are supported.
+        /// </remarks>
         public string TextureUrl;
 
         /// <summary>
-        /// Type of the texture.
+        /// The expected texture type.
         /// </summary>
+        /// <remarks>
+        /// This has to match the data that is stored in the referenced file.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.TextureType TextureType;
 
         internal Microsoft.Azure.RemoteRendering.LoadTextureFromSASParamsAbi Convert()
@@ -4005,17 +4313,22 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for loading a texture.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
     [StructLayout(LayoutKind.Sequential)]
     internal struct LoadTextureParamsAbi
     {
         /// <summary>
-        /// Blob storage location of the texture.
+        /// See <see cref="LoadFromBlobParams"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LoadFromBlobParamsAbi Blob;
 
         /// <summary>
-        /// Type of the texture.
+        /// The expected texture type.
         /// </summary>
+        /// <remarks>
+        /// This has to match the data that is stored in the referenced file.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.TextureType TextureType;
 
         public Microsoft.Azure.RemoteRendering.LoadTextureParams Convert()
@@ -4037,16 +4350,21 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Parameters for loading a texture.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
     public partial struct LoadTextureParams
     {
         /// <summary>
-        /// Blob storage location of the texture.
+        /// See <see cref="LoadFromBlobParams"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LoadFromBlobParams Blob;
 
         /// <summary>
-        /// Type of the texture.
+        /// The expected texture type.
         /// </summary>
+        /// <remarks>
+        /// This has to match the data that is stored in the referenced file.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.TextureType TextureType;
 
         internal Microsoft.Azure.RemoteRendering.LoadTextureParamsAbi Convert()
@@ -4066,18 +4384,18 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Initialization structure for remote rendering runtime.
+    /// Options for Remote Rendering runtime initialization.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal struct RemoteRenderingInitializationAbi
     {
         /// <summary>
-        /// Select the connection type for this session.
+        /// Selects the <see cref="ConnectionType">connection type</see> for this session.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ConnectionType connectionType;
 
         /// <summary>
-        /// Select the graphics binding to be used for rendering.
+        /// Selects the <see cref="GraphicsApiType">graphics binding</see> for rendering.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.GraphicsApiType graphicsApi;
 
@@ -4129,17 +4447,17 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Initialization structure for remote rendering runtime.
+    /// Options for Remote Rendering runtime initialization.
     /// </summary>
     public partial struct RemoteRenderingInitialization
     {
         /// <summary>
-        /// Select the connection type for this session.
+        /// Selects the <see cref="ConnectionType">connection type</see> for this session.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ConnectionType connectionType;
 
         /// <summary>
-        /// Select the graphics binding to be used for rendering.
+        /// Selects the <see cref="GraphicsApiType">graphics binding</see> for rendering.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.GraphicsApiType graphicsApi;
 
@@ -4189,144 +4507,517 @@ namespace Microsoft.Azure.RemoteRendering
         }
     }
 
+    /// <summary>
+    /// Generic result type used by the Remote Rendering API.
+    /// </summary>
     public enum Result : int
     {
         /// <summary>
-        /// General return values start.
+        /// Internal: Start of the range of core result values.
         /// </summary>
         CoreReturnValueStart = -1,
+        /// <summary>
+        /// Operation completed successfully.
+        /// </summary>
         Success = 0,
+        /// <summary>
+        /// General failure.
+        /// </summary>
         Fail = 1,
+        /// <summary>
+        /// The user canceled the operation.
+        /// </summary>
         Cancelled = 2,
+        /// <summary>
+        /// Incorrect user input for the operation.
+        /// </summary>
         InvalidParam = 3,
+        /// <summary>
+        /// An object with incorrect type was passed in.
+        /// </summary>
         InvalidType = 4,
-        BufferTooSmall = 5,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        BufferTooSmall_Deprecated = 5,
+        /// <summary>
+        /// Operation requires an active connection.
+        /// </summary>
+        /// <remarks>
+        /// If the connection to the server has been lost, this error can occur for most operations,
+        /// since only few operations are possible without a connection.
+        /// </remarks>
         NoConnection = 6,
+        /// <summary>
+        /// Internal.
+        /// </summary>
         ApiUnavailable = 7,
+        /// <summary>
+        /// Static initialization of remote rendering has been called multiple times.
+        /// </summary>
         AlreadyInitialized = 8,
+        /// <summary>
+        /// Static de-initialization of remote rendering has already been performed.
+        /// </summary>
         AlreadyDeinitialized = 9,
+        /// <summary>
+        /// The string passed into the API is longer than allowed.
+        /// </summary>
         StringTooLong = 10,
+        /// <summary>
+        /// The index passed into the API is outside the valid range.
+        /// </summary>
         IndexOutOfRange = 11,
+        /// <summary>
+        /// An async operation has not yet finished.
+        /// </summary>
         InProgress = 12,
+        /// <summary>
+        /// Static initialization of remote rendering hasn't been done yet.
+        /// </summary>
         NotInitialized = 13,
+        /// <summary>
+        /// Internal: Last used value of the range of core result values.
+        /// </summary>
         CoreReturnValueLast = 14,
+        /// <summary>
+        /// Internal: Maximum value of the range of core result values.
+        /// </summary>
         CoreReturnValueEnd = 200,
+        /// <summary>
+        /// Internal: Start of the range of file load result values.
+        /// </summary>
         LoadFileReturnValueStart = 299,
+        /// <summary>
+        /// The requested file did not exist.
+        /// </summary>
         FileNotFound = 300,
+        /// <summary>
+        /// The requested file is either corrupt or uses an old version that is not supported anymore.
+        /// </summary>
         InvalidVersion = 301,
-        IncompatibleVersion = 302,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        IncompatibleVersion_Deprecated = 302,
+        /// <summary>
+        /// The requested file is either corrupt or not recognized.
+        /// </summary>
         FailedToOpenFile = 303,
+        /// <summary>
+        /// Downloading the file from the provided URL failed.
+        /// </summary>
         FileDownloadFailed = 304,
+        /// <summary>
+        /// Loading this model would exceed GPU memory limits. Request a larger server, or reduce the amount of loaded models.
+        /// </summary>
         ExceedsMemoryLimit = 305,
-        LoadFileReturnValueLast = 306,
+        /// <summary>
+        /// The target file cannot be written
+        /// </summary>
+        CannotWriteTargetFile = 306,
+        /// <summary>
+        /// The target file is corrupt or in an unsupported format
+        /// </summary>
+        FileCorrupt = 307,
+        /// <summary>
+        /// Internal: Last used value of the range of file load result values.
+        /// </summary>
+        LoadFileReturnValueLast = 308,
+        /// <summary>
+        /// Internal: Maximum value of the range of file load result values.
+        /// </summary>
         LoadFileReturnValueEnd = 500,
+        /// <summary>
+        /// Internal: Start of the range of object result values.
+        /// </summary>
         ObjectReturnValueStart = 599,
+        /// <summary>
+        /// The provided object ID is not valid (anymore).
+        /// </summary>
         InvalidId = 600,
+        /// <summary>
+        /// The parent entity with the provided ID does not exist.
+        /// </summary>
         InvalidParentId = 601,
+        /// <summary>
+        /// An object of the same type already exists on the target.
+        /// </summary>
         AlreadyExists = 602,
+        /// <summary>
+        /// Re-parenting this entity to the target entity would create a cycle in the entity hierarchy.
+        /// </summary>
         CyclicReference = 603,
-        ObjectLocked = 604,
+        /// <summary>
+        /// Not used.
+        /// </summary>
+        ObjectLocked_Deprecated = 604,
+        /// <summary>
+        /// Internal: Last used value of the range of object result values.
+        /// </summary>
         ObjectReturnValueLast = 605,
+        /// <summary>
+        /// Internal: Maximum value of the range of object result values.
+        /// </summary>
         ObjectReturnValueEnd = 800,
+        /// <summary>
+        /// Internal: Start of the range of connection result values.
+        /// </summary>
         ConnectionReturnValueStart = 899,
+        /// <summary>
+        /// Internal: Secure connection enabled, but certificate was missing, invalid, or not usable.
+        /// </summary>
         NoServerCertificate = 900,
+        /// <summary>
+        /// Internal: Handshake port could not be opened for accepting connections.
+        /// </summary>
         HandshakePortBusy = 901,
+        /// <summary>
+        /// Handshake server is unreachable.
+        /// </summary>
         HandshakeUnreachable = 902,
+        /// <summary>
+        /// Handshake server closed the connection prematurely; likely due to TLS/Plain mismatch or invalid certificate.
+        /// </summary>
         HandshakeConnectionFailed = 903,
+        /// <summary>
+        /// Authentication with the handshake server failed.
+        /// </summary>
         AuthenticationFailed = 904,
+        /// <summary>
+        /// No common compatible remoting version could be determined during handshake.
+        /// </summary>
         RemotingVersionMismatch = 905,
+        /// <summary>
+        /// No common transport protocol could be determined during handshake.
+        /// </summary>
         IncompatibleTransportProtocols = 906,
+        /// <summary>
+        /// Handshake failed. Reason not further specified.
+        /// </summary>
         HandshakeFailed = 907,
+        /// <summary>
+        /// Internal: Transport port could not be opened for accepting connections.
+        /// </summary>
         TransportPortBusy = 908,
+        /// <summary>
+        /// Transport server is unreachable.
+        /// </summary>
         TransportUnreachable = 909,
+        /// <summary>
+        /// Transport connection was closed before all communication channels had been set up.
+        /// </summary>
         TransportConnectionFailed = 910,
+        /// <summary>
+        /// Transport connection was closed due to protocol version mismatch.
+        /// </summary>
         ProtocolVersionMismatch = 911,
+        /// <summary>
+        /// A protocol error occurred that was severe enough to invalidate the current connection or connection attempt.
+        /// </summary>
         ProtocolError = 912,
+        /// <summary>
+        /// Transport connection was closed due to the requested video codec not being available.
+        /// </summary>
         VideoCodecNotAvailable = 913,
+        /// <summary>
+        /// Connection has been closed by peer.
+        /// </summary>
         ConnectionLost = 914,
+        /// <summary>
+        /// Connection has been closed due to graphics device loss.
+        /// </summary>
         DeviceLost = 915,
+        /// <summary>
+        /// Connection has been closed by request.
+        /// </summary>
         DisconnectRequest = 916,
+        /// <summary>
+        /// Internal.
+        /// </summary>
         Timeout = 917,
+        /// <summary>
+        /// A connection has been established before.
+        /// </summary>
         AlreadyConnected = 918,
+        /// <summary>
+        /// The client SDK version is not supported anymore. Please update.
+        /// </summary>
         ArrVersionMismatch = 919,
+        /// <summary>
+        /// Network is unreachable. This usually means the client knows no route to reach the remote host.
+        /// </summary>
         HandshakeNetworkUnreachable = 920,
+        /// <summary>
+        /// No connection could be made because the remote side actively refused it. Usually this means that no host application is running.
+        /// </summary>
         HandshakeConnectionRefused = 921,
+        /// <summary>
+        /// Transport connection was closed due to the requested video format not being available.
+        /// </summary>
         VideoFormatNotAvailable = 922,
+        /// <summary>
+        /// Disconnecting after receiving a disconnect request from the peer.
+        /// </summary>
         PeerDisconnectRequest = 923,
+        /// <summary>
+        /// Timed out while waiting for peer to close connection.
+        /// </summary>
         PeerDisconnectTimeout = 924,
+        /// <summary>
+        /// Internal: Last used value of the range of connection result values.
+        /// </summary>
         ConnectionReturnValueLast = 925,
+        /// <summary>
+        /// Internal: Maximum value of the range of connection result values.
+        /// </summary>
         ConnectionReturnValueEnd = 1100,
+        /// <summary>
+        /// Internal: Start of the range of manager result values.
+        /// </summary>
         ManagerReturnValueStart = 1199,
+        /// <summary>
+        /// Internal: Invalid tool ID.
+        /// </summary>
         InvalidToolId = 1200,
+        /// <summary>
+        /// The remote rendering manager has already been created.
+        /// </summary>
         ManagerAlreadyCreated = 1201,
+        /// <summary>
+        /// The remote rendering manager has not been created yet.
+        /// </summary>
         ManagerNotCreatedYet = 1202,
+        /// <summary>
+        /// Another session is already connected to this runtime.
+        /// </summary>
         OtherSessionConnected = 1203,
+        /// <summary>
+        /// Internal.
+        /// </summary>
         BadStateTransition = 1204,
-        ManagerReturnValueLast = 1205,
+        /// <summary>
+        /// An internal tool failed to start
+        /// </summary>
+        FailedToStartTool = 1205,
+        /// <summary>
+        /// Internal: Last used value of the range of manager result values.
+        /// </summary>
+        ManagerReturnValueLast = 1206,
+        /// <summary>
+        /// Internal: Maximum value of the range of manager result values.
+        /// </summary>
         ManagerReturnValueEnd = 1400,
+        /// <summary>
+        /// Internal: Start of the range of session result values.
+        /// </summary>
         SessionReturnValueStart = 1499,
+        /// <summary>
+        /// The secure connection failed. Check the account settings.
+        /// </summary>
         InvalidToken = 1500,
+        /// <summary>
+        /// The user provided URL is malformed.
+        /// </summary>
         InvalidUrl = 1501,
+        /// <summary>
+        /// Internal: Last used value of the range of session result values.
+        /// </summary>
         SessionReturnValueLast = 1502,
+        /// <summary>
+        /// Internal: Maximum value of the range of session result values.
+        /// </summary>
         SessionReturnValueEnd = 1700,
     }
 
+    /// <summary>
+    /// Supported graphics APIs.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBindingSimD3d11"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBindingWmrD3d11"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/graphics-bindings">Graphics binding (Remote Rendering docs)</seealso>
     public enum GraphicsApiType : int
     {
+        /// <summary>
+        /// Disables the graphics interface (headless mode).
+        /// </summary>
         Headless = 0,
+        /// <summary>
+        /// Creates a graphics binding for local simulation (monoscopic rendering, typically in editor).
+        /// </summary>
         SimD3D11 = 1,
+        /// <summary>
+        /// Creates a graphics binding for Windows Mixed Reality. This must be used when working on a HoloLens device.
+        /// </summary>
         WmrD3D11 = 2,
+        /// <summary>
+        /// internal
+        /// </summary>
         Count = 3,
     }
 
+    /// <summary>
+    /// Supported material types.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateMaterial(Microsoft.Azure.RemoteRendering.MaterialType)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/materials">Materials (Remote Rendering docs)</seealso>
     public enum MaterialType : int
     {
+        /// <summary>
+        /// Physically-Based Rendering (PBR)
+        /// </summary>
+        /// <remarks>
+        /// PBR materials support lighting and advanced properties such as roughness and metalness.
+        /// </remarks>
         Pbr = 0,
+        /// <summary>
+        /// A fixed color material, optionally multiplied with a texture.
+        /// </summary>
+        /// <remarks>
+        /// This material receives no lighting, it is always fully bright.
+        /// </remarks>
         Color = 1,
     }
 
+    /// <summary>
+    /// Logging severity levels.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LogLevel"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.LogLevel"/>
     public enum LogLevel : int
     {
+        /// <summary>
+        /// Used to disable logging.
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// The log message represents an error.
+        /// </summary>
         Error = 1,
+        /// <summary>
+        /// The log message represents a warning.
+        /// </summary>
         Warning = 2,
+        /// <summary>
+        /// The log message represents somewhat important information.
+        /// </summary>
         Information = 3,
+        /// <summary>
+        /// The log message represents verbose information typically only useful for debugging.
+        /// </summary>
         Debug = 4,
+        /// <summary>
+        /// internal
+        /// </summary>
         Count = 5,
     }
 
+    /// <summary>
+    /// Coordinate system axis definitions.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteRenderingInitialization"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.CutPlaneComponent"/>
     public enum Axis : int
     {
+        /// <summary>
+        /// Positive X axis
+        /// </summary>
         X = 0,
+        /// <summary>
+        /// Negative X axis
+        /// </summary>
         X_Neg = 1,
+        /// <summary>
+        /// Positive Y axis
+        /// </summary>
         Y = 2,
+        /// <summary>
+        /// Negative Y axis
+        /// </summary>
         Y_Neg = 3,
+        /// <summary>
+        /// Positive Z axis
+        /// </summary>
         Z = 4,
+        /// <summary>
+        /// Negative Z axis
+        /// </summary>
         Z_Neg = 5,
     }
 
+    /// <summary>
+    /// The state of the remote focus point in the current frame.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/late-stage-reprojection">Late stage reprojection</seealso>
     public enum FocusPointResult : int
     {
+        /// <summary>
+        /// No valid focus point data available.
+        /// </summary>
         Invalid = 0,
+        /// <summary>
+        /// The data is valid but has been computed through a fallback.
+        /// </summary>
         Fallback = 1,
+        /// <summary>
+        /// The data represents a valid focus point.
+        /// </summary>
         Valid = 2,
     }
 
+    /// <summary>
+    /// Options for rendering single-sided geometry.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SingleSidedSettings"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/single-sided-rendering">Single-sided rendering</seealso>
     public enum SingleSidedMode : int
     {
+        /// <summary>
+        /// Back faces of single-sided geometry will be invisible.
+        /// </summary>
+        /// <remarks>
+        /// When moving the viewpoint inside single sided geometry, or cutting it open with a <see cref="CutPlaneComponent"/>,
+        /// back-facing geometry will not be visible, which may be undesirable. This mode has the least performance impact.
+        /// </remarks>
         Normal = 0,
+        /// <summary>
+        /// Dynamically switch to double-sided rendering when geometry is cut open through a <see cref="CutPlaneComponent"/>.
+        /// </summary>
+        /// <remarks>
+        /// This mode only incurs additional performance cost for geometry that is cut open with a cut plane. Moving the camera
+        /// inside geometry doesn't enable double-sided rendering. This mode is most useful for applications that doe use cut planes,
+        /// but where it is rare for users to move their head inside of geometry.
+        /// </remarks>
         DynamicDoubleSiding = 1,
+        /// <summary>
+        /// Force single-sided geometry to be rendered double-sided.
+        /// </summary>
+        /// <remarks>
+        /// This mode is useful when it is expected for users to move inside geometry. It does incur more performance overhead, though.
+        /// </remarks>
         AlwaysDoubleSided = 2,
     }
 
+    /// <summary>
+    /// Enum that describes the three enabled states in a hierarchical context. HierarchicalEnableState is used in conjunction with <see cref="HierarchicalStates"/>
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.HierarchicalStateOverrideComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.HierarchicalStates"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/override-hierarchical-state">Hierarchical state override</seealso>
     public enum HierarchicalEnableState : int
     {
         /// <summary>
-        /// The feature is disabled on this hierarchy level.
+        /// The feature is disabled on this hierarchy level and further below.
         /// </summary>
         ForceOff = 0,
         /// <summary>
-        /// The feature is enabled on this hierarchy level.
+        /// The feature is enabled on this hierarchy level and further below.
         /// </summary>
         ForceOn = 1,
         /// <summary>
@@ -4335,10 +5026,15 @@ namespace Microsoft.Azure.RemoteRendering
         InheritFromParent = 2,
     }
 
+    /// <summary>
+    /// Status of the connection to the server.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering sessions</seealso>
     public enum ConnectionStatus : int
     {
         /// <summary>
-        /// The server is disconnected.
+        /// No connection to the server.
         /// </summary>
         Disconnected = 0,
         /// <summary>
@@ -4346,23 +5042,29 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         Connecting = 1,
         /// <summary>
-        /// The server is connected.
+        /// The client is currently connected to the server.
         /// </summary>
         Connected = 2,
     }
 
+    /// <summary>
+    /// Status of an asset conversion session.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ConversionStatusAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/conversion/model-conversion">Model conversion</seealso>
     public enum ConversionSessionStatus : int
     {
         /// <summary>
-        /// The session is in unknown state.
+        /// The session status is unknown.
         /// </summary>
         Unknown = 0,
         /// <summary>
-        /// The session has been successfully created.
+        /// The session has been created successfully.
         /// </summary>
         Created = 1,
         /// <summary>
-        /// The conversion is running.
+        /// The conversion is currently running.
         /// </summary>
         Running = 2,
         /// <summary>
@@ -4370,23 +5072,29 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         Aborted = 3,
         /// <summary>
-        /// The conversion has ended with an error.
+        /// The conversion was stopped due to an error.
         /// </summary>
         Failure = 4,
         /// <summary>
-        /// The conversion has ended with success.
+        /// The conversion finished successfully.
         /// </summary>
         Success = 5,
     }
 
+    /// <summary>
+    /// Status of a rendering session.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RenderingSessionProperties"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering sessions</seealso>
     public enum RenderingSessionStatus : int
     {
         /// <summary>
-        /// The session is in unknown state.
+        /// The session status is unknown.
         /// </summary>
         Unknown = 0,
         /// <summary>
-        /// The session is starting.
+        /// The session is currently starting.
         /// </summary>
         Starting = 1,
         /// <summary>
@@ -4394,19 +5102,24 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         Ready = 2,
         /// <summary>
-        /// The session has stopped.
+        /// The session has been stopped by the user.
         /// </summary>
         Stopped = 3,
         /// <summary>
-        /// The session has expired, e.g. through its lease time.
+        /// The session has been stopped because its lease time expired.
         /// </summary>
         Expired = 4,
         /// <summary>
-        /// The session has aborted and is in error state.
+        /// The session has been stopped because it encountered an error.
         /// </summary>
         Error = 5,
     }
 
+    /// <summary>
+    /// The different types of objects used by ARR.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ObjectBase"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ResourceBase"/>
     public enum ObjectType : int
     {
         /// <summary>
@@ -4414,70 +5127,87 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         Invalid = 0,
         /// <summary>
-        /// Internal use
+        /// internal
         /// </summary>
         FirstBasicObject = 1,
         /// <summary>
-        /// Object is an entity.
+        /// Object is an <see cref="Entity"/>
         /// </summary>
         Entity = 1,
         /// <summary>
-        /// Object is a mesh resource.
+        /// Object is a <see cref="Mesh"/>
         /// </summary>
         Mesh = 2,
         /// <summary>
-        /// Object is a material resource.
+        /// Object is a <see cref="Material"/>
         /// </summary>
         Material = 3,
         /// <summary>
-        /// Object is a texture resource.
+        /// Object is a <see cref="Texture"/>
         /// </summary>
         Texture = 4,
         /// <summary>
-        /// Internal use
+        /// internal
         /// </summary>
         LastBasicObject = 4,
         /// <summary>
-        /// Internal use
+        /// internal
         /// </summary>
         FirstComponent = 200,
         /// <summary>
-        /// Object is a mesh component.
+        /// Object is a <see cref="MeshComponent"/>
         /// </summary>
         MeshComponent = 200,
         /// <summary>
-        /// Object is a cut plane component.
+        /// Object is a <see cref="CutPlaneComponent"/>
         /// </summary>
         CutPlaneComponent = 201,
         /// <summary>
-        /// Object is a hierarchical state override component.
+        /// Object is a <see cref="HierarchicalStateOverrideComponent"/>
         /// </summary>
         HierarchicalStateOverrideComponent = 202,
         /// <summary>
-        /// Object is a point light component.
+        /// Object is a <see cref="PointLightComponent"/>
         /// </summary>
         PointLightComponent = 203,
         /// <summary>
-        /// Object is a spot light component.
+        /// Object is a <see cref="SpotLightComponent"/>
         /// </summary>
         SpotLightComponent = 204,
         /// <summary>
-        /// Object is a directional light component.
+        /// Object is a <see cref="DirectionalLightComponent"/>
         /// </summary>
         DirectionalLightComponent = 205,
         /// <summary>
-        /// Internal use
+        /// internal
         /// </summary>
         LastComponent = 205,
     }
 
+    /// <summary>
+    /// Size of the server used for the rendering session.
+    /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/reference/vm-sizes">Server sizes</seealso>
     public enum RenderingSessionVmSize : int
     {
+        /// <summary>
+        /// internal
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Premium size servers support the largest amounts of data.
+        /// </summary>
         Premium = 1,
+        /// <summary>
+        /// Standard size servers may impose restrictions on the allowed rendering data.
+        /// </summary>
         Standard = 2,
     }
 
+    /// <summary>
+    /// The type of connection to use.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteRenderingInitialization"/>
     public enum ConnectionType : int
     {
         /// <summary>
@@ -4489,53 +5219,102 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         Engine = 1,
         /// <summary>
-        /// Used internally
+        /// internal
         /// </summary>
         Count = 2,
     }
 
+    /// <summary>
+    /// Defines how the alpha portion of a mesh's vertex color contributes to the final color.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial.PbrVertexAlphaMode"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/pbr-materials">PBR materials</seealso>
     public enum PbrVertexAlphaMode : int
     {
+        /// <summary>
+        /// The alpha value represents an ambient occlusion value and therefore only affects the indirect lighting from the skybox.
+        /// </summary>
         Occlusion = 0,
+        /// <summary>
+        /// The alpha value serves as scale factor for the overall amount of lighting applied, meaning the alpha can be used to darken areas. This affects both indirect as well as direct lighting.
+        /// </summary>
         LightMask = 1,
+        /// <summary>
+        /// The alpha represents how opaque (1.0) or transparent (0.0) the material is.
+        /// </summary>
+        /// <remarks>
+        /// This only has an effect if the used <see cref="PbrMaterial"/> has transparency enabled.
+        /// </remarks>
         Opacity = 2,
     }
 
+    /// <summary>
+    /// Defines whether the <see cref="ColorMaterial"/> is transparent and how it blends with the background.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial.ColorTransparencyMode"/>
     public enum ColorTransparencyMode : int
     {
+        /// <summary>
+        /// The material is opaque, but still allows for hard cutouts when the flag <see cref="ColorMaterialFeatures.AlphaClipped"/> is specified.
+        /// </summary>
         Opaque = 0,
+        /// <summary>
+        /// The material is semi-transparent through alpha-blending, using the combined albedo's alpha for opacity.
+        /// </summary>
         AlphaBlend = 1,
+        /// <summary>
+        /// The material uses additive blending.
+        /// </summary>
         Additive = 2,
     }
 
+    /// <summary>
+    /// The supported texture types.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LoadTextureParams"/>
     public enum TextureType : int
     {
         /// <summary>
-        /// Texture is a 2d texture.
+        /// The texture is a 2D texture.
         /// </summary>
         Texture2D = 0,
         /// <summary>
-        /// Texture is a cubemap.
+        /// The texture is a cubemap.
         /// </summary>
         CubeMap = 1,
     }
 
+    /// <summary>
+    /// The possible modes for the server side rendering.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.ConnectToRuntime(Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/rendering-modes">Rendering modes</seealso>
     public enum ServiceRenderMode : int
     {
         /// <summary>
-        /// Multi-GPU result is composed from distinct meshes by merging depth buffers. Suitable for most scene types, balances rendering quality with resource consumption. Does not support dynamic transparency such as see-through effect via hierarchical state override component.
+        /// The multi-GPU result is composed from distinct meshes by merging depth buffers. Suitable for most scene types; balances rendering quality with resource consumption.
         /// </summary>
+        /// <remarks>
+        /// This mode does NOT support dynamically switching transparency such as see-through effects via the <see cref="HierarchicalStateOverrideComponent"/>.
+        /// </remarks>
         DepthBasedComposition = 0,
         /// <summary>
-        /// Multi-GPU result is composed from tiles. Improved rendering quality but also higher server resource consumption, not suitable for large scenes.
+        /// The multi-GPU result is composed from tiles. This mode has slightly better rendering quality but also higher server resource consumption. Not suitable for very large scenes.
         /// </summary>
         TileBasedComposition = 1,
         /// <summary>
-        /// Default, recommended render mode.
+        /// The recommended render mode.
         /// </summary>
         Default = 0,
     }
 
+    /// <summary>
+    /// Specifies broad categories for assessing the meaning of a performance measurement.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PerformanceInformation"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PerformanceAssessment"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.QueryServerPerformanceAssessmentAsync"/>
     public enum PerformanceRating : int
     {
         Great = 0,
@@ -4544,6 +5323,12 @@ namespace Microsoft.Azure.RemoteRendering
         Bad = 3,
     }
 
+    /// <summary>
+    /// Render properties that can be overridden by the <see cref="HierarchicalStateOverrideComponent"/>
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.HierarchicalStateOverrideComponent"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/override-hierarchical-state">Hierarchical state override</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial queries</seealso>
     public enum HierarchicalStates : int
     {
         /// <summary>
@@ -4563,35 +5348,61 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         SeeThrough = 4,
         /// <summary>
-        /// The use tint color state is overridden. This flag enables individual tint color per obejct.
+        /// The use tint color state is overridden. This flag enables individual tint color per object.
         /// </summary>
+        /// <remarks>
+        /// This flag enables an individual tint color per object.
+        /// </remarks>
         UseTintColor = 8,
         /// <summary>
-        /// The disable collision flag is overridden. This flag makes a part invisible to ray cast queries.
+        /// The disable collision flag is overridden.
         /// </summary>
+        /// <remarks>
+        /// Parts with this flag will be ignored by <see cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">spatial queries</see>.
+        /// </remarks>
         DisableCollision = 16,
+        /// <summary>
+        /// The use cut plane filter mask state is overridden. This flag enables individual cut plane filter masks per object.
+        /// </summary>
+        UseCutPlaneFilterMask = 64,
+        /// <summary>
+        /// Renders the scene sub-tree as a transparent shell.
+        /// </summary>
+        /// <remarks>
+        /// The effect's appearance can be globally configured using the <see cref="ShellRenderingSettings"/> state of the <see cref="RemoteManager"/>.
+        /// </remarks>
+        Shell = 128,
         /// <summary>
         /// Combination of all flags.
         /// </summary>
-        AllValidFlags = 31,
+        AllValidFlags = 223,
     }
 
+    /// <summary>
+    /// Flags specific to the <see cref="PbrMaterial"/>.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial.PbrFlags"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/pbr-materials">PBR materials</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/single-sided-rendering">Single-sided rendering</seealso>
     public enum PbrMaterialFeatures : int
     {
-        /// <summary>
-        /// None of the flags below.
-        /// </summary>
         None = 0,
         /// <summary>
-        /// The material is transparent (alpha-blended), where the level of transparency is defined by albedo colors' alpha and optionally vertex colors' alpha.
+        /// The material is transparent.
         /// </summary>
+        /// <remarks>
+        /// The amount of transparency is defined by the alpha value of the albedo color and optionally the alpha of the vertex color. See <see cref="PbrVertexAlphaMode"/> for how the vertex color can affect transparency.
+        /// </remarks>
         TransparentMaterial = 1,
         /// <summary>
-        /// Use/ignore the vertex color (if provided by the mesh). Needs to be enabled so that PbrMaterial.PbrVertexAlphaMode has any effect.
+        /// Use the vertex color (if provided by the mesh).
         /// </summary>
+        /// <remarks>
+        /// This has to be enabled for the <see cref="PbrMaterial.PbrVertexAlphaMode"/> to take effect.
+        /// </remarks>
         UseVertexColor = 2,
         /// <summary>
-        /// The material is rendered double-sided, otherwise back faces are culled.
+        /// The material is rendered double-sided. Otherwise back-faces may be culled, depending on the selected <see cref="SingleSidedMode"/>.
         /// </summary>
         DoubleSided = 4,
         /// <summary>
@@ -4599,88 +5410,126 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         SpecularHighlights = 8,
         /// <summary>
-        /// Enables hard cut-outs on a per-pixel basis based on the alpha value being below a PbrMaterial.AlphaClipThreshold. This works for opaque materials as well.
+        /// Enables hard cut-outs on a per-pixel basis based on the alpha value being below <see cref="PbrMaterial.AlphaClipThreshold"/>. This works for opaque materials as well.
         /// </summary>
         AlphaClipped = 16,
         /// <summary>
-        /// If enabled, this material fades to black as opposed to fading to transparent when used with SetFadeOut. Fading to black has the same effect on see-through devices like Hololens but has less GPU cost associated with it.
+        /// If enabled, this material fades to black as opposed to fading to transparent when using <see cref="PbrMaterial.FadeOut"/>. Fading to black has the same effect on see-through devices like HoloLens but has significantly lower rendering cost.
         /// </summary>
         FadeToBlack = 32,
+        /// <summary>
+        /// If enabled this material will have a Fresnel effect additively added to the rendering of the base material. Use the FresnelEffectExponent and FresnelEffectColor to control the effect visuals.
+        /// </summary>
+        FresnelEffect = 64,
+        /// <summary>
+        /// Toggles transparency depth writes. Objects rendered transparently do not contribute to the depth buffer as a default. Set this to true if objects associated with this material should write depth.
+        /// </summary>
+        /// <remarks>
+        /// Enabling this on transparent materials can improve the re-projection behavior of transparent objects, and hologram stability by consequence. See the respective <see cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/late-stage-reprojection">LSR documentation</see> for details.
+        /// </remarks>
+        TransparencyWritesDepth = 128,
     }
 
+    /// <summary>
+    /// Flags specific to the <see cref="ColorMaterial"/>.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial.ColorFlags"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/color-materials">Color materials</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/single-sided-rendering">Single-sided rendering</seealso>
     public enum ColorMaterialFeatures : int
     {
-        /// <summary>
-        /// None of the flags below.
-        /// </summary>
         None = 0,
         /// <summary>
-        /// Use/ignore the vertex color if provided by the mesh.
+        /// Use the vertex color (if provided by the mesh).
         /// </summary>
         UseVertexColor = 1,
         /// <summary>
-        /// The material is rendered double-sided, otherwise back faces are culled.
+        /// The material is rendered double-sided. Otherwise back-faces may be culled, depending on the selected <see cref="SingleSidedMode"/>.
         /// </summary>
         DoubleSided = 2,
         /// <summary>
-        /// If enabled, this material fades to black as opposed to fading to transparent when used with SetFadeOut. Fading to black has the same effect on see-through devices like Hololens but has less GPU cost associated with it.
+        /// If enabled, this material fades to black as opposed to fading to transparent when using <see cref="ColorMaterial.FadeOut"/>. Fading to black has the same effect on see-through devices like HoloLens but has significantly lower rendering cost.
         /// </summary>
         FadeToBlack = 4,
         /// <summary>
-        /// Enables hard cut-outs on a per-pixel basis based on the alpha value being below a threshold. This works for opaque materials as well.
+        /// Enables hard cut-outs on a per-pixel basis based on the alpha value being below <see cref="ColorMaterial.AlphaClipThreshold"/>. This works for opaque materials as well.
         /// </summary>
         AlphaClipped = 8,
+        /// <summary>
+        /// Toggles transparency depth writes. Objects rendered transparently do not contribute to the depth buffer as a default. Set this to true if objects associated with this material should write depth.
+        /// </summary>
+        /// <remarks>
+        /// Enabling this on transparent materials can improve the re-projection behavior of transparent objects, and hologram stability by consequence. See the respective <see cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/late-stage-reprojection">LSR documentation</see> for details.
+        /// </remarks>
+        TransparencyWritesDepth = 16,
+        /// <summary>
+        /// If enabled this material will have a Fresnel effect additively added to the rendering of the base material. Use the FresnelEffectExponent and FresnelEffectColor to control the effect visuals.
+        /// </summary>
+        FresnelEffect = 32,
     }
 
+    /// <summary>
+    /// Specifies the type of a metadata value.
+    /// </summary>
     public enum MetadataValueType : int
     {
         /// <summary>
-        /// Invalid type.
+        /// Invalid meta data type.
         /// </summary>
         Invalid = 0,
         /// <summary>
-        /// Value is a boolean.
+        /// Bool.
         /// </summary>
         Bool = 1,
         /// <summary>
-        /// Value is a 32 bit signed integer.
+        /// 32 bit signed integer.
         /// </summary>
         Int32 = 2,
         /// <summary>
-        /// Value is a 64 bit signed integer.
+        /// 64 bit signed integer.
         /// </summary>
         Int64 = 3,
         /// <summary>
-        /// Value is a 64 bit unsigned integer.
+        /// 64 bit unsigned integer.
         /// </summary>
         UInt64 = 4,
         /// <summary>
-        /// Value is a double precision floating point value.
+        /// Double precision floating point.
         /// </summary>
         Double = 5,
         /// <summary>
-        /// Value is a string.
+        /// String.
         /// </summary>
         String = 6,
         /// <summary>
-        /// Internal use
+        /// internal
         /// </summary>
         MetadataValueTypeCount = 7,
     }
 
+    /// <summary>
+    /// Determines which hits a raycast query returns.
+    /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial Queries</seealso>
     public enum HitCollectionPolicy : int
     {
         /// <summary>
         /// Return all hits along the ray, sorted by distance.
         /// </summary>
+        /// <remarks>
+        /// This is the least efficient method but it is also rarely needed.
+        /// </remarks>
         AllHits = 0,
         /// <summary>
-        /// Return the closest hit along the ray from the start point.
+        /// Return the closest hit.
         /// </summary>
         ClosestHit = 1,
         /// <summary>
-        /// Return any hit along the ray. AnyHit is an optimal query to answer 'is B visible from A'?
+        /// Return any hit along the ray.
         /// </summary>
+        /// <remarks>
+        /// This is the most efficient option, to answer 'is B visible from A'?
+        /// </remarks>
         AnyHit = 2,
     }
 
@@ -4724,25 +5573,28 @@ namespace Microsoft.Azure.RemoteRendering
         GraphicsBindingWmrD3d11 = 35,
     }
 
-    public delegate void DestructorHookDelegate();
+    internal delegate void DestructorHookDelegate();
 
     /// <summary>
-    /// Delegate for monitoring the progress of an asynchonrous operation.
+    /// Delegate for monitoring the progress of an asynchronous operation.
     /// </summary>
     /// <param name="progress">
     /// Progress fraction between 0 and 1 for how close the operation is to finishing.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LoadModelAsync"/>
     public delegate void ProgressHandler(float progress);
 
     /// <summary>
-    /// Delegate for receiving incoming log messages.
+    /// Delegate for receiving log messages.
     /// </summary>
     /// <param name="level">
     /// Level of the log message.
     /// </param>
     /// <param name="message">
-    /// Message as an IntPtr to the underlying utf8 char array.
+    /// Message as an IntPtr to the underlying UTF-8 char array.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager"/>
     public delegate void LogHandler(Microsoft.Azure.RemoteRendering.LogLevel level, System.IntPtr message);
 
     /// <summary>
@@ -4752,52 +5604,53 @@ namespace Microsoft.Azure.RemoteRendering
     /// The new connection status.
     /// </param>
     /// <param name="error">
-    /// Additional error information in the case of a spurious disconnect.
+    /// Additional error information in case of an unintended disconnect.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
     public delegate void ConnectionStatusHandler(Microsoft.Azure.RemoteRendering.ConnectionStatus status, Microsoft.Azure.RemoteRendering.Result error);
 
     /// <summary>
-    /// Delegate for receiving notification when an update tick has completed on a RemoteManager.
+    /// Delegate for receiving notification when an update tick has completed on a <see cref="Microsoft.Azure.RemoteRendering.RemoteManager"/>.
     /// </summary>
     public delegate void UpdatedHandler();
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.BoundsQueryAsync"/> operation.
     /// </summary>
     public delegate void BoundsQueryHandler(Microsoft.Azure.RemoteRendering.BoundsQueryAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.MetadataQueryAsync"/> operation.
     /// </summary>
     public delegate void MetadataHandler(Microsoft.Azure.RemoteRendering.MetadataQueryAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.LoadModelAsync"/> operation.
     /// </summary>
     public delegate void LoadModelHandler(Microsoft.Azure.RemoteRendering.LoadModelAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.LoadTextureAsync"/> operation.
     /// </summary>
     public delegate void LoadTextureHandler(Microsoft.Azure.RemoteRendering.LoadTextureAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of <see cref="Microsoft.Azure.RemoteRendering.RaycastQueryAsync"/> operation.
     /// </summary>
     public delegate void RaycastQueryHandler(Microsoft.Azure.RemoteRendering.RaycastQueryAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.PerformanceAssessmentAsync"/> operation.
     /// </summary>
     public delegate void PerformanceAssessmentHandler(Microsoft.Azure.RemoteRendering.PerformanceAssessmentAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.SessionAsync"/> operation.
     /// </summary>
     public delegate void SessionHandler(Microsoft.Azure.RemoteRendering.SessionAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a async <see cref="Microsoft.Azure.RemoteRendering.CreateSessionAsync"/> operation.
     /// </summary>
     public delegate void CreateSessionHandler(Microsoft.Azure.RemoteRendering.CreateSessionAsync async);
 
@@ -4810,40 +5663,41 @@ namespace Microsoft.Azure.RemoteRendering
     /// <param name="args">
     /// The event arguments that require an AccessToken property or an AuthenticationToken property to be set.
     /// </param>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureFrontend.TokenRequired"/>
     public delegate void TokenRequiredDelegate(object sender, Microsoft.Azure.RemoteRendering.TokenRequiredEventArgs args);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.SessionPropertiesArrayAsync"/> operation.
     /// </summary>
     public delegate void SessionPropertiesArrayHandler(Microsoft.Azure.RemoteRendering.SessionPropertiesArrayAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.StartAssetConversionAsync"/> operation.
     /// </summary>
     public delegate void StartAssetConversionHandler(Microsoft.Azure.RemoteRendering.StartAssetConversionAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.ConversionStatusAsync"/> operation.
     /// </summary>
     public delegate void ConversionStatusHandler(Microsoft.Azure.RemoteRendering.ConversionStatusAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of an <see cref="Microsoft.Azure.RemoteRendering.ArrInspectorAsync"/> operation.
     /// </summary>
     public delegate void ArrInspectorHandler(Microsoft.Azure.RemoteRendering.ArrInspectorAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.SessionPropertiesAsync"/> operation.
     /// </summary>
     public delegate void SessionPropertiesHandler(Microsoft.Azure.RemoteRendering.SessionPropertiesAsync async);
 
     /// <summary>
-    /// Event handler for the completion of an async.
+    /// Event handler for the completion of a <see cref="Microsoft.Azure.RemoteRendering.ConnectToRuntimeAsync"/> operation.
     /// </summary>
     public delegate void ConnectToRuntimeHandler(Microsoft.Azure.RemoteRendering.ConnectToRuntimeAsync result);
 
     /// <summary>
-    /// Base class for all remote rendering exceptions.
+    /// Base class for all Remote Rendering API exceptions.
     /// </summary>
     public class RRException : Exception
     {
@@ -4902,7 +5756,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async inspector website query functions.
+    /// Result type for async inspector website query functions.
     /// </summary>
     public partial class ArrInspectorAsync : AsyncBase, ICookie
     {
@@ -4911,8 +5765,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.ArrInspectorAsync>.Add(this);
         }
         /// <summary>
-        /// Get the URI of the generated webpage. This will throw an error if the query is in progress or in an error state.
+        /// Get the URI of the generated web page.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public string Result
         {
             get
@@ -4988,8 +5845,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this object is still valid.
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -5001,8 +5862,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the current status of operation. Success if finished successfully, InProgress if in progress, otherwise error code of the operation if failed. If this object is not valid, this returns error AlreadyDeinitialized.
+        /// Returns the current status of the operation.
         /// </summary>
+        /// <remarks>
+        /// Returns <see cref="Result.Success"/> or <see cref="Result.InProgress"/> for finished and ongoing operations.
+        /// If this object is not <see cref="AsyncBase.Valid">valid</see>, <see cref="Result.AlreadyDeinitialized"/> is returned.
+        /// In all other cases the result is an error code for what went wrong. See derived classes for additional information.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result Status
         {
             get
@@ -5014,8 +5880,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when the task is in one of the two final states: Faulted or RanToCompletion. This may only be called when this object is valid.
+        /// Returns <c>true</c> once the operation has either succeeded or failed.
         /// </summary>
+        /// <remarks>
+        /// See <see cref="AsyncBase.IsRanToCompletion"/> and <see cref="AsyncBase.IsFaulted"/> to differentiate whether the operation succeeded or failed.
+        /// </remarks>
         public bool IsCompleted
         {
             get
@@ -5027,7 +5896,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when task is in Success state. This may only be called when this object is valid.
+        /// Returns <c>true</c> when the task has finished successfully.
         /// </summary>
         public bool IsRanToCompletion
         {
@@ -5040,7 +5909,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// True when task is not in Success or InProgress states. This may only be called when this object is valid.
+        /// Returns <c>true</c> when the task has finished, but failed.
         /// </summary>
         public bool IsFaulted
         {
@@ -5055,8 +5924,11 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// AzureFrontend is an authorized connection to the Azure APIs for Remote Rendering. All functions may only be called when this object is valid. Use the AzureFrontend to create AzureSessions and convert assets. AzureSession keep a reference to the frontend, meaning all rendering sessions must be freed before the frontend will be free'd.
+    /// AzureFrontend is an authorized connection to the Azure APIs for Remote Rendering.
     /// </summary>
+    /// <remarks>
+    /// Use this to create <see cref="AzureSession"/> instances and to convert assets.
+    /// </remarks>
     public partial class AzureFrontend : IDisposable, ICookie
     {
         internal ulong handle;
@@ -5091,8 +5963,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this object is valid.
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -5104,7 +5980,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Log level to enable. Only messages at this log level or below will be emitted.
+        /// Only messages at this <see cref="LogLevel">log level</see> or below will be delivered through <see cref="AzureFrontend.MessageLogged"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LogLevel LogLevel
         {
@@ -5121,7 +5997,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Parameters used to construct this AzureFrontend.
+        /// Parameters with which this instance was initialized.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AzureFrontendAccountInfo Configuration
         {
@@ -5190,8 +6066,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query the full set of existing rendering sessions for the account associated with the frontend. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
+        /// Queries for all existing rendering sessions for the account associated with this frontend.
         /// </summary>
+        /// <remarks>
+        /// Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling.
+        /// In case of throttling, the function will fail and the <see cref="SessionGeneralContext.HttpResponseCode">HttpResponseCode</see> reports code 429 ("too many requests").
+        /// The returned async will complete in an arbitrary thread.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.SessionPropertiesArrayAsync GetCurrentRenderingSessionsAsync()
         {
             IntPtr result_handle;
@@ -5202,11 +6083,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Open an existing rendering session.
+        /// Opens an existing rendering session.
         /// </summary>
         /// <param name="sessionId">
-        /// Rendering Session UUID.
+        /// The UUID of a rendering session.
         /// </param>
+        /// <remarks>
+        /// The session id can be created through <see cref="AzureFrontend.CreateNewRenderingSessionAsync(RenderingSessionCreationParams)"/>, as well as through external tooling such as PowerShell.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.AzureSession OpenRenderingSession(string sessionId)
         {
             ulong result_handle;
@@ -5217,27 +6101,27 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Create a new rendering session on the cloud. CreateNewRenderingSessionAsync will spin up a new VM on the Azure cloud. When the VM is available to query, CreateSessionAsync will return the created AzureSession object or an error context.
+        /// Creates a new rendering session.
         /// </summary>
         /// <param name="paramsIn">
         /// Session creation parameters
         /// </param>
+        /// <remarks>
+        /// This spins up a new server in the Azure cloud.
+        /// Once ready, CreateSessionAsync returns the created AzureSession object or an error context.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.CreateSessionAsync CreateNewRenderingSessionAsync(Microsoft.Azure.RemoteRendering.RenderingSessionCreationParams paramsIn)
         {
-            Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsAbi paramsIn_converted = paramsIn.Convert();
             IntPtr result_handle;
             Microsoft.Azure.RemoteRendering.CreateSessionAsync result_object;
-            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_azure_frontend_create_new_rendering_session_async(this.handle, paramsIn_converted, out result_handle));
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_azure_frontend_create_new_rendering_session_async(this.handle, paramsIn, out result_handle));
             result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.CreateSessionAsync(result_handle, transfer:true) : null;
             return result_object;
         }
 
         /// <summary>
-        /// Internal API using unsafe parameters to create a rendering session.
+        /// Internal.
         /// </summary>
-        /// <param name="paramsIn">
-        /// 
-        /// </param>
         public Microsoft.Azure.RemoteRendering.CreateSessionAsync CreateNewRenderingSessionUnsafeAsync(Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsUnsafe paramsIn)
         {
             Microsoft.Azure.RemoteRendering.RenderingSessionCreationParamsUnsafeAbi paramsIn_converted = paramsIn.Convert();
@@ -5249,11 +6133,8 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Start converting an asset.
+        /// Deprecated.
         /// </summary>
-        /// <param name="paramsIn">
-        /// The asset to convert.
-        /// </param>
         public Microsoft.Azure.RemoteRendering.StartAssetConversionAsync StartAssetConversionAsync_Deprecated(Microsoft.Azure.RemoteRendering.AssetConversionParams paramsIn)
         {
             Microsoft.Azure.RemoteRendering.AssetConversionParamsAbi paramsIn_converted = paramsIn.Convert();
@@ -5265,7 +6146,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Start converting an asset.
+        /// Starts converting an asset.
         /// </summary>
         /// <param name="inputLocation">
         /// Where to find the asset.
@@ -5285,7 +6166,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Start converting an asset using SAS access to the input and output containers.
+        /// Starts converting an asset using SAS access to the input and output containers.
         /// </summary>
         /// <param name="inputLocation">
         /// Where to find the asset.
@@ -5305,11 +6186,20 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query state of current asset conversion. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
+        /// Queries the state of the current asset conversion.
         /// </summary>
         /// <param name="paramsIn">
         /// The conversion token returned by StartAssetConversionAsync.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling.
+        /// In case of throttling, the function will fail and the <see cref="SessionGeneralContext.HttpResponseCode">HttpResponseCode</see> reports code 429 ("too many requests").
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if no conversionId is provided.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ConversionStatusAsync GetAssetConversionStatusAsync(string conversionId)
         {
             IntPtr result_handle;
@@ -5322,8 +6212,13 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// An azure session is a single VM with a remote rendering runtime instance running on it. For a given application, one AzureSession can connect to a remote rendering instance. It is not currently possible to connect two AzureSessions at the same time.
+    /// Each Azure session is running on a dedicated server, providing the Azure Remote Rendering functionality.
     /// </summary>
+    /// <remarks>
+    /// An application can manage multiple AzureSession objects.
+    /// However, each application can only connect a single AzureSession for rendering.
+    /// </remarks>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/sessions">Remote Rendering Sessions</seealso>
     public partial class AzureSession : ICookie
     {
         internal ulong handle;
@@ -5340,8 +6235,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -5353,7 +6252,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get associated azure frontend. This may only be called when this object is valid.
+        /// Retrieves the associated <see cref="AzureSession.AzureFrontend"/>
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AzureFrontend AzureFrontend
         {
@@ -5368,8 +6267,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// String UUID for session. This can be used to connect to the session later or perform independent restful calls with powershell. This may only be called when this object is valid.
+        /// String UUID of this session.
         /// </summary>
+        /// <remarks>
+        /// This can be used to connect to the session later or perform independent REST calls, for example with PowerShell.
+        /// </remarks>
         public string SessionUUID
         {
             get
@@ -5381,7 +6283,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Last connection params used in a call to ConnectToRuntime. This may only be called when this object is valid.
+        /// Last connection parameters used in a call to <see cref="AzureSession.ConnectToRuntime(ConnectToRuntimeParams)"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams ConnectToRuntimeParams
         {
@@ -5394,8 +6296,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Connection status of this Session. This may only be called when this object is valid.
+        /// Connection status of this session.
         /// </summary>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession.ConnectionStatusChanged"/>
         public Microsoft.Azure.RemoteRendering.ConnectionStatus ConnectionStatus
         {
             get
@@ -5407,7 +6310,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Utility function to query if session is connected. This may only be called when this object is valid.
+        /// Utility function to query whether this session is connected.
         /// </summary>
         public bool IsConnected
         {
@@ -5449,8 +6352,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get a filepath pointing to a html file to connect to the arr inspector website. The arr inspector provides introspection and service status updates.
+        /// Gets a filepath pointing to an HTML file to connect to the ArrInspector website.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The ArrInspector provides introspection and service status updates.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if no hostname is provided.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/resources/tools/arr-inspector">The ArrInspector inspection tool</seealso>
         public Microsoft.Azure.RemoteRendering.ArrInspectorAsync ConnectToArrInspectorAsync(string hostname)
         {
             IntPtr result_handle;
@@ -5461,8 +6373,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query the properties of the session (hostname, lease time, size, etc.). Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
+        /// Queries the properties of the session (hostname, lease time, size, etc).
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling.
+        /// In case of throttling, the function will fail and the <see cref="SessionGeneralContext.HttpResponseCode">HttpResponseCode</see> reports code 429 ("too many requests").
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.SessionPropertiesAsync GetPropertiesAsync()
         {
             IntPtr result_handle;
@@ -5473,7 +6391,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Stop a VM. This will decomission the rendering session.
+        /// Stops the Azure session. It is not possible to connect to this session again.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.SessionAsync StopAsync()
         {
@@ -5485,11 +6403,20 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Renew a VM. This will update the lease of the VM to a new time. Time is absolute since starting time of the VM: expiration = start_time + lease_time. Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling. In case of throttling, the function will fail and the HttpResponseCode reports code 429 ("too many requests").
+        /// Updates the session parameters for this rendering session.
         /// </summary>
         /// <param name="updateParams">
-        /// 
+        /// The new parameters to use
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// See <see cref="RenderingSessionUpdateParams"/> for details.
+        /// </para>
+        /// <para>
+        /// Since the underlying call is a REST call, there should be sufficient delay (5-10s) between subsequent calls to avoid server throttling.
+        /// In case of throttling, the function will fail and the <see cref="SessionGeneralContext.HttpResponseCode">HttpResponseCode</see> reports code 429 ("too many requests").
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.SessionAsync RenewAsync(Microsoft.Azure.RemoteRendering.RenderingSessionUpdateParams updateParams)
         {
             IntPtr result_handle;
@@ -5500,11 +6427,18 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Connect to the runtime on the virtual machine associated with this session. If another session in the same process is already connected then this function will throw.
+        /// Connect to the runtime on the server associated with this session.
         /// </summary>
         /// <param name="inputParams">
-        /// Connection Parameters.
+        /// Connection parameters.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// * A <see cref="Result.AlreadyConnected"/> error occurs, if another session in the same process is already connected to its runtime.
+        /// * A <see cref="Result.InProgress"/> error occurs, if ConnectToRuntime has been called before.
+        /// * A <see cref="Result.OtherSessionConnected"/> error occurs, if another session is already connected to this runtime.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ConnectToRuntimeAsync ConnectToRuntime(Microsoft.Azure.RemoteRendering.ConnectToRuntimeParams inputParams)
         {
             Microsoft.Azure.RemoteRendering.ConnectToRuntimeParamsAbi inputParams_converted = inputParams.Convert();
@@ -5516,7 +6450,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Disconnect this session if connected to the runtime. This may only be called when this object is valid.
+        /// Disconnect this session if connected to the runtime.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result DisconnectFromRuntime()
         {
@@ -5536,8 +6470,11 @@ namespace Microsoft.Azure.RemoteRendering
         {
         }
         /// <summary>
-        /// Get the context of the call result. This call will throw if the call is not yet finished.
+        /// Returns the context for the call result.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.SessionGeneralContext Context
         {
             get
@@ -5551,8 +6488,10 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async object bounds query functions.
+    /// Result type for async object bounds query functions.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity.QueryLocalBoundsAsync"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity.QueryWorldBoundsAsync"/>
     public partial class BoundsQueryAsync : AsyncBase, ICookie
     {
         internal BoundsQueryAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -5560,8 +6499,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.BoundsQueryAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the query is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.AABB3D Result
         {
             get
@@ -5604,8 +6546,10 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Class that wraps camera settings.
+    /// Camera settings.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/camera">Camera</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CameraSettings"/>
     public partial class CameraSettings
     {
         internal ulong handle;
@@ -5614,8 +6558,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -5627,7 +6575,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the camera near plane. This may only be called when this object is valid.
+        /// The near plane distance.
         /// </summary>
         public float NearPlane
         {
@@ -5640,7 +6588,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the camera far plane. This may only be called when this object is valid.
+        /// The far plane distance.
         /// </summary>
         public float FarPlane
         {
@@ -5653,8 +6601,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enable depth composition with locally rendered content. This may only be called when this object is valid.
+        /// Enables depth composition with locally rendered content.
         /// </summary>
+        /// <remarks>
+        /// This is needed, if you want locally rendered content to intersect properly with remotely rendered content.
+        /// On the other hand, if you render only UI elements locally that don't need to be occluded by remote content,
+        /// turn this off to save performance and bandwidth.
+        /// </remarks>
         public bool EnableDepth
         {
             get
@@ -5670,14 +6623,21 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Set the near and far plane of the camera. Both values must be >0 and also far must be larger than near.
+        /// Sets the near and far plane of the camera.
         /// </summary>
-        /// <param name="near">
-        /// 
+        /// <param name="nearPlane">
+        /// The distance to the near plane. Must be larger than zero.
         /// </param>
-        /// <param name="far">
-        /// 
+        /// <param name="farPlane">
+        /// The distance to the far plane. Must be larger than zero.
         /// </param>
+        /// <remarks>
+        /// For best quality, keep the ratio of farPlane/nearPlane low. For Augmented Reality use cases the far plane doesn't need to be very far away,
+        /// 20 to 100 meters should be sufficient.
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs, if near and far plane distances are identical.
+        /// </para>
+        /// </remarks>
         public void SetNearAndFarPlane(float nearPlane, float farPlane)
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_camera_settings_set_near_and_far_plane(this.handle, nearPlane, farPlane));
@@ -5686,16 +6646,25 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Color material.
+    /// A material that doesn't get any lighting applied.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateMaterial(Microsoft.Azure.RemoteRendering.MaterialType)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/color-materials">Color materials</seealso>
     public partial class ColorMaterial : Material
     {
         internal ColorMaterial(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Gets/sets the flags for this color material. See ColorFlags. This may only be called when this object is valid.
+        /// The <see cref="ColorMaterialFeatures">color material flags</see>.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if an invalid bitmask is passed in.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ColorMaterialFeatures ColorFlags
         {
             get
@@ -5711,8 +6680,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent. This may only be called when this object is valid.
+        /// Constant albedo color.
         /// </summary>
+        /// <remarks>
+        /// This color is modulated with the color from the <see cref="ColorMaterial.AlbedoTexture"/>.
+        /// The alpha channel represents the opacity, in case the material is flagged as transparent (<see cref="ColorMaterial.ColorTransparencyMode"/>).
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Color4 AlbedoColor
         {
             get
@@ -5728,8 +6701,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used for the albedo color. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture AlbedoTexture
         {
             get
@@ -5747,8 +6725,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures. This may only be called when this object is valid.
+        /// Scaling factors for texture coordinates.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Used to repeat/tile textures. For instance passing (4, 2) will repeat the texture 4 times along the U texture coordinate, and 2 times along V.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is NaN or infinite.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial.TexCoordOffset"/>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordScale
         {
             get
@@ -5764,8 +6751,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// Constant offset added to texture coordinates.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// An offset is normalized to [0..1] range, regardless of texture size, so (0.5, 0.5) always points to the middle of a texture.
+        /// The offset can be changed over time to scroll the texture.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is NaN or infinite.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordOffset
         {
             get
@@ -5781,8 +6777,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the transparency mode for this material. See enum ColorTransparencyMode. This may only be called when this object is valid.
+        /// Transparency mode for this material. See <see cref="ColorTransparencyMode"/> for details.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if an invalid mode is passed in.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ColorTransparencyMode ColorTransparencyMode
         {
             get
@@ -5798,8 +6799,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// Fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is very similar to changing the albedo's alpha on a transparent material, however, this function automatically manages the transparency flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent).
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float FadeOut
         {
             get
@@ -5815,8 +6824,19 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the vertex color mix amount in scalar [0..1] range. This scalar defines how much the mesh's vertex color mixes into the final color. If 0.0, the vertex color does not contribute at all, if 1.0 it will be fully multiplied with the albedo color. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// How much the vertex color is mixed into the final color. In [0..1] range.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// If the mesh has vertex colors, those colors can be multiplied into the final color.
+        /// This option defines how much influence the vertex colors will have.
+        /// A value of 0.0 means that the vertex color doesn't contribute to the output at all.
+        /// At 1.0 the vertex colors are fully multiplied into the albedo color.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float VertexMix
         {
             get
@@ -5832,8 +6852,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's ColorFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// Threshold that is used for alpha cutouts.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// If a pixel's final alpha value [0..1] falls below this threshold, the pixel is clipped, creating a hard cutout.
+        /// Note that the material's <see cref="PbrMaterialFeatures.AlphaClipped"/> flag has to be set, for this threshold to have an effect.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float AlphaClipThreshold
         {
             get
@@ -5848,18 +6877,88 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
+        /// <summary>
+        /// The Fresnel effect color used when the effect is enabled (see the 'FresnelEffect' flag in <see cref="ColorMaterialFeatures"/>)
+        /// </summary>
+        /// <remarks>
+        /// Only the rgb channels of the color are used for the Fresnel effect, while the alpha value will be ignored.
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.Color4 FresnelEffectColor
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.Color4 result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_color_material_get_fresnel_effect_color(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_color_material_set_fresnel_effect_color(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// The Fresnel effect exponent used when the effect is enabled (see the 'FresnelEffect' flag in <see cref="ColorMaterialFeatures"/>)
+        /// </summary>
+        /// <remarks>
+        /// The valid range for the exponent is [0.01, 10].
+        /// </remarks>
+        public float FresnelEffectExponent
+        {
+            get
+            {
+                float result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_color_material_get_fresnel_effect_exponent(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_color_material_set_fresnel_effect_exponent(this.handle, value));
+            }
+        }
+
     }
 
     /// <summary>
-    /// Base class for all components. Components are isolated functionalities that can be attached to an entity to give that functionality to that particular entity. For example, adding a cut plane at the location of an Entity or adding a MeshComponent to render. ComponentBase serves as the base class for all components, it cannot be instantiated directly. An Entity can only have one component instance of a component type attached at a time.
+    /// Base class for all components.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Components add functionality to <see cref="Entity">entities</see>.
+    /// For example, a <see cref="CutPlaneComponent"/> turns an entity into an object that cuts meshes open.
+    /// </para>
+    /// <para>
+    /// An entity can only have one instance of each component type attached at any given time.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType,Microsoft.Azure.RemoteRendering.Entity)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/components">Components</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/lifetime">Object and resource lifetime</seealso>
     public partial class ComponentBase : ObjectBase
     {
         internal ComponentBase(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// The entity that this component is attached to. This may only be called when this object is valid.
+        /// Whether this component is still valid.
+        /// </summary>
+        /// <remarks>
+        /// A component is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_component_base_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="Entity"/> that this component is attached to.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Entity Owner
         {
@@ -5874,8 +6973,19 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this component is enabled. The enabled state can be changed during runtime. This may only be called when this object is valid.
+        /// Enabled state of this component.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Disabled components have no effect. This is usually the same, as if the component wasn't attached at all,
+        /// except that the enabled state can be toggled at any time, and any other state (for instance, the color of a light source)
+        /// is preserved. It is therefore often easier to disable a component, and enable it later again, rather than to delete it and
+        /// create a new component later.
+        /// </para>
+        /// <para>
+        /// However, an entity may only have one instance of each component type attached, even if a component is disabled.
+        /// </para>
+        /// </remarks>
         public bool Enabled
         {
             get
@@ -5891,7 +7001,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The component type. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this component.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -5904,21 +7014,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this component is valid. This may only be called when this object is valid.
+        /// Destroys the component in the runtime.
         /// </summary>
-        public bool Valid
-        {
-            get
-            {
-                bool result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_component_base_get_valid(this.handle, out result));
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Destroy will destroy the component in the runtime. IsValid() will return false on subsequent queries.
-        /// </summary>
+        /// <remarks>
+        /// Once Destroy() has been called on a component, subsequent calls to <see cref="ComponentBase.Valid"/> will return <c>false</c>.
+        /// </remarks>
         public void Destroy()
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_component_base_destroy(this.handle));
@@ -5927,8 +7027,12 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async runtime connection query functions. Result of the connection can be queried from AsyncBase.Status.
+    /// Result type for async runtime connection query functions.
     /// </summary>
+    /// <remarks>
+    /// The inherited function <see cref="AsyncBase.Status"/> may additionally return any of these values:
+    /// * All values between <see cref="Result.ConnectionReturnValueStart"/> and <see cref="Result.ConnectionReturnValueLast"/>
+    /// </remarks>
     public partial class ConnectToRuntimeAsync : AsyncBase, ICookie
     {
         internal ConnectToRuntimeAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -5967,7 +7071,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async asset conversion status query functions.
+    /// Result type for async asset conversion status query functions.
     /// </summary>
     public partial class ConversionStatusAsync : BaseSessionAsync, ICookie
     {
@@ -5976,8 +7080,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.ConversionStatusAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ConversionSessionStatus Result
         {
             get
@@ -6033,7 +7140,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async session creation query functions.
+    /// Result type for async session creation query functions.
     /// </summary>
     public partial class CreateSessionAsync : BaseSessionAsync, ICookie
     {
@@ -6042,8 +7149,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.CreateSessionAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.AzureSession Result
         {
             get
@@ -6088,16 +7198,37 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Cut planes are used to cut away parts of meshes to be able to peek inside. Once a cut plane is part of the scene, all rendered pixels that are on the back side of the plane will be discarded. By moving the cut plane around or changing its orientation, one can adjust which parts of the scene are visible. The position of the cut plane is specified through the position of the owning Entity. The orientation is specified through the CutPlaneComponent.Normal. Only axis aligned cut planes are supported, however, to get the effect of a rotated cut plane, one can instead rotate the object that is supposed to be cut open.
+    /// Cut planes are used to cut away parts of meshes to be able to peek inside.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Once a cut plane is part of the scene, all rendered pixels that are on the back side of the plane will be discarded.
+    /// By moving the cut plane around or changing its orientation, one can adjust which parts of the scene are visible.
+    /// </para>
+    /// <para>
+    /// The position of the cut plane is specified through the position of the owning <see cref="Entity"/>.
+    /// The orientation is specified through the <see cref="CutPlaneComponent.Normal"/> and the rotation of the entity.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType,Microsoft.Azure.RemoteRendering.Entity)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/cut-planes">Cut planes</seealso>
     public partial class CutPlaneComponent : ComponentBase
     {
         internal CutPlaneComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Set the normal axis of the cut plane. Pixels that fall behind the cut plane will be discarded by the renderer. This may only be called when this object is valid.
+        /// The main axis of the cut plane when the owning <see cref="Entity"/> has an identity rotation.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Pixels that end up behind the cut plane will be discarded by the renderer.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs, if the passed in axis is out of range.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Axis Normal
         {
             get
@@ -6113,8 +7244,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Set the color towards which pixels closer than CutPlaneComponent.FadeLength will be faded. This may only be called when this object is valid.
+        /// The color towards which pixels that are closer than <see cref="CutPlaneComponent.FadeLength"/> will be faded.
         /// </summary>
+        /// <remarks>
+        /// If the alpha value is non-zero, pixels close to the cut plane will fade towards the RGB part of FadeColor. The strength of the alpha channel determines whether it will fade fully towards the fade color or only partially.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Color4Ub FadeColor
         {
             get
@@ -6130,8 +7264,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Sets the distance in local units over which the cut plane will fade the original pixel color towards the CutPlaneComponent.FadeColor. This may only be called when this object is valid.
+        /// The distance over which the cut plane fades the original pixel color towards the <see cref="CutPlaneComponent.FadeColor"/>.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if a negative length is set.
+        /// </para>
+        /// </remarks>
         public float FadeLength
         {
             get
@@ -6146,11 +7285,30 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
+        /// <summary>
+        /// Sets the bit mask that can be used to perform per-object cut plane filtering.
+        /// </summary>
+        public byte CutPlaneFilterMask
+        {
+            get
+            {
+                byte result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_cut_plane_component_get_cut_plane_filter_mask(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_cut_plane_component_set_cut_plane_filter_mask(this.handle, value));
+            }
+        }
+
     }
 
     /// <summary>
-    /// Class that holds the settings for server side debug rendering features
+    /// Options for debug rendering features
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.DebugRenderingSettings"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/debug-rendering">Debug Rendering</seealso>
     public partial class DebugRenderingSettings
     {
         internal ulong handle;
@@ -6159,8 +7317,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -6172,7 +7334,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables server side rendering of frame count overlay. This may only be called when this object is valid.
+        /// Controls the server-side overlay to render a frame counter.
         /// </summary>
         public bool RenderFrameCount
         {
@@ -6189,7 +7351,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables server side rendering of polygon count overlay. This may only be called when this object is valid.
+        /// Controls the server-side overlay to render the polygon count.
         /// </summary>
         public bool RenderPolygonCount
         {
@@ -6206,7 +7368,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables wireframe rendering of object geometry. This may only be called when this object is valid.
+        /// Controls whether geometry should be rendered as wireframe.
         /// </summary>
         public bool RenderWireframe
         {
@@ -6225,8 +7387,16 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// A directional light simulates a light source that is infinitely far away. Accordingly, unlike point lights and spot lights, the position of a directional light is ignored. The direction of the parallel light rays is defined by the negative z-axis of the owner object. There are no additional directional light-specific properties.
+    /// A light source that emits light globally into a fixed direction.
     /// </summary>
+    /// <remarks>
+    /// This component simulates a light source that is very far away, such as the sun or the moon.
+    /// Consequently, the owner's position is ignored and only the orientation is used. The light shines into the direction of the negative z-axis of the owner <see cref="Entity"/>.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LightComponentBase"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SpotLightComponent"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/lights">Scene lighting</seealso>
     public partial class DirectionalLightComponent : LightComponentBase
     {
         internal DirectionalLightComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
@@ -6235,15 +7405,30 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// An entity represents an object in space. Entities have a transform, ie. a position, rotation and scale. By themselves entities do not have any observable functionality. Instead behavior is added through components (see ComponentBase), which are attached to entities. For instance attaching a MeshComponent will make a mesh appear at the position of the entity. The most important aspect of the Entity itself is the hierarchy and the resulting hierarchical transform. For example when multiple entities are attached as children to a shared parent entity, all of these entities can be moved, rotated and scaled in unison by changing the transform of the parent entity.
+    /// An entity represents an object in space.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Entities have a transform, meaning a position, rotation and scale.
+    /// By themselves entities don't have any observable functionality. Instead behavior is added through components (see <see cref="ComponentBase"/>),
+    /// which are attached to entities. For instance attaching a <see cref="MeshComponent"/> will make a mesh appear at the position of the entity.
+    /// </para>
+    /// <para>
+    /// The most important aspect of the entity itself is the hierarchy and the resulting hierarchical transform. For example, when
+    /// multiple entities are attached as children to a shared parent entity, all of these entities can be moved, rotated and scaled in unison by
+    /// changing the transform of the parent entity.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateEntity"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/entities">Entities</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/components">Components</seealso>
     public partial class Entity : ObjectBase
     {
         internal Entity(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Returns ObjectType.Entity.
+        /// The <see cref="ObjectType">exact type</see> of this object.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -6256,8 +7441,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Check validity of entity. This will be false if Destroy() has been called on the entity or if the session for this entity has been disconnected from.
+        /// Whether this entity is still valid.
         /// </summary>
+        /// <remarks>
+        /// An entity is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -6269,8 +7458,18 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get/set parent of the entity. null is used for 'no parent'.
+        /// The entity that acts as this entity's parent.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Top level entities don't have a parent, in which case this returns <c>null</c>.
+        /// Setting a new parent automatically adds this entity to the list of children of the provided parent.
+        /// </para>
+        /// <para>
+        /// * A <see cref="Result.CyclicReference"/> error occurs, if the new parent is a descendant of this object.
+        /// * A <see cref="Result.InvalidId"/> error occurs, if an invalid entity is set as the parent.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Entity Parent
         {
             get
@@ -6288,8 +7487,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the list of children. To re-parent entities, rather use the Parent setter on the child entity.
+        /// Read-only list of all the entities that are attached as children to this one.
         /// </summary>
+        /// <remarks>
+        /// To make an entity the child of another entity, use the <see cref="Entity.Parent"/> property.
+        /// </remarks>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Entity> Children
         {
             get
@@ -6304,7 +7506,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the list of components attached to this entity.
+        /// Read-only list of all the components that are attached to this entity.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ComponentBase> Components
         {
@@ -6322,6 +7524,10 @@ namespace Microsoft.Azure.RemoteRendering
         /// <summary>
         /// Enables or disables the entity and all its components and children.
         /// </summary>
+        /// <remarks>
+        /// Disabling an entity is similar to deleting it, except that it can be enabled again easily.
+        /// All components on a disabled entity are disabled as well, and so are all child entities.
+        /// </remarks>
         public bool Enabled
         {
             get
@@ -6337,8 +7543,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Relative position from its parent.
+        /// Position, relative to the parent node.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the given value is NaN or infinite.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Double3 Position
         {
             get
@@ -6354,8 +7563,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Relative rotation from its parent.
+        /// Rotation, relative to the parent node.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the given value is NaN or infinite.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Quaternion Rotation
         {
             get
@@ -6371,8 +7583,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Relative scale from its parent.
+        /// Scale, relative to the parent node.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the given value is NaN or infinite.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Float3 Scale
         {
             get
@@ -6388,8 +7603,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Optional entity name.
+        /// Optional name property.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.StringTooLong"/> error occurs if the given string is excessively long.
+        /// </para>
+        /// </remarks>
         public string Name
         {
             get
@@ -6405,11 +7625,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Try to find a component of given type.
+        /// Tries to find a component of the given type.
         /// </summary>
         /// <param name="type">
-        /// Type of component to search for.
+        /// Component type to search for.
         /// </param>
+        /// <remarks>
+        /// Only one instance of each component type can be attached to each entity. Therefore this function either returns a single result, or <c>null</c>, if none is found.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ComponentBase FindComponentOfType(Microsoft.Azure.RemoteRendering.ObjectType type)
         {
             ulong result_handle;
@@ -6420,16 +7643,30 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Destroy the entity. Destroying an entity will also destroy all of its components and child entities.
+        /// Destroys the entity.
         /// </summary>
+        /// <remarks>
+        /// Destroying an entity will also destroy all of its components and child entities.
+        /// Once Destroy() has been called, <see cref="Entity.Valid"/> returns <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity.Valid"/>
         public void Destroy()
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_entity_destroy(this.handle));
         }
 
         /// <summary>
-        /// Query the world bounds for an entity inclusive its children from the server.
+        /// Queries the world-space bounding box from the server.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The bounding box represents the volume that this entity, all its child entities, and attached meshes take up.
+        /// </para>
+        /// <para>
+        /// QueryWorldBoundsAsync is an asynchronous call. The computation of the bounds is performed on the server and returned when available.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.Mesh.Bounds"/>
         public Microsoft.Azure.RemoteRendering.BoundsQueryAsync QueryWorldBoundsAsync()
         {
             IntPtr result_handle;
@@ -6440,8 +7677,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query the local bounds for an entity inclusive its children from the server.
+        /// Queries the local-space bounding box from the server.
         /// </summary>
+        /// <remarks>
+        /// QueryLocalBoundsAsync is an asynchronous call. The computation of the bounds is performed on the server and returned when available.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.BoundsQueryAsync QueryLocalBoundsAsync()
         {
             IntPtr result_handle;
@@ -6452,7 +7692,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query for any available metadata information on the entity.
+        /// Queries for any available metadata.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.MetadataQueryAsync QueryMetaDataAsync()
         {
@@ -6466,8 +7706,11 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Binding for the graphics API.
+    /// Base class for graphics bindings.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/graphics-bindings">Graphics binding</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBindingWmrD3d11"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBindingSimD3d11"/>
     public partial class GraphicsBinding
     {
         internal ulong handle;
@@ -6482,8 +7725,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines the derived graphics binding this instance can be cast to. This may only be called when the frontend is initialized.
+        /// The derived graphics binding that this instance can be cast to.
         /// </summary>
+        /// <remarks>
+        /// This may only be called when the <see cref="AzureFrontend"/> is initialized.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.GraphicsApiType Api
         {
             get
@@ -6495,20 +7741,28 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Retrieves the remote focus point. This focus point must be explicitly set as the focus point to be used.
+        /// Retrieves the remote focus point.
         /// </summary>
         /// <param name="coordinateSystem">
         /// The coordinate frame in which the focus point should be expressed. Passing an invalid coordinate system will result in invalid focus points.
         /// </param>
         /// <param name="position">
-        /// Position in world space of the remote focus point. Only valid if return value != FocusPointResult.Invalid.
+        /// The focus point's position in world-space.
         /// </param>
         /// <param name="normal">
-        /// Normal in world space of the remote focus point. Only valid if return value != FocusPointResult.Invalid.
+        /// The focus point's normal in world-space.
         /// </param>
         /// <param name="velocity">
-        /// Velocity in world space of the remote focus point. Only valid if return value != FocusPointResult.Invalid.
+        /// The focus point's velocity measured in units per second, in world-space.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// This focus point must be explicitly set as the focus point to be used.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.FocusPointResult GetRemoteFocusPoint(System.IntPtr coordinateSystem, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity)
         {
             Microsoft.Azure.RemoteRendering.FocusPointResult result;
@@ -6519,6 +7773,12 @@ namespace Microsoft.Azure.RemoteRendering
         /// <summary>
         /// Retrieves the last frame's statistics.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/performance-queries">Server-side performance queries</seealso>
         public Microsoft.Azure.RemoteRendering.Result GetLastFrameStatistics(out Microsoft.Azure.RemoteRendering.FrameStatistics stats)
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6529,33 +7789,62 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Simulation binding. Used to simulate head movement. This graphics binding is used to render a monoscopic remote image on a normal desktop application. With no sensors to provide head movement available, this binding requires the user to provide a current camera update each frame. The basic setup works as follow: 1. Remote and local content is rendered onto an offscreen color / depth render target called 'proxy' using the proxy camera provided by the Update function. The proxy needs to be created matching the resolution of the backbuffer. Before any rendering takes place, InitSimulation needs to be called with the proxy texture handles as well a d3d device to fully initialize the simulation. 2. Each frame, before any rendering takes place, Update is called with the current camera transform and the returned proxy transform is applied to the proxy camera. 3. At the start of rendering into the proxy, BlitRemoteFrameToProxy needs to be called, this will fill the remote color and depth information into the proxy render targets. Any local content can now be rendered onto the proxy using the proxy camera. 4. Once the backbuffer is bound, only ReprojectProxy needs to be called and no other rendering should take place. 5. Repeat with step 2 until session ends. 6. Call DeinitSimulation after the remote session has ended.
+    /// Graphics API binding for local simulation.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This graphics binding is used to render a monoscopic remote image on a normal desktop application.
+    /// With no sensors to provide head movement available, this binding requires the user to provide a current
+    /// camera update each frame. The basic setup works as follow:
+    /// </para>
+    /// <para>
+    /// 1. Remote and local content is rendered onto an off-screen color / depth render target called 'proxy' using the proxy camera provided by the Update function.
+    /// The proxy needs to be created matching the resolution of the back-buffer.
+    /// Before any rendering takes place, InitSimulation() needs to be called with the proxy texture handles, as well as a D3D device to fully initialize the simulation.
+    /// </para>
+    /// <para>
+    /// 2. Each frame, before any rendering takes place, Update is called with the current camera transform and the returned proxy transform is applied to the proxy camera.
+    /// </para>
+    /// <para>
+    /// 3. At the start of rendering into the proxy, <see cref="GraphicsBindingSimD3d11.BlitRemoteFrameToProxy"/> needs to be called, this fills the remote color and depth information into the proxy render targets.
+    /// Any local content can now be rendered onto the proxy using the proxy camera.
+    /// </para>
+    /// <para>
+    /// 4. Once the back-buffer is bound, only <see cref="GraphicsBindingSimD3d11.ReprojectProxy"/> needs to be called and no other rendering should take place.
+    /// </para>
+    /// <para>
+    /// 5. Repeat with step 2 until session ends.
+    /// </para>
+    /// <para>
+    /// 6. Call <see cref="GraphicsBindingSimD3d11.DeinitSimulation"/> after the remote session has ended.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding"/>
     public partial class GraphicsBindingSimD3d11 : GraphicsBinding
     {
         internal GraphicsBindingSimD3d11(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Initialize the simulation. Needs to be called before each remote rendering session is started.
+        /// Initializes the simulation. Needs to be called before a remote rendering session is started.
         /// </summary>
         /// <param name="d3dDevice">
         /// The d3d device that will be used to render the remote image.
         /// </param>
         /// <param name="proxyDepth">
-        /// Color texture of the proxy render target.
+        /// Depth texture of the proxy render-target.
         /// </param>
         /// <param name="proxyColor">
-        /// Depth texture of the proxy render target.
+        /// Color texture of the proxy render-target. The minimum dimension of the texture is 256x256.
         /// </param>
         /// <param name="refreshRate">
         /// Target refresh rate at which the remote runtime should render.
         /// </param>
         /// <param name="flipBlitRemoteFrameTextureVertically">
-        /// If set, BlitRemoteFrameToProxy will flip the rendered image vertically.
+        /// If set, <see cref="GraphicsBindingSimD3d11.BlitRemoteFrameToProxy"/> will flip the rendered image vertically.
         /// </param>
         /// <param name="flipReprojectTextureVertically">
-        /// If set, ReprojectProxy will flip the rendered image vertically.
+        /// If set, <see cref="GraphicsBindingSimD3d11.ReprojectProxy"/> will flip the rendered image vertically.
         /// </param>
         public Microsoft.Azure.RemoteRendering.Result InitSimulation(System.IntPtr d3dDevice, System.IntPtr proxyDepth, System.IntPtr proxyColor, float refreshRate, bool flipBlitRemoteFrameTextureVertically, bool flipReprojectTextureVertically)
         {
@@ -6565,7 +7854,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Deinitialize the simulation. Needs to be called after each remote rendering session has ended.
+        /// Deinitializes the simulation. Needs to be called after a remote rendering session has ended.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Result DeinitSimulation()
         {
@@ -6575,14 +7864,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Needs to be called each frame to inform the server to render a certain frame.
+        /// Needs to be called every frame.
         /// </summary>
         /// <param name="update">
-        /// The camera update of the main camera. This information will be sent to the server to be rendered.
+        /// The update of the main camera. This information will be sent to the server for rendering.
         /// </param>
         /// <param name="proxyFrameUpdate">
-        /// The camera update for the proxy. Matches the current remote frame and needs to be applied
+        /// The camera update for the proxy. Matches the current remote frame and needs to be applied locally.
         /// </param>
+        /// <remarks>
+        /// Typically there are multiple frames in flight. The frame data that is received and rendered locally, is always lagging behind a bit. Therefore, when calling Update() you need to specify the latest matrices with which the server should render that frame, but the matrices that you need to use for rendering local contant have to match the ones that were used for the currently arriving video frame. Therefore ARR provides you with that information through the proxyFrameUpdate parameter, so that you don't need to keep track of old rendering matrices yourself.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result Update(Microsoft.Azure.RemoteRendering.SimulationUpdate update, out Microsoft.Azure.RemoteRendering.SimulationUpdate proxyFrameUpdate)
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6591,8 +7883,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Blits the current remote frame to the currently bound render target. When this function is executed it is assumed that the proxy color and depth buffers are bound as the current render target. This should be done as the very first thing in each frame as this function will overwrite all content in the target buffers.
+        /// Blits the current remote frame to the currently bound render target.
         /// </summary>
+        /// <remarks>
+        /// When this function is executed it is assumed that the proxy color and depth buffers are bound as the current render target.
+        /// This should be done as the very first thing in each frame as this function will overwrite all content in the target buffers.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result BlitRemoteFrameToProxy()
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6601,8 +7897,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Reprojects the proxy color texture onto the backbuffer. When this function is executed it is assumed that the backbuffer color and depth buffers are bound as the current render target.
+        /// Reprojects the proxy color texture onto the back-buffer.
         /// </summary>
+        /// <remarks>
+        /// When this function is executed it is assumed that the back-buffer color and depth buffers are bound as the current render target.
+        /// This should be done as the very last thing in each frame.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result ReprojectProxy()
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6613,16 +7913,30 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// D3D11 binding for Windows Mixed Reality. If this graphics binding is used it is important that RemoteManagerStatic.StartupRemoteRendering is called before any HolographicSpace is created or any other mirage API is called to bind remote rendering to mirage. Once this is done, the only thing that needs to be done by the user is to call BlitRemoteFrame to render the remote frame to the current render target.
+    /// D3D11 binding for Windows Mixed Reality.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Important: <c>RemoteManagerStatic.StartupRemoteRendering</c> must be called before any Holographic space is created
+    /// and before any Mirage API is called.
+    /// </para>
+    /// <para>
+    /// At runtime the only thing that needs to be done by the user is to call <see cref="GraphicsBindingWmrD3d11.BlitRemoteFrame"/> to render the remote frame to the current render target.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding"/>
     public partial class GraphicsBindingWmrD3d11 : GraphicsBinding
     {
         internal GraphicsBindingWmrD3d11(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Blits the oldest remote frame to the currently bound render target. When this function is executed it is assumed that the mirage provided color and depth buffers are bound as the current render target. This should be done as the very first thing in each frame as this function will overwrite all content in the target buffers.
+        /// Blits the current remote frame to the bound render target.
         /// </summary>
+        /// <remarks>
+        /// When this function is executed it is assumed that the color and depth buffers provided by Mirage are bound as the render target.
+        /// This should be done as the very first thing in each frame as this function will overwrite all content in the target buffers.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result BlitRemoteFrame()
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6631,11 +7945,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Whenever a new frame of reference is created and used as the new user coordinate system of the world, ARR needs to be informed of the change.
+        /// Informs ARR of a new frame of reference.
         /// </summary>
         /// <param name="coordinateSystem">
         /// Pointer to ABI::Windows::Perception::Spatial::ISpatialCoordinateSystem.
         /// </param>
+        /// <remarks>
+        /// ARR must be informed whenever a new frame of reference is created and used as the new user coordinate system.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Result UpdateUserCoordinateSystem(System.IntPtr coordinateSystem)
         {
             Microsoft.Azure.RemoteRendering.Result result;
@@ -6646,50 +7963,22 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Controls the visualization of sub-hierarchies of entities.
+    /// Controls the visualization of sub-hierarchies of <see cref="Entity">entities</see>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.HierarchicalStates"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType,Microsoft.Azure.RemoteRendering.Entity)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/override-hierarchical-state"/>
     public partial class HierarchicalStateOverrideComponent : ComponentBase
     {
         internal HierarchicalStateOverrideComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// The render property flags of this component. This may only be called when this object is valid.
+        /// The color to use for tinting the meshes below this node.
         /// </summary>
-        public Microsoft.Azure.RemoteRendering.HierarchicalStates Flags
-        {
-            get
-            {
-                Microsoft.Azure.RemoteRendering.HierarchicalStates result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_get_flags(this.handle, out result));
-                return result;
-            }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_flags(this.handle, value));
-            }
-        }
-
-        /// <summary>
-        /// The render property flags to override on this component. This may only be called when this object is valid.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.HierarchicalStates OverrideFlags
-        {
-            get
-            {
-                Microsoft.Azure.RemoteRendering.HierarchicalStates result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_get_override_flags(this.handle, out result));
-                return result;
-            }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_override_flags(this.handle, value));
-            }
-        }
-
-        /// <summary>
-        /// The tint color of this component. This may only be called when this object is valid.
-        /// </summary>
+        /// <remarks>
+        /// The tint color is only used if the <see cref="HierarchicalStateOverrideComponent.UseTintColorState"/> is set to <see cref="HierarchicalEnableState.ForceOn"/>.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Color4Ub TintColor
         {
             get
@@ -6705,7 +7994,24 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Hidden feature This may only be called when this object is valid.
+        /// The cut plane filter mask of this component.
+        /// </summary>
+        public byte CutPlaneFilterMask
+        {
+            get
+            {
+                byte result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_get_cut_plane_filter_mask(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_cut_plane_filter_mask(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.Hidden"/> feature.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState HiddenState
         {
@@ -6722,7 +8028,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.Selected feature This may only be called when this object is valid.
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.Selected"/> feature.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState SelectedState
         {
@@ -6739,7 +8045,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.SeeThrough feature This may only be called when this object is valid.
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.SeeThrough"/> feature.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState SeeThroughState
         {
@@ -6756,7 +8062,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.UseTintColor feature This may only be called when this object is valid.
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.UseTintColor"/> feature.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState UseTintColorState
         {
@@ -6773,7 +8079,24 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Wraps around GetState/SetState for the HierarchicalStateFlags.DisableCollision feature This may only be called when this object is valid.
+        /// Wraps around GetState/SetState for the HierarchicalStateFlags.UseCutPlaneFilterMask feature
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.HierarchicalEnableState UseCutPlaneFilterMaskState
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.HierarchicalEnableState result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_get_use_cut_plane_filter_mask_state(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_use_cut_plane_filter_mask_state(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.DisableCollision"/> feature.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState DisableCollisionState
         {
@@ -6790,25 +8113,54 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Sets specific features to a new state of type HierarchicalEnableState.
+        /// Wraps around GetState/SetState for the <see cref="HierarchicalStates.Shell"/> feature.
+        /// </summary>
+        public Microsoft.Azure.RemoteRendering.HierarchicalEnableState ShellState
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.HierarchicalEnableState result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_get_shell_state(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_shell_state(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Sets specific features to a new state of type <see cref="HierarchicalEnableState"/>.
         /// </summary>
         /// <param name="feature">
         /// The feature(s) to modify. A bitwise combination of features can be passed here to modify multiple features simultaneously.
         /// </param>
         /// <param name="enabledState">
-        /// The new feature state.
+        /// The new state.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// * A <see cref="Result.InvalidParam"/> error occurs if 'feature' is an invalid bitmask.
+        /// * A <see cref="Result.InvalidParam"/> error occurs if 'enabledState' is an invalid value.
+        /// </para>
+        /// </remarks>
         public void SetState(Microsoft.Azure.RemoteRendering.HierarchicalStates feature, Microsoft.Azure.RemoteRendering.HierarchicalEnableState enabledState)
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_hierarchical_state_override_component_set_state(this.handle, feature, enabledState));
         }
 
         /// <summary>
-        /// Returns the current enabled state (of type HierarchicalEnableState) of the passed feature.
+        /// Returns the current <see cref="HierarchicalEnableState">enabled state</see> of a feature.
         /// </summary>
         /// <param name="feature">
         /// A single feature to query the current status on. Unlike SetState, multiple feature bits cannot be combined here.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// * A <see cref="Result.InvalidParam"/> error occurs if 'feature' is an invalid bitmask.
+        /// * A <see cref="Result.InvalidParam"/> error occurs if 'enabledState' is an invalid value.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.HierarchicalEnableState GetState(Microsoft.Azure.RemoteRendering.HierarchicalStates feature)
         {
             Microsoft.Azure.RemoteRendering.HierarchicalEnableState result;
@@ -6819,16 +8171,44 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Base class for all light components. Lights are added to the scene as components of respective type attached to a game object. Lights are considered as dynamic lights that contribute to the scene's lighting conditions on top of the global sky light. The game object serves as the spatial transform of the light source. This base class cannot be instantiated directly, instead one of the specific light types (Point/Spot/Directional) has to be used.
+    /// Base class for all light components.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Attaching a light component to an <see cref="Entity"/> turns it into a dynamic light source that illuminates the geometry
+    /// in addition to the <see cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/sky">global sky light</see>. The position and orientation of the entity determines the location and direction of the light.
+    /// </para>
+    /// <para>
+    /// Only geometry that uses a <see cref="PbrMaterial"/> will be affected by this light. Geometry that has a <see cref="ColorMaterial"/> assigned generally receives no lighting.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SpotLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.DirectionalLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType,Microsoft.Azure.RemoteRendering.Entity)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/lights">Scene lighting</seealso>
     public partial class LightComponentBase : ComponentBase
     {
         internal LightComponentBase(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// The intensity of the light. This value has no physical measure however it can be considered to be proportional to the physical power of the light source. If the light has a fall-off (point and spotlight) this value also defines the maximum range of light influence. An intensity of 1000 roughly has a range of 100 world units, but note this does not scale linearly. This may only be called when this object is valid.
+        /// The overall brightness and range of the light.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This value has no physical unit, however, it can be considered to be proportional to the physical power of the light source.
+        /// </para>
+        /// <para>
+        /// For lights that have a falloff (<see cref="SpotLightComponent"/> and <see cref="PointLightComponent"/>), the intensity determines both brightness and range of influence. For infinite light sources (<see cref="DirectionalLightComponent"/>) it only determines the brightness.
+        /// </para>
+        /// <para>
+        /// At an intensity of 1000 a point light roughly has a range of 100 world units. However, note that this doesn't scale linearly.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
         public float Intensity
         {
             get
@@ -6844,8 +8224,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The color of the light in gamma color space. The alpha portion is ignored. This may only be called when this object is valid.
+        /// The color of the light in Gamma color space.
         /// </summary>
+        /// <remarks>
+        /// The color's alpha channel is ignored.
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.Color4Ub"/>
         public Microsoft.Azure.RemoteRendering.Color4Ub Color
         {
             get
@@ -6863,8 +8247,17 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async model loading functions.
+    /// Result type for async model loading functions.
     /// </summary>
+    /// <remarks>
+    /// The inherited function <see cref="AsyncBase.Status"/> may additionally return any of these values:
+    /// * <see cref="Result.InvalidParentId"/>
+    /// * <see cref="Result.Cancelled"/>
+    /// * <see cref="Result.InvalidUrl"/>
+    /// * All values between <see cref="Result.LoadFileReturnValueStart"/> and <see cref="Result.LoadFileReturnValueLast"/>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams)"/>
     public partial class LoadModelAsync : AsyncBase, ICookie
     {
         internal LoadModelAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -6872,8 +8265,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.LoadModelAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the loading operation. This will throw an error if the query is in progress or in an error state.
+        /// The result of the loading operation.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.LoadModelResult Result
         {
             get
@@ -6887,7 +8283,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Current progress fraction in (0..1) range.
+        /// The current loading progress as a fraction in range 0 to 1.
         /// </summary>
         public float Progress
         {
@@ -6958,8 +8354,11 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return result from LoadModel.
+    /// Result data for a load model request.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
     public partial class LoadModelResult
     {
         internal IntPtr handle;
@@ -6975,8 +8374,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Root entity of the loaded model.
+        /// Root <see cref="Entity"/> of the loaded model.
         /// </summary>
+        /// <remarks>
+        /// This is the top most <see cref="Entity"/> node in the model structure. You can place the model by setting this node's transform (see <see cref="Entity.Position"/>, <see cref="Entity.Rotation"/>, <see cref="Entity.Scale"/>).
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Entity Root
         {
             get
@@ -6990,8 +8392,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Retrieve all loaded objects of given object type. The requested ObjectType must specify a valid object type such as entity or a component.
+        /// Retrieves all objects of the given type that were loaded as part of this model.
         /// </summary>
+        /// <param name="type">
+        /// The requested type must specify a valid object type such as <see cref="ObjectType.Entity"/> or <see cref="ObjectType.MeshComponent"/>.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if 'type' is outside the specified range.
+        /// </para>
+        /// </remarks>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ObjectBase> GetLoadedObjectsOfType(Microsoft.Azure.RemoteRendering.ObjectType type)
         {
             System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ObjectBase> result;
@@ -7003,8 +8413,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Retrieve all loaded resources of given resource type. The requested ObjectType must specify a valid resource type such as mesh or material.
+        /// Retrieves all resources of the given type that were loaded as part of this model.
         /// </summary>
+        /// <param name="type">
+        /// The requested type must specify a valid resource type such as <see cref="ObjectType.Mesh"/> or <see cref="ObjectType.Material"/>.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if 'type' is outside the specified range.
+        /// </para>
+        /// </remarks>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ResourceBase> GetLoadedResourceOfType(Microsoft.Azure.RemoteRendering.ObjectType type)
         {
             System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ResourceBase> result;
@@ -7018,8 +8436,15 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async texture loading functions.
+    /// Result type for async texture loading functions.
     /// </summary>
+    /// <remarks>
+    /// The inherited function <see cref="AsyncBase.Status"/> may additionally return any of these values:
+    /// * <see cref="Result.InvalidParam"/> if a 2D or cube texture is requested, but the referenced file contains a different kind of texture.
+    /// * <see cref="Result.InvalidUrl"/> if the provided URL is malformed.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams)"/>
     public partial class LoadTextureAsync : AsyncBase, ICookie
     {
         internal LoadTextureAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -7027,8 +8452,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.LoadTextureAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the loading operation. This will throw an error if the query is in progress or in an error state.
+        /// The result of the loading operation.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture Result
         {
             get
@@ -7073,15 +8501,30 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Materials are shared resources used to describe the rendering properties of a Mesh. If a material is modified, all meshes that reference the material will be affected. To modify only the material of a specific object you need to create a dedicated material and replace the material reference on the MeshComponent to point to the custom material.
+    /// Materials are shared resources used to describe the rendering properties of a <see cref="Mesh"/>.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// A material specifies which <see cref="Texture">textures</see> to use and how to apply lighting to geometry. This class is the base class for all material resources. Derived classes determine the exact appearance.
+    /// </para>
+    /// <para>
+    /// If a material is modified, all meshes that reference the material will be affected. To modify only the material of a specific object
+    /// you need to create a dedicated material and replace the material reference on the <see cref="MeshComponent"/> to point to the custom material.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.MeshComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateMaterial(Microsoft.Azure.RemoteRendering.MaterialType)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/materials">Materials</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/lifetime">Object and resource lifetime</seealso>
     public partial class Material : ResourceBase
     {
         internal Material(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Returns ObjectType.Material. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this resource.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7094,8 +8537,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this material is still valid.
+        /// Whether this resource is still valid.
         /// </summary>
+        /// <remarks>
+        /// A resource is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -7107,8 +8554,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Material name. This may only be called when this object is valid.
+        /// The name of this material.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.StringTooLong"/> error occurs if the given string is excessively long.
+        /// </para>
+        /// </remarks>
         public string Name
         {
             get
@@ -7123,9 +8575,6 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
-        /// <summary>
-        /// Material subtype enum value. This may only be called when this object is valid.
-        /// </summary>
         public Microsoft.Azure.RemoteRendering.MaterialType MaterialSubType
         {
             get
@@ -7137,11 +8586,19 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Copy material properties from another material instance. If the material types do not match, common properties such as albedo color / -texture are copied.
+        /// Copies material properties from another material.
         /// </summary>
         /// <param name="other">
-        /// 
+        /// The material from which to copy properties.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// If the material types don't match, only common properties such as albedo color and texture are copied.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if 'other' is an invalid material.
+        /// </para>
+        /// </remarks>
         public void CopyFrom(Microsoft.Azure.RemoteRendering.Material other)
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_material_copy_from(this.handle, other != null ? other.handle : default(ulong)));
@@ -7150,16 +8607,30 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// MeshComponents attach a Mesh to an Entity so that the mesh is rendered in the scene. Changing the material on the mesh component through SetMaterial will update the visual characteristics of the mesh.
+    /// Renders a mesh at the position of the <see cref="Entity"/>.
     /// </summary>
+    /// <remarks>
+    /// The referenced <see cref="MeshComponent.Mesh"/> is rendered at the location of the owner entity. The mesh component also allows to override the <see cref="Material">materials</see> that are used for rendering. If the mesh has been converted with collision information, it will also participate in <see cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">spatial queries</see>.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.MeshComponent.Mesh"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType,Microsoft.Azure.RemoteRendering.Entity)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/meshes">Meshes</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial queries</seealso>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/materials">Materials</seealso>
     public partial class MeshComponent : ComponentBase
     {
         internal MeshComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Get the materials of the mesh component. These are materials specifically set to override the default mesh materials. If no material override has been set the material will be null. The material array will always be the same size as Mesh.Materials.Count. This may only be called when this object is valid.
+        /// Returns the list of materials set on this component.
         /// </summary>
+        /// <remarks>
+        /// These are materials that were specifically set to override the default mesh materials, through SetMaterial().
+        /// The array will always be the same size as <see cref="Mesh.Materials"/>, however, entries for which no override is set, will be <c>null</c>.
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.MeshComponent.UsedMaterials"/>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> Materials
         {
             get
@@ -7174,8 +8645,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query for a list of the used materials of the rendered mesh. The array will either contain the override material of the MeshComponent or, if no override has been set then the default material of the underlying mesh. This may only be called when this object is valid.
+        /// Returns the list of actually used materials for rendering the mesh.
         /// </summary>
+        /// <remarks>
+        /// The array will either contain the override material (<see cref="MeshComponent.Materials"/>) or, if no override was set,
+        /// the default material of the referenced <see cref="MeshComponent.Mesh"/>.
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.MeshComponent.Materials"/>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> UsedMaterials
         {
             get
@@ -7190,7 +8666,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The Mesh used for rendering. This may only be called when this object is valid.
+        /// The <see cref="Mesh"/> used for rendering and spatial queries.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Mesh Mesh
         {
@@ -7209,14 +8685,19 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Set an override material for this rendered mesh.
+        /// Sets an override material for a given material slot.
         /// </summary>
         /// <param name="idx">
-        /// Index into the 'Materials' array. Index must be inside the range of the current materials array.
+        /// A valid index into the <see cref="MeshComponent.Materials"/> array.
         /// </param>
         /// <param name="material">
-        /// Material to set, null to return to default material on the mesh.
+        /// The material to set as the override. Passing <c>null</c> clears any previous override, such that the mesh's default material is used again.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.IndexOutOfRange"/> error occurs if 'idx' is outside the valid range.
+        /// </para>
+        /// </remarks>
         public void SetMaterial(int idx, Microsoft.Azure.RemoteRendering.Material material)
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_mesh_component_set_material(this.handle, idx, material != null ? material.handle : default(ulong)));
@@ -7225,15 +8706,26 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Meshes are an immutable shared resource. They describe the shape and which materials to be used by default for rendering. Meshes cannot be modified at runtime. To change rendering properties, it is possible to modify their materials. However, the preferred method is to specify override Material references in a MeshComponent to change which Material to use for rendering each part of the mesh.
+    /// Meshes contain geometry data and <see cref="Material"/> references for rendering.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Meshes can't be loaded directly, instead when a model is loaded, for instance through <see cref="RemoteManager.LoadModelAsync(LoadModelParams)"/>, the loaded model contains at least one <see cref="Entity"/> which has a <see cref="MeshComponent"/> which in turn references a mesh. Once a model is loaded, you can get the mesh reference and also assign it to other objects.
+    /// </para>
+    /// <para>
+    /// Mesh data can't be modified at runtime. It is possible to modify the materials that a mesh references, however, that would affect all entities which use that mesh. Instead, the preferred method is to specify override materials on a <see cref="MeshComponent"/> to change which materials are used for rendering.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.MeshComponent"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/meshes">Meshes</seealso>
     public partial class Mesh : ResourceBase
     {
         internal Mesh(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Returns ObjectType.Mesh. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this resource.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7246,8 +8738,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this mesh is still valid.
+        /// Whether this resource is still valid.
         /// </summary>
+        /// <remarks>
+        /// A resource is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -7259,7 +8755,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The list of materials used for rendering the mesh unless overridden by a MeshComponent. This may only be called when this object is valid.
+        /// The list of materials used for rendering the mesh, unless overridden by a <see cref="MeshComponent"/>.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.Material> Materials
         {
@@ -7275,7 +8771,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the localspace bounds for the mesh. This may only be called when this object is valid.
+        /// Returns the local-space bounding box of the mesh.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.AABB3D Bounds
         {
@@ -7290,8 +8786,9 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async metadata query functions.
+    /// Result type for async metadata query functions.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity.QueryMetaDataAsync"/>
     public partial class MetadataQueryAsync : AsyncBase, ICookie
     {
         internal MetadataQueryAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -7299,8 +8796,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.MetadataQueryAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the query is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ObjectMetaData Result
         {
             get
@@ -7345,8 +8845,11 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Base class for all instanceable objects (entities, components).
+    /// Base class for <see cref="Entity">entities</see> and <see cref="ComponentBase">components</see>.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Entity"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ComponentBase"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/lifetime">Object and resource lifetime</seealso>
     public partial class ObjectBase
     {
         internal ulong handle;
@@ -7361,8 +8864,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this object is valid. An object is invalid if it has been destroyed or if the connection has been lost.
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -7374,7 +8881,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The type of the object. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this object.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -7389,8 +8896,13 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// An individual metadata entry on an object. Lifetime is managed by the owning metadata container (ObjectMetaData).
+    /// A single metadata entry for an object.
     /// </summary>
+    /// <remarks>
+    /// Lifetime is managed by the owning metadata container (<see cref="ObjectMetaData"/>).
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ObjectMetaData"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.MetadataValueType"/>
     public partial class ObjectMetaDataEntry
     {
         internal IntPtr handle;
@@ -7399,7 +8911,7 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Name of this metadata entry. This may only be called when the metadata container is valid.
+        /// Name of this metadata entry.
         /// </summary>
         public string Name
         {
@@ -7412,7 +8924,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Type of this metadata. This may only be called when the metadata container is valid.
+        /// Type of this metadata. See <see cref="MetadataValueType"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.MetadataValueType Type
         {
@@ -7425,8 +8937,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as boolean. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as a bool.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public bool AsBool
         {
             get
@@ -7438,8 +8953,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as Int32. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as an Int32.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public int AsInt
         {
             get
@@ -7451,8 +8969,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as Int64. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as an Int64.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public long AsInt64
         {
             get
@@ -7464,8 +8985,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the bool value of this metadata as UInt64. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as a UInt64.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public ulong AsUInt64
         {
             get
@@ -7477,8 +9001,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as double. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as a double.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public double AsDouble
         {
             get
@@ -7490,8 +9017,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get the value of this metadata as string. This may only be called when the metadata container is valid.
+        /// Returns the value of this metadata as a string.
         /// </summary>
+        /// <remarks>
+        /// A <see cref="Result.InvalidType"/> error occurs if this is called although <see cref="ObjectMetaDataEntry.Type"/> doesn't match.
+        /// </remarks>
         public string AsString
         {
             get
@@ -7505,8 +9035,9 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Class that stores the metadata value collection for an object.
+    /// A collection of metadata values for an object.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ObjectMetaDataEntry"/>
     public partial class ObjectMetaData
     {
         internal IntPtr handle;
@@ -7522,8 +9053,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this object is still valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -7535,7 +9070,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Get a read-only array of all metadata on an object. This may only be called when this object is valid.
+        /// Provides read-only access to all entries in this collection.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Microsoft.Azure.RemoteRendering.ObjectMetaDataEntry> Metadata
         {
@@ -7551,11 +9086,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Query a metadata entry by name. This may only be called when this object is valid.
+        /// Query for an entry by name.
         /// </summary>
         /// <param name="name">
-        /// Metadata name
+        /// The name of the entry to search.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if no meta data of the requested name exists.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.ObjectMetaDataEntry GetMetadataByName(string name)
         {
             IntPtr result_handle;
@@ -7568,8 +9108,10 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Global settings for selection outline rendering.
+    /// Global settings for outline rendering.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/outlines">Outline rendering</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.OutlineSettings"/>
     public partial class OutlineSettings
     {
         internal ulong handle;
@@ -7578,8 +9120,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -7591,7 +9137,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The color of the outlines. This may only be called when this object is valid.
+        /// The color of the outlines.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.Color4Ub Color
         {
@@ -7608,8 +9154,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The rate (in Hz) at which the outline intensity oscillates. This may only be called when this object is valid.
+        /// The rate (in Hz) at which the outline intensity oscillates.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
         public float PulseRateHz
         {
             get
@@ -7625,8 +9176,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The intensity with which the outline pulses. This value must be in (0..1) range with 0=no pulsing effect and 1=full amplitude. This may only be called when this object is valid.
+        /// The intensity with which the outline pulses.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This value must be in (0..1) range with 0=no pulsing effect and 1=full amplitude.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float PulseIntensity
         {
             get
@@ -7644,16 +9203,25 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// PBR material.
+    /// A material for Physically Based Rendering.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.ColorMaterial"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.CreateMaterial(Microsoft.Azure.RemoteRendering.MaterialType)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/pbr-materials">PBR materials</seealso>
     public partial class PbrMaterial : Material
     {
         internal PbrMaterial(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Gets/sets the material flags. See enum PbrFlags. This may only be called when this object is valid.
+        /// The <see cref="PbrMaterialFeatures">PBR material flags</see>.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if an invalid flags bitmask is set.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.PbrMaterialFeatures PbrFlags
         {
             get
@@ -7669,8 +9237,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scaling factor applied to texture coordinates. A two-component value to scale U and V independently. For instance, passing (4,4) will apply 4x4 tiling to the texture. Tiling is applied likewise to all defined material textures. This may only be called when this object is valid.
+        /// Scaling factors for texture coordinates.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Used to repeat/tile textures. For instance passing (4, 2) will repeat the texture 4 times along the U texture coordinate, and 2 times along V.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is NaN or infinite.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.PbrMaterial.TexCoordOffset"/>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordScale
         {
             get
@@ -7686,8 +9263,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the offset applied to texture coordinates. An offset is normalized to [0..1] range regardless of texture size, so (0.5, 0.5) points to the middle of a texture. The offset can be changed over frames to scroll a texture. The offset is applied likewise to all defined material textures. This may only be called when this object is valid.
+        /// Constant offset added to texture coordinates.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// An offset is normalized to [0..1] range, regardless of texture size, so (0.5, 0.5) always points to the middle of a texture.
+        /// The offset can be changed over time to scroll the texture.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is NaN or infinite.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Float2 TexCoordOffset
         {
             get
@@ -7703,8 +9289,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the constant albedo color. The albedo color of a material defines the unlit diffuse color. It can originate from a constant color, from a texture or both. In the latter case the texture color is modulated with the constant color, so in order to use the unmodified texture color, this albedo color should be left to white. The alpha component of this color is used for the opacity level in case the material is flagged as transparent (see PbrFlags.TransparentMaterial). This may only be called when this object is valid.
+        /// Constant albedo color.
         /// </summary>
+        /// <remarks>
+        /// This color is modulated with the color from the <see cref="PbrMaterial.AlbedoTexture"/>.
+        /// The alpha channel represents the opacity, in case the material is flagged as transparent (<see cref="PbrMaterialFeatures.TransparentMaterial"/>).
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Color4 AlbedoColor
         {
             get
@@ -7720,8 +9310,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/Sets the albedo texture for this material. Use constant null for 'no texture'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used for the albedo color. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture AlbedoTexture
         {
             get
@@ -7739,8 +9334,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the vertex alpha mode. See enum PbrVertexAlphaMode. This function has no effect if the mesh does not provide vertex colors or if the PbrFlags.UseVertexColor flag is not set. The default value is PbrVertexAlphaMode.Occlusion. This may only be called when this object is valid.
+        /// Determines how the alpha channel of vertex colors is used. See <see cref="PbrVertexAlphaMode"/> for details.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This mode has no effect if the mesh doesn't provide vertex colors or if the flag <see cref="PbrMaterialFeatures.UseVertexColor"/> is not set.
+        /// The default value is <see cref="PbrVertexAlphaMode.Occlusion"/>.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if an unknown mode is passed in.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.PbrVertexAlphaMode PbrVertexAlphaMode
         {
             get
@@ -7756,8 +9360,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the normalmap texture for this material. This function accepts any texture but note that a valid normalmap encodes the normal vector into RGB portions rather than being a grayscale heightmap. null is used to denote 'no normalmap'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used as the normal map. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Although any texture can be used, note that a valid normalmap encodes the normal vector into RGB portions, rather than being a grayscale heightmap.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture NormalMap
         {
             get
@@ -7775,8 +9387,13 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the scalar amount for ambient occlusion in [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// How strongly to apply ambient occlusion to this material. [0..1] range.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float AOScale
         {
             get
@@ -7792,8 +9409,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the ambient occlusion texture. A valid AO texture is a grayscale texture that defines scalars that are combined with the constant ambient occlusion value (AOScale). null is used to denote 'no ambient occlusion texture'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used for ambient occlusion. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A valid AO texture is a grayscale texture that defines which areas are occluded (dark/black) and which ones aren't (bright/white).
+        /// The AO value from the texture will be modulated with the <see cref="PbrMaterial.AOScale"/> property.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture AOMap
         {
             get
@@ -7811,8 +9437,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a constant roughness value on this material. Roughness is a scalar in the [0..1] range. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// A constant roughness value.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Roughness is a scalar in the [0..1] range. 
+        /// The roughness constant is only used if no <see cref="PbrMaterial.RoughnessMap"/> is provided.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float Roughness
         {
             get
@@ -7828,8 +9463,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the roughness texture for this material. A valid roughness texture is a grayscale texture that defines scalars that are combined with the constant roughness value (Roughness property). null is used to denote 'no roughness texture'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used for roughness. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A valid roughness texture is a grayscale texture that defines which areas are rough (values close to 1.0) and which are smooth (values close to 0.0).
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture RoughnessMap
         {
             get
@@ -7847,8 +9490,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a constant metalness value on this material. Metalness is a scalar in the [0..1] range, which in most of the use cases is either 0.0 (non-metallic) or 1.0 (metallic). This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// A constant metalness value.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Metalness is a scalar in the [0..1] range, which in most of the use cases is either 0.0 (non-metallic) or 1.0 (metallic).
+        /// The metalness constant is only used if no <see cref="PbrMaterial.MetalnessMap"/> is provided.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float Metalness
         {
             get
@@ -7864,8 +9516,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the metalness texture for this material. A valid metalness texture is a grayscale texture that defines scalars that are combined with the constant metalness value (Metalness properties). null is used to denote 'no metalness texture'. This may only be called when this object is valid.
+        /// The <see cref="Texture"/> used for metalness. Pass in <c>null</c> if no dedicated texture is needed.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A valid metalness texture is a grayscale texture that defines which areas should be considered metal (1.0) and which areas are non-metals (0.0). Values in between are possible, but are not physically plausible.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture MetalnessMap
         {
             get
@@ -7883,8 +9543,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets a threshold value that is used for alpha cutout. If a pixel's final alpha value [0..1] falls below the threshold value, the pixel is clipped thus causing a hard cutout. Note that the material's PbrFlags.AlphaClipped flag has to be set, otherwise this threshold has no effect. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// Threshold that is used for alpha cutouts.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// If a pixel's final alpha value falls below this threshold, the pixel is clipped, creating a hard cutout.
+        /// Note that the material's <see cref="PbrMaterialFeatures.AlphaClipped"/> flag has to be set, for this threshold to have an effect.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float AlphaClipThreshold
         {
             get
@@ -7900,8 +9569,16 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Gets/sets the fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque. This is very similar to changing the albedo's alpha on a transparent material, however this function internally manages the transparent flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent) respectively. This call will fail with an InvalidParam exception if the range exceeds [0..1]. This may only be called when this object is valid.
+        /// Fade-out value in the [0..1] range, where 0.0 means fully faded out and 1.0 means fully opaque.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is very similar to changing the albedo's alpha on a transparent material, however, this function automatically manages the transparency flag for values of 1.0 (fully opaque) and smaller than 1.0 (semi-transparent).
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside [0..1] range.
+        /// </para>
+        /// </remarks>
         public float FadeOut
         {
             get
@@ -7916,11 +9593,52 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
+        /// <summary>
+        /// The Fresnel effect color used when the effect is enabled (see the 'FresnelEffect' flag in <see cref="PbrMaterialFeatures"/>)
+        /// </summary>
+        /// <remarks>
+        /// Only the rgb channels of the color are used for the Fresnel effect, while the alpha value will be ignored.
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.Color4 FresnelEffectColor
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.Color4 result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_pbr_material_get_fresnel_effect_color(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_pbr_material_set_fresnel_effect_color(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// The Fresnel effect exponent used when the effect is enabled (see the 'FresnelEffect' flag in <see cref="PbrMaterialFeatures"/>)
+        /// </summary>
+        /// <remarks>
+        /// The valid range for the exponent is [0.01, 10].
+        /// </remarks>
+        public float FresnelEffectExponent
+        {
+            get
+            {
+                float result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_pbr_material_get_fresnel_effect_exponent(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_pbr_material_set_fresnel_effect_exponent(this.handle, value));
+            }
+        }
+
     }
 
     /// <summary>
-    /// Return value of async performance assessment query functions.
+    /// Result type for async performance assessment query functions.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.QueryServerPerformanceAssessmentAsync"/>
     public partial class PerformanceAssessmentAsync : AsyncBase, ICookie
     {
         internal PerformanceAssessmentAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -7928,15 +9646,18 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.PerformanceAssessmentAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.PerformanceAssessment Result
         {
             get
             {
-                Microsoft.Azure.RemoteRendering.PerformanceAssessmentAbi result;
+                Microsoft.Azure.RemoteRendering.PerformanceAssessment result;
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_performance_assessment_async_get_result(this.handle, out result));
-                return result.Convert();
+                return result;
             }
         }
 
@@ -7972,16 +9693,36 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// A point light simulates light emitted equally in all directions form a point (or small sphere/tube) in space. Point light components can be used to create local light effects such as light from bulbs.
+    /// A light source that emits light uniformly into all directions.
     /// </summary>
+    /// <remarks>
+    /// Point lights are used for local lights such as light bulbs.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LightComponentBase"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.SpotLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.DirectionalLightComponent"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/lights">Scene lighting</seealso>
     public partial class PointLightComponent : LightComponentBase
     {
         internal PointLightComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// If >0 the light emitting shape of the light source is a sphere of given radius as opposed to a point. This shape for instance affects the appearance of specular highlights. This may only be called when this object is valid.
+        /// The radius of the light emitting shape.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// By default the radius is zero and the emitting shape is just a point.
+        /// If the radius is set to a larger value, the shape becomes a sphere or even a tube, if <see cref="PointLightComponent.Length"/> is also set.
+        /// </para>
+        /// <para>
+        /// A non-zero radius yields more realistic lighting for light bulbs and other objects that have a glowing
+        /// surface. However, for performance reasons the computation is only an approximation of an area light. If such a light source comes too close to geometry or even intersects with it, the resulting lighting won't be physically correct.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
         public float Radius
         {
             get
@@ -7997,8 +9738,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// If >0 (and also radius > 0) this value defines the length of a light emitting tube. Use case is a neon tube. This may only be called when this object is valid.
+        /// The length of the light emitting shape.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent.Radius"/>
         public float Length
         {
             get
@@ -8014,8 +9761,18 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines a custom interval of min/max distances over which the light's attenuated intensity is scaled linearly down to 0. This feature can be used to enforce a smaller range of influence of a specific light. If not defined (default), these values are implicitly derived from the light's intensity. This may only be called when this object is valid.
+        /// Custom interval of min/max distances over which the light's attenuated intensity is scaled down to zero.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This option can be used to enforce a smaller range of influence.
+        /// By default these values are implicitly derived from the light's <see cref="LightComponentBase.Intensity">intensity</see>.
+        /// Use this option if you want to create a light source that should be bright, but with a relatively small area of influence.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Float2 AttenuationCutoff
         {
             get
@@ -8031,8 +9788,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// In case a valid cubemap texture is passed here, the cubemap is projected using the orientation of the light. The cubemap's color is modulated with the light's color. This may only be called when this object is valid.
+        /// Optional cubemap <see cref="Texture"/> to be projected onto surrounding geometry.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The orientation of the owner <see cref="Entity"/> determines how the cubemap is projected onto surrounding geometry.
+        /// The color from the cubemap is used to modulate the light's color.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a cubemap.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture ProjectedCubeMap
         {
             get
@@ -8052,8 +9818,13 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async ray cast query functions.
+    /// Result type for async ray cast query functions.
     /// </summary>
+    /// <remarks>
+    /// The inherited function <see cref="AsyncBase.Status"/> may additionally return any of these values:
+    /// * <see cref="Result.InvalidParam"/>, if the ray start and end point are identicaly.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.RayCastQueryAsync(Microsoft.Azure.RemoteRendering.RayCast)"/>
     public partial class RaycastQueryAsync : AsyncBase, ICookie
     {
         internal RaycastQueryAsync(IntPtr ahandle, bool transfer) : base(ahandle, transfer)
@@ -8061,8 +9832,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.RaycastQueryAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// A (potentially empty) array of <see cref="RayCastHit">intersections</see> that the raycast encountered.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the query is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.RayCastHit[] Result
         {
             get
@@ -8106,8 +9880,9 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Main entry point for remote rendering specific actions. See AzureSession.Actions.
+    /// Main entry point for Remote Rendering specific actions. See AzureSession.Actions.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.AzureSession"/>
     public partial class RemoteManager : ICookie
     {
         internal ulong handle;
@@ -8117,7 +9892,7 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.RemoteManager>.Add(this);
         }
         /// <summary>
-        /// Log level to enable. Only messages at this log level or below will be emitted. This may only be called when the owner session is valid.
+        /// Only messages at this <see cref="LogLevel">log level</see> or below will be delivered through <see cref="RemoteManager.MessageLogged"/>.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.LogLevel LogLevel
         {
@@ -8134,8 +9909,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global camera settings. This may only be called when the owner session is valid.
+        /// Global <see cref="CameraSettings">camera settings</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/camera">Camera</seealso>
         public Microsoft.Azure.RemoteRendering.CameraSettings CameraSettings
         {
             get
@@ -8149,8 +9925,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global stage space settings. This may only be called when the owner session is valid.
+        /// Global <see cref="StageSpaceSettings">stage space settings</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/stage-space">Stage space</seealso>
         public Microsoft.Azure.RemoteRendering.StageSpaceSettings StageSpaceSettings
         {
             get
@@ -8164,8 +9941,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global sky reflection settings. This may only be called when the owner session is valid.
+        /// Global <see cref="SkyReflectionSettings">sky reflection settings</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/sky">Sky reflections</seealso>
         public Microsoft.Azure.RemoteRendering.SkyReflectionSettings SkyReflectionSettings
         {
             get
@@ -8179,8 +9957,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global outline settings. This may only be called when the owner session is valid.
+        /// Global <see cref="OutlineSettings">outline settings</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/outlines">Outline rendering</seealso>
         public Microsoft.Azure.RemoteRendering.OutlineSettings OutlineSettings
         {
             get
@@ -8194,8 +9973,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global z-fighting mitigation state. This may only be called when the owner session is valid.
+        /// Global <see cref="ZFightingMitigationSettings">z-fighting mitigation state</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/z-fighting-mitigation">Z-fighting mitigation</seealso>
         public Microsoft.Azure.RemoteRendering.ZFightingMitigationSettings ZFightingMitigationSettings
         {
             get
@@ -8209,8 +9989,25 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global single sided rendering settings. This may only be called when the owner session is valid.
+        /// Global shell rendering settings.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/shell-rendering">Shell rendering</seealso>
+        public Microsoft.Azure.RemoteRendering.ShellRenderingSettings ShellRenderingSettings
+        {
+            get
+            {
+                ulong result_handle;
+                Microsoft.Azure.RemoteRendering.ShellRenderingSettings result_object;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_get_shell_rendering_settings(this.handle, out result_handle));
+                result_object = (result_handle != default(ulong)) ? new Microsoft.Azure.RemoteRendering.ShellRenderingSettings(result_handle, transfer:true) : null;
+                return result_object;
+            }
+        }
+
+        /// <summary>
+        /// Global <see cref="SingleSidedSettings">single-sided rendering settings</see>.
+        /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/single-sided-rendering">Single-sided rendering</seealso>
         public Microsoft.Azure.RemoteRendering.SingleSidedSettings SingleSidedSettings
         {
             get
@@ -8224,8 +10021,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Returns global single sided rendering settings. This may only be called when the owner session is valid.
+        /// Global <see cref="DebugRenderingSettings">debug rendering settings</see>.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/debug-rendering">Debug rendering</seealso>
         public Microsoft.Azure.RemoteRendering.DebugRenderingSettings DebugRenderingSettings
         {
             get
@@ -8295,27 +10093,15 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Asynchronously load a model. This call will return immediately with an object that will emit an event when the model load has completed on the server. The result contains all objects that were loaded with the model. \note Returned Async completes during RemoteManager.Update.
+        /// Initiates the loading of a model.
         /// </summary>
         /// <param name="paramsIn">
-        /// Loading parameters for the model.
+        /// Parameters for loading the model.
         /// </param>
-        public Microsoft.Azure.RemoteRendering.LoadModelAsync LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams paramsIn)
-        {
-            Microsoft.Azure.RemoteRendering.LoadModelFromSASParamsAbi paramsIn_converted = paramsIn.Convert();
-            IntPtr result_handle;
-            Microsoft.Azure.RemoteRendering.LoadModelAsync result_object;
-            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_load_model_from_sasasync(this.handle, paramsIn_converted, out result_handle));
-            result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.LoadModelAsync(result_handle, transfer:true) : null;
-            return result_object;
-        }
-
-        /// <summary>
-        /// Asynchronously load a model from blob store. This call will return immediately with an object that will emit an event when the model load has completed on the server. The result contains all objects that were loaded with the model. \note Returned Async completes during RemoteManager.Update.
-        /// </summary>
-        /// <param name="paramsIn">
-        /// Loading parameters for the model.
-        /// </param>
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the model load has finished.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
         public Microsoft.Azure.RemoteRendering.LoadModelAsync LoadModelAsync(Microsoft.Azure.RemoteRendering.LoadModelParams paramsIn)
         {
             Microsoft.Azure.RemoteRendering.LoadModelParamsAbi paramsIn_converted = paramsIn.Convert();
@@ -8327,27 +10113,35 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Asynchronously load a texture. This call will return immediately with an object that will emit an event when the texture load has completed on the server. \note Async completes during RemoteManager.Update.
+        /// Initiates the loading of a model.
         /// </summary>
         /// <param name="paramsIn">
-        /// Params to identify the texture.
+        /// Parameters for loading the model.
         /// </param>
-        public Microsoft.Azure.RemoteRendering.LoadTextureAsync LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams paramsIn)
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the model load has finished.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/models">Models</seealso>
+        public Microsoft.Azure.RemoteRendering.LoadModelAsync LoadModelFromSASAsync(Microsoft.Azure.RemoteRendering.LoadModelFromSASParams paramsIn)
         {
-            Microsoft.Azure.RemoteRendering.LoadTextureFromSASParamsAbi paramsIn_converted = paramsIn.Convert();
+            Microsoft.Azure.RemoteRendering.LoadModelFromSASParamsAbi paramsIn_converted = paramsIn.Convert();
             IntPtr result_handle;
-            Microsoft.Azure.RemoteRendering.LoadTextureAsync result_object;
-            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_load_texture_from_sasasync(this.handle, paramsIn_converted, out result_handle));
-            result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.LoadTextureAsync(result_handle, transfer:true) : null;
+            Microsoft.Azure.RemoteRendering.LoadModelAsync result_object;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_load_model_from_sasasync(this.handle, paramsIn_converted, out result_handle));
+            result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.LoadModelAsync(result_handle, transfer:true) : null;
             return result_object;
         }
 
         /// <summary>
-        /// Asynchronously load a texture from blob store. This call will return immediately with an object that will emit an event when the texture load has completed on the server. \note Async completes during RemoteManager.Update.
+        /// Initiates the loading of a texture.
         /// </summary>
         /// <param name="paramsIn">
-        /// Params to identify the texture.
+        /// Parameters for loading the texture.
         /// </param>
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the texture load has finished.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
         public Microsoft.Azure.RemoteRendering.LoadTextureAsync LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams paramsIn)
         {
             Microsoft.Azure.RemoteRendering.LoadTextureParamsAbi paramsIn_converted = paramsIn.Convert();
@@ -8359,24 +10153,53 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Asynchronously perform a raycast query on the remote scene.  This call will return immediately with an object that will emit an event when the raycast has returned from the server. The raycast will be performed on the server against the state of the world on the frame that the raycast was issued on.  Results will be sorted by distance, with the closest intersection to the user being the first item in the array. \note Async completes during RemoteManager.Update.
+        /// Initiates the loading of a texture.
+        /// </summary>
+        /// <param name="paramsIn">
+        /// Parameters for loading the texture.
+        /// </param>
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the texture load has finished.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures</seealso>
+        public Microsoft.Azure.RemoteRendering.LoadTextureAsync LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams paramsIn)
+        {
+            Microsoft.Azure.RemoteRendering.LoadTextureFromSASParamsAbi paramsIn_converted = paramsIn.Convert();
+            IntPtr result_handle;
+            Microsoft.Azure.RemoteRendering.LoadTextureAsync result_object;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_load_texture_from_sasasync(this.handle, paramsIn_converted, out result_handle));
+            result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.LoadTextureAsync(result_handle, transfer:true) : null;
+            return result_object;
+        }
+
+        /// <summary>
+        /// Performs a raycast query on the remote scene.
         /// </summary>
         /// <param name="cast">
-        /// Outgoing RayCast.
+        /// Raycast description.
         /// </param>
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the raycast result has arrived.
+        /// The raycast will be performed on the server against the state of the world on the frame that the raycast was issued on.
+        /// Results will be sorted by distance, with the closest intersection to the user being the first item in the array.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/spatial-queries">Spatial queries</seealso>
         public Microsoft.Azure.RemoteRendering.RaycastQueryAsync RayCastQueryAsync(Microsoft.Azure.RemoteRendering.RayCast cast)
         {
-            Microsoft.Azure.RemoteRendering.RayCastAbi cast_converted = cast.Convert();
             IntPtr result_handle;
             Microsoft.Azure.RemoteRendering.RaycastQueryAsync result_object;
-            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_ray_cast_query_async(this.handle, cast_converted, out result_handle));
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_ray_cast_query_async(this.handle, cast, out result_handle));
             result_object = (result_handle != IntPtr.Zero) ? new Microsoft.Azure.RemoteRendering.RaycastQueryAsync(result_handle, transfer:true) : null;
             return result_object;
         }
 
         /// <summary>
-        /// Asynchronously perform a performance assessment query on the server. This call will return immediately with an object that will emit an event when the query has returned from the server.
+        /// Performs a performance assessment query on the server.
         /// </summary>
+        /// <remarks>
+        /// This call immediately returns an object that will emit an event when the query result has arrived.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/performance-queries">Server-side performance queries</seealso>
         public Microsoft.Azure.RemoteRendering.PerformanceAssessmentAsync QueryServerPerformanceAssessmentAsync()
         {
             IntPtr result_handle;
@@ -8387,8 +10210,9 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Create a new entity on the server. Until the entity is assigned a parent, the entity will be parented to the root of the scenegraph on the server.
+        /// Creates a new entity.
         /// </summary>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/entities">Entities</seealso>
         public Microsoft.Azure.RemoteRendering.Entity CreateEntity()
         {
             ulong result_handle;
@@ -8399,11 +10223,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Create a new material on the server. The new material can be set to mesh components.
+        /// Creates a new <see cref="Material"/>.
         /// </summary>
         /// <param name="type">
-        /// Type of created material.
+        /// Material type to create.
         /// </param>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/materials">Materials</seealso>
         public Microsoft.Azure.RemoteRendering.Material CreateMaterial(Microsoft.Azure.RemoteRendering.MaterialType type)
         {
             ulong result_handle;
@@ -8414,14 +10239,18 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Create a new component locally and on the server. This call can fail if the entity already has a component of componentType on it or the client is currently disconnected from the server.
+        /// Creates a new component.
         /// </summary>
         /// <param name="componentType">
         /// Component type to create.
         /// </param>
         /// <param name="owner">
-        /// Owner of the component.
+        /// Owner entity for the component.
         /// </param>
+        /// <remarks>
+        /// A <see cref="Result.AlreadyExists"/> error occurs, if the entity already has a component of the requested type.
+        /// </remarks>
+        /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/components">Components</seealso>
         public Microsoft.Azure.RemoteRendering.ComponentBase CreateComponent(Microsoft.Azure.RemoteRendering.ObjectType componentType, Microsoft.Azure.RemoteRendering.Entity owner)
         {
             ulong result_handle;
@@ -8432,8 +10261,21 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Update pushes all updates from the client to the server (entity state changes, raycast requests, etc.) and will dispatch any messages the client has received from the server (raycast responses, load model responses, etc.). Update must be called intermittently, for example, in the update loop of a game engine. Calls to Update() invoke the OnUpdate event.
+        /// Pushes all client updates to the server and dispatches all messages received from the server.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Client updates such as entity and component state changes, raycast requests, and other async operations are queued on the client side
+        /// and only sent to the server during a call to Update().
+        /// </para>
+        /// <para>
+        /// Similarly, results from the server that arrived in the mean time, for example for raycasts and model loads, have been queued and will be dispatched to the client code only during Update().
+        /// </para>
+        /// <para>
+        /// Consequently, Update() must be called once every frame.
+        /// Calls to Update() invoke the <see cref="RemoteManager.Updated"/> event.
+        /// </para>
+        /// </remarks>
         public void Update()
         {
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_remote_manager_update(this.handle));
@@ -8442,8 +10284,12 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Base class for all resources (meshes, textures,...).
+    /// Base class for all resources.
     /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Mesh"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Texture"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.Material"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/lifetime">Object and resource lifetime</seealso>
     public partial class ResourceBase
     {
         internal ulong handle;
@@ -8465,8 +10311,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this resource is valid. A resource is invalid if it has been destroyed or if the connection has been lost.
+        /// Whether this resource is still valid.
         /// </summary>
+        /// <remarks>
+        /// A resource is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -8478,7 +10328,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The type of the resource. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this resource.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -8493,7 +10343,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async session query functions.
+    /// Result type for async session query functions.
     /// </summary>
     public partial class SessionAsync : BaseSessionAsync, ICookie
     {
@@ -8533,7 +10383,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async session property array query functions.
+    /// Result type for async session property array query functions.
     /// </summary>
     public partial class SessionPropertiesArrayAsync : BaseSessionAsync, ICookie
     {
@@ -8542,8 +10392,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.SessionPropertiesArrayAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.RenderingSessionProperties[] Result
         {
             get
@@ -8587,7 +10440,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async session properties query functions.
+    /// Result type for async session properties query functions.
     /// </summary>
     public partial class SessionPropertiesAsync : BaseSessionAsync, ICookie
     {
@@ -8596,8 +10449,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.SessionPropertiesAsync>.Add(this);
         }
         /// <summary>
-        /// Get the result of the query. This will throw an error if the query is in progress or in an error state.
+        /// The result of the query.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.RenderingSessionProperties Result
         {
             get
@@ -8640,8 +10496,85 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Class that holds the settings for the single sided geometry rendering.
+    /// Global settings for objects rendered using the <see cref="HierarchicalStates.Shell">hierarchical override shell effect</see>.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/shell-rendering">Shell rendering</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.ShellRenderingSettings"/>
+    public partial class ShellRenderingSettings
+    {
+        internal ulong handle;
+        internal ShellRenderingSettings(ulong ahandle, bool transfer)
+        {
+            this.handle = ahandle;
+        }
+        /// <summary>
+        /// Whether this object is still valid.
+        /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
+        public bool Valid
+        {
+            get
+            {
+                bool result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_shell_rendering_settings_get_valid(this.handle, out result));
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// The opacity of shell-rendered geometry. Ranges from 0 (invisible) to 1 (fully opaque).
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if a value outside the [0;1] range is passed in.
+        /// </para>
+        /// </remarks>
+        public float Opacity
+        {
+            get
+            {
+                float result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_shell_rendering_settings_get_opacity(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_shell_rendering_settings_set_opacity(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Amount of color desaturation to apply to the shell-rendered objects. Ranges from 0 (original color) to 1 (greyscale).
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if a value outside the [0;1] range is passed in.
+        /// </para>
+        /// </remarks>
+        public float Desaturation
+        {
+            get
+            {
+                float result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_shell_rendering_settings_get_desaturation(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_shell_rendering_settings_set_desaturation(this.handle, value));
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Settings for single-sided geometry rendering.
+    /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/single-sided-rendering">Single-sided rendering</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.SingleSidedSettings"/>
     public partial class SingleSidedSettings
     {
         internal ulong handle;
@@ -8650,8 +10583,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -8663,8 +10600,14 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Switches the single sided rendering mode. This may only be called when this object is valid.
+        /// What mode to use for rendering single-sided geometry.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if an invalid mode value is passed in.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.SingleSidedMode"/>
         public Microsoft.Azure.RemoteRendering.SingleSidedMode Mode
         {
             get
@@ -8682,8 +10625,10 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Controls the global reflection texture used during server-side rendering.
+    /// Settings for the global sky reflections.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/sky">Sky reflections</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.SkyReflectionSettings"/>
     public partial class SkyReflectionSettings
     {
         internal ulong handle;
@@ -8692,8 +10637,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -8705,8 +10654,17 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// The sky texture used for reflection. This must be either a cubemap or a 2d texture. This may only be called when this object is valid.
+        /// The sky <see cref="Texture"/> used for reflections.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This can be either a cubemap or a 2D texture in spherical coordinates.
+        /// </para>
+        /// <para>
+        /// * A <see cref="Result.InvalidParam"/> error occurs if the provided texture is invalid.
+        /// * A <see cref="Result.InvalidType"/> error occurs if the provided texture is not a 2D or cube texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture SkyReflectionTexture
         {
             get
@@ -8726,16 +10684,32 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Component that represents a dynamic spot light. In contrast to a point light, the light is not emitted in all directions but instead constrained to the shape of a cone. The orientation of the cone is defined by the owner object's negative z-axis. Typical use cases for spotlights are flashlights.
+    /// A light source that emits light within a directed cone.
     /// </summary>
+    /// <remarks>
+    /// In contrast to the <see cref="PointLightComponent"/>, this component only emits light within a cone shape.
+    /// The main direction of the cone is along the owner's negative z-axis.
+    /// Typical use cases for spotlights are flashlights.
+    /// However, they can also be used to emulate the shadow of point lights that are encased in a hull.
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.LightComponentBase"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.DirectionalLightComponent"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/lights">Scene lighting</seealso>
     public partial class SpotLightComponent : LightComponentBase
     {
         internal SpotLightComponent(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// If >0 the light emitting shape of the light source is a sphere of given radius as opposed to a point. This shape for instance affects the appearance of specular highlights. This may only be called when this object is valid.
+        /// The radius of the light emitting shape.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent.Radius"/>
         public float Radius
         {
             get
@@ -8751,42 +10725,18 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Defines the characteristic of the falloff between the inner and the outer cone angle. A higher value results in a sharper transition between inner and outer cone angle. The default of 1.0 defines a linear falloff. This may only be called when this object is valid.
+        /// The inner and outer angle (in degree) of the spot light cone.
         /// </summary>
-        public float FalloffExponent
-        {
-            get
-            {
-                float result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_get_falloff_exponent(this.handle, out result));
-                return result;
-            }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_set_falloff_exponent(this.handle, value));
-            }
-        }
-
-        /// <summary>
-        /// Defines a custom interval of min/max distances over which the light's attenuated intensity is scaled linearly down to 0. This feature can be used to enforce a smaller range of influence of a specific light. If not defined (default), these values are implicitly derived from the light's intensity. This may only be called when this object is valid.
-        /// </summary>
-        public Microsoft.Azure.RemoteRendering.Float2 AttenuationCutoff
-        {
-            get
-            {
-                Microsoft.Azure.RemoteRendering.Float2 result;
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_get_attenuation_cutoff(this.handle, out result));
-                return result;
-            }
-            set
-            {
-                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_set_attenuation_cutoff(this.handle, value));
-            }
-        }
-
-        /// <summary>
-        /// This interval defines the inner and outer angle of the spot light cone both measured in degree. Everything within the inner angle is illuminated by the full brightness of the spot light source and a falloff is applied towards the outer angle that generates a penumbra-like effect. This may only be called when this object is valid.
-        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// * Everything within the inner angle is illuminated with full brightness.
+        /// * Everything outside the outer angle won't be illuminated at all.
+        /// * Between the inner and outer angle a falloff that creates a penumbra-like effect is applied.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if x or y is outside the range [0; 89] or if x is >= y.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Float2 SpotAngleDeg
         {
             get
@@ -8802,8 +10752,65 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// In case a valid 2d texture is passed here, the texture is projected. The texture's color is modulated with the light's color. This may only be called when this object is valid.
+        /// The strength of the light falloff between the inner and outer cone angle.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The larger the value, the sharper the transition.
+        /// The default value of 1.0 results in a linear transition.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is outside the range [0.01; 256].
+        /// </para>
+        /// </remarks>
+        public float FalloffExponent
+        {
+            get
+            {
+                float result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_get_falloff_exponent(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_set_falloff_exponent(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Custom interval of min/max distances over which the light's attenuated intensity is scaled down to zero.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// A <see cref="Result.InvalidParam"/> error occurs if the value is negative, NaN or infinite.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Microsoft.Azure.RemoteRendering.PointLightComponent.AttenuationCutoff"/>
+        public Microsoft.Azure.RemoteRendering.Float2 AttenuationCutoff
+        {
+            get
+            {
+                Microsoft.Azure.RemoteRendering.Float2 result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_get_attenuation_cutoff(this.handle, out result));
+                return result;
+            }
+            set
+            {
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_spot_light_component_set_attenuation_cutoff(this.handle, value));
+            }
+        }
+
+        /// <summary>
+        /// Optional 2D <see cref="Texture"/> to be projected onto geometry.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The color from the texture is used to modulate the light's color.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.InvalidType"/> error occurs if a texture is set that is not a 2D texture.
+        /// </para>
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Texture Projected2dTexture
         {
             get
@@ -8823,8 +10830,15 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// EXPERIMENTAL: Class that allows changing the stage space origin. To make sure that local and remote content align correctly, any additional transform that is applied on top of the camera transform needs to be set here as well to inform the server. WARNING: This feature is experimental and changing the origin will break local/remote content alignment for a brief moment. Thus, it is currently only intended to be used for world locking purposes like anchors that exhibit only very small changes over time.
+    /// Options for changing the stage-space origin.
     /// </summary>
+    /// <remarks>
+    /// To make sure that local and remote content align correctly, any additional transform that is applied on top of the camera transform needs to be set here as well to inform the server.
+    /// WARNING: This feature is experimental and changing the origin will break local/remote content alignment for a brief moment.
+    /// Thus, it is currently only intended to be used for world locking purposes like anchors that exhibit only very small changes over time.
+    /// </remarks>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/stage-space">Stage space</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.StageSpaceSettings"/>
     public partial class StageSpaceSettings
     {
         internal ulong handle;
@@ -8833,8 +10847,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -8846,8 +10864,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Stage space origin position. This should be set at the end of each frame to the world space position of the camera's parent. This may only be called when this object is valid.
+        /// Stage space origin position.
         /// </summary>
+        /// <remarks>
+        /// This should be set at the end of each frame to the world-space position of the camera's parent.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Double3 Position
         {
             get
@@ -8863,8 +10884,11 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Stage space origin rotation. This should be set at the end of each frame to the world space rotation of the camera's parent. This may only be called when this object is valid.
+        /// Stage space origin rotation.
         /// </summary>
+        /// <remarks>
+        /// This should be set at the end of each frame to the world-space rotation of the camera's parent.
+        /// </remarks>
         public Microsoft.Azure.RemoteRendering.Quaternion Rotation
         {
             get
@@ -8882,7 +10906,7 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Return value of async asset conversion query functions.
+    /// Result type for async asset conversion query functions.
     /// </summary>
     public partial class StartAssetConversionAsync : BaseSessionAsync, ICookie
     {
@@ -8891,8 +10915,11 @@ namespace Microsoft.Azure.RemoteRendering
             Microsoft.Azure.RemoteRendering.CookieTracker<Microsoft.Azure.RemoteRendering.StartAssetConversionAsync>.Add(this);
         }
         /// <summary>
-        /// Get the uuid for the ingestion operation. This will throw an error if the query is in progress or in an error state.
+        /// Get the uuid for the ingestion operation.
         /// </summary>
+        /// <remarks>
+        /// It is an error to call this while the operation is still in progress or in an error state.
+        /// </remarks>
         public string Result
         {
             get
@@ -8935,15 +10962,27 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Textures are immutable shared resources.  They describe an image that can be applied to a surface via a Material. Textures cannot be modified at runtime.  A texture can be applied to a surface by setting it on the Material associated with a Mesh.
+    /// Textures represent images that can be applied to geometry.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Textures are immutable, shared resources, loaded through the <see cref="RemoteManager"/>.
+    /// Attempting to load the same texture twice, will return the same object.
+    /// </para>
+    /// <para>
+    /// To apply a texture to geometry, set it on a <see cref="Material"/> and assign the material to a <see cref="Mesh"/>. Textures can also be used in the <see cref="SkyReflectionSettings"/>.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureAsync(Microsoft.Azure.RemoteRendering.LoadTextureParams)"/>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.LoadTextureFromSASAsync(Microsoft.Azure.RemoteRendering.LoadTextureFromSASParams)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/textures">Textures (Remote Rendering documentation)</seealso>
     public partial class Texture : ResourceBase
     {
         internal Texture(ulong ahandle, bool transfer) : base(ahandle, transfer)
         {
         }
         /// <summary>
-        /// Returns ObjectType.Texture. This may only be called when this object is valid.
+        /// The <see cref="ObjectType">exact type</see> of this resource.
         /// </summary>
         public Microsoft.Azure.RemoteRendering.ObjectType Type
         {
@@ -8956,8 +10995,12 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Indicates whether this texture is still valid.
+        /// Whether this resource is still valid.
         /// </summary>
+        /// <remarks>
+        /// A resource is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -8969,7 +11012,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Texture name. This may only be called when this object is valid.
+        /// Returns the name of the texture.
         /// </summary>
         public string Name
         {
@@ -8986,6 +11029,7 @@ namespace Microsoft.Azure.RemoteRendering
     /// <summary>
     /// Informs the application that the service requires an updated access token or authentication token.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/how-tos/frontend-apis">Use the Azure Frontend APIs for authentication</seealso>
     public partial class TokenRequiredEventArgs : EventArgs
     {
         internal IntPtr handle;
@@ -9037,8 +11081,10 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
-    /// Class that holds the settings for global z-fighting mitigation.
+    /// Settings for z-fighting mitigation.
     /// </summary>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/overview/features/z-fighting-mitigation">Z-fighting mitigation</seealso>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.RemoteManager.ZFightingMitigationSettings"/>
     public partial class ZFightingMitigationSettings
     {
         internal ulong handle;
@@ -9047,8 +11093,12 @@ namespace Microsoft.Azure.RemoteRendering
             this.handle = ahandle;
         }
         /// <summary>
-        /// Indicates whether this object is valid
+        /// Whether this object is still valid.
         /// </summary>
+        /// <remarks>
+        /// An object is invalid if it has been destroyed or if the connection has been lost.
+        /// It is an error to call any other function on an invalid object.
+        /// </remarks>
         public bool Valid
         {
             get
@@ -9060,7 +11110,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Enables or disables the mitigation. Refer to the general documentation for a description of how the mitigation works. This may only be called when this object is valid.
+        /// Whether z-fighting mitigation is used.
         /// </summary>
         public bool Enabled
         {
@@ -9077,7 +11127,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Activates checkerboard highlighting of potential z-fighting. For debugging purposes. This may only be called when this object is valid.
+        /// Activates checkerboard highlighting of potential z-fighting. For debugging purposes.
         /// </summary>
         public bool Highlighting
         {

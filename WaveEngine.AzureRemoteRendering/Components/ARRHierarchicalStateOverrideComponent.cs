@@ -21,9 +21,9 @@ namespace WaveEngine.AzureRemoteRendering.Components
     {
         private static readonly HierarchicalEnableState DefaultEnableState = HierarchicalEnableState.InheritFromParent;
 
-        private static readonly HierarchicalStates DefaulHierarchicalState = HierarchicalStates.None;
-
         private static readonly Color DefaultTintColor = new Color(255, 255, 255, 0);
+
+        private static readonly byte DefaultCutPlaneFilterMask = byte.MaxValue;
 
         private HierarchicalEnableState? disableCollisionStateOverride;
 
@@ -41,17 +41,6 @@ namespace WaveEngine.AzureRemoteRendering.Components
             set => this.SetProperty(value, ref this.disableCollisionStateOverride, DefaultEnableState, (x) => this.RemoteComponent.DisableCollisionState = x);
         }
 
-        private HierarchicalStates? flagsOverride;
-
-        /// <summary>
-        /// Gets or sets rendering flags set on this component.
-        /// </summary>
-        public HierarchicalStates Flags
-        {
-            get => this.GetProperty(this.flagsOverride, DefaulHierarchicalState, () => this.RemoteComponent.Flags);
-            set => this.SetProperty(value, ref this.flagsOverride, DefaulHierarchicalState, (x) => this.RemoteComponent.Flags = x);
-        }
-
         private HierarchicalEnableState? hiddenStateOverride;
 
         /// <summary>
@@ -61,17 +50,6 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             get => this.GetProperty(this.hiddenStateOverride, DefaultEnableState, () => this.RemoteComponent.HiddenState);
             set => this.SetProperty(value, ref this.hiddenStateOverride, DefaultEnableState, (x) => this.RemoteComponent.HiddenState = x);
-        }
-
-        private HierarchicalStates? overrideFlagsOverride;
-
-        /// <summary>
-        /// Gets or sets the render property flags to override on this component.
-        /// </summary>
-        public HierarchicalStates OverrideFlags
-        {
-            get => this.GetProperty(this.overrideFlagsOverride, DefaulHierarchicalState, () => this.RemoteComponent.OverrideFlags);
-            set => this.SetProperty(value, ref this.overrideFlagsOverride, DefaulHierarchicalState, (x) => this.RemoteComponent.OverrideFlags = x);
         }
 
         private HierarchicalEnableState? seeThroughStateOverride;
@@ -111,6 +89,28 @@ namespace WaveEngine.AzureRemoteRendering.Components
             set => this.SetProperty(value, ref this.tintColorOverride, DefaultTintColor, (x) => this.RemoteComponent.TintColor = x.ToRemoteColor4Ub());
         }
 
+        private byte? cutPlaneFilterMaskOverride;
+
+        /// <summary>
+        /// Gets or sets a value indicating the cut plane filter mask of this component.
+        /// </summary>
+        public byte CutPlaneFilterMask
+        {
+            get => this.GetProperty(this.cutPlaneFilterMaskOverride, DefaultCutPlaneFilterMask, () => this.RemoteComponent.CutPlaneFilterMask);
+            set => this.SetProperty(value, ref this.cutPlaneFilterMaskOverride, DefaultCutPlaneFilterMask, (x) => this.RemoteComponent.CutPlaneFilterMask = x);
+        }
+
+        private HierarchicalEnableState? shellStateOverride;
+
+        /// <summary>
+        /// Gets or sets a value indicating how the Shell property affects on this hierarchy level.
+        /// </summary>
+        public HierarchicalEnableState ShellState
+        {
+            get => this.GetProperty(this.shellStateOverride, DefaultEnableState, () => this.RemoteComponent.ShellState);
+            set => this.SetProperty(value, ref this.shellStateOverride, DefaultEnableState, (x) => this.RemoteComponent.ShellState = x);
+        }
+
         private HierarchicalEnableState? useTintColorStateOverride;
 
         /// <summary>
@@ -120,6 +120,17 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             get => this.GetProperty(this.useTintColorStateOverride, DefaultEnableState, () => this.RemoteComponent.UseTintColorState);
             set => this.SetProperty(value, ref this.useTintColorStateOverride, DefaultEnableState, (x) => this.RemoteComponent.UseTintColorState = x);
+        }
+
+        private HierarchicalEnableState? useCutPlaneFilterMaskStateOverride;
+
+        /// <summary>
+        /// Gets or sets a value indicating how the <see cref="CutPlaneFilterMask"/> property affects on this hierarchy level.
+        /// </summary>
+        public HierarchicalEnableState UseCutPlaneFilterMaskState
+        {
+            get => this.GetProperty(this.useCutPlaneFilterMaskStateOverride, DefaultEnableState, () => this.RemoteComponent.UseCutPlaneFilterMaskState);
+            set => this.SetProperty(value, ref this.useCutPlaneFilterMaskStateOverride, DefaultEnableState, (x) => this.RemoteComponent.UseCutPlaneFilterMaskState = x);
         }
 
         /// <summary>
@@ -135,13 +146,14 @@ namespace WaveEngine.AzureRemoteRendering.Components
         protected override void OnRemoteComponentCreated()
         {
             this.OverrideRemoteProperty(this.disableCollisionStateOverride, (value) => this.DisableCollisionState = value);
-            this.OverrideRemoteProperty(this.flagsOverride, (value) => this.Flags = value);
             this.OverrideRemoteProperty(this.hiddenStateOverride, (value) => this.HiddenState = value);
-            this.OverrideRemoteProperty(this.overrideFlagsOverride, (value) => this.OverrideFlags = value);
             this.OverrideRemoteProperty(this.seeThroughStateOverride, (value) => this.SeeThroughState = value);
             this.OverrideRemoteProperty(this.selectedStateOverride, (value) => this.SelectedState = value);
             this.OverrideRemoteProperty(this.tintColorOverride, (value) => this.TintColor = value);
+            this.OverrideRemoteProperty(this.cutPlaneFilterMaskOverride, (value) => this.CutPlaneFilterMask = value);
+            this.OverrideRemoteProperty(this.shellStateOverride, (value) => this.ShellState = value);
             this.OverrideRemoteProperty(this.useTintColorStateOverride, (value) => this.UseTintColorState = value);
+            this.OverrideRemoteProperty(this.useCutPlaneFilterMaskStateOverride, (value) => this.UseCutPlaneFilterMaskState = value);
 
             base.OnRemoteComponentCreated();
         }

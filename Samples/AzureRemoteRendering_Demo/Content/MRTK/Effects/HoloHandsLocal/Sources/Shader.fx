@@ -2,6 +2,7 @@
 
 [directives:Kind BASE PULSE]
 [directives:Multiview MULTIVIEW_OFF MULTIVIEW]
+[directives:ColorSpace GAMMA_COLORSPACE_OFF GAMMA_COLORSPACE]
 
 	cbuffer Base : register(b0)
 	{
@@ -14,9 +15,9 @@
 	{
 		float3 EdgeColor		: packoffset(c0.x); [Default(1,1,1)]
 		float EdgeWidth			: packoffset(c0.w); [Default(0.01)]
-		float3 FillColor0		: packoffset(c1.x); [Default(0.613, 0.507, 0.953)]
+		float3 FillColor0		: packoffset(c1.x); [Default(0.340732095, 0.22439724, 0.899506656)]
 		float EdgeSmooth		: packoffset(c1.w); [Default(0.08)]
-		float3 FillColor1		: packoffset(c2.x); [Default(0.234, 0.527, 0.988)]
+		float3 FillColor1		: packoffset(c2.x); [Default(0.040951978, 0.24433369, 0.973789928)]
 		float Displacement		: packoffset(c2.w); [Default(0.2)]
 		float t                 : packoffset(c3.x); [Default(0)]
 		float distorsionH       : packoffset(c3.y); [Default(2)]
@@ -29,8 +30,8 @@
 
 	cbuffer PerCamera : register(b2)
 	{
-		float4x4  MultiviewViewProj[2]		: packoffset(c0.x);  [StereoCameraViewProjection]
-		int       EyeCount                  : packoffset(c10.x); [StereoEyeCount]
+		float4x4  MultiviewViewProj[6]		: packoffset(c0.x);  [MultiviewViewProjection]
+		int       EyeCount                  : packoffset(c10.x); [MultiviewCount]
 	};
 
 [End_ResourceLayout]
@@ -82,6 +83,11 @@
 	float RandomFloat(inout uint state)
 	{
 		return XorShift(state) * (1.f / 4294967296.f);
+	}
+	
+	float3 GammaToLinear(const float3 color)
+	{
+		return pow(color.rgb, 2.2);
 	}
 	
 #if PULSE
@@ -195,6 +201,10 @@
 		alpha = saturate(alpha - input.extra);
 #endif
 		color *= alpha;
+		
+#if !GAMMA_COLORSPACE
+		color = GammaToLinear(color);
+#endif
 		
 		return float4(color, alpha);
 	}

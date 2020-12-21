@@ -21,7 +21,10 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         public const ObjectId ObjectId_Invalid = 0xffffffff;
 
-        public const int ApiPort = 50051;
+
+        // Workaround for Unity regression that is going to be fixed in 2019.2 release
+        public const float LargeFloat = 10e16f; //arbitrary large float
+        public const float LowFloat = -LargeFloat;
 
         public static bool IsValid(float v)
         {
@@ -357,6 +360,8 @@ namespace Microsoft.Azure.RemoteRendering
             this.MaxLease.hour = 0;
             this.MaxLease.minute = 0;
             this.MaxLease.second = 0;
+            this.ArrInspectorPort = 0;
+            this.HandshakePort = 0;
         }
 
     }
