@@ -717,6 +717,7 @@ Items:
               - !WaveEngine.AzureRemoteRendering.Components.ARRCutPlaneComponent,WaveEngine.AzureRemoteRendering
                 Id: 5937c6d2-9d0e-4ee5-af39-7ba9301d07ce
                 BindMode: FromProxyToRemote
+                CutPlaneFilterMask: 255
                 FadeColor:
                   A: 255
                   B: 0

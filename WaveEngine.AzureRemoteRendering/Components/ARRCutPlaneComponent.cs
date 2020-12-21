@@ -18,6 +18,8 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
         private static readonly float DefaultFadeLength = 0.3f;
 
+        private static readonly byte DefaultCutPlaneFilterMask = byte.MaxValue;
+
         private Color? fadeColorOverride;
 
         /// <summary>
@@ -41,6 +43,17 @@ namespace WaveEngine.AzureRemoteRendering.Components
             set => this.SetProperty(value, ref this.fadeLengthOverride, DefaultFadeLength, (x) => this.RemoteComponent.FadeLength = x);
         }
 
+        private byte? cutPlaneFilterMaskOverride;
+
+        /// <summary>
+        /// Gets or sets the bit mask that can be used to perform per-object cut plane filtering.
+        /// </summary>
+        public byte CutPlaneFilterMask
+        {
+            get => this.GetProperty(this.cutPlaneFilterMaskOverride, DefaultCutPlaneFilterMask, () => this.RemoteComponent.CutPlaneFilterMask);
+            set => this.SetProperty(value, ref this.cutPlaneFilterMaskOverride, DefaultCutPlaneFilterMask, (x) => this.RemoteComponent.CutPlaneFilterMask = x);
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ARRCutPlaneComponent"/> class.
         /// </summary>
@@ -55,6 +68,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             this.OverrideRemoteProperty(this.fadeColorOverride, (value) => this.FadeColor = value);
             this.OverrideRemoteProperty(this.fadeLengthOverride, (value) => this.FadeLength = value);
+            this.OverrideRemoteProperty(this.cutPlaneFilterMaskOverride, (value) => this.CutPlaneFilterMask = value);
 
             base.OnRemoteComponentCreated();
         }
