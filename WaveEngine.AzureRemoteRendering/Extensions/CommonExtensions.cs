@@ -22,8 +22,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToRemote(this Vector2 input, out Float2 output)
         {
-            output.x = input.X;
-            output.y = input.Y;
+            output = new Float2(input.X, input.Y);
         }
 
         /// <summary>
@@ -44,8 +43,8 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Float2 input, out Vector2 output)
         {
-            output.X = input.x;
-            output.Y = input.y;
+            output.X = input.X;
+            output.Y = input.Y;
         }
 
         /// <summary>
@@ -66,9 +65,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToRemote(this Vector3 input, out Float3 output)
         {
-            output.x = input.X;
-            output.y = input.Y;
-            output.z = input.Z;
+            output = new Float3(input.X, input.Y, input.Z);
         }
 
         /// <summary>
@@ -89,9 +86,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToRemote(this Vector3 input, out Double3 output)
         {
-            output.x = input.X;
-            output.y = input.Y;
-            output.z = input.Z;
+            output = new Double3(input.X, input.Y, input.Z);
         }
 
         /// <summary>
@@ -112,9 +107,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Float3 input, out Vector3 output)
         {
-            output.X = input.x;
-            output.Y = input.y;
-            output.Z = input.z;
+            output = new Vector3(input.X, input.Y, input.Z);
         }
 
         /// <summary>
@@ -135,9 +128,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Double3 input, out Vector3 output)
         {
-            output.X = (float)input.x;
-            output.Y = (float)input.y;
-            output.Z = (float)input.z;
+            output = new Vector3((float)input.X, (float)input.Y, (float)input.Z);
         }
 
         /// <summary>
@@ -158,10 +149,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToRemote(this Vector4 input, out Float4 output)
         {
-            output.x = input.X;
-            output.y = input.Y;
-            output.z = input.Z;
-            output.w = input.W;
+            output = new Float4(input.X, input.Y, input.Z, input.W);
         }
 
         /// <summary>
@@ -182,10 +170,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Float4 input, out Vector4 output)
         {
-            output.X = input.x;
-            output.Y = input.y;
-            output.Z = input.z;
-            output.W = input.w;
+            output = new Vector4(input.X, input.Y, input.Z, input.W);
         }
 
         /// <summary>
@@ -206,25 +191,12 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted matrix.</param>
         public static void ToRemote(this WaveMatrix4x4 input, out ARRMatrix4x4 output)
         {
-            output.column0.x = input.M11;
-            output.column0.y = input.M12;
-            output.column0.z = input.M13;
-            output.column0.w = input.M14;
+            var col0 = new Float4(input.M11, input.M12, input.M13, input.M14);
+            var col1 = new Float4(input.M21, input.M22, input.M23, input.M24);
+            var col2 = new Float4(input.M31, input.M32, input.M33, input.M34);
+            var col3 = new Float4(input.M41, input.M42, input.M43, input.M44);
 
-            output.column1.x = input.M21;
-            output.column1.y = input.M22;
-            output.column1.z = input.M23;
-            output.column1.w = input.M24;
-
-            output.column2.x = input.M31;
-            output.column2.y = input.M32;
-            output.column2.z = input.M33;
-            output.column2.w = input.M34;
-
-            output.column3.x = input.M41;
-            output.column3.y = input.M42;
-            output.column3.z = input.M43;
-            output.column3.w = input.M44;
+            output = new ARRMatrix4x4(col0, col1, col2, col3);
         }
 
         /// <summary>
@@ -245,25 +217,26 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted matrix.</param>
         public static void ToWave(this ARRMatrix4x4 input, out WaveMatrix4x4 output)
         {
-            output.M11 = input.column0.x;
-            output.M12 = input.column0.y;
-            output.M13 = input.column0.z;
-            output.M14 = input.column0.w;
+            output = new WaveMatrix4x4();
+            output.M11 = input.Column0.X;
+            output.M12 = input.Column0.Y;
+            output.M13 = input.Column0.Z;
+            output.M14 = input.Column0.W;
 
-            output.M21 = input.column1.x;
-            output.M22 = input.column1.y;
-            output.M23 = input.column1.z;
-            output.M24 = input.column1.w;
+            output.M21 = input.Column1.X;
+            output.M22 = input.Column1.Y;
+            output.M23 = input.Column1.Z;
+            output.M24 = input.Column1.W;
 
-            output.M31 = input.column2.x;
-            output.M32 = input.column2.y;
-            output.M33 = input.column2.z;
-            output.M34 = input.column2.w;
+            output.M31 = input.Column2.X;
+            output.M32 = input.Column2.Y;
+            output.M33 = input.Column2.Z;
+            output.M34 = input.Column2.W;
 
-            output.M41 = input.column3.x;
-            output.M42 = input.column3.y;
-            output.M43 = input.column3.z;
-            output.M44 = input.column3.w;
+            output.M41 = input.Column3.X;
+            output.M42 = input.Column3.Y;
+            output.M43 = input.Column3.Z;
+            output.M44 = input.Column3.W;
         }
 
         /// <summary>
@@ -284,10 +257,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted quaternion.</param>
         public static void ToRemote(this WaveQuaternion input, out ARRQuaternion output)
         {
-            output.x = input.X;
-            output.y = input.Y;
-            output.z = input.Z;
-            output.w = input.W;
+            output = new ARRQuaternion(input.X, input.Y, input.Z, input.W);
         }
 
         /// <summary>
@@ -308,10 +278,10 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted quaternion.</param>
         public static void ToWave(this ARRQuaternion input, out WaveQuaternion output)
         {
-            output.X = input.x;
-            output.Y = input.y;
-            output.Z = input.z;
-            output.W = input.w;
+            output.X = input.X;
+            output.Y = input.Y;
+            output.Z = input.Z;
+            output.W = input.W;
         }
 
         /// <summary>
@@ -326,44 +296,43 @@ namespace WaveEngine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Converts a <see cref="BoundingBox"/> into a remote <see cref="AABB3D"/>.
+        /// Converts a <see cref="BoundingBox"/> into a remote <see cref="Bounds"/>.
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <param name="output">The converted bounding box.</param>
-        public static void ToRemote(this BoundingBox input, out AABB3D output)
+        public static void ToRemote(this BoundingBox input, out Bounds output)
         {
-            input.Min.ToRemote(out output.min);
-            input.Max.ToRemote(out output.max);
+            output = new Bounds(input.Min.ToRemoteDouble(), input.Max.ToRemoteDouble());
         }
 
         /// <summary>
-        /// Converts a <see cref="BoundingBox"/> into a remote <see cref="AABB3D"/>.
+        /// Converts a <see cref="BoundingBox"/> into a remote <see cref="Bounds"/>.
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <returns>The converted bounding box.</returns>
-        public static AABB3D ToRemote(this BoundingBox input)
+        public static Bounds ToRemote(this BoundingBox input)
         {
-            input.ToRemote(out AABB3D output);
+            input.ToRemote(out Bounds output);
             return output;
         }
 
         /// <summary>
-        /// Converts a remote <see cref="AABB3D"/> into a <see cref="BoundingBox"/>.
+        /// Converts a remote <see cref="Bounds"/> into a <see cref="BoundingBox"/>.
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <param name="output">The converted bounding box.</param>
-        public static void ToWave(this AABB3D input, out BoundingBox output)
+        public static void ToWave(this Bounds input, out BoundingBox output)
         {
-            input.min.ToWave(out output.Min);
-            input.max.ToWave(out output.Max);
+            input.Min.ToWave(out output.Min);
+            input.Max.ToWave(out output.Max);
         }
 
         /// <summary>
-        /// Converts a remote <see cref="AABB3D"/> into a <see cref="BoundingBox"/>.
+        /// Converts a remote <see cref="Bounds"/> into a <see cref="BoundingBox"/>.
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <returns>The converted bounding box.</returns>
-        public static BoundingBox ToWave(this AABB3D input)
+        public static BoundingBox ToWave(this Bounds input)
         {
             input.ToWave(out BoundingBox output);
             return output;
@@ -376,10 +345,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted color.</param>
         public static void ToRemote(this Color input, out Color4 output)
         {
-            output.r = input.R / 255f;
-            output.g = input.G / 255f;
-            output.b = input.B / 255f;
-            output.a = input.A / 255f;
+            output = new Color4(input.R / 255f, input.G / 255f, input.B / 255f, input.A / 255f);
         }
 
         /// <summary>
@@ -400,10 +366,10 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted color.</param>
         public static void ToWave(this Color4 input, out Color output)
         {
-            output.R = (byte)(input.r * 255);
-            output.G = (byte)(input.g * 255);
-            output.B = (byte)(input.b * 255);
-            output.A = (byte)(input.a * 255);
+            output.R = (byte)(input.R * 255);
+            output.G = (byte)(input.G * 255);
+            output.B = (byte)(input.B * 255);
+            output.A = (byte)(input.A * 255);
         }
 
         /// <summary>
@@ -424,11 +390,11 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted color.</param>
         public static void ToRemote(this Color input, out Color4Ub output)
         {
-            output.bytes = 0;
-            output.channels.r = input.R;
-            output.channels.g = input.G;
-            output.channels.b = input.B;
-            output.channels.a = input.A;
+            output.Bytes = 0;
+            output.Channels.R = input.R;
+            output.Channels.G = input.G;
+            output.Channels.B = input.B;
+            output.Channels.A = input.A;
         }
 
         /// <summary>
@@ -449,10 +415,10 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted color.</param>
         public static void ToWave(this Color4Ub input, out Color output)
         {
-            output.R = input.channels.r;
-            output.G = input.channels.g;
-            output.B = input.channels.b;
-            output.A = input.channels.a;
+            output.R = input.Channels.R;
+            output.G = input.Channels.G;
+            output.B = input.Channels.B;
+            output.A = input.Channels.A;
         }
 
         /// <summary>
@@ -471,27 +437,29 @@ namespace WaveEngine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The ray step to be converted.</param>
         /// <param name="output">The converted ray cast.</param>
+        /// <param name="maxDistance">The ray max distance.</param>
         /// <param name="hitCollection">The hit collection mode to set on the converted ray cast.</param>
         /// <param name="maxHits">The maximum collected hits to set on the converted ray cast.</param>
         /// <param name="collisionMask">The collision mask to set on the converted ray cast.</param>
-        public static void ToRemote(this RayStep input, out RayCast output, HitCollectionPolicy hitCollection = HitCollectionPolicy.AllHits, uint maxHits = uint.MaxValue, uint collisionMask = 0xFFFFFFFF)
+        public static void ToRemote(this RayStep input, out RayCast output, double maxDistance, HitCollectionPolicy hitCollection = HitCollectionPolicy.ClosestHits, int maxHits = 1024, uint collisionMask = 0xFFFFFFFF)
         {
             input.Origin.ToRemote(out Double3 starPos);
             input.Terminus.ToRemote(out Double3 endPos);
-            output = new RayCast(starPos, endPos, hitCollection, maxHits, collisionMask);
+            output = new RayCast(starPos, endPos, maxDistance, hitCollection, maxHits, collisionMask);
         }
 
         /// <summary>
         /// Converts a <see cref="RayStep"/> into a remote <see cref="RayCast"/>.
         /// </summary>
         /// <param name="input">The ray step to be converted.</param>
+        /// <param name="maxDistance">The ray max distance.</param>
         /// <param name="hitCollection">The hit collection mode to set on the converted ray cast.</param>
         /// <param name="maxHits">The maximum collected hits to set on the converted ray cast.</param>
         /// <param name="collisionMask">The collision mask to set on the converted ray cast.</param>
         /// <returns>The converted ray cast.</returns>
-        public static RayCast ToRemote(this RayStep input, HitCollectionPolicy hitCollection = HitCollectionPolicy.AllHits, uint maxHits = uint.MaxValue, uint collisionMask = 0xFFFFFFFF)
+        public static RayCast ToRemote(this RayStep input, double maxDistance, HitCollectionPolicy hitCollection = HitCollectionPolicy.ClosestHits, int maxHits = 1024, uint collisionMask = 0xFFFFFFFF)
         {
-            input.ToRemote(out var output, hitCollection, maxHits, collisionMask);
+            input.ToRemote(out var output, maxDistance, hitCollection, maxHits, collisionMask);
             return output;
         }
 
@@ -527,12 +495,12 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="hitCollection">The hit collection mode to set on the converted ray cast.</param>
         /// <param name="maxHits">The maximum collected hits to set on the converted ray cast.</param>
         /// <param name="collisionMask">The collision mask to set on the converted ray cast.</param>
-        public static void ToRemote(this Ray input, out RayCast output, float distance, HitCollectionPolicy hitCollection = HitCollectionPolicy.AllHits, uint maxHits = uint.MaxValue, uint collisionMask = 0xFFFFFFFF)
+        public static void ToRemote(this Ray input, out RayCast output, float distance, HitCollectionPolicy hitCollection = HitCollectionPolicy.ClosestHits, int maxHits = 1024, uint collisionMask = 0xFFFFFFFF)
         {
             input.Position.ToRemote(out Double3 starPos);
             input.GetPoint(distance, out var terminus);
             terminus.ToRemote(out Double3 endPos);
-            output = new RayCast(starPos, endPos, hitCollection, maxHits, collisionMask);
+            output = new RayCast(starPos, endPos, distance, hitCollection, maxHits, collisionMask);
         }
 
         /// <summary>
@@ -544,7 +512,7 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="maxHits">The maximum collected hits to set on the converted ray cast.</param>
         /// <param name="collisionMask">The collision mask to set on the converted ray cast.</param>
         /// <returns>The converted ray cast.</returns>
-        public static RayCast ToRemote(this Ray input, float distance, HitCollectionPolicy hitCollection = HitCollectionPolicy.AllHits, uint maxHits = uint.MaxValue, uint collisionMask = 0xFFFFFFFF)
+        public static RayCast ToRemote(this Ray input, float distance, HitCollectionPolicy hitCollection = HitCollectionPolicy.ClosestHits, int maxHits = 1024, uint collisionMask = 0xFFFFFFFF)
         {
             input.ToRemote(out var output, distance, hitCollection, maxHits, collisionMask);
             return output;

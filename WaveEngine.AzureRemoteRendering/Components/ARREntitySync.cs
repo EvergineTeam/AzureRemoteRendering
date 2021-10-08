@@ -138,7 +138,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
         /// <param name="session">
         /// The azure session used to create the remote <see cref="ARREntity"/>.
         /// </param>
-        public void CreateRemoteEntity(AzureSession session)
+        public void CreateRemoteEntity(RenderingSession session)
         {
             if (session is null)
             {
@@ -152,7 +152,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
             if (!this.IsRemoteEntityValid)
             {
-                this.RemoteEntity = session.Actions.CreateEntity();
+                this.RemoteEntity = session.Connection.CreateEntity();
             }
             else
             {

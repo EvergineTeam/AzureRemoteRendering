@@ -49,7 +49,7 @@ namespace AzureRemoteRendering_Demo
                     {
                         Debug.WriteLine($"[ARR] Loading skybox texture \"{skyboxUrl}\"");
                         var skyboxTexture = await arrService.LoadTextureFromSASAsync(skyboxUrl, Microsoft.Azure.RemoteRendering.TextureType.CubeMap);
-                        arrService.CurrentSession.Actions.SkyReflectionSettings.SkyReflectionTexture = skyboxTexture;
+                        arrService.CurrentSession.Connection.SkyReflectionSettings.SkyReflectionTexture = skyboxTexture;
                     }
                 })
                 .Run();

@@ -156,11 +156,11 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 var loadModelProgress = new Progress<float>((progress) => this.Progress = progress);
                 var parentEntitySync = this.Owner.FindComponentInParents<ARREntitySync>(skipOwner: true);
                 var parentRemoteEntity = parentEntitySync?.IsRemoteEntityValid == true ? parentEntitySync.RemoteEntity : null;
-                var remoteEntity = await this.arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress);
+                var remoteEntity = (await this.arrService.LoadModelFromSASAsync(this.Url, parentRemoteEntity, loadModelProgress)).Root;
                 this.entitySync?.Bind(remoteEntity, false);
                 this.entitySync?.SyncToRemote();
 
-                var localBounds = await remoteEntity.QueryLocalBoundsAsync().AsTask();
+                var localBounds = await remoteEntity.QueryLocalBoundsAsync();
                 this.LocalBounds = localBounds.ToWave();
 
                 this.RemoteEntity = remoteEntity;
