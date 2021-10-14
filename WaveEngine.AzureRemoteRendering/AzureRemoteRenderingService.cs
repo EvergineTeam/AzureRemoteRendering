@@ -361,7 +361,7 @@ namespace WaveEngine.AzureRemoteRendering
         {
             // create a new session
             var renderingSessionParams = new RenderingSessionCreationOptions();
-            renderingSessionParams.MaxLeaseInMinutes = maxLease.Minutes;
+            renderingSessionParams.MaxLeaseInMinutes = (int)maxLease.TotalMinutes;
             renderingSessionParams.Size = size;
             try
             {
