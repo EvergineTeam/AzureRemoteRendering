@@ -618,8 +618,14 @@ namespace WaveEngine.AzureRemoteRendering
                 return Task.FromResult<LoadModelResult>(default);
             }
 
+            Action<float> progressCallback = null;
+            if (progress != null)
+            {
+                progressCallback = (float progressF) => progress.Report(progressF * 100);
+            }
+
             var options = new LoadModelFromSasOptions(url, parent);
-            return this.CurrentSession.Connection.LoadModelFromSasAsync(options, null);
+            return this.CurrentSession.Connection.LoadModelFromSasAsync(options, progressCallback);
         }
 
         /// <summary>
@@ -645,7 +651,14 @@ namespace WaveEngine.AzureRemoteRendering
                 Blob = blobOptions,
                 Parent = parent,
             };
-            return this.CurrentSession.Connection.LoadModelAsync(options, null);
+
+            Action<float> progressCallback = null;
+            if (progress != null)
+            {
+                progressCallback = (float progressF) => progress.Report(progressF * 100);
+            }
+
+            return this.CurrentSession.Connection.LoadModelAsync(options, progressCallback);
         }
 
         private async Task<bool> SetNewSessionAsync(RenderingSession session)
