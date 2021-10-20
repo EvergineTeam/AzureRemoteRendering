@@ -107,7 +107,9 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Float3 input, out Vector3 output)
         {
-            output = new Vector3(input.X, input.Y, input.Z);
+            output.X = input.X;
+            output.Y = input.Y;
+            output.Z = input.Z;
         }
 
         /// <summary>
@@ -128,7 +130,9 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted vector.</param>
         public static void ToWave(this Double3 input, out Vector3 output)
         {
-            output = new Vector3((float)input.X, (float)input.Y, (float)input.Z);
+            output.X = (float)input.X;
+            output.Y = (float)input.Y;
+            output.Z = (float)input.Z;
         }
 
         /// <summary>
