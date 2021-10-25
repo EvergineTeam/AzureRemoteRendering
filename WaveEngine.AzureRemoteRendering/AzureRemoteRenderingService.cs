@@ -259,7 +259,7 @@ namespace WaveEngine.AzureRemoteRendering
                     Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransform);
 
                     // FIXME this blocks camera view
-                    camera.Transform.WorldTransform = remoteTransform;
+                    ////camera.Transform.WorldTransform = remoteTransform;
                 }
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -283,8 +283,8 @@ namespace WaveEngine.AzureRemoteRendering
             if (this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
                 // FIXME: this puts screen black
-                camera.ResetCustomProjection();
-                camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
+                ////camera.ResetCustomProjection();
+                ////camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
 
                 var drawContext = camera.DrawContext;
                 var frameBuffer = drawContext.IntermediateFrameBuffer ?? drawContext.FrameBuffer;

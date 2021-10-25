@@ -54,11 +54,18 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
             this.arrService.Initialize(this.AccountInfo);
 
-            if (this.CreateAndConnectAutomatically &&
-                await this.ReuseOrCreateSessionAsync() &&
-                !await this.arrService.ConnectAsync())
+            try
             {
-                Trace.TraceError("[ARR] Error connecting to session");
+                if (this.CreateAndConnectAutomatically &&
+                    await this.ReuseOrCreateSessionAsync() &&
+                    !await this.arrService.ConnectAsync())
+                {
+                    Trace.TraceError("[ARR] Error connecting to session");
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError($"[ARR] Error connecting to session {e}");
             }
         }
 

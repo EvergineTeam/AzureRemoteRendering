@@ -14,6 +14,7 @@ namespace Microsoft.Azure.RemoteRendering
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using WaveEngine.Common.Attributes;
 
     internal class PromiseBase : IDisposable
     {
@@ -335,7 +336,7 @@ namespace Microsoft.Azure.RemoteRendering
             return new Exception("Unknown reason");
         }
 
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
+////#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
         internal delegate void apigen_promise_on_complete2(IntPtr context, ref PackedValue value);
         internal delegate void apigen_promise_on_error2(IntPtr context, status result);
 
@@ -346,7 +347,7 @@ namespace Microsoft.Azure.RemoteRendering
             public Action<float> progressCallback;
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_complete))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_complete))]
         static void InternalComplete(IntPtr context, ref PackedValue value)
         {
             if (s_cookieTracker.TryRemove(context, out InternalCallbacks entry))
@@ -355,7 +356,7 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_error))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_error))]
         static void InternalError(IntPtr context, status result)
         {
             if (s_cookieTracker.TryRemove(context, out InternalCallbacks entry))
@@ -364,7 +365,7 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_progress))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_progress))]
         static void InternalProgress(IntPtr context, float progress)
         {
             if (s_cookieTracker.TryGetValue(context, out InternalCallbacks entry))
@@ -419,36 +420,36 @@ namespace Microsoft.Azure.RemoteRendering
             };
         }
 
-#else // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
+////#else // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
 
-        // plain C# version
-        private static PromiseCreateOptions BuildOptions<TResult>(Func<PackedValue, TResult> factory, TaskCompletionSource<TResult> taskCompletionSource, Action<float> progress)
-        {
-            return new PromiseCreateOptions()
-            {
-                context = IntPtr.Zero,
-                onComplete = (IntPtr context, ref PackedValue value) =>
-                {
-                    TResult result = factory(value);
+////        // plain C# version
+////        private static PromiseCreateOptions BuildOptions<TResult>(Func<PackedValue, TResult> factory, TaskCompletionSource<TResult> taskCompletionSource, Action<float> progress)
+////        {
+////            return new PromiseCreateOptions()
+////            {
+////                context = IntPtr.Zero,
+////                onComplete = (IntPtr context, ref PackedValue value) =>
+////                {
+////                    TResult result = factory(value);
 
-                    taskCompletionSource.SetResult(result);
-                },
-                onError = (IntPtr context, status result) =>
-                {
-                    if (result == status.Cancelled)
-                    {
-                        taskCompletionSource.SetCanceled();
-                    }
-                    else
-                    {
-                        taskCompletionSource.SetException(CreateException(result));
-                    }
-                },
-                onProgress = (progress == null ? null : new apigen_promise_on_progress((_, value) => progress(value)))
-            };
-        }
+////                    taskCompletionSource.SetResult(result);
+////                },
+////                onError = (IntPtr context, status result) =>
+////                {
+////                    if (result == status.Cancelled)
+////                    {
+////                        taskCompletionSource.SetCanceled();
+////                    }
+////                    else
+////                    {
+////                        taskCompletionSource.SetException(CreateException(result));
+////                    }
+////                },
+////                onProgress = (progress == null ? null : new apigen_promise_on_progress((_, value) => progress(value)))
+////            };
+////        }
 
-#endif // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
+////#endif // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
 
 
     }
