@@ -221,7 +221,6 @@ namespace WaveEngine.AzureRemoteRendering
         /// <param name="output">The converted matrix.</param>
         public static void ToWave(this ARRMatrix4x4 input, out WaveMatrix4x4 output)
         {
-            output = new WaveMatrix4x4();
             output.M11 = input.Column0.X;
             output.M12 = input.Column0.Y;
             output.M13 = input.Column0.Z;

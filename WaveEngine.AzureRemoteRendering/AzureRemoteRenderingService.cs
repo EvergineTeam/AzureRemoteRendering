@@ -225,6 +225,7 @@ namespace WaveEngine.AzureRemoteRendering
                 if (updateResult != Result.Success && updateResult != Result.NoConnection)
                 {
                     Debug.WriteLine($"ERROR: Simulation update failed: {updateResult}");
+                    return false;
                 }
 
                 if (proxyUpdate.FrameId != 0)
@@ -246,13 +247,19 @@ namespace WaveEngine.AzureRemoteRendering
                     ////camera.Transform.WorldTransform = remoteTransfom;
                     if (proxyUpdate.FieldOfView.Left.ToProjectionMatrix(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance, DepthConvention.MinusOneToOne, out Matrix4x4 projection) == Result.Success)
                     {
-                        camera.SetCustomProjection(projection.ToWave());
+                        projection.ToWave(out var remoteProjection);
+                        camera.SetCustomProjection(remoteProjection);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"ERROR: Projection Matrix failed.");
                     }
 
-                    var remoteTransform = proxyUpdate.ViewTransform.Left.ToWave();
-                    remoteTransform.Invert();
+                    proxyUpdate.ViewTransform.Left.ToWave(out var remoteView);
+                    Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransform);
+
+                    // FIXME this blocks camera view
                     camera.Transform.WorldTransform = remoteTransform;
-                    return true;
                 }
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -264,11 +271,9 @@ namespace WaveEngine.AzureRemoteRendering
                 {
                     this.userCoordinateSystem = ptr;
                 }
-
-                return true;
             }
 
-            return false;
+            return true;
         }
 
         internal bool BlitRemoteFrame(Camera camera)
@@ -277,6 +282,7 @@ namespace WaveEngine.AzureRemoteRendering
 
             if (this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
+                // FIXME: this puts screen black
                 camera.ResetCustomProjection();
                 camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
 
@@ -301,7 +307,12 @@ namespace WaveEngine.AzureRemoteRendering
 
             if (blitSuccess)
             {
-                camera.ClearFlags &= ~(ClearFlags.Depth | ClearFlags.Target);
+                // FIXME: this puts screen black
+                ////camera.ClearFlags &= ~(ClearFlags.Depth | ClearFlags.Target);
+            }
+            else
+            {
+                Debug.WriteLine($"ERROR: Blit failed.");
             }
 
             return blitSuccess;
