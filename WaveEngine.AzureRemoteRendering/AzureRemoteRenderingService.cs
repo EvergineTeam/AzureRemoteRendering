@@ -58,6 +58,7 @@ namespace WaveEngine.AzureRemoteRendering
         // Activate Deactivate
         private bool wasConnected;
         private RendererInitOptions rendererInitOptions;
+        private FrameBuffer proxyFramebuffer;
 
         // Simulation
         private SimulationUpdateParameters update;
@@ -65,6 +66,9 @@ namespace WaveEngine.AzureRemoteRendering
 
         // Mixed Reality
         private IntPtr userCoordinateSystem;
+        private Camera targetCamera;
+        private FrameBuffer targetFramebuffer;
+        private Viewport[] viewports = new Viewport[1];
 
         /// <summary>
         /// Gets a value indicating the current session connection status of the service.
@@ -210,17 +214,15 @@ namespace WaveEngine.AzureRemoteRendering
 
             var cameraSettings = this.CurrentSession.Connection.CameraSettings;
             cameraSettings.SetNearAndFarPlane(camera.NearPlane, camera.FarPlane);
+            cameraSettings.EnableDepth = false;
+            cameraSettings.InverseDepth = false;
 
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
                 this.update.FrameId++;
-                ////this.update.nearPlaneDistance = camera.NearPlane;
-                ////this.update.farPlaneDistance = camera.FarPlane;
                 this.update.FieldOfView.Left.FromProjectionMatrix(camera.Projection.ToRemote());
-                this.update.ViewTransform.Left = camera.Transform.WorldToLocalTransform.ToRemote();
+                this.update.ViewTransform.Left = camera.View.ToRemote();
 
-                ////camera.Projection.ToRemote(out this.update.projection);
-                ////camera.View.ToRemote(out this.update.viewTransform);
                 var updateResult = simulationBinding.Update(this.update, out var proxyUpdate);
                 if (updateResult != Result.Success && updateResult != Result.NoConnection)
                 {
@@ -228,23 +230,12 @@ namespace WaveEngine.AzureRemoteRendering
                     return false;
                 }
 
+                this.preUpdateCameraWorldTransform = camera.Transform.WorldTransform;
                 if (proxyUpdate.FrameId != 0)
                 {
-                    this.preUpdateCameraWorldTransform = camera.Transform.WorldTransform;
-
-                    // Wave expects the smaller of the plane values to be the near plane
-                    // and the larger of the two to be the far plane.
-                    camera.NearPlane = Math.Min(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance);
-                    camera.FarPlane = Math.Max(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance);
-
                     // Getting a projection matrix out of the proxyUpdate data. Note: Despite rendering with an inverse
                     // z depth buffer internally, Wave has a normal z range matrix on the cameras. Therefore, we need
                     // to request a matrix in a conventional [-1;1] OpenGL space.
-                    ////proxyUpdate.projection.ToWave(out var remoteProjection);
-                    ////proxyUpdate.viewTransform.ToWave(out var remoteView);
-                    ////Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransfom);
-                    ////camera.SetCustomProjection(remoteProjection);
-                    ////camera.Transform.WorldTransform = remoteTransfom;
                     if (proxyUpdate.FieldOfView.Left.ToProjectionMatrix(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance, DepthConvention.MinusOneToOne, out Matrix4x4 projection) == Result.Success)
                     {
                         projection.ToWave(out var remoteProjection);
@@ -258,8 +249,12 @@ namespace WaveEngine.AzureRemoteRendering
                     proxyUpdate.ViewTransform.Left.ToWave(out var remoteView);
                     Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransform);
 
-                    // FIXME this blocks camera view
                     camera.Transform.WorldTransform = remoteTransform;
+
+                    // Sets the proxy framebuffer
+                    this.targetCamera = camera;
+                    this.targetFramebuffer = camera.FrameBuffer;
+                    camera.FrameBuffer = this.proxyFramebuffer;
                 }
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -276,24 +271,25 @@ namespace WaveEngine.AzureRemoteRendering
             return true;
         }
 
-        internal bool BlitRemoteFrame(Camera camera)
+        internal bool BlitRemoteFrame(CameraDrawContext drawContext, CommandBuffer commandBuffer)
         {
             bool blitSuccess = false;
 
+            var camera = drawContext.Camera;
+
             if (this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
-                // FIXME: this puts screen black
                 camera.ResetCustomProjection();
                 camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
 
-                var drawContext = camera.DrawContext;
-                var frameBuffer = drawContext.IntermediateFrameBuffer ?? drawContext.FrameBuffer;
-                var dx11FrameBuffer = (DX11FrameBuffer)frameBuffer;
+                var dx11FrameBuffer = (DX11FrameBuffer)this.proxyFramebuffer;
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
                 var depthDestination = dx11FrameBuffer.DepthTargetview;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
+                dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
+
                 dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+
                 blitSuccess = simulationBinding.BlitRemoteFrameToProxy() == Result.Success;
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -302,13 +298,13 @@ namespace WaveEngine.AzureRemoteRendering
                 var frameBuffer = camera.DrawContext.FrameBuffer as DX11FrameBuffer;
                 dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
                 dxContext.OutputMerger.SetRenderTargets(frameBuffer.DepthTargetview, frameBuffer.ColorTargetViews);
+
                 blitSuccess = wmrBinding.BlitRemoteFrame() == Result.Success;
             }
 
             if (blitSuccess)
             {
-                // FIXME: this puts screen black
-                ////camera.ClearFlags &= ~(ClearFlags.Depth | ClearFlags.Target);
+                camera.ClearFlags &= ~(ClearFlags.Depth | ClearFlags.Target);
             }
             else
             {
@@ -316,6 +312,31 @@ namespace WaveEngine.AzureRemoteRendering
             }
 
             return blitSuccess;
+        }
+
+        internal void Reproject()
+        {
+            if (this.targetCamera != null && this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
+            {
+                var framebuffer = this.targetCamera.Display.FrameBuffer;
+
+                var dx11FrameBuffer = (DX11FrameBuffer)framebuffer;
+                var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
+                var depthDestination = dx11FrameBuffer.DepthTargetview;
+                var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
+                dxContext.Rasterizer.SetViewport(0, 0, framebuffer.Width, framebuffer.Height);
+                dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+
+                dxContext.ClearRenderTargetView(colorDestination, default);
+                dxContext.ClearDepthStencilView(depthDestination, DepthStencilClearFlags.Depth, 1, 0);
+
+                if (simulationBinding.ReprojectProxy() != Result.Success)
+                {
+                    Debug.WriteLine($"ERROR: ReprojectProxy() failed");
+                }
+
+                ////this.targetCamera.FrameBuffer = this.targetFramebuffer;
+            }
         }
 
         /// <summary>
@@ -706,6 +727,12 @@ namespace WaveEngine.AzureRemoteRendering
                 textureDescription.Flags = TextureFlags.DepthStencil;
                 var proxyDepthTexture = this.graphicsContext.Factory.CreateTexture(ref textureDescription);
                 var proxyDepthPtr = proxyDepthTexture.NativePointer;
+
+                var proxyDepthAttachment = new FrameBufferAttachment(proxyDepthTexture, 0, 1);
+                var proxyColorAttachment = new FrameBufferAttachment(proxyColorTexture, 0, 1);
+
+                this.proxyFramebuffer = this.graphicsContext.Factory.CreateFrameBuffer(proxyDepthAttachment, new FrameBufferAttachment[] { proxyColorAttachment });
+                this.proxyFramebuffer.Name = "ProxyFrameBuffer";
 
                 this.update = new SimulationUpdateParameters();
                 ////{

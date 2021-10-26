@@ -55,6 +55,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = true;
                 this.camera3D.DrawContext.OnCollect += this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender += this.DrawContext_OnPreRender;
+                this.camera3D.DrawContext.OnPostRender += this.DrawContext_OnPostRender;
             }
         }
 
@@ -65,6 +66,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = false;
                 this.camera3D.DrawContext.OnCollect -= this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender -= this.DrawContext_OnPreRender;
+                this.camera3D.DrawContext.OnPostRender -= this.DrawContext_OnPostRender;
             }
         }
 
@@ -89,7 +91,15 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             if (this.localUpdateDone)
             {
-                this.arrService.BlitRemoteFrame(this.camera3D);
+                this.arrService.BlitRemoteFrame(drawContext as CameraDrawContext, commandBuffer);
+            }
+        }
+
+        private void DrawContext_OnPostRender(DrawContext drawContext, CommandBuffer commandBuffer)
+        {
+            if (this.localUpdateDone)
+            {
+                this.arrService.Reproject();
             }
         }
     }
