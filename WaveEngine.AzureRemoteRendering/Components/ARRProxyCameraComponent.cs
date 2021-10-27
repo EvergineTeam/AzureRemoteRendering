@@ -34,6 +34,48 @@ namespace WaveEngine.AzureRemoteRendering.Components
         private bool localUpdateDone;
 
         private bool isProxyCameraActive;
+        private bool enableDepth = true;
+        private bool inverseDepth = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the depth composition is enabled with locally rendered content.
+        /// </summary>
+        public bool EnableDepth
+        {
+            get => this.enableDepth;
+            set
+            {
+                this.enableDepth = value;
+                if (this.arrService != null)
+                {
+                    this.arrService.EnableDepth = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether you are using the inverse depth range of 1 (closest to the camera) to zero (farthest from the camera) instead of the standard [0;1] for your local depth buffer.
+        /// </summary>
+        public bool InverseDepth
+        {
+            get => this.inverseDepth;
+            set
+            {
+                this.inverseDepth = value;
+                if (this.arrService != null)
+                {
+                    this.arrService.InverseDepth = value;
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override bool OnAttached()
+        {
+            this.arrService.EnableDepth = this.enableDepth;
+            this.arrService.InverseDepth = this.inverseDepth;
+            return base.OnAttached();
+        }
 
         /// <inheritdoc/>
         protected override void OnActivated()

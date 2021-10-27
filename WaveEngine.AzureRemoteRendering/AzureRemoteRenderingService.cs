@@ -71,6 +71,16 @@ namespace WaveEngine.AzureRemoteRendering
         private Viewport[] viewports = new Viewport[1];
 
         /// <summary>
+        /// Gets or sets a value indicating whether the depth composition is enabled with locally rendered content.
+        /// </summary>
+        public bool EnableDepth { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether you are using the inverse depth range of 1 (closest to the camera) to zero (farthest from the camera) instead of the standard [0;1] for your local depth buffer.
+        /// </summary>
+        public bool InverseDepth { get; set; } = false;
+
+        /// <summary>
         /// Gets a value indicating the current session connection status of the service.
         /// </summary>
         public ARRConnectionStatus ConnectionStatus
@@ -214,7 +224,8 @@ namespace WaveEngine.AzureRemoteRendering
 
             var cameraSettings = this.CurrentSession.Connection.CameraSettings;
             cameraSettings.SetNearAndFarPlane(camera.NearPlane, camera.FarPlane);
-            cameraSettings.InverseDepth = false;
+            cameraSettings.EnableDepth = this.EnableDepth;
+            cameraSettings.InverseDepth = this.InverseDepth;
 
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
@@ -283,9 +294,8 @@ namespace WaveEngine.AzureRemoteRendering
 
                 var dx11FrameBuffer = (DX11FrameBuffer)this.proxyFramebuffer;
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
-                var depthDestination = dx11FrameBuffer.DepthTargetview;
+                var depthDestination = this.EnableDepth ? dx11FrameBuffer.DepthTargetview : null;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-
                 dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
                 dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
 
