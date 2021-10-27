@@ -17,8 +17,11 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         public enum VisitorResult
         {
-            ContinueVisit, /// Continue traversing the scenegraph.
-            ExitVisit /// Stop traversing the scenegraph and exit the call to VisitEntity.
+            /// Continue traversing the scenegraph.
+            ContinueVisit,
+
+            /// Stop traversing the scenegraph and exit the call to VisitEntity.
+            ExitVisit
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace Microsoft.Azure.RemoteRendering
         public static extern arr.Result RemoteRendering_Shutdown();
 
         [DllImport("RemoteRenderingClient", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RenderingConnection_Update(ManagerId managerId);
+        public static extern void RemoteManager_Update(ManagerId managerId);
 
         [DllImport("RemoteRenderingClient", CallingConvention = CallingConvention.Cdecl)]
         public static extern arr.Result RemoteRendering_SetConnectionGameEngine(Int64 engineIdentifier);

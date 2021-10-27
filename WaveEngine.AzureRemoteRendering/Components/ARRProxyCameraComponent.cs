@@ -4,6 +4,7 @@ using System;
 using WaveEngine.Common.Graphics;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
+using WaveEngine.Framework.Managers;
 
 namespace WaveEngine.AzureRemoteRendering.Components
 {
@@ -17,6 +18,12 @@ namespace WaveEngine.AzureRemoteRendering.Components
         /// </summary>
         [BindService]
         protected AzureRemoteRenderingService arrService;
+
+        /// <summary>
+        /// The RenderManager of the scene.
+        /// </summary>
+        [BindSceneManager]
+        protected RenderManager renderManager;
 
         /// <summary>
         /// The <see cref="Camera3D"/> component dependency that will be used to render ARR remote frame.
@@ -55,7 +62,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = true;
                 this.camera3D.DrawContext.OnCollect += this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender += this.DrawContext_OnPreRender;
-                this.camera3D.DrawContext.OnPostRender += this.DrawContext_OnPostRender;
+                this.renderManager.OnPostRender += this.RenderManager_OnPostRender;
             }
         }
 
@@ -66,7 +73,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = false;
                 this.camera3D.DrawContext.OnCollect -= this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender -= this.DrawContext_OnPreRender;
-                this.camera3D.DrawContext.OnPostRender -= this.DrawContext_OnPostRender;
+                this.renderManager.OnPostRender -= this.RenderManager_OnPostRender;
             }
         }
 
@@ -95,7 +102,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
             }
         }
 
-        private void DrawContext_OnPostRender(DrawContext drawContext, CommandBuffer commandBuffer)
+        private void RenderManager_OnPostRender(object sender, RenderManager e)
         {
             if (this.localUpdateDone)
             {

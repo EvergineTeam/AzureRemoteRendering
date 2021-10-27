@@ -22,7 +22,7 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="1.0.25" GeneratePathProperty="true">
+    <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="1.0.28" GeneratePathProperty="true">
       <ExcludeAssets>build</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

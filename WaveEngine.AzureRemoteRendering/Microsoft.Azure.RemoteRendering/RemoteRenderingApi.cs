@@ -58,6 +58,7 @@ namespace Microsoft.Azure.RemoteRendering
         /// Internal: Start of the range of core result values.
         /// </summary>
         CoreReturnValueStart = 78,
+
         /// <summary>
         /// Operation completed successfully.
         /// </summary>
@@ -123,297 +124,305 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         StringNotValidUtf8 = 93,
         /// <summary>
+        /// An operation is not supported on the target platform.
+        /// </summary>
+        NotSupported = 94,
+        /// <summary>
         /// Internal: Last used value of the range of core result values.
         /// </summary>
-        CoreReturnValueLast = 94,
+        CoreReturnValueLast = 95,
         /// <summary>
         /// Internal: Maximum value of the range of core result values.
         /// </summary>
-        CoreReturnValueEnd = 95,
+        CoreReturnValueEnd = 96,
         /// <summary>
         /// Internal: Start of the range of file load result values.
         /// </summary>
-        LoadFileReturnValueStart = 96,
+        LoadFileReturnValueStart = 97,
         /// <summary>
         /// The requested file did not exist.
         /// </summary>
-        FileNotFound = 97,
+        FileNotFound = 98,
         /// <summary>
         /// The requested file is either corrupt or uses an old version that is not supported anymore.
         /// </summary>
-        InvalidVersion = 98,
+        InvalidVersion = 99,
         /// <summary>
         /// Not used.
         /// </summary>
-        IncompatibleVersion_Deprecated = 99,
+        IncompatibleVersion_Deprecated = 100,
         /// <summary>
         /// The requested file is either corrupt or not recognized.
         /// </summary>
-        FailedToOpenFile = 100,
+        FailedToOpenFile = 101,
         /// <summary>
         /// Downloading the file from the provided URI failed.
         /// </summary>
-        FileDownloadFailed = 101,
+        FileDownloadFailed = 102,
         /// <summary>
         /// Loading this model would exceed GPU memory limits. Request a larger server, or reduce the amount of loaded models.
         /// </summary>
-        ExceedsMemoryLimit = 102,
+        ExceedsMemoryLimit = 103,
         /// <summary>
         /// The target file cannot be written
         /// </summary>
-        CannotWriteTargetFile = 103,
+        CannotWriteTargetFile = 104,
         /// <summary>
         /// The target file is corrupt or in an unsupported format
         /// </summary>
-        FileCorrupt = 104,
+        FileCorrupt = 105,
         /// <summary>
         /// Internal: Uploading the file to the provided URI failed.
         /// </summary>
-        FileUploadFailed = 105,
+        FileUploadFailed = 106,
         /// <summary>
         /// Internal: Files can only be up/downloaded from OneDrive or Azure Blob Storage.
         /// </summary>
-        UnsupportedFileProvider = 106,
+        UnsupportedFileProvider = 107,
         /// <summary>
         /// Internal: Last used value of the range of file load result values.
         /// </summary>
-        LoadFileReturnValueLast = 107,
+        LoadFileReturnValueLast = 108,
         /// <summary>
         /// Internal: Maximum value of the range of file load result values.
         /// </summary>
-        LoadFileReturnValueEnd = 108,
+        LoadFileReturnValueEnd = 109,
         /// <summary>
         /// Internal: Start of the range of object result values.
         /// </summary>
-        ObjectReturnValueStart = 109,
+        ObjectReturnValueStart = 110,
         /// <summary>
         /// The provided object ID is not valid (anymore).
         /// </summary>
-        InvalidId = 110,
+        InvalidId = 111,
         /// <summary>
         /// The parent entity with the provided ID does not exist.
         /// </summary>
-        InvalidParentId = 111,
+        InvalidParentId = 112,
         /// <summary>
         /// An object of the same type already exists on the target.
         /// </summary>
-        AlreadyExists = 112,
+        AlreadyExists = 113,
         /// <summary>
         /// Re-parenting this entity to the target entity would create a cycle in the entity hierarchy.
         /// </summary>
-        CyclicReference = 113,
+        CyclicReference = 114,
         /// <summary>
         /// Not used.
         /// </summary>
-        ObjectLocked_Deprecated = 114,
+        ObjectLocked_Deprecated = 115,
         /// <summary>
         /// Tried to transform or re-parent an object that is part of a static scene graph. See 'SceneGraphMode=static' model conversion option.
         /// </summary>
-        ObjectStatic = 115,
+        ObjectStatic = 116,
         /// <summary>
         /// Tried to add a component, but the maximum number of this component was already present.
         /// </summary>
-        ComponentLimitReached = 116,
+        ComponentLimitReached = 117,
         /// <summary>
         /// Internal: Last used value of the range of object result values.
         /// </summary>
-        ObjectReturnValueLast = 117,
+        ObjectReturnValueLast = 118,
         /// <summary>
         /// Internal: Maximum value of the range of object result values.
         /// </summary>
-        ObjectReturnValueEnd = 118,
+        ObjectReturnValueEnd = 119,
         /// <summary>
         /// Internal: Start of the range of connection result values.
         /// </summary>
-        ConnectionReturnValueStart = 119,
+        ConnectionReturnValueStart = 120,
         /// <summary>
         /// Internal: Secure connection enabled, but certificate was missing, invalid, or not usable.
         /// </summary>
-        NoServerCertificate = 120,
+        NoServerCertificate = 121,
         /// <summary>
         /// Internal: Handshake port could not be opened for accepting connections.
         /// </summary>
-        HandshakePortBusy = 121,
+        HandshakePortBusy = 122,
         /// <summary>
         /// Handshake server is unreachable.
         /// </summary>
-        HandshakeUnreachable = 122,
+        HandshakeUnreachable = 123,
         /// <summary>
         /// Handshake server closed the connection prematurely; likely due to TLS/Plain mismatch or invalid certificate.
         /// </summary>
-        HandshakeConnectionFailed = 123,
+        HandshakeConnectionFailed = 124,
         /// <summary>
         /// Authentication with the handshake server failed.
         /// </summary>
-        AuthenticationFailed = 124,
+        AuthenticationFailed = 125,
         /// <summary>
         /// No common compatible remoting version could be determined during handshake.
         /// </summary>
-        RemotingVersionMismatch = 125,
+        RemotingVersionMismatch = 126,
         /// <summary>
         /// No common transport protocol could be determined during handshake.
         /// </summary>
-        IncompatibleTransportProtocols = 126,
+        IncompatibleTransportProtocols = 127,
         /// <summary>
         /// Handshake failed. Reason not further specified.
         /// </summary>
-        HandshakeFailed = 127,
+        HandshakeFailed = 128,
         /// <summary>
         /// Internal: Transport port could not be opened for accepting connections.
         /// </summary>
-        TransportPortBusy = 128,
+        TransportPortBusy = 129,
         /// <summary>
         /// Transport server is unreachable.
         /// </summary>
-        TransportUnreachable = 129,
+        TransportUnreachable = 130,
         /// <summary>
         /// Transport connection was closed before all communication channels had been set up.
         /// </summary>
-        TransportConnectionFailed = 130,
+        TransportConnectionFailed = 131,
         /// <summary>
         /// Transport connection was closed due to protocol version mismatch.
         /// </summary>
-        ProtocolVersionMismatch = 131,
+        ProtocolVersionMismatch = 132,
         /// <summary>
         /// A protocol error occurred that was severe enough to invalidate the current connection or connection attempt.
         /// </summary>
-        ProtocolError = 132,
+        ProtocolError = 133,
         /// <summary>
         /// Transport connection was closed due to the requested video codec not being available.
         /// </summary>
-        VideoCodecNotAvailable = 133,
+        VideoCodecNotAvailable = 134,
         /// <summary>
         /// Connection has been closed by peer.
         /// </summary>
-        ConnectionLost = 134,
+        ConnectionLost = 135,
         /// <summary>
         /// Connection has been closed due to graphics device loss.
         /// </summary>
-        DeviceLost = 135,
+        DeviceLost = 136,
         /// <summary>
         /// Connection has been closed by request.
         /// </summary>
-        DisconnectRequest = 136,
+        DisconnectRequest = 137,
         /// <summary>
         /// Internal.
         /// </summary>
-        Timeout = 137,
+        Timeout = 138,
         /// <summary>
         /// A connection has been established before.
         /// </summary>
-        AlreadyConnected = 138,
+        AlreadyConnected = 139,
         /// <summary>
         /// The client SDK version is not supported anymore. Please update.
         /// </summary>
-        ArrVersionMismatch = 139,
+        ArrVersionMismatch = 140,
         /// <summary>
         /// Network is unreachable. This usually means the client knows no route to reach the remote host.
         /// </summary>
-        HandshakeNetworkUnreachable = 140,
+        HandshakeNetworkUnreachable = 141,
         /// <summary>
         /// No connection could be made because the remote side actively refused it. Usually this means that no host application is running.
         /// </summary>
-        HandshakeConnectionRefused = 141,
+        HandshakeConnectionRefused = 142,
         /// <summary>
         /// Transport connection was closed due to the requested video format not being available.
         /// </summary>
-        VideoFormatNotAvailable = 142,
+        VideoFormatNotAvailable = 143,
         /// <summary>
         /// Disconnecting after receiving a disconnect request from the peer.
         /// </summary>
-        PeerDisconnectRequest = 143,
+        PeerDisconnectRequest = 144,
         /// <summary>
         /// Timed out while waiting for peer to close connection.
         /// </summary>
-        PeerDisconnectTimeout = 144,
+        PeerDisconnectTimeout = 145,
         /// <summary>
         /// Timed out while waiting for transport session to be opened.
         /// </summary>
-        SessionOpenTimeout = 145,
+        SessionOpenTimeout = 146,
         /// <summary>
         /// Timed out while waiting for the remoting handshake to complete.
         /// </summary>
-        RemotingHandshakeTimeout = 146,
+        RemotingHandshakeTimeout = 147,
         /// <summary>
         /// Connection failed due to an internal error.
         /// </summary>
-        InternalError = 147,
+        InternalError = 148,
         /// <summary>
         /// Internal: Last used value of the range of connection result values.
         /// </summary>
-        ConnectionReturnValueLast = 148,
+        ConnectionReturnValueLast = 149,
         /// <summary>
         /// Internal: Maximum value of the range of connection result values.
         /// </summary>
-        ConnectionReturnValueEnd = 149,
+        ConnectionReturnValueEnd = 150,
         /// <summary>
         /// Internal: Start of the range of manager result values.
         /// </summary>
-        ManagerReturnValueStart = 150,
+        ManagerReturnValueStart = 151,
         /// <summary>
         /// Internal: Invalid tool ID.
         /// </summary>
-        InvalidToolId = 151,
+        InvalidToolId = 152,
         /// <summary>
         /// The remote rendering manager has already been created.
         /// </summary>
-        ManagerAlreadyCreated = 152,
+        ManagerAlreadyCreated = 153,
         /// <summary>
         /// The remote rendering manager has not been created yet.
         /// </summary>
-        ManagerNotCreatedYet = 153,
+        ManagerNotCreatedYet = 154,
         /// <summary>
         /// Another session is already connected to this runtime.
         /// </summary>
-        OtherSessionConnected = 154,
+        OtherSessionConnected = 155,
         /// <summary>
         /// Internal.
         /// </summary>
-        BadStateTransition = 155,
+        BadStateTransition = 156,
         /// <summary>
         /// An internal tool failed to start
         /// </summary>
-        FailedToStartTool = 156,
+        FailedToStartTool = 157,
         /// <summary>
         /// Internal: Insufficient number of slots in Frontend.
         /// </summary>
-        InsufficientSlots = 157,
+        InsufficientSlots = 158,
+        /// <summary>
+        /// PrepareRender has not been called before BlitRemoteFrame.
+        /// </summary>
+        PrepareRenderNotCalled = 159,
         /// <summary>
         /// Internal: Last used value of the range of manager result values.
         /// </summary>
-        ManagerReturnValueLast = 158,
+        ManagerReturnValueLast = 160,
         /// <summary>
         /// Internal: Maximum value of the range of manager result values.
         /// </summary>
-        ManagerReturnValueEnd = 159,
+        ManagerReturnValueEnd = 161,
         /// <summary>
         /// Internal: Start of the range of session result values.
         /// </summary>
-        SessionReturnValueStart = 160,
+        SessionReturnValueStart = 162,
         /// <summary>
         /// The secure connection failed. Check the account settings.
         /// </summary>
-        InvalidToken = 161,
+        InvalidToken = 163,
         /// <summary>
         /// The user provided URI is malformed.
         /// </summary>
-        InvalidUri = 162,
+        InvalidUri = 164,
         /// <summary>
         /// The session to the user provided session Id could not be found.
         /// </summary>
-        SessionNotFound = 163,
+        SessionNotFound = 165,
         /// <summary>
         /// Internal: The rate limit has been exceeded. Retry the request after the duration given in the Retry-After header.
         /// </summary>
-        TooManyRequests = 164,
+        TooManyRequests = 166,
         /// <summary>
         /// Internal: Last used value of the range of session result values.
         /// </summary>
-        SessionReturnValueLast = 165,
+        SessionReturnValueLast = 167,
         /// <summary>
         /// Internal: Maximum value of the range of session result values.
         /// </summary>
-        SessionReturnValueEnd = 166,
+        SessionReturnValueEnd = 168,
     }
 
     internal static class NativeLibraryHelpers
@@ -491,6 +500,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.NotInitialized, fullMessage);
                 case status.StringNotValidUtf8:
                     throw new RRException(Result.StringNotValidUtf8, fullMessage);
+                case status.NotSupported:
+                    throw new RRException(Result.NotSupported, fullMessage);
                 case status.CoreReturnValueLast:
                     throw new RRException(Result.CoreReturnValueLast, fullMessage);
                 case status.CoreReturnValueEnd:
@@ -619,6 +630,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.FailedToStartTool, fullMessage);
                 case status.InsufficientSlots:
                     throw new RRException(Result.InsufficientSlots, fullMessage);
+                case status.PrepareRenderNotCalled:
+                    throw new RRException(Result.PrepareRenderNotCalled, fullMessage);
                 case status.ManagerReturnValueLast:
                     throw new RRException(Result.ManagerReturnValueLast, fullMessage);
                 case status.ManagerReturnValueEnd:
@@ -725,6 +738,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.NotInitialized, message, requestCorrelationVector, responseCorrelationVector);
                 case status.StringNotValidUtf8:
                     throw new RRException(Result.StringNotValidUtf8, message, requestCorrelationVector, responseCorrelationVector);
+                case status.NotSupported:
+                    throw new RRException(Result.NotSupported, message, requestCorrelationVector, responseCorrelationVector);
                 case status.CoreReturnValueLast:
                     throw new RRException(Result.CoreReturnValueLast, message, requestCorrelationVector, responseCorrelationVector);
                 case status.CoreReturnValueEnd:
@@ -853,6 +868,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.FailedToStartTool, message, requestCorrelationVector, responseCorrelationVector);
                 case status.InsufficientSlots:
                     throw new RRException(Result.InsufficientSlots, message, requestCorrelationVector, responseCorrelationVector);
+                case status.PrepareRenderNotCalled:
+                    throw new RRException(Result.PrepareRenderNotCalled, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ManagerReturnValueLast:
                     throw new RRException(Result.ManagerReturnValueLast, message, requestCorrelationVector, responseCorrelationVector);
                 case status.ManagerReturnValueEnd:
@@ -933,6 +950,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.NotInitialized, fullMessage);
                 case status.StringNotValidUtf8:
                     throw new RRException(Result.StringNotValidUtf8, fullMessage);
+                case status.NotSupported:
+                    throw new RRException(Result.NotSupported, fullMessage);
                 case status.CoreReturnValueLast:
                     throw new RRException(Result.CoreReturnValueLast, fullMessage);
                 case status.CoreReturnValueEnd:
@@ -1061,6 +1080,8 @@ namespace Microsoft.Azure.RemoteRendering
                     throw new RRException(Result.FailedToStartTool, fullMessage);
                 case status.InsufficientSlots:
                     throw new RRException(Result.InsufficientSlots, fullMessage);
+                case status.PrepareRenderNotCalled:
+                    throw new RRException(Result.PrepareRenderNotCalled, fullMessage);
                 case status.ManagerReturnValueLast:
                     throw new RRException(Result.ManagerReturnValueLast, fullMessage);
                 case status.ManagerReturnValueEnd:
@@ -1655,15 +1676,17 @@ namespace Microsoft.Azure.RemoteRendering
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_get_last_frame_statistics(ulong handle, out Microsoft.Azure.RemoteRendering.FrameStatistics stats, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
-        internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_get_remote_focus_point(ulong handle, System.IntPtr coordinate_system, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity, out Microsoft.Azure.RemoteRendering.FocusPointResult result);
-        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_open_xr_d3d11_blit_remote_frame(ulong handle, out Microsoft.Azure.RemoteRendering.Result result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_open_xr_d3d11_get_remote_focus_point(ulong handle, ulong space_handle, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity, out Microsoft.Azure.RemoteRendering.FocusPointResult result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_open_xr_d3d11_update_app_space(ulong handle, ulong space_handle, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_blit_remote_frame_to_proxy(ulong handle, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_deinit_simulation(ulong handle, out Microsoft.Azure.RemoteRendering.Result result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_get_remote_focus_point(ulong handle, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity, out Microsoft.Azure.RemoteRendering.FocusPointResult result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_init_simulation(ulong handle, System.IntPtr d3d_device, System.IntPtr proxy_depth, System.IntPtr proxy_color, float refresh_rate, [MarshalAs(UnmanagedType.U1)] bool flip_blit_remote_frame_texture_vertically, [MarshalAs(UnmanagedType.U1)] bool flip_reproject_texture_vertically, [MarshalAs(UnmanagedType.U1)] bool stereo, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -1672,6 +1695,8 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_update(ulong handle, Microsoft.Azure.RemoteRendering.SimulationUpdateParameters update_parameters, out Microsoft.Azure.RemoteRendering.SimulationUpdateResult proxy_frame_update_result, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_wmr_d3d11_blit_remote_frame(ulong handle, out Microsoft.Azure.RemoteRendering.Result result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_wmr_d3d11_get_remote_focus_point(ulong handle, System.IntPtr coordinate_system, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity, out Microsoft.Azure.RemoteRendering.FocusPointResult result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_wmr_d3d11_update_user_coordinate_system(ulong handle, System.IntPtr coordinate_system, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -2002,6 +2027,8 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_rendering_session_get_valid(ulong handle, [MarshalAs(UnmanagedType.U1)] out bool result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_rendering_session_properties_array_result_get_session_properties(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] out Microsoft.Azure.RemoteRendering.RenderingSessionPropertiesAbi[] result, out int result_count);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_rendering_session_properties_result_get_minimum_retry_delay(IntPtr handle, out int result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_rendering_session_properties_result_get_session_properties(IntPtr handle, out Microsoft.Azure.RemoteRendering.RenderingSessionPropertiesAbi result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -4779,9 +4806,13 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         StringNotValidUtf8 = 14,
         /// <summary>
+        /// An operation is not supported on the target platform.
+        /// </summary>
+        NotSupported = 15,
+        /// <summary>
         /// Internal: Last used value of the range of core result values.
         /// </summary>
-        CoreReturnValueLast = 15,
+        CoreReturnValueLast = 16,
         /// <summary>
         /// Internal: Maximum value of the range of core result values.
         /// </summary>
@@ -5035,9 +5066,13 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         InsufficientSlots = 1206,
         /// <summary>
+        /// PrepareRender has not been called before BlitRemoteFrame.
+        /// </summary>
+        PrepareRenderNotCalled = 1207,
+        /// <summary>
         /// Internal: Last used value of the range of manager result values.
         /// </summary>
-        ManagerReturnValueLast = 1207,
+        ManagerReturnValueLast = 1208,
         /// <summary>
         /// Internal: Maximum value of the range of manager result values.
         /// </summary>
@@ -7128,36 +7163,6 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>
-        /// Retrieves the remote focus point.
-        /// </summary>
-        /// <param name="coordinateSystem">
-        /// The coordinate frame in which the focus point should be expressed. Passing an invalid coordinate system will result in invalid focus points.
-        /// </param>
-        /// <param name="position">
-        /// The focus point's position in world-space.
-        /// </param>
-        /// <param name="normal">
-        /// The focus point's normal in world-space.
-        /// </param>
-        /// <param name="velocity">
-        /// The focus point's velocity measured in units per second, in world-space.
-        /// </param>
-        /// <remarks>
-        /// <para>
-        /// This focus point must be explicitly set as the focus point to be used.
-        /// </para>
-        /// <para>
-        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
-        /// </para>
-        /// </remarks>
-        public Microsoft.Azure.RemoteRendering.FocusPointResult GetRemoteFocusPoint(System.IntPtr coordinateSystem, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity)
-        {
-            Microsoft.Azure.RemoteRendering.FocusPointResult result;
-            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_get_remote_focus_point(this.handle, coordinateSystem, out position, out normal, out velocity, out result));
-            return result;
-        }
-
-        /// <summary>
         /// Retrieves the last frame's statistics.
         /// </summary>
         /// <remarks>
@@ -7180,7 +7185,7 @@ namespace Microsoft.Azure.RemoteRendering
     /// </summary>
     /// <remarks>
     /// <para>
-    /// Important: <c>RenderingConnectionStatic.StartupRemoteRendering</c> must be called before the OpenXR loader negotiates with the underlying OpenXR runtime.
+    /// Important: <c>RemoteManagerStatic.StartupRemoteRendering</c> must be called before the OpenXR loader negotiates with the underlying OpenXR runtime.
     /// </para>
     /// <para>
     /// At runtime the only thing that needs to be done by the user is to call <see cref="GraphicsBindingOpenXrD3d11.BlitRemoteFrame"/> to render the remote frame to the current render target.
@@ -7204,6 +7209,36 @@ namespace Microsoft.Azure.RemoteRendering
         {
             Microsoft.Azure.RemoteRendering.Result result;
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_open_xr_d3d11_blit_remote_frame(this.handle, out result));
+            return result;
+        }
+
+        /// <summary>
+        /// Retrieves the remote focus point.
+        /// </summary>
+        /// <param name="spaceHandle">
+        /// The OpenXR space in which the focus point should be expressed. Passing an invalid space handle will result in invalid focus points.
+        /// </param>
+        /// <param name="position">
+        /// The focus point's position in world-space.
+        /// </param>
+        /// <param name="normal">
+        /// The focus point's normal in world-space.
+        /// </param>
+        /// <param name="velocity">
+        /// The focus point's velocity measured in units per second, in world-space.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// This focus point must be explicitly set as the focus point to be used.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
+        /// </para>
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.FocusPointResult GetRemoteFocusPoint(ulong spaceHandle, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity)
+        {
+            Microsoft.Azure.RemoteRendering.FocusPointResult result;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_open_xr_d3d11_get_remote_focus_point(this.handle, spaceHandle, out position, out normal, out velocity, out result));
             return result;
         }
 
@@ -7351,6 +7386,33 @@ namespace Microsoft.Azure.RemoteRendering
             return result;
         }
 
+        /// <summary>
+        /// Retrieves the remote focus point.
+        /// </summary>
+        /// <param name="position">
+        /// The focus point's position in world-space.
+        /// </param>
+        /// <param name="normal">
+        /// The focus point's normal in world-space.
+        /// </param>
+        /// <param name="velocity">
+        /// The focus point's velocity measured in units per second, in world-space.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// This focus point must be explicitly set as the focus point to be used.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
+        /// </para>
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.FocusPointResult GetRemoteFocusPoint(out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity)
+        {
+            Microsoft.Azure.RemoteRendering.FocusPointResult result;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_sim_d3d11_get_remote_focus_point(this.handle, out position, out normal, out velocity, out result));
+            return result;
+        }
+
     }
 
     /// <summary>
@@ -7358,7 +7420,7 @@ namespace Microsoft.Azure.RemoteRendering
     /// </summary>
     /// <remarks>
     /// <para>
-    /// Important: <c>RenderingConnectionStatic.StartupRemoteRendering</c> must be called before any Holographic space is created
+    /// Important: <c>RemoteManagerStatic.StartupRemoteRendering</c> must be called before any Holographic space is created
     /// and before any Mirage API is called.
     /// </para>
     /// <para>
@@ -7383,6 +7445,36 @@ namespace Microsoft.Azure.RemoteRendering
         {
             Microsoft.Azure.RemoteRendering.Result result;
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_wmr_d3d11_blit_remote_frame(this.handle, out result));
+            return result;
+        }
+
+        /// <summary>
+        /// Retrieves the remote focus point.
+        /// </summary>
+        /// <param name="coordinateSystem">
+        /// The coordinate frame in which the focus point should be expressed. Passing an invalid coordinate system will result in invalid focus points.
+        /// </param>
+        /// <param name="position">
+        /// The focus point's position in world-space.
+        /// </param>
+        /// <param name="normal">
+        /// The focus point's normal in world-space.
+        /// </param>
+        /// <param name="velocity">
+        /// The focus point's velocity measured in units per second, in world-space.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// This focus point must be explicitly set as the focus point to be used.
+        /// </para>
+        /// <para>
+        /// A <see cref="Result.NoConnection"/> error occurs if this is called while there is no connection to the server.
+        /// </para>
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.FocusPointResult GetRemoteFocusPoint(System.IntPtr coordinateSystem, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity)
+        {
+            Microsoft.Azure.RemoteRendering.FocusPointResult result;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_wmr_d3d11_get_remote_focus_point(this.handle, coordinateSystem, out position, out normal, out velocity, out result));
             return result;
         }
 
@@ -8668,7 +8760,7 @@ namespace Microsoft.Azure.RemoteRendering
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Roughness is a scalar in the [0..1] range.
+        /// Roughness is a scalar in the [0..1] range. 
         /// The roughness constant is only used if no <see cref="PbrMaterial.RoughnessMap"/> is provided.
         /// </para>
         /// <para>
@@ -10098,6 +10190,19 @@ namespace Microsoft.Azure.RemoteRendering
                 Microsoft.Azure.RemoteRendering.RenderingSessionPropertiesAbi result;
                 Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_rendering_session_properties_result_get_session_properties(this.handle, out result));
                 return result.Convert();
+            }
+        }
+
+        /// <summary>
+        /// The minimum number of seconds one has to wait before polling the rendering session properties again.
+        /// </summary>
+        public int MinimumRetryDelay
+        {
+            get
+            {
+                int result;
+                Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_rendering_session_properties_result_get_minimum_retry_delay(this.handle, out result));
+                return result;
             }
         }
 

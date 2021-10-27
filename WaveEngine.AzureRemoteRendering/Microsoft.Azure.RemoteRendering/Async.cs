@@ -19,7 +19,7 @@ namespace Microsoft.Azure.RemoteRendering
         }
 
         /// <summary>Creates a new instance of the <see cref='RRSessionException'/> class.</summary>
-        /// <param name='context'>Error code for this exception.</param>
+        /// <param name='code'>Error code for this exception.</param>
         public RRSessionException(SessionGeneralContext context)
             : base($"Operation returned \'{context.Result.ToString()}. {context.ErrorMessage}\'.")
         {

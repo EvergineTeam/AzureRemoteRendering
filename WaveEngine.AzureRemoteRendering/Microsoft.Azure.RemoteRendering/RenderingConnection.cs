@@ -4,7 +4,7 @@
 using System;
 namespace Microsoft.Azure.RemoteRendering
 {
-    public partial class RenderingConnectionStatic
+    public partial class RemoteManagerStatic
     {
 
         public delegate void ExceptionLoggedDelegate(Exception ex);

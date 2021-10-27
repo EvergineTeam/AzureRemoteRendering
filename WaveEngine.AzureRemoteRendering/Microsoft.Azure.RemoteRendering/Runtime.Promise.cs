@@ -6,15 +6,16 @@
 //   Copyright (c) Microsoft Corporation.  All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using WaveEngine.Common.Attributes;
+
 namespace Microsoft.Azure.RemoteRendering
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Concurrent;
-    using System.Diagnostics;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     internal class PromiseBase : IDisposable
     {
         private bool disposed = false;
@@ -77,7 +78,6 @@ namespace Microsoft.Azure.RemoteRendering
         /// <remarks>
         /// Order is important here - the <see cref="CancellationTokenRegistration"/> instance must be disposed before the <see cref="PromiseSafeHandle"/>.
         /// </remarks>
-        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
@@ -144,8 +144,6 @@ namespace Microsoft.Azure.RemoteRendering
         /// This needs to be kept in sync with CheckStatus(IntPtr handle, status value). That function throws, this function returns.
         /// This method is handwritten and needs to go away when ApiGen has better exception handling.
         /// </summary>
-        /// <param name="statusCode"></param>
-        /// <returns></returns>
         private static Exception CreateException(status statusCode)
         {
             // put the enum value as string into the message
@@ -335,7 +333,6 @@ namespace Microsoft.Azure.RemoteRendering
             return new Exception("Unknown reason");
         }
 
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
         internal delegate void apigen_promise_on_complete2(IntPtr context, ref PackedValue value);
         internal delegate void apigen_promise_on_error2(IntPtr context, status result);
 
@@ -346,7 +343,7 @@ namespace Microsoft.Azure.RemoteRendering
             public Action<float> progressCallback;
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_complete))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_complete))]
         static void InternalComplete(IntPtr context, ref PackedValue value)
         {
             if (s_cookieTracker.TryRemove(context, out InternalCallbacks entry))
@@ -355,7 +352,7 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_error))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_error))]
         static void InternalError(IntPtr context, status result)
         {
             if (s_cookieTracker.TryRemove(context, out InternalCallbacks entry))
@@ -364,7 +361,7 @@ namespace Microsoft.Azure.RemoteRendering
             }
         }
 
-        [AOT.MonoPInvokeCallback(typeof(apigen_promise_on_progress))]
+        [MonoPInvokeCallback(typeof(apigen_promise_on_progress))]
         static void InternalProgress(IntPtr context, float progress)
         {
             if (s_cookieTracker.TryGetValue(context, out InternalCallbacks entry))
@@ -418,38 +415,5 @@ namespace Microsoft.Azure.RemoteRendering
                 onProgress = ((progress != null) ? InternalProgress : (apigen_promise_on_progress)null)
             };
         }
-
-#else // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
-
-        // plain C# version
-        private static PromiseCreateOptions BuildOptions<TResult>(Func<PackedValue, TResult> factory, TaskCompletionSource<TResult> taskCompletionSource, Action<float> progress)
-        {
-            return new PromiseCreateOptions()
-            {
-                context = IntPtr.Zero,
-                onComplete = (IntPtr context, ref PackedValue value) =>
-                {
-                    TResult result = factory(value);
-
-                    taskCompletionSource.SetResult(result);
-                },
-                onError = (IntPtr context, status result) =>
-                {
-                    if (result == status.Cancelled)
-                    {
-                        taskCompletionSource.SetCanceled();
-                    }
-                    else
-                    {
-                        taskCompletionSource.SetException(CreateException(result));
-                    }
-                },
-                onProgress = (progress == null ? null : new apigen_promise_on_progress((_, value) => progress(value)))
-            };
-        }
-
-#endif // UNITY_EDITOR || UNITY_STANDALONE || UNITY_WSA
-
-
     }
 }

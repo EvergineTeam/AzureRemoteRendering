@@ -129,8 +129,7 @@ namespace Microsoft.Azure.RemoteRendering
                 return;
             }
 
-            FrameStatistics frameStatistics;
-            if (session.GraphicsBinding.GetLastFrameStatistics(out frameStatistics) != Result.Success)
+            if (session.GraphicsBinding.GetLastFrameStatistics(out FrameStatistics frameStatistics) != Result.Success)
             {
                 return;
             }
@@ -164,7 +163,7 @@ namespace Microsoft.Azure.RemoteRendering
             _videoFramesDiscardedTotal += frameStatistics.VideoFramesDiscarded;
         }
 
-        private void Swap<T>(ref T left, ref T right)
+        private static void Swap<T>(ref T left, ref T right)
         {
             T t = left;
             left = right;

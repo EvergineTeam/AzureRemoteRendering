@@ -138,7 +138,7 @@ namespace WaveEngine.AzureRemoteRendering
                     $" Currently the extension only works with {GraphicsBackend.DirectX11}.");
             }
 
-            if (!RenderingConnectionStatic.IsInitialized)
+            if (!RemoteManagerStatic.IsInitialized)
             {
                 // 1. One time initialization
                 var isWMRPlatform = DeviceInfo.PlatformType == PlatformType.UWP && this.xrPlatform != null;
@@ -155,7 +155,7 @@ namespace WaveEngine.AzureRemoteRendering
                 clientInit.Forward = Axis.NegativeZ;
                 clientInit.Right = Axis.X;
                 clientInit.Up = Axis.Y;
-                RenderingConnectionStatic.StartupRemoteRendering(clientInit);
+                RemoteManagerStatic.StartupRemoteRendering(clientInit);
             }
 
             return true;
@@ -195,7 +195,7 @@ namespace WaveEngine.AzureRemoteRendering
             this.frontEnd?.Dispose();
             this.frontEnd = null;
 
-            RenderingConnectionStatic.ShutdownRemoteRendering();
+            RemoteManagerStatic.ShutdownRemoteRendering();
         }
 
         /// <inheritdoc />
@@ -214,7 +214,6 @@ namespace WaveEngine.AzureRemoteRendering
 
             var cameraSettings = this.CurrentSession.Connection.CameraSettings;
             cameraSettings.SetNearAndFarPlane(camera.NearPlane, camera.FarPlane);
-            cameraSettings.EnableDepth = false;
             cameraSettings.InverseDepth = false;
 
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
@@ -286,8 +285,8 @@ namespace WaveEngine.AzureRemoteRendering
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
                 var depthDestination = dx11FrameBuffer.DepthTargetview;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
 
+                dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
                 dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
 
                 blitSuccess = simulationBinding.BlitRemoteFrameToProxy() == Result.Success;
@@ -318,6 +317,7 @@ namespace WaveEngine.AzureRemoteRendering
         {
             if (this.targetCamera != null && this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
+                this.graphicsPresenter.GraphicsCommandQueue.Submit();
                 var framebuffer = this.targetCamera.Display.FrameBuffer;
 
                 var dx11FrameBuffer = (DX11FrameBuffer)framebuffer;
@@ -334,8 +334,6 @@ namespace WaveEngine.AzureRemoteRendering
                 {
                     Debug.WriteLine($"ERROR: ReprojectProxy() failed");
                 }
-
-                ////this.targetCamera.FrameBuffer = this.targetFramebuffer;
             }
         }
 
@@ -733,12 +731,6 @@ namespace WaveEngine.AzureRemoteRendering
 
                 this.proxyFramebuffer = this.graphicsContext.Factory.CreateFrameBuffer(proxyDepthAttachment, new FrameBufferAttachment[] { proxyColorAttachment });
                 this.proxyFramebuffer.Name = "ProxyFrameBuffer";
-
-                this.update = new SimulationUpdateParameters();
-                ////{
-                ////    renderTargetWidth = (int)textureDescription.Width,
-                ////    renderTargetHeight = (int)textureDescription.Height,
-                ////};
 
                 // In spite of ARR BlitRemoteFrame invocation is performed using framebuffer's color and depth targets
                 // (avoid the need of DX11.CopyResource), InitSimulation invocation need textures with specific description
