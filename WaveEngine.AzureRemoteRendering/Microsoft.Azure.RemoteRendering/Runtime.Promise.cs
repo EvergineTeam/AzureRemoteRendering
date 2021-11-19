@@ -393,14 +393,15 @@ namespace Microsoft.Azure.RemoteRendering
                     }
                     else
                     {
-                        taskCompletionSource.SetException(CreateException(result));
+                        // Use the TrySetException variant instead of SetException to also cover the case that the task has been disposed already
+                        taskCompletionSource.TrySetException(CreateException(result));
                     }
                 },
 
                 progressCallback = progress
             };
 
-            // This should be imposible, so we throw a general fail
+            // This should be impossible, so we throw a general fail
             // if a key is already present in the dictionary.
             if(!s_cookieTracker.TryAdd(cookie, internalCB))
             {

@@ -58,7 +58,6 @@ namespace Microsoft.Azure.RemoteRendering
         /// Internal: Start of the range of core result values.
         /// </summary>
         CoreReturnValueStart = 78,
-
         /// <summary>
         /// Operation completed successfully.
         /// </summary>
@@ -1681,6 +1680,8 @@ namespace Microsoft.Azure.RemoteRendering
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_open_xr_d3d11_get_remote_focus_point(ulong handle, ulong space_handle, out Microsoft.Azure.RemoteRendering.Float3 position, out Microsoft.Azure.RemoteRendering.Float3 normal, out Microsoft.Azure.RemoteRendering.Float3 velocity, out Microsoft.Azure.RemoteRendering.FocusPointResult result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_open_xr_d3d11_update_app_space(ulong handle, ulong space_handle, out Microsoft.Azure.RemoteRendering.Result result);
+        [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
+        internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_set_pose_mode(ulong handle, Microsoft.Azure.RemoteRendering.PoseMode mode, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
         internal static extern Microsoft.Azure.RemoteRendering.status arr_graphics_binding_sim_d3d11_blit_remote_frame_to_proxy(ulong handle, out Microsoft.Azure.RemoteRendering.Result result);
         [DllImport(DllName, CallingConvention=CallingConvention.Cdecl)]
@@ -5645,6 +5646,32 @@ namespace Microsoft.Azure.RemoteRendering
     }
 
     /// <summary>
+    /// The pose mode used for rendering.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.RemoteRendering.GraphicsBinding.SetPoseMode(Microsoft.Azure.RemoteRendering.PoseMode)"/>
+    /// <seealso cref="https://docs.microsoft.com/azure/remote-rendering/concepts/rendering-modes">Rendering modes</seealso>
+    public enum PoseMode : int
+    {
+        /// <summary>
+        /// Client operates in local pose space which uses the latest available pose for rendering.
+        /// </summary>
+        /// <remarks>
+        /// Note, the remote frame is automatically reprojected from remote pose space into local
+        /// pose space when using this mode which has a performance impact.
+        /// This mode gives the best possible latency and quality for local content.
+        /// </remarks>
+        Local = 0,
+        /// <summary>
+        /// Client operates in remote pose space which uses the remote pose of the latest received remote frame for rendering.
+        /// </summary>
+        /// <remarks>
+        /// This mode gives the best performance but with the drawback of rendering local content in remote pose space
+        /// as well which means that any network issue affecting pose quality will also apply to local content.
+        /// </remarks>
+        Remote = 1,
+    }
+
+    /// <summary>
     /// Render properties that can be overridden by the <see cref="HierarchicalStateOverrideComponent"/>
     /// </summary>
     /// <seealso cref="Microsoft.Azure.RemoteRendering.HierarchicalStateOverrideComponent"/>
@@ -7175,6 +7202,21 @@ namespace Microsoft.Azure.RemoteRendering
         {
             Microsoft.Azure.RemoteRendering.Result result;
             Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_get_last_frame_statistics(this.handle, out stats, out result));
+            return result;
+        }
+
+        /// <summary>
+        /// Set the pose mode.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// /// A <see cref="Result.NotSupported"/> error occurs if <see cref="PoseMode.Remote"/> is used on Android.
+        /// </para>
+        /// </remarks>
+        public Microsoft.Azure.RemoteRendering.Result SetPoseMode(Microsoft.Azure.RemoteRendering.PoseMode mode)
+        {
+            Microsoft.Azure.RemoteRendering.Result result;
+            Microsoft.Azure.RemoteRendering.NativeLibraryHelpers.CheckStatus(this.handle, Microsoft.Azure.RemoteRendering.NativeLibrary.arr_graphics_binding_set_pose_mode(this.handle, mode, out result));
             return result;
         }
 
