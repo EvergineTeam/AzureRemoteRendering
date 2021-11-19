@@ -28,11 +28,13 @@ namespace AzureRemoteRendering_Demo
         {
             base.CreateScene();
 
+            var remoteSessionConfig = this.Managers.EntityManager.FindFirstComponentOfType<ARRSessionManager>().AccountInfo;
+
             // Users need to fill out the following with their account data and model
-            var accountInfo = this.Managers.EntityManager.FindFirstComponentOfType<ARRSessionManager>().AccountInfo;
-            accountInfo.AccountId = "00000000-0000-0000-0000-000000000000";
-            accountInfo.AccountKey = "<account key>";
-            accountInfo.AccountDomain = "westeurope.mixedreality.azure.com"; // <change to your region>
+            remoteSessionConfig.AccountId = "00000000-0000-0000-0000-000000000000";
+            remoteSessionConfig.AccountKey = "<account key>";
+            remoteSessionConfig.AccountDomain = "westeurope.mixedreality.azure.com"; // <change to your region>
+            remoteSessionConfig.RemoteRenderingDomain = "westeurope.mixedreality.azure.com"; // <change to your region>
 
             var modelLoader = this.Managers.EntityManager.FindFirstComponentOfType<ARRModelLoader>();
             modelLoader.Url = "builtin://Engine";
@@ -49,7 +51,7 @@ namespace AzureRemoteRendering_Demo
                     {
                         Debug.WriteLine($"[ARR] Loading skybox texture \"{skyboxUrl}\"");
                         var skyboxTexture = await arrService.LoadTextureFromSASAsync(skyboxUrl, Microsoft.Azure.RemoteRendering.TextureType.CubeMap);
-                        arrService.CurrentSession.Actions.SkyReflectionSettings.SkyReflectionTexture = skyboxTexture;
+                        arrService.CurrentSession.Connection.SkyReflectionSettings.SkyReflectionTexture = skyboxTexture;
                     }
                 })
                 .Run();

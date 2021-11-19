@@ -11,7 +11,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Component that handles the initialization of <see cref="AzureRemoteRenderingService"/> and the creation and
-    /// connection of a <see cref="AzureSession"/>.
+    /// connection of a <see cref="RenderingSession"/>.
     /// </summary>
     public class ARRSessionManager : Component
     {
@@ -22,12 +22,12 @@ namespace WaveEngine.AzureRemoteRendering.Components
         protected AzureRemoteRenderingService arrService;
 
         /// <summary>
-        /// Gets or sets the account information and domain to associate an <see cref="AzureFrontend"/> instance with.
+        /// Gets or sets the account information and domain to associate an <see cref="RemoteRenderingClient"/> instance with.
         /// </summary>
-        public ARRFrontendAccountInfo AccountInfo { get; set; } = new ARRFrontendAccountInfo();
+        public ARRSessionConfiguration AccountInfo { get; set; } = new ARRSessionConfiguration();
 
         /// <summary>
-        /// Gets or sets a value indicating whether a <see cref="AzureSession"/> will be reused or created once this component is activated.
+        /// Gets or sets a value indicating whether a <see cref="RenderingSession"/> will be reused or created once this component is activated.
         /// </summary>
         public bool CreateAndConnectAutomatically { get; set; } = true;
 
@@ -54,11 +54,18 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
             this.arrService.Initialize(this.AccountInfo);
 
-            if (this.CreateAndConnectAutomatically &&
-                await this.ReuseOrCreateSessionAsync() &&
-                !await this.arrService.ConnectAsync())
+            try
             {
-                Trace.TraceError("[ARR] Error connecting to session");
+                if (this.CreateAndConnectAutomatically &&
+                    await this.ReuseOrCreateSessionAsync() &&
+                    !await this.arrService.ConnectAsync())
+                {
+                    Trace.TraceError("[ARR] Error connecting to session");
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError($"[ARR] Error connecting to session {e}");
             }
         }
 
@@ -71,9 +78,8 @@ namespace WaveEngine.AzureRemoteRendering.Components
 
         private async Task<bool> ReuseOrCreateSessionAsync()
         {
-            var currentSessions = await this.arrService.GetCurrentRenderingSessionsAsync();
-            var existingSessionId = currentSessions.FirstOrDefault(x => x.Size == this.VMSize)
-                                                   .Id;
+            var currentSessions = (await this.arrService.GetCurrentRenderingSessionsAsync()).SessionProperties;
+            var existingSessionId = currentSessions?.FirstOrDefault(x => x.Size == this.VMSize).Id;
 
             var createNewSession = true;
             if (!string.IsNullOrEmpty(existingSessionId))

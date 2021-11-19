@@ -3,6 +3,7 @@
 using Microsoft.Azure.RemoteRendering;
 using SharpDX.Direct3D11;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using WaveEngine.Common;
 using WaveEngine.Common.Graphics;
@@ -20,13 +21,13 @@ namespace WaveEngine.AzureRemoteRendering
 {
     /// <summary>
     /// Service for the Azure Remote Rendering extension. This service provides functionality
-    /// for <see cref="AzureFrontend"/> and <see cref="AzureSession"/> management. It has a concept
+    /// for <see cref="RemoteRenderingClient"/> and <see cref="RenderingSession"/> management. It has a concept
     /// of the <see cref="CurrentSession"/>. There can only be a single active session at a time.
     /// </summary>
     /// <remarks>
     /// This service must be initialized before <see cref="XRPlatform"/> service in Mixed Reality platform.
-    /// Once attached, the method <see cref="Initialize(ARRFrontendAccountInfo)"/> must be called to perform
-    /// authentication with the <see cref="AzureFrontend"/>.
+    /// Once attached, the method <see cref="Initialize(ARRSessionConfiguration)"/> must be called to perform
+    /// authentication with the <see cref="RemoteRenderingClient"/>.
     /// Currently the extension only works with <see cref="GraphicsBackend.DirectX11"/>.
     /// </remarks>
     public class AzureRemoteRenderingService : UpdatableService
@@ -52,18 +53,32 @@ namespace WaveEngine.AzureRemoteRendering
 
         private ARRConnectionStatus connectionStatus = ARRConnectionStatus.Disconnected;
 
-        private AzureFrontend frontEnd;
+        private RemoteRenderingClient frontEnd;
 
         // Activate Deactivate
         private bool wasConnected;
-        private ConnectToRuntimeParams connectionParams;
+        private RendererInitOptions rendererInitOptions;
+        private FrameBuffer proxyFramebuffer;
 
         // Simulation
-        private SimulationUpdate simUpdate;
+        private SimulationUpdateParameters update;
         private Mathematics.Matrix4x4 preUpdateCameraWorldTransform;
 
         // Mixed Reality
         private IntPtr userCoordinateSystem;
+        private Camera targetCamera;
+        private FrameBuffer targetFramebuffer;
+        private Viewport[] viewports = new Viewport[1];
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the depth composition is enabled with locally rendered content.
+        /// </summary>
+        public bool EnableDepth { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether you are using the inverse depth range of 1 (closest to the camera) to zero (farthest from the camera) instead of the standard [0;1] for your local depth buffer.
+        /// </summary>
+        public bool InverseDepth { get; set; } = false;
 
         /// <summary>
         /// Gets a value indicating the current session connection status of the service.
@@ -83,9 +98,9 @@ namespace WaveEngine.AzureRemoteRendering
 
         /// <summary>
         /// Gets the frontend associated with this service. Frontends are used for authentication and
-        /// will be created through <see cref="Initialize(ARRFrontendAccountInfo)"/>.
+        /// will be created through <see cref="Initialize(ARRSessionConfiguration)"/>.
         /// </summary>
-        public AzureFrontend FrontEnd
+        public RemoteRenderingClient FrontEnd
         {
             get
             {
@@ -99,9 +114,9 @@ namespace WaveEngine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Gets the active <see cref="AzureSession"/>.
+        /// Gets the active <see cref="RenderingSession"/>.
         /// </summary>
-        public AzureSession CurrentSession { get; private set; }
+        public RenderingSession CurrentSession { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="CurrentSession"/> is connected.
@@ -143,13 +158,13 @@ namespace WaveEngine.AzureRemoteRendering
                 }
 
                 var clientInit = new RemoteRenderingInitialization();
-                clientInit.connectionType = ConnectionType.General;
-                clientInit.graphicsApi = isWMRPlatform ? GraphicsApiType.WmrD3D11 : GraphicsApiType.SimD3D11;
-                clientInit.toolId = "Wave Engine";
-                clientInit.unitsPerMeter = 1.0f;
-                clientInit.forward = Axis.Z_Neg;
-                clientInit.right = Axis.X;
-                clientInit.up = Axis.Y;
+                clientInit.ConnectionType = ConnectionType.General;
+                clientInit.GraphicsApi = isWMRPlatform ? GraphicsApiType.WmrD3D11 : GraphicsApiType.SimD3D11;
+                clientInit.ToolId = "Wave Engine";
+                clientInit.UnitsPerMeter = 1.0f;
+                clientInit.Forward = Axis.NegativeZ;
+                clientInit.Right = Axis.X;
+                clientInit.Up = Axis.Y;
                 RemoteManagerStatic.StartupRemoteRendering(clientInit);
             }
 
@@ -157,13 +172,13 @@ namespace WaveEngine.AzureRemoteRendering
         }
 
         /// <inheritdoc />
-        protected override void OnActivated()
+        protected override async void OnActivated()
         {
             base.OnActivated();
 
             if (this.wasConnected)
             {
-                this.CurrentSession.ConnectToRuntime(this.connectionParams);
+                await this.CurrentSession.ConnectAsync(this.rendererInitOptions);
             }
         }
 
@@ -175,8 +190,8 @@ namespace WaveEngine.AzureRemoteRendering
             this.wasConnected = this.IsCurrentSessionConnected;
             if (this.wasConnected)
             {
-                this.connectionParams = this.CurrentSession.ConnectToRuntimeParams;
-                this.CurrentSession.DisconnectFromRuntime();
+                this.rendererInitOptions = this.CurrentSession.RendererInitOptions;
+                this.CurrentSession.Disconnect();
             }
         }
 
@@ -197,7 +212,7 @@ namespace WaveEngine.AzureRemoteRendering
         public override void Update(TimeSpan gameTime)
         {
             // Tick the client to receive messages
-            this.CurrentSession?.Actions.Update();
+            this.CurrentSession?.Connection.Update();
         }
 
         internal bool UpdateLocal(Camera camera)
@@ -207,31 +222,49 @@ namespace WaveEngine.AzureRemoteRendering
                 return false;
             }
 
-            var cameraSettings = this.CurrentSession.Actions.CameraSettings;
+            var cameraSettings = this.CurrentSession.Connection.CameraSettings;
             cameraSettings.SetNearAndFarPlane(camera.NearPlane, camera.FarPlane);
+            cameraSettings.EnableDepth = this.EnableDepth;
+            cameraSettings.InverseDepth = this.InverseDepth;
 
             if (this.CurrentSession.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
-                this.simUpdate.frameId++;
-                this.simUpdate.nearPlaneDistance = camera.NearPlane;
-                this.simUpdate.farPlaneDistance = camera.FarPlane;
+                this.update.FrameId++;
+                this.update.FieldOfView.Left.FromProjectionMatrix(camera.Projection.ToRemote());
+                this.update.ViewTransform.Left = camera.View.ToRemote();
 
-                camera.Projection.ToRemote(out this.simUpdate.projection);
-                camera.View.ToRemote(out this.simUpdate.viewTransform);
-                simulationBinding.Update(this.simUpdate, out var proxyUpdate);
-
-                if (proxyUpdate.frameId != 0)
+                var updateResult = simulationBinding.Update(this.update, out var proxyUpdate);
+                if (updateResult != Result.Success && updateResult != Result.NoConnection)
                 {
-                    proxyUpdate.projection.ToWave(out var remoteProjection);
-                    proxyUpdate.viewTransform.ToWave(out var remoteView);
-                    Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransfom);
+                    Debug.WriteLine($"ERROR: Simulation update failed: {updateResult}");
+                    return false;
+                }
 
-                    this.preUpdateCameraWorldTransform = camera.Transform.WorldTransform;
-                    camera.NearPlane = Math.Min(proxyUpdate.nearPlaneDistance, proxyUpdate.farPlaneDistance);
-                    camera.FarPlane = Math.Max(proxyUpdate.nearPlaneDistance, proxyUpdate.farPlaneDistance);
-                    camera.SetCustomProjection(remoteProjection);
-                    camera.Transform.WorldTransform = remoteTransfom;
-                    return true;
+                this.preUpdateCameraWorldTransform = camera.Transform.WorldTransform;
+                if (proxyUpdate.FrameId != 0)
+                {
+                    // Getting a projection matrix out of the proxyUpdate data. Note: Despite rendering with an inverse
+                    // z depth buffer internally, Wave has a normal z range matrix on the cameras. Therefore, we need
+                    // to request a matrix in a conventional [-1;1] OpenGL space.
+                    if (proxyUpdate.FieldOfView.Left.ToProjectionMatrix(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance, DepthConvention.MinusOneToOne, out Matrix4x4 projection) == Result.Success)
+                    {
+                        projection.ToWave(out var remoteProjection);
+                        camera.SetCustomProjection(remoteProjection);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"ERROR: Projection Matrix failed.");
+                    }
+
+                    proxyUpdate.ViewTransform.Left.ToWave(out var remoteView);
+                    Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransform);
+
+                    camera.Transform.WorldTransform = remoteTransform;
+
+                    // Sets the proxy framebuffer
+                    this.targetCamera = camera;
+                    this.targetFramebuffer = camera.FrameBuffer;
+                    camera.FrameBuffer = this.proxyFramebuffer;
                 }
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -243,30 +276,29 @@ namespace WaveEngine.AzureRemoteRendering
                 {
                     this.userCoordinateSystem = ptr;
                 }
-
-                return true;
             }
 
-            return false;
+            return true;
         }
 
-        internal bool BlitRemoteFrame(Camera camera)
+        internal bool BlitRemoteFrame(CameraDrawContext drawContext, CommandBuffer commandBuffer)
         {
             bool blitSuccess = false;
+
+            var camera = drawContext.Camera;
 
             if (this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
             {
                 camera.ResetCustomProjection();
                 camera.Transform.WorldTransform = this.preUpdateCameraWorldTransform;
 
-                var drawContext = camera.DrawContext;
-                var frameBuffer = drawContext.IntermediateFrameBuffer ?? drawContext.FrameBuffer;
-                var dx11FrameBuffer = (DX11FrameBuffer)frameBuffer;
+                var dx11FrameBuffer = (DX11FrameBuffer)this.proxyFramebuffer;
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
-                var depthDestination = dx11FrameBuffer.DepthTargetview;
+                var depthDestination = this.EnableDepth ? dx11FrameBuffer.DepthTargetview : null;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
+                dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
                 dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+
                 blitSuccess = simulationBinding.BlitRemoteFrameToProxy() == Result.Success;
             }
             else if (this.CurrentSession.GraphicsBinding is GraphicsBindingWmrD3d11 wmrBinding)
@@ -275,6 +307,7 @@ namespace WaveEngine.AzureRemoteRendering
                 var frameBuffer = camera.DrawContext.FrameBuffer as DX11FrameBuffer;
                 dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
                 dxContext.OutputMerger.SetRenderTargets(frameBuffer.DepthTargetview, frameBuffer.ColorTargetViews);
+
                 blitSuccess = wmrBinding.BlitRemoteFrame() == Result.Success;
             }
 
@@ -282,19 +315,47 @@ namespace WaveEngine.AzureRemoteRendering
             {
                 camera.ClearFlags &= ~(ClearFlags.Depth | ClearFlags.Target);
             }
+            else
+            {
+                Debug.WriteLine($"ERROR: Blit failed.");
+            }
 
             return blitSuccess;
+        }
+
+        internal void Reproject()
+        {
+            if (this.targetCamera != null && this.CurrentSession?.GraphicsBinding is GraphicsBindingSimD3d11 simulationBinding)
+            {
+                this.graphicsPresenter.GraphicsCommandQueue.Submit();
+                var framebuffer = this.targetCamera.Display.FrameBuffer;
+
+                var dx11FrameBuffer = (DX11FrameBuffer)framebuffer;
+                var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
+                var depthDestination = dx11FrameBuffer.DepthTargetview;
+                var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
+                dxContext.Rasterizer.SetViewport(0, 0, framebuffer.Width, framebuffer.Height);
+                dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+
+                dxContext.ClearRenderTargetView(colorDestination, default);
+                dxContext.ClearDepthStencilView(depthDestination, DepthStencilClearFlags.Depth, 1, 0);
+
+                if (simulationBinding.ReprojectProxy() != Result.Success)
+                {
+                    Debug.WriteLine($"ERROR: ReprojectProxy() failed");
+                }
+            }
         }
 
         /// <summary>
         /// Initializes the service creating the <see cref="FrontEnd"/>.
         /// </summary>
-        /// <param name="accountInfo">The Azure Frontend credentials.</param>
-        public void Initialize(ARRFrontendAccountInfo accountInfo)
+        /// <param name="sessionConfig">The Azure Frontend credentials.</param>
+        public void Initialize(ARRSessionConfiguration sessionConfig)
         {
-            if (accountInfo == null)
+            if (sessionConfig == null)
             {
-                throw new ArgumentNullException(nameof(accountInfo));
+                throw new ArgumentNullException(nameof(sessionConfig));
             }
 
             if (this.frontEnd != null)
@@ -307,12 +368,12 @@ namespace WaveEngine.AzureRemoteRendering
                 throw new InvalidOperationException($"{nameof(AzureRemoteRenderingService)} is not attached.");
             }
 
-            if (!accountInfo.HasRequiredInfo)
+            if (!sessionConfig.HasRequiredInfo)
             {
-                throw new ArgumentException($"{nameof(accountInfo)} has not all required info.");
+                throw new ArgumentException($"{nameof(sessionConfig)} has not all required info.");
             }
 
-            this.frontEnd = new AzureFrontend(accountInfo.Convert());
+            this.frontEnd = new RemoteRenderingClient(sessionConfig.Convert());
         }
 
         /// <summary>
@@ -323,9 +384,9 @@ namespace WaveEngine.AzureRemoteRendering
         /// <returns>
         /// A task with an array of <see cref="RenderingSessionProperties"/>.
         /// </returns>
-        public Task<RenderingSessionProperties[]> GetCurrentRenderingSessionsAsync()
+        public Task<RenderingSessionPropertiesArrayResult> GetCurrentRenderingSessionsAsync()
         {
-            return this.FrontEnd.GetCurrentRenderingSessionsAsync().AsTask();
+            return this.FrontEnd.GetCurrentRenderingSessionsAsync();
         }
 
         /// <summary>
@@ -339,15 +400,14 @@ namespace WaveEngine.AzureRemoteRendering
         public async Task<bool> CreateNewRenderingSessionAsync(TimeSpan maxLease, RenderingSessionVmSize size = RenderingSessionVmSize.Standard)
         {
             // create a new session
-            var renderingSessionParams = new RenderingSessionCreationParams();
-            renderingSessionParams.MaxLease.hour = maxLease.Hours;
-            renderingSessionParams.MaxLease.minute = maxLease.Minutes;
+            var renderingSessionParams = new RenderingSessionCreationOptions();
+            renderingSessionParams.MaxLeaseInMinutes = (int)maxLease.TotalMinutes;
             renderingSessionParams.Size = size;
             try
             {
                 this.ConnectionStatus = ARRConnectionStatus.CreatingSession;
-                var session = await this.FrontEnd.CreateNewRenderingSessionAsync(renderingSessionParams).AsTask();
-                return await this.SetNewSessionAsync(session);
+                var sessionRes = await this.FrontEnd.CreateNewRenderingSessionAsync(renderingSessionParams);
+                return await this.SetNewSessionAsync(sessionRes.Session);
             }
             catch (RRSessionException)
             {
@@ -365,13 +425,13 @@ namespace WaveEngine.AzureRemoteRendering
         /// <returns><c>true</c> if the rendering session is found and ready; otherwise, <c>false</c>.</returns>
         public async Task<bool> OpenRenderingSessionAsync(string sessionId)
         {
-            var openSessionRes = this.FrontEnd.OpenRenderingSession(sessionId);
-            if (openSessionRes != null)
+            var openSessionRes = await this.FrontEnd.OpenRenderingSessionAsync(sessionId);
+            if (openSessionRes == null)
             {
-                return await this.SetNewSessionAsync(openSessionRes);
+                return false;
             }
 
-            return false;
+            return await this.SetNewSessionAsync(openSessionRes.Session);
         }
 
         /// <summary>
@@ -387,17 +447,16 @@ namespace WaveEngine.AzureRemoteRendering
         public async Task<bool> RenewRenderingSessionAsync(TimeSpan leaseTime, string sessionId = null)
         {
             var isCurrentSession = string.IsNullOrEmpty(sessionId);
-            var session = isCurrentSession ? this.CurrentSession : this.FrontEnd.OpenRenderingSession(sessionId);
+            var session = isCurrentSession ? this.CurrentSession : (await this.FrontEnd.OpenRenderingSessionAsync(sessionId))?.Session;
             if (session == null)
             {
                 return false;
             }
 
-            var stopAsync = session.RenewAsync(new RenderingSessionUpdateParams((uint)leaseTime.Hours, (uint)leaseTime.Minutes));
-            await stopAsync.AsTask();
+            var stopAsync = session.RenewAsync(new RenderingSessionUpdateOptions(leaseTime.Hours, leaseTime.Minutes));
+            var stopRes = await stopAsync;
 
-            var result = stopAsync.Status == Result.Success;
-            return result;
+            return stopRes.ErrorCode == Result.Success;
         }
 
         /// <summary>
@@ -410,16 +469,16 @@ namespace WaveEngine.AzureRemoteRendering
         public async Task<bool> StopRenderingSessionAsync(string sessionId = null)
         {
             var isCurrentSession = string.IsNullOrEmpty(sessionId);
-            var session = isCurrentSession ? this.CurrentSession : this.FrontEnd.OpenRenderingSession(sessionId);
+            var session = isCurrentSession ? this.CurrentSession : (await this.FrontEnd.OpenRenderingSessionAsync(sessionId)).Session;
             if (session == null)
             {
                 return false;
             }
 
             var stopAsync = session.StopAsync();
-            await stopAsync.AsTask();
+            var stopRes = await stopAsync;
 
-            var result = stopAsync.Status == Result.Success;
+            var result = stopRes.ErrorCode == Result.Success;
             if (result && isCurrentSession)
             {
                 this.UnsetCurrentSession();
@@ -447,8 +506,7 @@ namespace WaveEngine.AzureRemoteRendering
                 return true;
             }
 
-            var connectAsync = this.CurrentSession.ConnectToRuntime(new ConnectToRuntimeParams(renderMode));
-            await connectAsync.AsTask();
+            await this.CurrentSession.ConnectAsync(new RendererInitOptions(renderMode));
 
             return this.IsCurrentSessionConnected;
         }
@@ -468,8 +526,8 @@ namespace WaveEngine.AzureRemoteRendering
                 return null;
             }
 
-            var sessionProperties = await this.CurrentSession.GetPropertiesAsync().AsTask();
-            return await this.CurrentSession.ConnectToArrInspectorAsync(sessionProperties.Hostname).AsTask();
+            var sessionPropertiesRes = await this.CurrentSession.GetPropertiesAsync();
+            return await this.CurrentSession.ConnectToArrInspectorAsync(/*sessionPropertiesRes.SessionProperties.Hostname*/);
         }
 
         /// <summary>
@@ -485,7 +543,7 @@ namespace WaveEngine.AzureRemoteRendering
                 return false;
             }
 
-            var result = this.CurrentSession.DisconnectFromRuntime();
+            var result = this.CurrentSession.Disconnect();
             return result == Result.Success;
         }
 
@@ -499,14 +557,14 @@ namespace WaveEngine.AzureRemoteRendering
         /// <returns>
         /// A task with an array of <see cref="RayCastHit"/>.
         /// </returns>
-        public Task<RayCastHit[]> RayCastQueryAsync(RayCast rayCast)
+        public Task<RayCastQueryResult> RayCastQueryAsync(RayCast rayCast)
         {
             if (!this.IsCurrentSessionConnected)
             {
-                return Task.FromResult<RayCastHit[]>(null);
+                return Task.FromResult<RayCastQueryResult>(null);
             }
 
-            return this.CurrentSession.Actions.RayCastQueryAsync(rayCast).AsTask();
+            return this.CurrentSession.Connection.RayCastQueryAsync(rayCast);
         }
 
         /// <summary>
@@ -530,7 +588,7 @@ namespace WaveEngine.AzureRemoteRendering
                 return false;
             }
 
-            material = this.CurrentSession.Actions.CreateMaterial(type);
+            material = this.CurrentSession.Connection.CreateMaterial(type);
             return true;
         }
 
@@ -552,33 +610,31 @@ namespace WaveEngine.AzureRemoteRendering
                 return Task.FromResult<ARRTexture>(default);
             }
 
-            var parameters = new LoadTextureFromSASParams(url, textureType);
-            var loadTextureAsync = this.CurrentSession.Actions.LoadTextureFromSASAsync(parameters);
-            return this.InternalLoadTexture(loadTextureAsync);
+            var parameters = new LoadTextureFromSasOptions(url, textureType);
+            return this.CurrentSession.Connection.LoadTextureFromSasAsync(parameters);
         }
 
         /// <summary>
         /// Asynchronously load a texture from blob store.
         /// </summary>
-        /// <param name="blobParams">Blob store parameters for loading.</param>
+        /// <param name="blobOptions">Blob store parameters for loading.</param>
         /// <param name="textureType">Type of the texture.</param>
         /// <returns>
         /// A task with the loaded remote <see cref="ARRTexture"/>.
         /// </returns>
-        public Task<ARRTexture> LoadTextureAsync(LoadFromBlobParams blobParams, ARRTextureType textureType)
+        public Task<ARRTexture> LoadTextureAsync(LoadFromBlobOptions blobOptions, ARRTextureType textureType)
         {
             if (!this.IsCurrentSessionConnected)
             {
                 return Task.FromResult<ARRTexture>(default);
             }
 
-            var parameters = new LoadTextureParams()
+            var parameters = new LoadTextureOptions()
             {
-                Blob = blobParams,
+                Blob = blobOptions,
                 TextureType = textureType,
             };
-            var loadTextureAsync = this.CurrentSession.Actions.LoadTextureAsync(parameters);
-            return this.InternalLoadTexture(loadTextureAsync);
+            return this.CurrentSession.Connection.LoadTextureAsync(parameters);
         }
 
         /// <summary>
@@ -595,22 +651,27 @@ namespace WaveEngine.AzureRemoteRendering
         /// <returns>
         /// A task with a remote <see cref="ARREntity"/> that represents the root of the loaded model.
         /// </returns>
-        public Task<ARREntity> LoadModelFromSASAsync(string url, ARREntity parent = null, IProgress<float> progress = null)
+        public Task<LoadModelResult> LoadModelFromSASAsync(string url, ARREntity parent = null, IProgress<float> progress = null)
         {
             if (!this.IsCurrentSessionConnected)
             {
-                return Task.FromResult<ARREntity>(default);
+                return Task.FromResult<LoadModelResult>(default);
             }
 
-            var parameters = new LoadModelFromSASParams(url, parent);
-            var loadModelAsync = this.CurrentSession.Actions.LoadModelFromSASAsync(parameters);
-            return this.InternalLoadModel(loadModelAsync, progress);
+            Action<float> progressCallback = null;
+            if (progress != null)
+            {
+                progressCallback = (float progressF) => progress.Report(progressF * 100);
+            }
+
+            var options = new LoadModelFromSasOptions(url, parent);
+            return this.CurrentSession.Connection.LoadModelFromSasAsync(options, progressCallback);
         }
 
         /// <summary>
         /// Asynchronously load a model from blob store.
         /// </summary>
-        /// <param name="blobParams">Blob store parameters for loading.</param>
+        /// <param name="blobOptions">Blob store parameters for loading.</param>
         /// <param name="parent">Optional parent for the loaded model.</param>
         /// <param name="progress">
         /// A provider for model load progress updates. It will report a float with a loading percentage.
@@ -618,23 +679,29 @@ namespace WaveEngine.AzureRemoteRendering
         /// <returns>
         /// A task with a remote <see cref="ARREntity"/> that represents the root of the loaded model.
         /// </returns>
-        public Task<ARREntity> LoadModelAsync(LoadFromBlobParams blobParams, ARREntity parent = null, IProgress<float> progress = null)
+        public Task<LoadModelResult> LoadModelAsync(LoadFromBlobOptions blobOptions, ARREntity parent = null, IProgress<float> progress = null)
         {
             if (!this.IsCurrentSessionConnected)
             {
-                return Task.FromResult<ARREntity>(default);
+                return Task.FromResult<LoadModelResult>(default);
             }
 
-            var parameters = new LoadModelParams()
+            var options = new LoadModelOptions()
             {
-                Blob = blobParams,
+                Blob = blobOptions,
                 Parent = parent,
             };
-            var loadModelAsync = this.CurrentSession.Actions.LoadModelAsync(parameters);
-            return this.InternalLoadModel(loadModelAsync, progress);
+
+            Action<float> progressCallback = null;
+            if (progress != null)
+            {
+                progressCallback = (float progressF) => progress.Report(progressF * 100);
+            }
+
+            return this.CurrentSession.Connection.LoadModelAsync(options, progressCallback);
         }
 
-        private async Task<bool> SetNewSessionAsync(AzureSession session)
+        private async Task<bool> SetNewSessionAsync(RenderingSession session)
         {
             bool success = true;
             this.UnsetCurrentSession();
@@ -669,18 +736,18 @@ namespace WaveEngine.AzureRemoteRendering
                 var proxyDepthTexture = this.graphicsContext.Factory.CreateTexture(ref textureDescription);
                 var proxyDepthPtr = proxyDepthTexture.NativePointer;
 
-                this.simUpdate = new SimulationUpdate()
-                {
-                    renderTargetWidth = (int)textureDescription.Width,
-                    renderTargetHeight = (int)textureDescription.Height,
-                };
+                var proxyDepthAttachment = new FrameBufferAttachment(proxyDepthTexture, 0, 1);
+                var proxyColorAttachment = new FrameBufferAttachment(proxyColorTexture, 0, 1);
+
+                this.proxyFramebuffer = this.graphicsContext.Factory.CreateFrameBuffer(proxyDepthAttachment, new FrameBufferAttachment[] { proxyColorAttachment });
+                this.proxyFramebuffer.Name = "ProxyFrameBuffer";
 
                 // In spite of ARR BlitRemoteFrame invocation is performed using framebuffer's color and depth targets
                 // (avoid the need of DX11.CopyResource), InitSimulation invocation need textures with specific description
                 // even though they are disposed right after the invocation.
                 var m_device = this.graphicsContext.NativeDevicePointer;
                 var refreshRate = swapChainDescription.RefreshRate;
-                var result = simulationBinding.InitSimulation(m_device, proxyDepthPtr, proxyColorPtr, refreshRate, false, false);
+                var result = simulationBinding.InitSimulation(m_device, proxyDepthPtr, proxyColorPtr, refreshRate, false, false, false);
                 success = result == Result.Success;
                 proxyColorTexture.Dispose();
                 proxyDepthTexture.Dispose();
@@ -710,14 +777,14 @@ namespace WaveEngine.AzureRemoteRendering
             this.CurrentSession = null;
         }
 
-        private async Task<bool> CheckSessionIsReadyAsync(AzureSession session)
+        private async Task<bool> CheckSessionIsReadyAsync(RenderingSession session)
         {
             while (true)
             {
                 try
                 {
-                    var properties = await session.GetPropertiesAsync().AsTask();
-                    switch (properties.Status)
+                    var properties = await session.GetPropertiesAsync();
+                    switch (properties.SessionProperties.Status)
                     {
                         case RenderingSessionStatus.Ready:
                             return true;
@@ -734,42 +801,6 @@ namespace WaveEngine.AzureRemoteRendering
                     return false;
                 }
             }
-        }
-
-        private async Task<ARRTexture> InternalLoadTexture(LoadTextureAsync loadTextureAsync)
-        {
-            if (loadTextureAsync != null)
-            {
-                await loadTextureAsync.AsTask();
-                if (loadTextureAsync.Status == Result.Success)
-                {
-                    return loadTextureAsync.Result;
-                }
-            }
-
-            return default;
-        }
-
-        private async Task<ARREntity> InternalLoadModel(LoadModelAsync loadModelAsync, IProgress<float> progress)
-        {
-            if (loadModelAsync != null)
-            {
-                if (progress != null)
-                {
-                    loadModelAsync.ProgressUpdated += (progressF) =>
-                    {
-                        progress.Report(progressF * 100);
-                    };
-                }
-
-                await loadModelAsync.AsTask();
-                if (loadModelAsync.Status == Result.Success)
-                {
-                    return loadModelAsync.Result.Root;
-                }
-            }
-
-            return default;
         }
 
         private void Session_ConnectionStatusChanged(ConnectionStatus status, Result error)

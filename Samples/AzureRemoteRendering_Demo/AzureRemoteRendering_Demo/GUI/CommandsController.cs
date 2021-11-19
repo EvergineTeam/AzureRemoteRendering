@@ -180,7 +180,7 @@ namespace AzureRemoteRendering_Demo.GUI
                 return;
             }
 
-            var debugRenderingSettings = this.arrService.CurrentSession.Actions.DebugRenderingSettings;
+            var debugRenderingSettings = this.arrService.CurrentSession.Connection.DebugRenderingSettings;
             debugRenderingSettings.RenderWireframe = this.RenderWireframe;
             debugRenderingSettings.RenderPolygonCount = this.RenderPolygonCount;
             debugRenderingSettings.RenderFrameCount = this.RenderFrameCount;

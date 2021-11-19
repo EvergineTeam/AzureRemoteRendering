@@ -7,7 +7,7 @@ namespace WaveEngine.AzureRemoteRendering
     /// <summary>
     /// Object to store Azure Frontend account info.
     /// </summary>
-    public class ARRFrontendAccountInfo
+    public class ARRSessionConfiguration
     {
         /// <summary>
         /// Gets or sets the domain that will be used to generate sessions for the Azure Remote Rendering service.
@@ -18,6 +18,16 @@ namespace WaveEngine.AzureRemoteRendering
         /// or westeurope.mixedreality.azure.com.
         /// </remarks>
         public string AccountDomain { get; set; }
+
+        /// <summary>
+        /// Gets or sets the remote domain that will be used to generate sessions for the Azure Remote Rendering service.
+        /// </summary>
+        /// <remarks>
+        /// The remote domain is of the form [region].mixedreality.azure.com.
+        /// [region] should be selected based on the region closest to the user. For example, westus2.mixedreality.azure.com
+        /// or westeurope.mixedreality.azure.com.
+        /// </remarks>
+        public string RemoteRenderingDomain { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the account that's being used with the Azure Remote Rendering service.
@@ -33,14 +43,6 @@ namespace WaveEngine.AzureRemoteRendering
         public string AccountKey { get; set; }
 
         /// <summary>
-        /// Gets or sets the access token for the account that's being used with the Azure Remote Rendering service.
-        /// </summary>
-        /// <remarks>
-        /// Only one of <see cref="AccountKey"/>, <see cref="AccessToken"/> or <see cref="AuthenticationToken"/> needs to be set.
-        /// </remarks>
-        public string AccessToken { get; set; }
-
-        /// <summary>
         /// Gets or sets the authentication token for Azure Active Directory (AAD).
         /// </summary>
         /// <remarks>
@@ -49,20 +51,31 @@ namespace WaveEngine.AzureRemoteRendering
         public string AuthenticationToken { get; set; }
 
         /// <summary>
+        /// Gets or sets the access token for the account that's being used with the Azure Remote Rendering service.
+        /// </summary>
+        /// <remarks>
+        /// Only one of <see cref="AccountKey"/>, <see cref="AccessToken"/> or <see cref="AuthenticationToken"/> needs to be set.
+        /// </remarks>
+        public string AccessToken { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether all the required information is available.
         /// </summary>
         public bool HasRequiredInfo
         {
-            get => !string.IsNullOrEmpty(this.AccountId) &&
-                   !string.IsNullOrEmpty(this.AccountDomain) &&
-                  (!string.IsNullOrEmpty(this.AccountKey) || !string.IsNullOrEmpty(this.AccessToken) || !string.IsNullOrEmpty(this.AuthenticationToken));
+            get =>
+                !string.IsNullOrEmpty(this.AccountId) &&
+                !string.IsNullOrEmpty(this.RemoteRenderingDomain) &&
+                !string.IsNullOrEmpty(this.AccountDomain) &&
+                (!string.IsNullOrEmpty(this.AccountKey) || !string.IsNullOrEmpty(this.AccessToken) || !string.IsNullOrEmpty(this.AuthenticationToken));
         }
 
-        internal AzureFrontendAccountInfo Convert()
+        internal SessionConfiguration Convert()
         {
-            var result = new AzureFrontendAccountInfo();
+            var result = new SessionConfiguration();
 
             result.AccountDomain = this.AccountDomain;
+            result.RemoteRenderingDomain = this.RemoteRenderingDomain;
             result.AccountId = this.AccountId;
             result.AccountKey = !string.IsNullOrEmpty(this.AccountKey) ? this.AccountKey : null;
             result.AccessToken = !string.IsNullOrEmpty(this.AccessToken) ? this.AccessToken : null;

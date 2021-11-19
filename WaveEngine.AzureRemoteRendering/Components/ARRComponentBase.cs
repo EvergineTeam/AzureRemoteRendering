@@ -237,7 +237,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.arrEntitySync.CreateRemoteEntity(session);
             }
 
-            var component = session.Actions.CreateComponent(this.objectType, this.arrEntitySync.RemoteEntity);
+            var component = session.Connection.CreateComponent(this.objectType, this.arrEntitySync.RemoteEntity);
             this.Bind(component);
 
             return this.IsComponentValid;

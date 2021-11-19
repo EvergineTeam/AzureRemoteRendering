@@ -4,6 +4,7 @@ using System;
 using WaveEngine.Common.Graphics;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
+using WaveEngine.Framework.Managers;
 
 namespace WaveEngine.AzureRemoteRendering.Components
 {
@@ -19,6 +20,12 @@ namespace WaveEngine.AzureRemoteRendering.Components
         protected AzureRemoteRenderingService arrService;
 
         /// <summary>
+        /// The RenderManager of the scene.
+        /// </summary>
+        [BindSceneManager]
+        protected RenderManager renderManager;
+
+        /// <summary>
         /// The <see cref="Camera3D"/> component dependency that will be used to render ARR remote frame.
         /// </summary>
         [BindComponent]
@@ -27,6 +34,48 @@ namespace WaveEngine.AzureRemoteRendering.Components
         private bool localUpdateDone;
 
         private bool isProxyCameraActive;
+        private bool enableDepth = true;
+        private bool inverseDepth = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the depth composition is enabled with locally rendered content.
+        /// </summary>
+        public bool EnableDepth
+        {
+            get => this.enableDepth;
+            set
+            {
+                this.enableDepth = value;
+                if (this.arrService != null)
+                {
+                    this.arrService.EnableDepth = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether you are using the inverse depth range of 1 (closest to the camera) to zero (farthest from the camera) instead of the standard [0;1] for your local depth buffer.
+        /// </summary>
+        public bool InverseDepth
+        {
+            get => this.inverseDepth;
+            set
+            {
+                this.inverseDepth = value;
+                if (this.arrService != null)
+                {
+                    this.arrService.InverseDepth = value;
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override bool OnAttached()
+        {
+            this.arrService.EnableDepth = this.enableDepth;
+            this.arrService.InverseDepth = this.inverseDepth;
+            return base.OnAttached();
+        }
 
         /// <inheritdoc/>
         protected override void OnActivated()
@@ -55,6 +104,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = true;
                 this.camera3D.DrawContext.OnCollect += this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender += this.DrawContext_OnPreRender;
+                this.renderManager.OnPostRender += this.RenderManager_OnPostRender;
             }
         }
 
@@ -65,6 +115,7 @@ namespace WaveEngine.AzureRemoteRendering.Components
                 this.isProxyCameraActive = false;
                 this.camera3D.DrawContext.OnCollect -= this.DrawContext_OnCollect;
                 this.camera3D.DrawContext.OnPreRender -= this.DrawContext_OnPreRender;
+                this.renderManager.OnPostRender -= this.RenderManager_OnPostRender;
             }
         }
 
@@ -89,7 +140,15 @@ namespace WaveEngine.AzureRemoteRendering.Components
         {
             if (this.localUpdateDone)
             {
-                this.arrService.BlitRemoteFrame(this.camera3D);
+                this.arrService.BlitRemoteFrame(drawContext as CameraDrawContext, commandBuffer);
+            }
+        }
+
+        private void RenderManager_OnPostRender(object sender, RenderManager e)
+        {
+            if (this.localUpdateDone)
+            {
+                this.arrService.Reproject();
             }
         }
     }
