@@ -1,0 +1,15 @@
+name: $(Date:yyyy)$(Date:.M)$(Date:.d)$(Rev:.r)-preview
+
+trigger: none
+pr: none
+
+stages:
+  - stage: PackageBuild
+    displayName: "Build Editor and Nugets"
+    jobs:
+      - template: "templates/cd.yml"
+        parameters:
+          buildVersion: "$(Build.BuildNumber)"
+          publishEnabled: true
+          publishFeed: "Evergine.Stable"
+          publishContainer: "preview"

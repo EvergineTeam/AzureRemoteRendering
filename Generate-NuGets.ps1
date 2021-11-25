@@ -1,25 +1,28 @@
 <#
 .SYNOPSIS
-	Wave Engine NuGet Packages generator script, (c) 2020 Wave Engine
+	Evergine NuGet Packages generator script, (c) 2021 Evergine
 .DESCRIPTION
-	This script generates NuGet packages for Azure Remote Rendering for Wave Engine
+	This script generates NuGet packages for Azure Remote Rendering for Evergine
 	It's meant to have the same behavior when executed locally as when it's executed in a CI pipeline.
 .EXAMPLE
-	<script> -version 3.4.22.288-local
+	<script> -version 2021.11.25.1-local
 .LINK
-	https://waveengine.net
+	https://evergine.com
 #>
 
 param (
-    [Parameter(mandatory=$true)][string]$version,
+	[Parameter(mandatory=$true)][string]$version,
 	[string]$outputFolderBase = "nupkgs",
 	[string]$buildVerbosity = "normal",
 	[string]$buildConfiguration = "Release",
-	[string]$bindingsCsprojPath = "WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.csproj"
+	[string]$bindingsCsprojPath = "Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj"
 )
 
 # Utility functions
-function LogDebug($line) { Write-Host "##[debug] $line" -Foreground Blue -Background Black }
+function LogDebug($line)
+{
+	Write-Host "##[debug] $line" -Foreground Blue -Background Black
+}
 
 # Show variables
 LogDebug "############## VARIABLES ##############"

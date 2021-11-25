@@ -1,0 +1,71 @@
+parameters:
+  - name: "buildVersion"
+    default: ""
+    type: string
+  - name: "publishEnabled"
+    default: "false"
+    type: string
+  - name: "publishFeed"
+    default: ""
+    type: string
+  - name: "publishContainer"
+    default: ""
+    type: string
+
+jobs:
+  - job: "BuildPackage"
+    displayName: "Build Package"
+    workspace:
+      clean: all
+    pool:
+      vmImage: "windows-2019"
+    variables:
+      nugetConfigPath: "$(Build.SourcesDirectory)/Evergine.AzureRemoteRendering/NuGet.config"
+      nugetOutputPath: "$(Build.StagingDirectory)/nupkgs"
+      wepkgOutputPath: "$(Build.StagingDirectory)/wepkgs"
+      NetCoreSDKVersion: "6.0.x"
+      NuGetVersion: "6.0.x"
+
+    steps:
+      - task: UseDotNet@2
+        displayName: "Check .NETCore SDK"
+        inputs:
+          version: "$(NetCoreSDKVersion)"
+
+      - task: NuGetToolInstaller@1
+        displayName: "Check NuGet client"
+        inputs:
+          versionSpec: "$(NuGetVersion)"
+          checkLatest: true
+
+      - task: PowerShell@2
+        inputs:
+          targetType: "inline"
+          script: '"<configuration></configuration>" > $(nugetConfigPath)'
+
+      - task: NuGetCommand@2
+        inputs:
+          command: "custom"
+          arguments: 'sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json" -ConfigFile $(nugetConfigPath)'
+
+      - task: PowerShell@2
+        displayName: "Generate NuGet packages"
+        inputs:
+          filePath: "./Generate-NuGets.ps1"
+          arguments: "-Version ${{ parameters.buildVersion }} -outputfolder $(nugetOutputPath)"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Artifact: NuGets"
+        inputs:
+          PathtoPublish: "$(nugetOutputPath)"
+          ArtifactName: "NuGets"
+
+      - task: NuGetCommand@2
+        displayName: "Push NuGets to feed"
+        enabled: ${{ parameters.publishEnabled }}
+        condition: and(succeeded(), ne('${{ parameters.publishFeed }}', ''))
+        inputs:
+          command: "push"
+          packagesToPush: "$(nugetOutputPath)/**/*.nupkg;!$(nugetOutputPath)/**/*.symbols.nupkg"
+          nuGetFeedType: "external"
+          publishFeedCredentials: ${{ parameters.publishFeed }}
