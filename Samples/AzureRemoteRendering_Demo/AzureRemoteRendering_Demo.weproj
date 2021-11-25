@@ -3,7 +3,7 @@ Packages:
   - Id: Evergine.Core
     Version: 2021.11.17.2-preview
   - Id: Evergine.MRTK.Assets
-    Version: 2021.11.16.3-preview
+    Version: 2021.11.25.2-preview
 Profiles:
   - AdditionalEffectTechniqueCombinations: SHADOW_SUPPORTED-SHADOWFILTER7
     AlphaCompressionFormat: BC3_UNorm

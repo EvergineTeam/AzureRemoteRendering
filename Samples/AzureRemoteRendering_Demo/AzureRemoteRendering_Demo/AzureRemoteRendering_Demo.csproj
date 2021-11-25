@@ -16,7 +16,7 @@
     <PackageReference Include="Evergine.Targets" Version="2021.11.17.2-preview" />
     <PackageReference Include="Evergine.CodeScenes" Version="2021.11.17.2-preview" />
     <PackageReference Include="Evergine.NoesisGUI" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.MRTK" Version="2021.11.16.3-preview " />
+    <PackageReference Include="Evergine.MRTK" Version="2021.11.25.2-preview" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj" />
