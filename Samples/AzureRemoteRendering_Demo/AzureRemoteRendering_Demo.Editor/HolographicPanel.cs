@@ -97,7 +97,7 @@ namespace Evergine_MRTK_Demo.Editor
 
                 // TODO: Cutoff property is at different position in Unity. For now, we put Cutoff here because
                 // it is only used by ROUND_CORNERS directive
-                this.AddMember(nameof(HoloGraphic.Cutoff));
+                this.AddMember(nameof(HoloGraphic.AlphaCutoff));
             }
 
             if (roundCorners || borderLight)

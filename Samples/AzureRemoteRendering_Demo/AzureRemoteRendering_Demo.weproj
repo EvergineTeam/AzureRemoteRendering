@@ -5,7 +5,7 @@ Packages:
   - Id: Evergine.MRTK.Assets
     Version: 2021.11.16.3-preview
 Profiles:
-  - AdditionalEffectTechniqueCombinations: GAMMA_COLORSPACE
+  - AdditionalEffectTechniqueCombinations: SHADOW_SUPPORTED-SHADOWFILTER7
     AlphaCompressionFormat: BC3_UNorm
     CompileEffects: false
     GraphicsBackend: DirectX11
@@ -13,7 +13,7 @@ Profiles:
     Name: Windows
     NonAlphaCompressionFormat: BC3_UNorm
     Platform: Windows
-  - AdditionalEffectTechniqueCombinations: GAMMA_COLORSPACE
+  - AdditionalEffectTechniqueCombinations: SHADOW_SUPPORTED-SHADOWFILTER7
     AlphaCompressionFormat: BC3_UNorm
     CompileEffects: false
     GraphicsBackend: DirectX11
@@ -21,9 +21,9 @@ Profiles:
     Name: UWP
     NonAlphaCompressionFormat: BC3_UNorm
     Platform: UWP
-  - AdditionalEffectTechniqueCombinations: MULTIVIEW-GAMMA_COLORSPACE
+  - AdditionalEffectTechniqueCombinations: LOW_PROFILE-MULTIVIEW_RTI-GAMMA_COLORSPACE-SHADOW_SUPPORTED-SHADOWFILTER3, LOW_PROFILE-GAMMA_COLORSPACE-SHADOW_SUPPORTED-SHADOWFILTER3, LOW_PROFILE-MULTIVIEW_RTI-SHADOW_SUPPORTED-SHADOWFILTER3, LOW_PROFILE-SHADOW_SUPPORTED-SHADOWFILTER3
     AlphaCompressionFormat: BC3_UNorm
-    CompileEffects: true
+    CompileEffects: false
     GraphicsBackend: DirectX11
     LauncherType: MixedReality
     Name: UWP.MixedReality

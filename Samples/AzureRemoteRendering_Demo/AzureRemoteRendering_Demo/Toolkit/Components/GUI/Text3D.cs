@@ -636,27 +636,7 @@ namespace AzureRemoteRendering_Demo.Toolkit.Components.GUI
                 return;
             }
 
-            switch (this.normal)
-            {
-                case PlaneNormal.X:
-                    this.planeMesh.Normal = Vector3.UnitX;
-                    break;
-                case PlaneNormal.XNegative:
-                    this.planeMesh.Normal = -Vector3.UnitX;
-                    break;
-                case PlaneNormal.Y:
-                    this.planeMesh.Normal = Vector3.UnitY;
-                    break;
-                case PlaneNormal.YNegative:
-                    this.planeMesh.Normal = -Vector3.UnitY;
-                    break;
-                case PlaneNormal.Z:
-                    this.planeMesh.Normal = -Vector3.UnitZ;
-                    break;
-                case PlaneNormal.ZNegative:
-                    this.planeMesh.Normal = Vector3.UnitZ;
-                    break;
-            }
+            this.planeMesh.PlaneNormal = (PlaneMesh.NormalAxis)this.normal;
         }
 
         protected FontFamily GetFontFamily(string fontFamilySource)

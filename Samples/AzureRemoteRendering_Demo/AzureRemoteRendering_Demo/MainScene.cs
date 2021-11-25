@@ -15,13 +15,11 @@ namespace AzureRemoteRendering_Demo
 {
     public class MainScene : XRScene
     {
-        protected override Guid CursorMatPressed => EvergineContent.MRTK.Materials.CursorLeftPinch;
+        protected override Guid CursorMatPressed => EvergineContent.MRTK.Materials.Cursor.CursorPinch;
 
-        protected override Guid CursorMatReleased => EvergineContent.MRTK.Materials.CursorLeft;
+        protected override Guid CursorMatReleased => EvergineContent.MRTK.Materials.Cursor.CursorBase;
 
         protected override Guid HoloHandsMat => Guid.Empty;
-
-        protected override Guid HolographicEffect => EvergineContent.MRTK.Effects.HoloGraphic;
 
         protected override Guid SpatialMappingMat => Guid.Empty;
 

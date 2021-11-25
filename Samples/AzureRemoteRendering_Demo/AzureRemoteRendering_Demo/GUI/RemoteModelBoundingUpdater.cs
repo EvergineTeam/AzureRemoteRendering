@@ -56,7 +56,7 @@ namespace AzureRemoteRendering_Demo.GUI
             }
 
             this.boundingBox.AutoCalculate = false;
-            this.boundingBox.CreateRig();
+            boundingBox.RotationHandlePrefab.Refresh();
         }
     }
 }

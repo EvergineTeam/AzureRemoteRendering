@@ -1,70 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Provides a service to support Azure Remote Rendering system</Description>
-    <Copyright>Copyright (c) Wave Engine 2020</Copyright>
-    <Authors>Wave Engine Team</Authors>
-    <Company>Plain Concepts</Company>
-    <Product>Wave Engine</Product>
-    <PackageProjectUrl>https://evergine.com/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Evergine/AzureRemoteRendering</RepositoryUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>Evergine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Evergine.AzureRemoteRendering.xml</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <AssemblyAttribute Include="Evergine.Common.Attributes.EvergineAssembly">
-      <_Parameter1>Extension</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="1.0.31" GeneratePathProperty="true">
-      <ExcludeAssets>build</ExcludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Evergine.Common" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.DirectX11" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.Framework" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.Mathematics" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Vortice.Direct3D11" Version="2.1.0-beta4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="build/net45/Evergine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
-    <Content Include="Evergine.AzureRemoteRendering.Reference.targets" Pack="False" />
-    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_arm32uwp\release\**" PackagePath="runtimes\win10-arm\nativeassets\uap10.0" Visible="true">
-      <Link>runtimes\win10-arm\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_arm64uwp\release\**" PackagePath="runtimes\win10-arm64\nativeassets\uap10.0" Visible="true">
-      <Link>runtimes\win10-arm64\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x86uwp\release\**" PackagePath="runtimes\win10-x86\nativeassets\uap10.0" Visible="true">
-      <Link>runtimes\win10-x86\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64uwp\release\**" PackagePath="runtimes\win10-x64\nativeassets\uap10.0" Visible="true">
-      <Link>runtimes\win10-x64\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64\release\**" PackagePath="runtimes\win10-x64\native" Visible="true">
-      <Link>runtimes\win10-x64\native\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\Resources\NugetIcon\icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Description>Provides a service to support Azure Remote Rendering system</Description>
+		<Copyright>Copyright (c) Wave Engine 2020</Copyright>
+		<Authors>Wave Engine Team</Authors>
+		<Company>Plain Concepts</Company>
+		<Product>Wave Engine</Product>
+		<PackageProjectUrl>https://evergine.com/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Evergine/AzureRemoteRendering</RepositoryUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageTags>Evergine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(RRPlatform)' == ''">
+		<RRPlatform>win_x64</RRPlatform>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>bin\Debug\netstandard2.0\Evergine.AzureRemoteRendering.xml</DocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="Evergine.Common.Attributes.EvergineAssembly">
+			<_Parameter1>Extension</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Azure.RemoteRendering.Cpp" Version="1.0.31" GeneratePathProperty="true">
+			<ExcludeAssets>build</ExcludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Evergine.Common" Version="2021.11.17.2-preview" />
+		<PackageReference Include="Evergine.DirectX11" Version="2021.11.17.2-preview" />
+		<PackageReference Include="Evergine.Framework" Version="2021.11.17.2-preview" />
+		<PackageReference Include="Evergine.Mathematics" Version="2021.11.17.2-preview" />
+		<PackageReference Include="Vortice.Direct3D11" Version="2.1.0-beta4" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="build/net45/Evergine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
+		<Content Include="Evergine.AzureRemoteRendering.Reference.targets" Pack="False" />
+		<Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_arm32uwp\release\**" PackagePath="runtimes\win10-arm\nativeassets\uap10.0" Visible="true">
+			<Link>runtimes\win10-arm\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_arm64uwp\release\**" PackagePath="runtimes\win10-arm64\nativeassets\uap10.0" Visible="true">
+			<Link>runtimes\win10-arm64\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x86uwp\release\**" PackagePath="runtimes\win10-x86\nativeassets\uap10.0" Visible="true">
+			<Link>runtimes\win10-x86\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64uwp\release\**" PackagePath="runtimes\win10-x64\nativeassets\uap10.0" Visible="true">
+			<Link>runtimes\win10-x64\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_x64\release\**" PackagePath="runtimes\win10-x64\native" Visible="true">
+			<Link>runtimes\win10-x64\native\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\Resources\NugetIcon\icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
