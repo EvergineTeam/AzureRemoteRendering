@@ -8,16 +8,16 @@ namespace Evergine_MRTK_Demo.Editor
 {
     public static class EvergineContentUtils
     {
-        private static IEnumerable<TypeInfo> WaveContentTypes;
+        private static IEnumerable<TypeInfo> EvergineContentTypes;
 
         static EvergineContentUtils()
         {
-            WaveContentTypes = GetWaveContentTypes().ToList();
+            EvergineContentTypes = GetEvergineContentTypes().ToList();
         }
 
         public static Dictionary<string, string> FindFonts(string assetsRootPath)
         {
-            return WaveContentTypes
+            return EvergineContentTypes
                     .SelectMany(x => GetClasses(x, string.Empty))
                     .SelectMany(x => GetFontFamilyNameFields(x.type, x.basePath, assetsRootPath))
                     .Distinct()
@@ -26,16 +26,16 @@ namespace Evergine_MRTK_Demo.Editor
 
         public static Dictionary<string, Guid> FindPrefabs()
         {
-            return WaveContentTypes
+            return EvergineContentTypes
                     .SelectMany(x => GetClasses(x, filter: (t) => t.Name.ToLowerInvariant().Contains("prefab")))
                     .SelectMany(x => GetScenePrefabsFields(x.type))
                     .ToDictionary(x => x.name, x => x.id);
         }
 
-        private static IEnumerable<TypeInfo> GetWaveContentTypes()
+        private static IEnumerable<TypeInfo> GetEvergineContentTypes()
         {
             return AppDomain.CurrentDomain.GetAssemblies()
-                                          .SelectMany(x => x.DefinedTypes.Where(y => y.Name == "WaveContent"));
+                                          .SelectMany(x => x.DefinedTypes.Where(y => y.Name == "EvergineContent"));
         }
 
         private static IEnumerable<(TypeInfo type, string basePath)> GetClasses(TypeInfo x, string basePath = null, Func<TypeInfo, bool> filter = null)

@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
 using Evergine.Common.Graphics;
@@ -27,7 +27,7 @@ namespace Evergine.AzureRemoteRendering.Components
         /// </summary>
         public Color FadeColor
         {
-            get => this.GetProperty(this.fadeColorOverride, DefaultFadeColor, () => this.RemoteComponent.FadeColor.ToWave());
+            get => this.GetProperty(this.fadeColorOverride, DefaultFadeColor, () => this.RemoteComponent.FadeColor.ToEvergine());
             set => this.SetProperty(value, ref this.fadeColorOverride, DefaultFadeColor, (x) => this.RemoteComponent.FadeColor = x.ToRemoteColor4Ub());
         }
 

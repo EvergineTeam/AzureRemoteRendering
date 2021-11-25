@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
 using Evergine.Common.Graphics;
@@ -85,7 +85,7 @@ namespace Evergine.AzureRemoteRendering.Components
         /// </summary>
         public Color TintColor
         {
-            get => this.GetProperty(this.tintColorOverride, DefaultTintColor, () => this.RemoteComponent.TintColor.ToWave());
+            get => this.GetProperty(this.tintColorOverride, DefaultTintColor, () => this.RemoteComponent.TintColor.ToEvergine());
             set => this.SetProperty(value, ref this.tintColorOverride, DefaultTintColor, (x) => this.RemoteComponent.TintColor = x.ToRemoteColor4Ub());
         }
 

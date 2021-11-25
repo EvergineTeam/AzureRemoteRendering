@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
 using Vortice.Direct3D11;
@@ -160,7 +160,7 @@ namespace Evergine.AzureRemoteRendering
                 var clientInit = new RemoteRenderingInitialization();
                 clientInit.ConnectionType = ConnectionType.General;
                 clientInit.GraphicsApi = isWMRPlatform ? GraphicsApiType.WmrD3D11 : GraphicsApiType.SimD3D11;
-                clientInit.ToolId = "Wave Engine";
+                clientInit.ToolId = "Evergine";
                 clientInit.UnitsPerMeter = 1.0f;
                 clientInit.Forward = Axis.NegativeZ;
                 clientInit.Right = Axis.X;
@@ -244,11 +244,11 @@ namespace Evergine.AzureRemoteRendering
                 if (proxyUpdate.FrameId != 0)
                 {
                     // Getting a projection matrix out of the proxyUpdate data. Note: Despite rendering with an inverse
-                    // z depth buffer internally, Wave has a normal z range matrix on the cameras. Therefore, we need
+                    // z depth buffer internally, Evergine has a normal z range matrix on the cameras. Therefore, we need
                     // to request a matrix in a conventional [-1;1] OpenGL space.
                     if (proxyUpdate.FieldOfView.Left.ToProjectionMatrix(proxyUpdate.NearPlaneDistance, proxyUpdate.FarPlaneDistance, DepthConvention.MinusOneToOne, out Matrix4x4 projection) == Result.Success)
                     {
-                        projection.ToWave(out var remoteProjection);
+                        projection.ToEvergine(out var remoteProjection);
                         camera.SetCustomProjection(remoteProjection);
                     }
                     else
@@ -256,7 +256,7 @@ namespace Evergine.AzureRemoteRendering
                         Debug.WriteLine($"ERROR: Projection Matrix failed.");
                     }
 
-                    proxyUpdate.ViewTransform.Left.ToWave(out var remoteView);
+                    proxyUpdate.ViewTransform.Left.ToEvergine(out var remoteView);
                     Mathematics.Matrix4x4.Invert(ref remoteView, out var remoteTransform);
 
                     camera.Transform.WorldTransform = remoteTransform;

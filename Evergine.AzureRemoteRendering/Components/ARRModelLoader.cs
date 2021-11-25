@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using System;
 using System.Threading.Tasks;
@@ -162,7 +162,7 @@ namespace Evergine.AzureRemoteRendering.Components
                 this.entitySync?.SyncToRemote();
 
                 var localBounds = await remoteEntity.QueryLocalBoundsAsync();
-                this.LocalBounds = localBounds.ToWave();
+                this.LocalBounds = localBounds.ToEvergine();
 
                 this.RemoteEntity = remoteEntity;
                 this.Loaded?.Invoke(this, EventArgs.Empty);

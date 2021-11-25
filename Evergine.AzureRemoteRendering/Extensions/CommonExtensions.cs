@@ -1,17 +1,17 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
 using Evergine.Common.Graphics;
 using Evergine.Mathematics;
 using ARRMatrix4x4 = Microsoft.Azure.RemoteRendering.Matrix4x4;
 using ARRQuaternion = Microsoft.Azure.RemoteRendering.Quaternion;
-using WaveMatrix4x4 = Evergine.Mathematics.Matrix4x4;
-using WaveQuaternion = Evergine.Mathematics.Quaternion;
+using EvergineMatrix4x4 = Evergine.Mathematics.Matrix4x4;
+using EvergineQuaternion = Evergine.Mathematics.Quaternion;
 
 namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
-    /// Wave Engine specific extensions for common types.
+    /// Evergine specific extensions for common types.
     /// </summary>
     public static class CommonExtensions
     {
@@ -41,7 +41,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <param name="output">The converted vector.</param>
-        public static void ToWave(this Float2 input, out Vector2 output)
+        public static void ToEvergine(this Float2 input, out Vector2 output)
         {
             output.X = input.X;
             output.Y = input.Y;
@@ -52,9 +52,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <returns>The converted vector.</returns>
-        public static Vector2 ToWave(this Float2 input)
+        public static Vector2 ToEvergine(this Float2 input)
         {
-            input.ToWave(out Vector2 output);
+            input.ToEvergine(out Vector2 output);
             return output;
         }
 
@@ -105,7 +105,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <param name="output">The converted vector.</param>
-        public static void ToWave(this Float3 input, out Vector3 output)
+        public static void ToEvergine(this Float3 input, out Vector3 output)
         {
             output.X = input.X;
             output.Y = input.Y;
@@ -117,9 +117,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <returns>The converted vector.</returns>
-        public static Vector3 ToWave(this Float3 input)
+        public static Vector3 ToEvergine(this Float3 input)
         {
-            input.ToWave(out Vector3 output);
+            input.ToEvergine(out Vector3 output);
             return output;
         }
 
@@ -128,7 +128,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <param name="output">The converted vector.</param>
-        public static void ToWave(this Double3 input, out Vector3 output)
+        public static void ToEvergine(this Double3 input, out Vector3 output)
         {
             output.X = (float)input.X;
             output.Y = (float)input.Y;
@@ -140,9 +140,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <returns>The converted vector.</returns>
-        public static Vector3 ToWave(this Double3 input)
+        public static Vector3 ToEvergine(this Double3 input)
         {
-            input.ToWave(out Vector3 output);
+            input.ToEvergine(out Vector3 output);
             return output;
         }
 
@@ -172,7 +172,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <param name="output">The converted vector.</param>
-        public static void ToWave(this Float4 input, out Vector4 output)
+        public static void ToEvergine(this Float4 input, out Vector4 output)
         {
             output = new Vector4(input.X, input.Y, input.Z, input.W);
         }
@@ -182,18 +182,18 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The vector to be converted.</param>
         /// <returns>The converted vector.</returns>
-        public static Vector4 ToWave(this Float4 input)
+        public static Vector4 ToEvergine(this Float4 input)
         {
-            input.ToWave(out Vector4 output);
+            input.ToEvergine(out Vector4 output);
             return output;
         }
 
         /// <summary>
-        /// Converts a <see cref="WaveMatrix4x4"/> into a remote <see cref="ARRMatrix4x4"/>.
+        /// Converts a <see cref="EvergineMatrix4x4"/> into a remote <see cref="ARRMatrix4x4"/>.
         /// </summary>
         /// <param name="input">The matrix to be converted.</param>
         /// <param name="output">The converted matrix.</param>
-        public static void ToRemote(this WaveMatrix4x4 input, out ARRMatrix4x4 output)
+        public static void ToRemote(this EvergineMatrix4x4 input, out ARRMatrix4x4 output)
         {
             var col0 = new Float4(input.M11, input.M12, input.M13, input.M14);
             var col1 = new Float4(input.M21, input.M22, input.M23, input.M24);
@@ -204,22 +204,22 @@ namespace Evergine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Converts a <see cref="WaveMatrix4x4"/> into a remote <see cref="ARRMatrix4x4"/>.
+        /// Converts a <see cref="EvergineMatrix4x4"/> into a remote <see cref="ARRMatrix4x4"/>.
         /// </summary>
         /// <param name="input">The matrix to be converted.</param>
         /// <returns>The converted matrix.</returns>
-        public static ARRMatrix4x4 ToRemote(this WaveMatrix4x4 input)
+        public static ARRMatrix4x4 ToRemote(this EvergineMatrix4x4 input)
         {
             input.ToRemote(out ARRMatrix4x4 output);
             return output;
         }
 
         /// <summary>
-        /// Converts a remote <see cref="ARRMatrix4x4"/> into a <see cref="WaveMatrix4x4"/>.
+        /// Converts a remote <see cref="ARRMatrix4x4"/> into a <see cref="EvergineMatrix4x4"/>.
         /// </summary>
         /// <param name="input">The matrix to be converted.</param>
         /// <param name="output">The converted matrix.</param>
-        public static void ToWave(this ARRMatrix4x4 input, out WaveMatrix4x4 output)
+        public static void ToEvergine(this ARRMatrix4x4 input, out EvergineMatrix4x4 output)
         {
             output.M11 = input.Column0.X;
             output.M12 = input.Column0.Y;
@@ -243,43 +243,43 @@ namespace Evergine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Converts a remote <see cref="ARRMatrix4x4"/> into a <see cref="WaveMatrix4x4"/>.
+        /// Converts a remote <see cref="ARRMatrix4x4"/> into a <see cref="EvergineMatrix4x4"/>.
         /// </summary>
         /// <param name="input">The matrix to be converted.</param>
         /// <returns>The converted matrix.</returns>
-        public static WaveMatrix4x4 ToWave(this ARRMatrix4x4 input)
+        public static EvergineMatrix4x4 ToEvergine(this ARRMatrix4x4 input)
         {
-            input.ToWave(out WaveMatrix4x4 output);
+            input.ToEvergine(out EvergineMatrix4x4 output);
             return output;
         }
 
         /// <summary>
-        /// Converts a <see cref="WaveQuaternion"/> into a remote <see cref="ARRQuaternion"/>.
+        /// Converts a <see cref="EvergineQuaternion"/> into a remote <see cref="ARRQuaternion"/>.
         /// </summary>
         /// <param name="input">The quaternion to be converted.</param>
         /// <param name="output">The converted quaternion.</param>
-        public static void ToRemote(this WaveQuaternion input, out ARRQuaternion output)
+        public static void ToRemote(this EvergineQuaternion input, out ARRQuaternion output)
         {
             output = new ARRQuaternion(input.X, input.Y, input.Z, input.W);
         }
 
         /// <summary>
-        /// Converts a <see cref="WaveQuaternion"/> into a remote <see cref="ARRQuaternion"/>.
+        /// Converts a <see cref="EvergineQuaternion"/> into a remote <see cref="ARRQuaternion"/>.
         /// </summary>
         /// <param name="input">The quaternion to be converted.</param>
         /// <returns>The converted quaternion.</returns>
-        public static ARRQuaternion ToRemote(this WaveQuaternion input)
+        public static ARRQuaternion ToRemote(this EvergineQuaternion input)
         {
             input.ToRemote(out ARRQuaternion output);
             return output;
         }
 
         /// <summary>
-        /// Converts a remote <see cref="ARRQuaternion"/> into a <see cref="WaveQuaternion"/>.
+        /// Converts a remote <see cref="ARRQuaternion"/> into a <see cref="EvergineQuaternion"/>.
         /// </summary>
         /// <param name="input">The quaternion to be converted.</param>
         /// <param name="output">The converted quaternion.</param>
-        public static void ToWave(this ARRQuaternion input, out WaveQuaternion output)
+        public static void ToEvergine(this ARRQuaternion input, out EvergineQuaternion output)
         {
             output.X = input.X;
             output.Y = input.Y;
@@ -288,13 +288,13 @@ namespace Evergine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Converts a remote <see cref="ARRQuaternion"/> into a <see cref="WaveQuaternion"/>.
+        /// Converts a remote <see cref="ARRQuaternion"/> into a <see cref="EvergineQuaternion"/>.
         /// </summary>
         /// <param name="input">The quaternion to be converted.</param>
         /// <returns>The converted quaternion.</returns>
-        public static WaveQuaternion ToWave(this ARRQuaternion input)
+        public static EvergineQuaternion ToEvergine(this ARRQuaternion input)
         {
-            input.ToWave(out WaveQuaternion output);
+            input.ToEvergine(out EvergineQuaternion output);
             return output;
         }
 
@@ -324,10 +324,10 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <param name="output">The converted bounding box.</param>
-        public static void ToWave(this Bounds input, out BoundingBox output)
+        public static void ToEvergine(this Bounds input, out BoundingBox output)
         {
-            input.Min.ToWave(out output.Min);
-            input.Max.ToWave(out output.Max);
+            input.Min.ToEvergine(out output.Min);
+            input.Max.ToEvergine(out output.Max);
         }
 
         /// <summary>
@@ -335,9 +335,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The bounding box to be converted.</param>
         /// <returns>The converted bounding box.</returns>
-        public static BoundingBox ToWave(this Bounds input)
+        public static BoundingBox ToEvergine(this Bounds input)
         {
-            input.ToWave(out BoundingBox output);
+            input.ToEvergine(out BoundingBox output);
             return output;
         }
 
@@ -367,7 +367,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The color to be converted.</param>
         /// <param name="output">The converted color.</param>
-        public static void ToWave(this Color4 input, out Color output)
+        public static void ToEvergine(this Color4 input, out Color output)
         {
             output.R = (byte)(input.R * 255);
             output.G = (byte)(input.G * 255);
@@ -380,9 +380,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The color to be converted.</param>
         /// <returns>The converted color.</returns>
-        public static Color ToWave(this Color4 input)
+        public static Color ToEvergine(this Color4 input)
         {
-            input.ToWave(out Color output);
+            input.ToEvergine(out Color output);
             return output;
         }
 
@@ -416,7 +416,7 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The color to be converted.</param>
         /// <param name="output">The converted color.</param>
-        public static void ToWave(this Color4Ub input, out Color output)
+        public static void ToEvergine(this Color4Ub input, out Color output)
         {
             output.R = input.Channels.R;
             output.G = input.Channels.G;
@@ -429,9 +429,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The color to be converted.</param>
         /// <returns>The converted color.</returns>
-        public static Color ToWave(this Color4Ub input)
+        public static Color ToEvergine(this Color4Ub input)
         {
-            input.ToWave(out Color output);
+            input.ToEvergine(out Color output);
             return output;
         }
 
@@ -471,10 +471,10 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The ray cast to be converted.</param>
         /// <param name="output">The converted ray step.</param>
-        public static void ToWave(this RayCast input, out RayStep output)
+        public static void ToEvergine(this RayCast input, out RayStep output)
         {
-            input.StartPos.ToWave(out var origin);
-            input.EndPos.ToWave(out var terminus);
+            input.StartPos.ToEvergine(out var origin);
+            input.EndPos.ToEvergine(out var terminus);
             output = new RayStep(origin, terminus);
         }
 
@@ -483,9 +483,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The ray cast to be converted.</param>
         /// <returns>The converted ray step.</returns>
-        public static RayStep ToWaveRayStep(this RayCast input)
+        public static RayStep ToEvergineRayStep(this RayCast input)
         {
-            input.ToWave(out RayStep output);
+            input.ToEvergine(out RayStep output);
             return output;
         }
 
@@ -526,10 +526,10 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The ray cast to be converted.</param>
         /// <param name="output">The converted ray.</param>
-        public static void ToWave(this RayCast input, out Ray output)
+        public static void ToEvergine(this RayCast input, out Ray output)
         {
-            input.StartPos.ToWave(out var startPos);
-            input.EndPos.ToWave(out var endPos);
+            input.StartPos.ToEvergine(out var startPos);
+            input.EndPos.ToEvergine(out var endPos);
             var direction = endPos - startPos;
             direction.Normalize();
             output = new Ray(startPos, direction);
@@ -540,9 +540,9 @@ namespace Evergine.AzureRemoteRendering
         /// </summary>
         /// <param name="input">The ray cast to be converted.</param>
         /// <returns>The converted ray.</returns>
-        public static Ray ToWaveRay(this RayCast input)
+        public static Ray ToEvergineRay(this RayCast input)
         {
-            input.ToWave(out Ray output);
+            input.ToEvergine(out Ray output);
             return output;
         }
     }

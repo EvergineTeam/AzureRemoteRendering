@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using System;
 using System.Collections.Generic;
@@ -7,16 +7,16 @@ using Microsoft.Azure.RemoteRendering;
 using Evergine.Framework.Graphics;
 using System.Diagnostics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
-using WaveEntity = Evergine.Framework.Entity;
+using EvergineEntity = Evergine.Framework.Entity;
 
 namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
-    /// Ensures that the hierarchy and a position of a proxy <see cref="WaveEntity"/> and a remote
-    /// <see cref="ARREntity"/> correlate and provides methods for binding Wave Engine and remote content.
+    /// Ensures that the hierarchy and a position of a proxy <see cref="EvergineEntity"/> and a remote
+    /// <see cref="ARREntity"/> correlate and provides methods for binding Evergine and remote content.
     /// <para>
     /// This class is automatically generated when a <see cref="ARREntity"/> is converted to a
-    /// <see cref="WaveEntity"/> with the extension methods <see cref="EntityExtensions.CreateProxyEntity"/>
+    /// <see cref="EvergineEntity"/> with the extension methods <see cref="EntityExtensions.CreateProxyEntity"/>
     /// and <see cref="EntityExtensions.FindOrCreateProxyEntity"/>.
     ///
     /// More advanced manipulation can be done with <see cref="Bind(ARREntity, bool)"/> and
@@ -25,7 +25,7 @@ namespace Evergine.AzureRemoteRendering.Components
     /// </summary>
     public class ARREntitySync : Behavior
     {
-        private static Dictionary<uint, WeakReference<WaveEntity>> proxiesByRemoteId = new Dictionary<uint, WeakReference<WaveEntity>>();
+        private static Dictionary<uint, WeakReference<EvergineEntity>> proxiesByRemoteId = new Dictionary<uint, WeakReference<EvergineEntity>>();
 
         /// <summary>
         /// The <see cref="Transform3D"/> component dependency used to synchronize remote and
@@ -94,12 +94,12 @@ namespace Evergine.AzureRemoteRendering.Components
         }
 
         /// <summary>
-        /// Unbind proxy <see cref="WaveEntity"/> from remote <see cref="ARREntity"/>.
+        /// Unbind proxy <see cref="EvergineEntity"/> from remote <see cref="ARREntity"/>.
         /// This enables destruction of proxy entities without destroying the remote entities.
         /// </summary>
         /// <param name="recursive">
         /// Call unbind recursively on children.
-        /// Without unbinding children destroying proxy root <see cref="WaveEntity"/>
+        /// Without unbinding children destroying proxy root <see cref="EvergineEntity"/>
         /// will still destroy child remote entities bound to the child proxy entities.
         /// </param>
         public void Unbind(bool recursive = true)
@@ -130,7 +130,7 @@ namespace Evergine.AzureRemoteRendering.Components
         }
 
         /// <summary>
-        /// Create a new remote <see cref="ARREntity"/> to associate with the proxy <see cref="WaveEntity"/>.
+        /// Create a new remote <see cref="ARREntity"/> to associate with the proxy <see cref="EvergineEntity"/>.
         /// <para>
         /// This function will throw if this <see cref="ARREntitySync"/> already has a remote entity.
         /// </para>
@@ -203,7 +203,7 @@ namespace Evergine.AzureRemoteRendering.Components
         }
 
         /// <summary>
-        /// Synchronize local proxy <see cref="WaveEntity"/> transform and name
+        /// Synchronize local proxy <see cref="EvergineEntity"/> transform and name
         /// with the remote <see cref="ARREntity"/>.
         /// </summary>
         public void SyncToRemote()
@@ -251,17 +251,17 @@ namespace Evergine.AzureRemoteRendering.Components
         }
 
         /// <summary>
-        /// Synchronize remote <see cref="ARREntity"/> transform and <see cref="WaveEntity.Name"/> with the local
-        /// proxy <see cref="WaveEntity"/>.
+        /// Synchronize remote <see cref="ARREntity"/> transform and <see cref="EvergineEntity.Name"/> with the local
+        /// proxy <see cref="EvergineEntity"/>.
         /// </summary>
         private void SyncToLocal()
         {
             if (this.IsRemoteEntityValid &&
                 this.transform != null)
             {
-                this.transform.LocalPosition = this.RemoteEntity.Position.ToWave();
-                this.transform.LocalOrientation = this.RemoteEntity.Rotation.ToWave();
-                this.transform.LocalScale = this.RemoteEntity.Scale.ToWave();
+                this.transform.LocalPosition = this.RemoteEntity.Position.ToEvergine();
+                this.transform.LocalOrientation = this.RemoteEntity.Rotation.ToEvergine();
+                this.transform.LocalScale = this.RemoteEntity.Scale.ToEvergine();
                 this.Owner.Name = this.RemoteEntity.Name;
             }
         }
@@ -300,7 +300,7 @@ namespace Evergine.AzureRemoteRendering.Components
             return syncComponent != null;
         }
 
-        private static void BindToLocalEntity(ARREntity entity, WaveEntity proxyEntity)
+        private static void BindToLocalEntity(ARREntity entity, EvergineEntity proxyEntity)
         {
             if (!entity.Valid)
             {
@@ -313,7 +313,7 @@ namespace Evergine.AzureRemoteRendering.Components
                 throw new Exception($"{nameof(ARREntity)} bound twice to Entities");
             }
 
-            proxiesByRemoteId.Add(entity.InteropId, new WeakReference<WaveEntity>(proxyEntity));
+            proxiesByRemoteId.Add(entity.InteropId, new WeakReference<EvergineEntity>(proxyEntity));
         }
 
         private static void UnbindFromLocalEntity(ARREntity entity)

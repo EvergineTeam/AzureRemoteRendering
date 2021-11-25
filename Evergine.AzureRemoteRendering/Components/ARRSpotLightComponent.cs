@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
 using Evergine.Framework;
@@ -40,7 +40,7 @@ namespace Evergine.AzureRemoteRendering.Components
         /// </summary>
         public Vector2 AttenuationCutoff
         {
-            get => this.GetProperty(this.attenuationCutoffOverride, DefaultAttenuationCutoff, () => this.RemoteComponent.AttenuationCutoff.ToWave());
+            get => this.GetProperty(this.attenuationCutoffOverride, DefaultAttenuationCutoff, () => this.RemoteComponent.AttenuationCutoff.ToEvergine());
             set => this.SetProperty(value, ref this.attenuationCutoffOverride, DefaultAttenuationCutoff, (x) => this.RemoteComponent.AttenuationCutoff = x.ToRemote());
         }
 
@@ -90,7 +90,7 @@ namespace Evergine.AzureRemoteRendering.Components
         /// </summary>
         public Vector2 SpotAngleDeg
         {
-            get => this.GetProperty(this.spotAngleDegOverride, DefaultSpotAngleDeg, () => this.RemoteComponent.SpotAngleDeg.ToWave());
+            get => this.GetProperty(this.spotAngleDegOverride, DefaultSpotAngleDeg, () => this.RemoteComponent.SpotAngleDeg.ToEvergine());
             set => this.SetProperty(value, ref this.spotAngleDegOverride, DefaultSpotAngleDeg, (x) => this.RemoteComponent.SpotAngleDeg = x.ToRemote());
         }
 

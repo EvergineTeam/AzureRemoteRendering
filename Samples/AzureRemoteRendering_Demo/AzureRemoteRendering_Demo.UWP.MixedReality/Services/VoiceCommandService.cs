@@ -191,7 +191,7 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality.Services
             if (confidence == SpeechRecognitionConfidence.Medium ||
                 confidence == SpeechRecognitionConfidence.High)
             {
-                WaveForegroundTask.Run(() => this.CommandRecognized?.Invoke(this, text));
+                EvergineForegroundTask.Run(() => this.CommandRecognized?.Invoke(this, text));
             }
         }
 

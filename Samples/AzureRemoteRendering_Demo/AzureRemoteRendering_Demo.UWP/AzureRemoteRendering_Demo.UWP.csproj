@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -131,17 +132,17 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Targets">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.Targets">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Targets.UWP">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.Targets.UWP">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.UWPView">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.UWPView">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.XAudio2">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.XAudio2">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -154,8 +155,8 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="..\..\..\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.Reference.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Import Project="..\..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.Reference.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

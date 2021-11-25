@@ -1,4 +1,4 @@
-﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
+﻿// Copyright © Evergine S.L. All rights reserved. Use is subject to license terms.
 
 using System;
 using Microsoft.Azure.RemoteRendering;
@@ -6,7 +6,7 @@ using Evergine.AzureRemoteRendering.Components;
 using Evergine.Framework.Graphics;
 using Evergine.Framework.Managers;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
-using WaveEntity = Evergine.Framework.Entity;
+using EvergineEntity = Evergine.Framework.Entity;
 
 namespace Evergine.AzureRemoteRendering
 {
@@ -16,15 +16,15 @@ namespace Evergine.AzureRemoteRendering
     public static class EntityExtensions
     {
         /// <summary>
-        /// Finds a proxy <see cref="WaveEntity"/> for a remote <see cref="ARREntity"/>.
+        /// Finds a proxy <see cref="EvergineEntity"/> for a remote <see cref="ARREntity"/>.
         /// If no proxy entity already exists, a new one will be created.
         /// </summary>
         /// <param name="entityManager">The entity manager where the proxy entity is included.</param>
         /// <param name="remoteEntity">The remote entity.</param>
         /// <param name="mode">Whether the proxy components will be created.</param>
         /// <param name="recursive">Whether to create proxy entities for children of the remote entity.</param>
-        /// <returns>A proxy <see cref="WaveEntity"/> for a remote <see cref="ARREntity"/>.</returns>
-        public static WaveEntity FindOrCreateProxyEntity(this EntityManager entityManager, ARREntity remoteEntity, ARRCreationMode mode, bool recursive = false)
+        /// <returns>A proxy <see cref="EvergineEntity"/> for a remote <see cref="ARREntity"/>.</returns>
+        public static EvergineEntity FindOrCreateProxyEntity(this EntityManager entityManager, ARREntity remoteEntity, ARRCreationMode mode, bool recursive = false)
         {
             var proxyEntity = remoteEntity.GetExistingProxyEntity();
             if (proxyEntity == null)
@@ -48,13 +48,13 @@ namespace Evergine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Create a proxy <see cref="WaveEntity"/> for a remote <see cref="ARREntity"/>.
+        /// Create a proxy <see cref="EvergineEntity"/> for a remote <see cref="ARREntity"/>.
         /// <para>
         ///
         /// When created, the path from the remote <see cref="ARREntity"/> to the remote scene root will have
         /// proxy entities created for it.
         /// These proxy entities must be created in order to appropriately set the
-        /// <see cref="WaveEntity.Parent"/> for the proxy entity.
+        /// <see cref="EvergineEntity.Parent"/> for the proxy entity.
         ///
         /// As a side effect, this means that, given a Remote hierarchy:
         ///
@@ -68,8 +68,8 @@ namespace Evergine.AzureRemoteRendering
         /// <param name="remoteEntity">The remote entity.</param>
         /// <param name="mode">Whether the proxy components will be created.</param>
         /// <param name="recursive">Whether to create proxy entities for children of the remote entity.</param>
-        /// <returns>A proxy <see cref="WaveEntity"/> for a remote <see cref="ARREntity"/>.</returns>
-        public static WaveEntity CreateProxyEntity(this EntityManager entityManager, ARREntity remoteEntity, ARRCreationMode mode, bool recursive = false)
+        /// <returns>A proxy <see cref="EvergineEntity"/> for a remote <see cref="ARREntity"/>.</returns>
+        public static EvergineEntity CreateProxyEntity(this EntityManager entityManager, ARREntity remoteEntity, ARRCreationMode mode, bool recursive = false)
         {
             if (!remoteEntity.Valid)
             {
@@ -81,7 +81,7 @@ namespace Evergine.AzureRemoteRendering
                 throw new Exception("A proxy entity for this remote entity already exists!");
             }
 
-            var proxyEntity = new WaveEntity();
+            var proxyEntity = new EvergineEntity();
             proxyEntity.AddComponent(new Transform3D());
 
             var remoteParentEntity = remoteEntity.Parent;
@@ -140,7 +140,7 @@ namespace Evergine.AzureRemoteRendering
             }
 
             ARREntitySync sync;
-            WaveEntity previous = null;
+            EvergineEntity previous = null;
             if (removeFlags.HasFlag(ARRRemoveProxyEntityFlags.DestroyEmptyParents))
             {
                 sync = proxyEntity.FindComponent<ARREntitySync>();
@@ -178,12 +178,12 @@ namespace Evergine.AzureRemoteRendering
         }
 
         /// <summary>
-        /// Get an existing proxy <see cref="WaveEntity"/> for an remote <see cref="ARREntity"/>.
+        /// Get an existing proxy <see cref="EvergineEntity"/> for an remote <see cref="ARREntity"/>.
         /// If no proxy entity has been mapped to this remote entity then null.
         /// </summary>
         /// <param name="remoteEntity">The remote <see cref="ARREntity"/>.</param>
-        /// <returns>An proxy <see cref="WaveEntity"/> if exists; otherwise, <c>null</c>.</returns>
-        public static WaveEntity GetExistingProxyEntity(this ARREntity remoteEntity)
+        /// <returns>An proxy <see cref="EvergineEntity"/> if exists; otherwise, <c>null</c>.</returns>
+        public static EvergineEntity GetExistingProxyEntity(this ARREntity remoteEntity)
         {
             if (ARREntitySync.TryGetSyncComponent(remoteEntity, out var syncComponent))
             {
@@ -196,9 +196,9 @@ namespace Evergine.AzureRemoteRendering
         /// <summary>
         /// Create proxy components for the proxy entity for all ARR remote Components on the remote entity.
         /// </summary>
-        /// <param name="proxyEntity">The local proxy <see cref="WaveEntity"/>.</param>
+        /// <param name="proxyEntity">The local proxy <see cref="EvergineEntity"/>.</param>
         /// <param name="remoteEntity">The remote <see cref="ARREntity"/>.</param>
-        public static void CreateARRComponentsFromRemoteEntity(this WaveEntity proxyEntity, ARREntity remoteEntity)
+        public static void CreateARRComponentsFromRemoteEntity(this EvergineEntity proxyEntity, ARREntity remoteEntity)
         {
             foreach (var comp in remoteEntity.Components)
             {
@@ -223,7 +223,7 @@ namespace Evergine.AzureRemoteRendering
                         proxyEntity.BindARRComponent<ARRDirectionalLightComponent>(comp);
                         break;
                     default:
-                        throw new InvalidOperationException("Unrecognized component type in ARR to Wave Engine translation.");
+                        throw new InvalidOperationException("Unrecognized component type in ARR to Evergine translation.");
                 }
             }
         }
@@ -232,12 +232,12 @@ namespace Evergine.AzureRemoteRendering
         /// Initialize an ARR proxy binding with an already existing ARR Component.
         /// </summary>
         /// <typeparam name="TRemoteComponent">The type of the ARR component.</typeparam>
-        /// <param name="proxyEntity">The local proxy <see cref="WaveEntity"/>.</param>
+        /// <param name="proxyEntity">The local proxy <see cref="EvergineEntity"/>.</param>
         /// <param name="remoteComponent">The remote component instance to be binded.</param>
         /// <returns>
         /// <c>true</c> if the remote component is successfully binded to the proxy entity; otherwise, <c>false</c>.
         /// </returns>
-        public static bool BindARRComponent<TRemoteComponent>(this WaveEntity proxyEntity, ComponentBase remoteComponent)
+        public static bool BindARRComponent<TRemoteComponent>(this EvergineEntity proxyEntity, ComponentBase remoteComponent)
             where TRemoteComponent : ARRComponentBase, new()
         {
             var proxyComponent = proxyEntity.FindComponent<TRemoteComponent>();
