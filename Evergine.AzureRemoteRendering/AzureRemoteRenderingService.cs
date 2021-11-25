@@ -1,23 +1,23 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
-using SharpDX.Direct3D11;
+using Vortice.Direct3D11;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using WaveEngine.Common;
-using WaveEngine.Common.Graphics;
-using WaveEngine.DirectX11;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Graphics;
-using WaveEngine.Framework.Services;
-using WaveEngine.Platform;
+using Evergine.Common;
+using Evergine.Common.Graphics;
+using Evergine.DirectX11;
+using Evergine.Framework;
+using Evergine.Framework.Graphics;
+using Evergine.Framework.Services;
+using Evergine.Platform;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
 using ARRMaterial = Microsoft.Azure.RemoteRendering.Material;
 using ARRTexture = Microsoft.Azure.RemoteRendering.Texture;
 using ARRTextureType = Microsoft.Azure.RemoteRendering.TextureType;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Service for the Azure Remote Rendering extension. This service provides functionality
@@ -296,8 +296,8 @@ namespace WaveEngine.AzureRemoteRendering
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
                 var depthDestination = this.EnableDepth ? dx11FrameBuffer.DepthTargetview : null;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
-                dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+                dxContext.RSSetViewport(0, 0, this.proxyFramebuffer.Width, this.proxyFramebuffer.Height);
+                dxContext.OMSetRenderTargets(colorDestination, depthDestination);
 
                 blitSuccess = simulationBinding.BlitRemoteFrameToProxy() == Result.Success;
             }
@@ -305,8 +305,8 @@ namespace WaveEngine.AzureRemoteRendering
             {
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
                 var frameBuffer = camera.DrawContext.FrameBuffer as DX11FrameBuffer;
-                dxContext.Rasterizer.SetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
-                dxContext.OutputMerger.SetRenderTargets(frameBuffer.DepthTargetview, frameBuffer.ColorTargetViews);
+                dxContext.RSSetViewport(0, 0, frameBuffer.Width, frameBuffer.Height);
+                dxContext.OMSetRenderTargets(frameBuffer.ColorTargetViews, frameBuffer.DepthTargetview);
 
                 blitSuccess = wmrBinding.BlitRemoteFrame() == Result.Success;
             }
@@ -334,10 +334,10 @@ namespace WaveEngine.AzureRemoteRendering
                 var colorDestination = dx11FrameBuffer.ColorTargetViews[0];
                 var depthDestination = dx11FrameBuffer.DepthTargetview;
                 var dxContext = (this.graphicsContext as DX11GraphicsContext).DXDeviceContext;
-                dxContext.Rasterizer.SetViewport(0, 0, framebuffer.Width, framebuffer.Height);
-                dxContext.OutputMerger.SetRenderTargets(depthDestination, colorDestination);
+                dxContext.RSSetViewport(0, 0, framebuffer.Width, framebuffer.Height);
+                dxContext.OMSetRenderTargets(colorDestination, depthDestination);
 
-                dxContext.ClearRenderTargetView(colorDestination, default);
+                dxContext.ClearRenderTargetView(colorDestination, default(System.Drawing.Color));
                 dxContext.ClearDepthStencilView(depthDestination, DepthStencilClearFlags.Depth, 1, 0);
 
                 if (simulationBinding.ReprojectProxy() != Result.Success)
