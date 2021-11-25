@@ -12,7 +12,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using WaveEngine.Common.Attributes;
+using Evergine.Common.Attributes;
 
 namespace Microsoft.Azure.RemoteRendering
 {
@@ -403,7 +403,7 @@ namespace Microsoft.Azure.RemoteRendering
 
             // This should be impossible, so we throw a general fail
             // if a key is already present in the dictionary.
-            if(!s_cookieTracker.TryAdd(cookie, internalCB))
+            if (!s_cookieTracker.TryAdd(cookie, internalCB))
             {
                 throw CreateException(status.Fail);
             }

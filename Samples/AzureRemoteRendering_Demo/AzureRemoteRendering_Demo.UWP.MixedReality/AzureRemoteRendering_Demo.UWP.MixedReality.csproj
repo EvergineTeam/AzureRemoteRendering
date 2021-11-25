@@ -16,6 +16,7 @@
     <MinimumVisualStudioVersion>15</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>AzureRemoteRendering_Demo.UWP.MixedReality_TemporaryKey.pfx</PackageCertificateKeyFile>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -91,6 +92,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="AzureRemoteRendering_Demo.UWP.MixedReality_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -108,25 +110,28 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="..\..\..\WaveEngine.AzureRemoteRendering\WaveEngine.AzureRemoteRendering.Reference.targets" />
+  <Import Project="..\..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.Reference.targets" />
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.MixedReality">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.MixedReality">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.XAudio2">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.XAudio2">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Targets">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.Targets">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Targets.UWP">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.Targets.UWP">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
-    <PackageReference Include="WaveEngine.UWPView">
-      <Version>3.1.0.6768-preview2</Version>
+    <PackageReference Include="Evergine.UWPView">
+      <Version>2021.11.17.2-preview</Version>
+    </PackageReference>
+    <PackageReference Include="Evergine.DirectX11">
+      <Version>2021.11.17.2-preview</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +140,7 @@
       <Name>AzureRemoteRendering_Demo</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
@@ -143,6 +148,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
   </PropertyGroup>
 </Project>

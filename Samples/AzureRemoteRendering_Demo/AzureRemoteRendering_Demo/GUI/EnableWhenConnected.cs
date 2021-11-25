@@ -1,5 +1,5 @@
-﻿using WaveEngine.AzureRemoteRendering;
-using WaveEngine.Framework;
+﻿using Evergine.AzureRemoteRendering;
+using Evergine.Framework;
 
 namespace AzureRemoteRendering_Demo.GUI
 {

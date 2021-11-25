@@ -1,7 +1,7 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
-using WaveEngine.AzureRemoteRendering.Components;
+using Evergine.AzureRemoteRendering.Components;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// When calling <see cref="EntityExtensions.FindOrCreateProxyEntity"/>, creations of the Components for

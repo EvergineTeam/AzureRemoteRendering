@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using WaveEngine.Framework.Assets.Importers;
+using Evergine.Framework.Assets.Importers;
 
-namespace WaveEngine_MRTK_Demo.Editor
+namespace Evergine_MRTK_Demo.Editor
 {
-    public static class WaveContentUtils
+    public static class EvergineContentUtils
     {
         private static IEnumerable<TypeInfo> WaveContentTypes;
 
-        static WaveContentUtils()
+        static EvergineContentUtils()
         {
             WaveContentTypes = GetWaveContentTypes().ToList();
         }

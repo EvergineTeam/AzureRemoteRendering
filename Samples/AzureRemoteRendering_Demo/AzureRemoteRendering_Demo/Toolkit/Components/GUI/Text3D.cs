@@ -2,18 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WaveEngine.Common.Attributes;
-using WaveEngine.Common.Graphics;
-using WaveEngine.Components.Graphics3D;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Graphics;
-using WaveEngine.Framework.Graphics.Effects;
-using WaveEngine.Framework.Graphics.Materials;
-using WaveEngine.Framework.Services;
-using WaveEngine.Mathematics;
-using WaveEngine.NoesisGUI;
-using Color = WaveEngine.Common.Graphics.Color;
-using Vector3 = WaveEngine.Mathematics.Vector3;
+using Evergine.Common.Attributes;
+using Evergine.Common.Graphics;
+using Evergine.Components.Graphics3D;
+using Evergine.Framework;
+using Evergine.Framework.Graphics;
+using Evergine.Framework.Graphics.Effects;
+using Evergine.Framework.Graphics.Materials;
+using Evergine.Framework.Services;
+using Evergine.Mathematics;
+using Evergine.NoesisGUI;
+using Color = Evergine.Common.Graphics.Color;
+using Vector3 = Evergine.Mathematics.Vector3;
 
 namespace AzureRemoteRendering_Demo.Toolkit.Components.GUI
 {

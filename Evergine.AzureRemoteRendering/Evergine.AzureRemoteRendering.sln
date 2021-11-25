@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaveEngine.AzureRemoteRendering", "WaveEngine.AzureRemoteRendering.csproj", "{1DCB7069-0482-4F53-AAEB-75214894E57E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evergine.AzureRemoteRendering", "Evergine.AzureRemoteRendering.csproj", "{1DCB7069-0482-4F53-AAEB-75214894E57E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

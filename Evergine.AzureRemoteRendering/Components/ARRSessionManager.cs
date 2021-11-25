@@ -5,9 +5,9 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WaveEngine.Framework;
+using Evergine.Framework;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Component that handles the initialization of <see cref="AzureRemoteRenderingService"/> and the creation and

@@ -1,10 +1,10 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.Common.Graphics;
-using WaveEngine.Framework;
+using Evergine.Common.Graphics;
+using Evergine.Framework;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     ///  Wraps a <see cref="HierarchicalStateOverrideComponent"/> in a proxy <see cref="Component"/>

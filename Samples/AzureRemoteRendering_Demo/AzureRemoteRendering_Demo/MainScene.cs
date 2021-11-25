@@ -1,28 +1,33 @@
 using System;
 using System.Diagnostics;
-using WaveEngine.AzureRemoteRendering;
-using WaveEngine.AzureRemoteRendering.Components;
-using WaveEngine.Components.WorkActions;
-using WaveEngine.Framework;
-using WaveEngine.MRTK.Scenes;
+using Evergine.Common.Graphics;
+using Evergine.Components.Graphics3D;
+using Evergine.Components.WorkActions;
+using Evergine.Framework;
+using Evergine.Framework.Graphics;
+using Evergine.Framework.Services;
+using Evergine.Mathematics;
+using Evergine.AzureRemoteRendering;
+using Evergine.AzureRemoteRendering.Components;
+using Evergine.MRTK.Scenes;
 
 namespace AzureRemoteRendering_Demo
 {
     public class MainScene : XRScene
     {
-        protected override Guid CursorMatPressed => WaveContent.MRTK.Materials.CursorLeftPinch;
+        protected override Guid CursorMatPressed => EvergineContent.MRTK.Materials.CursorLeftPinch;
 
-        protected override Guid CursorMatReleased => WaveContent.MRTK.Materials.CursorLeft;
+        protected override Guid CursorMatReleased => EvergineContent.MRTK.Materials.CursorLeft;
 
         protected override Guid HoloHandsMat => Guid.Empty;
 
-        protected override Guid HolographicEffect => WaveContent.MRTK.Effects.HoloGraphic;
+        protected override Guid HolographicEffect => EvergineContent.MRTK.Effects.HoloGraphic;
 
         protected override Guid SpatialMappingMat => Guid.Empty;
 
-        protected override Guid HandRayTexture => WaveContent.MRTK.Textures.line_dots_png;
+        protected override Guid HandRayTexture => EvergineContent.MRTK.Textures.line_dots_png;
 
-        protected override Guid HandRaySampler => WaveContent.MRTK.Samplers.LinearWrapSampler;
+        protected override Guid HandRaySampler => EvergineContent.MRTK.Samplers.LinearWrapSampler;
 
         protected override void CreateScene()
         {

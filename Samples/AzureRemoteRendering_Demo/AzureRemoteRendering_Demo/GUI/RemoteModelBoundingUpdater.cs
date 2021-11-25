@@ -1,7 +1,7 @@
-﻿using WaveEngine.AzureRemoteRendering.Components;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Physics3D;
-using WaveEngine.MRTK.SDK.Features.UX.Components.BoundingBox;
+﻿using Evergine.AzureRemoteRendering.Components;
+using Evergine.Framework;
+using Evergine.Framework.Physics3D;
+using Evergine.MRTK.SDK.Features.UX.Components.BoundingBox;
 
 namespace AzureRemoteRendering_Demo.GUI
 {
@@ -51,8 +51,8 @@ namespace AzureRemoteRendering_Demo.GUI
             }
             else
             {
-                this.boxCollider3D.Size = WaveEngine.Mathematics.Vector3.Zero;
-                this.boxCollider3D.Offset = WaveEngine.Mathematics.Vector3.Zero;
+                this.boxCollider3D.Size = Evergine.Mathematics.Vector3.Zero;
+                this.boxCollider3D.Offset = Evergine.Mathematics.Vector3.Zero;
             }
 
             this.boundingBox.AutoCalculate = false;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -7,11 +7,11 @@
   xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"
   IgnorableNamespaces="uap uap2 mp">
 
-  <Identity Name="AzureRemoteRenderingDemo.UWP.MixedReality"
-            Publisher="CN=WaveEngine"
+  <Identity Name="AzureRemoteRendering_Demo.UWP.MixedReality"
+            Publisher="CN=Evergine"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="cce07496-3e7c-4e2c-ae59-9225717e6615" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="a2338c2c-6662-44a2-8dcb-514ba5f00a52" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>PlainConcepts RemoteRendering Demo</DisplayName>

@@ -1,4 +1,4 @@
-!WaveEngine.Assets.Exporters.MaterialMetaFile,WaveEngine.Assets
+!Evergine.Assets.Exporters.MaterialMetaFile,Evergine.Assets
 Id: d04c6b19-b181-4798-8052-73388883abfe
 DefaultProfile:
   ExcludeAsset: false
@@ -14,19 +14,19 @@ MaterialInfo:
   Layer: 0db59561-b3f5-444f-b5de-e62e3a5b42bf
   Parameters:
     - Name: WorldViewProj
-      Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Matrix4x4,Evergine.Mathematics
       ValueByteArray: TaOcQAAAAAAAAAAAAAAAAAAAAACYMopADf9kvzD5ZL8AAAAAmjIKwAv/5L8u+eS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: World
-      Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Matrix4x4,Evergine.Mathematics
       ValueByteArray: AAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAACAPw==
     - Name: Color
-      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector3,Evergine.Mathematics
       ValueByteArray: AACAPwAAgD8AAIA/
     - Name: Alpha
       Type: System.Single
       ValueByteArray: AACAPw==
     - Name: InnerGlowColor
-      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector3,Evergine.Mathematics
       ValueByteArray: AACAPwAAgD8AAIA/
     - Name: InnerGlowAlpha
       Type: System.Single
@@ -65,19 +65,19 @@ MaterialInfo:
       Type: System.Single
       ValueByteArray: AAAAAA==
     - Name: HoverColorOverride
-      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector3,Evergine.Mathematics
       ValueByteArray: j8J1Po/CdT6PwnU+
     - Name: ProximityLightCenterColorOverride
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: PQpXPs3MDD9I4Xo/AAAAAA==
     - Name: ProximityLightMiddleColorOverride
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: 7FE4PlyPAj8AAIA/zcxMPg==
     - Name: ProximityLightOuterColorOverride
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: CtejPo/C9T2kcD0/AACAPw==
     - Name: LightColor0
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: AAAAPwAAAD8AAAA/AACAPw==
     - Name: Metallic
       Type: System.Single
@@ -86,19 +86,19 @@ MaterialInfo:
       Type: System.Single
       ValueByteArray: AAAAPw==
     - Name: Tiling
-      Type: WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector2,Evergine.Mathematics
       ValueByteArray: AACAPwAAgD8=
     - Name: Offset
-      Type: WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector2,Evergine.Mathematics
       ValueByteArray: AAAAAAAAAAA=
     - Name: HoverLightData
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: AAAAAAAAAAAAAAAAAAAAAA==
     - Name: ProximityLightData
-      Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Vector4,Evergine.Mathematics
       ValueByteArray: AAAAAAAAAAAAAAAAAAAAAA==
     - Name: MultiviewViewProj
-      Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
+      Type: Evergine.Mathematics.Matrix4x4,Evergine.Mathematics
       ValueByteArray: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
     - Name: EyeCount
       Type: System.Int32

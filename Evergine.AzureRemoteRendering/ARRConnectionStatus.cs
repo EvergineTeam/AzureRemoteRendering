@@ -1,6 +1,6 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Indicates the rendering session connection status for <see cref="AzureRemoteRenderingService"/>.

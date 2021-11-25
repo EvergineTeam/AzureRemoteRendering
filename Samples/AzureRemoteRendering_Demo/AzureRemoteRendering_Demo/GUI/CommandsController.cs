@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using WaveEngine.AzureRemoteRendering;
-using WaveEngine.AzureRemoteRendering.Components;
-using WaveEngine.Common.Input;
-using WaveEngine.Common.Input.Keyboard;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Graphics;
-using WaveEngine.Mathematics;
-using WaveEngine.MRTK.Emulation;
-using WaveEngine.MRTK.SDK.Features.Input.Handlers.Manipulation;
-using MRTKBoundingBox = WaveEngine.MRTK.SDK.Features.UX.Components.BoundingBox.BoundingBox;
+using Evergine.AzureRemoteRendering;
+using Evergine.AzureRemoteRendering.Components;
+using Evergine.Common.Input;
+using Evergine.Common.Input.Keyboard;
+using Evergine.Framework;
+using Evergine.Framework.Graphics;
+using Evergine.Mathematics;
+using Evergine.MRTK.Emulation;
+using Evergine.MRTK.SDK.Features.Input.Handlers.Manipulation;
+using MRTKBoundingBox = Evergine.MRTK.SDK.Features.UX.Components.BoundingBox.BoundingBox;
 
 namespace AzureRemoteRendering_Demo.GUI
 {
     /// <summary>
     /// This component handles commands listening to voice commands and keyboard keys press.
-    /// 
+    ///
     /// Key --------------- Command action
-    /// 
+    ///
     /// D0 ---------------- Reset experience position (in front of camera)
     /// D1 ---------------- Toggle cut plane visibility
     /// D2 ---------------- Toggle reference visibility
     /// D3 ---------------- Toggle model manipulation
-    /// 
+    ///
     /// D7 ---------------- Toggle wireframe
     /// D8 ---------------- Toggle polygon count
     /// D9 ---------------- Toggle frame count

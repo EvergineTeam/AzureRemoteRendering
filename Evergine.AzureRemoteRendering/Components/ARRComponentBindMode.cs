@@ -1,6 +1,6 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Indicate how a proxy component should be binding should be performed by the engine.

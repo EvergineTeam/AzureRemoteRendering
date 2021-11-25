@@ -1,14 +1,14 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.Common.Graphics;
-using WaveEngine.Mathematics;
+using Evergine.Common.Graphics;
+using Evergine.Mathematics;
 using ARRMatrix4x4 = Microsoft.Azure.RemoteRendering.Matrix4x4;
 using ARRQuaternion = Microsoft.Azure.RemoteRendering.Quaternion;
-using WaveMatrix4x4 = WaveEngine.Mathematics.Matrix4x4;
-using WaveQuaternion = WaveEngine.Mathematics.Quaternion;
+using WaveMatrix4x4 = Evergine.Mathematics.Matrix4x4;
+using WaveQuaternion = Evergine.Mathematics.Quaternion;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Wave Engine specific extensions for common types.

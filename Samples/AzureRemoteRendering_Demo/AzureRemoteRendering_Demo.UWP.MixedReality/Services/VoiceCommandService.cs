@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using WaveEngine.Framework.Services;
-using WaveEngine.Framework.Threading;
-using WaveEngine.MRTK.Emulation;
+using Evergine.Framework.Services;
+using Evergine.Framework.Threading;
+using Evergine.MRTK.Emulation;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Media.SpeechRecognition;

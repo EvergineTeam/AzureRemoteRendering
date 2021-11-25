@@ -2,7 +2,7 @@
 
 using System;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Flags used by the extension method <see cref="EntityExtensions.RemoveProxyEntity"/>

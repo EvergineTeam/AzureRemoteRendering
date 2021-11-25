@@ -1,10 +1,10 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.Framework;
+using Evergine.Framework;
 using System;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Base class for all typed ARR Components that have been wrapped in a proxy <see cref="Component"/>.

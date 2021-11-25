@@ -1,11 +1,11 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.Common.Graphics;
-using WaveEngine.Framework;
-using WaveEngine.Mathematics;
+using Evergine.Common.Graphics;
+using Evergine.Framework;
+using Evergine.Mathematics;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     ///  Wraps a <see cref="LightComponentBase"/> in a proxy <see cref="Component"/> for interoperability.

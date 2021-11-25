@@ -2,7 +2,7 @@
 
 using Microsoft.Azure.RemoteRendering;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Object to store Azure Frontend account info.

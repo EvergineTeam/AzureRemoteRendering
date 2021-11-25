@@ -2,13 +2,13 @@
 
 using System;
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.AzureRemoteRendering.Components;
-using WaveEngine.Framework.Graphics;
-using WaveEngine.Framework.Managers;
+using Evergine.AzureRemoteRendering.Components;
+using Evergine.Framework.Graphics;
+using Evergine.Framework.Managers;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
-using WaveEntity = WaveEngine.Framework.Entity;
+using WaveEntity = Evergine.Framework.Entity;
 
-namespace WaveEngine.AzureRemoteRendering
+namespace Evergine.AzureRemoteRendering
 {
     /// <summary>
     /// Extensions methods that simplifies the creation of remote entities and components.

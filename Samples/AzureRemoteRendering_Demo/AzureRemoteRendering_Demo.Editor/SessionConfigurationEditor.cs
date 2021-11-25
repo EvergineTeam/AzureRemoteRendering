@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using WaveEngine.AzureRemoteRendering;
-using WaveEngine.Editor.Extension;
-using WaveEngine.Editor.Extension.Attributes;
+using Evergine.AzureRemoteRendering;
+using Evergine.Editor.Extension;
+using Evergine.Editor.Extension.Attributes;
 
 namespace AzureRemoteRendering_Demo.Editor
 {

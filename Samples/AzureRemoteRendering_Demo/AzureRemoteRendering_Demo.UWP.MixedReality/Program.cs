@@ -4,7 +4,7 @@ using Windows.ApplicationModel.Core;
 namespace AzureRemoteRendering_Demo.UWP.MixedReality
 {
     /// <summary>
-    /// UWP.MixedReality Holographic application using SharpDX.
+    /// UWP.MixedReality Holographic application using Evergine.
     /// </summary>
     internal class Program
     {

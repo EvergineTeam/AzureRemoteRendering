@@ -7,17 +7,17 @@
     <Authors>Wave Engine Team</Authors>
     <Company>Plain Concepts</Company>
     <Product>Wave Engine</Product>
-    <PackageProjectUrl>https://waveengine.net/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/WaveEngine/AzureRemoteRendering</RepositoryUrl>
+    <PackageProjectUrl>https://evergine.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Evergine/AzureRemoteRendering</RepositoryUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>WaveEngine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
+    <PackageTags>Evergine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\WaveEngine.AzureRemoteRendering.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\Evergine.AzureRemoteRendering.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <AssemblyAttribute Include="WaveEngine.Common.Attributes.WaveEngineAssembly">
+    <AssemblyAttribute Include="Evergine.Common.Attributes.EvergineAssembly">
       <_Parameter1>Extension</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
@@ -27,14 +27,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="WaveEngine.Common" Version="3.1.0.6768-preview2" />
-    <PackageReference Include="WaveEngine.DirectX11" Version="3.1.0.6768-preview2" />
-    <PackageReference Include="WaveEngine.Framework" Version="3.1.0.6768-preview2" />
-    <PackageReference Include="WaveEngine.Mathematics" Version="3.1.0.6768-preview2" />
+    <PackageReference Include="Evergine.Common" Version="2021.11.17.2-preview" />
+    <PackageReference Include="Evergine.DirectX11" Version="2021.11.17.2-preview" />
+    <PackageReference Include="Evergine.Framework" Version="2021.11.17.2-preview" />
+    <PackageReference Include="Evergine.Mathematics" Version="2021.11.17.2-preview" />
+    <PackageReference Include="Vortice.Direct3D11" Version="2.1.0-beta4" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="build/net45/WaveEngine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
-    <Content Include="WaveEngine.AzureRemoteRendering.Reference.targets" Pack="False" />
+    <Content Include="build/net45/Evergine.AzureRemoteRendering.targets" PackagePath="build/net45/" Pack="True" />
+    <Content Include="Evergine.AzureRemoteRendering.Reference.targets" Pack="False" />
     <Content Include="$(PkgMicrosoft_Azure_RemoteRendering_Cpp)\bin\win_arm32uwp\release\**" PackagePath="runtimes\win10-arm\nativeassets\uap10.0" Visible="true">
       <Link>runtimes\win10-arm\nativeassets\uap10.0\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

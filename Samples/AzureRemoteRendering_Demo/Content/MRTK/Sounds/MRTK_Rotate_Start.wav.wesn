@@ -1,4 +1,4 @@
-!WaveEngine.Assets.Exporters.SoundMetaFile,WaveEngine.Assets
+!Evergine.Assets.Exporters.SoundMetaFile,Evergine.Assets
 Id: fc34b826-4d64-4aa9-944f-cd6a9f7ac84e
 DefaultProfile:
   ChannelFormat: Mono

@@ -1,13 +1,13 @@
-using WaveEngine.AzureRemoteRendering;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Services;
-using WaveEngine.Framework.Threading;
-using WaveEngine.NoesisGUI;
-using WaveEngine.Platform;
+using Evergine.Framework;
+using Evergine.Framework.Services;
+using Evergine.Framework.Threading;
+using Evergine.Platform;
+using Evergine.NoesisGUI;
+using Evergine.AzureRemoteRendering;
 
 namespace AzureRemoteRendering_Demo
 {
-    public class MainApplication : Application
+    public partial class MainApplication : Application
     {
         public MainApplication()
         {
@@ -37,7 +37,7 @@ namespace AzureRemoteRendering_Demo
             var assetsService = this.Container.Resolve<AssetsService>();
 
             // Navigate to scene
-            var scene = assetsService.Load<MainScene>(WaveContent.Scenes.MainScene_wescene);
+            var scene = assetsService.Load<MainScene>(EvergineContent.Scenes.MainScene_wescene);
             ScreenContext screenContext = new ScreenContext(scene);
             screenContextManager.To(screenContext);
         }

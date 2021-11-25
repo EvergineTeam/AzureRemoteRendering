@@ -2,11 +2,11 @@
 
 using System;
 using System.Threading.Tasks;
-using WaveEngine.Framework;
-using WaveEngine.Mathematics;
+using Evergine.Framework;
+using Evergine.Mathematics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Component that handles the load process of a remote model. The remote model will be automatically loaded when the

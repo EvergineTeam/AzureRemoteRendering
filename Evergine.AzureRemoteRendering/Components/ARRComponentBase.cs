@@ -3,9 +3,9 @@
 using Microsoft.Azure.RemoteRendering;
 using System;
 using System.Diagnostics;
-using WaveEngine.Framework;
+using Evergine.Framework;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Base class for all ARR Components that have been wrapped in a proxy <see cref="Component"/>

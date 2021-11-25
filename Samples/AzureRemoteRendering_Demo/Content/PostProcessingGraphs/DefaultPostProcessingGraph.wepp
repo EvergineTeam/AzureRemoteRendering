@@ -1,4 +1,4 @@
-!WaveEngine.Assets.Exporters.PostProcessingGraphMetaFile,WaveEngine.Assets
+!Evergine.Assets.Exporters.PostProcessingGraphMetaFile,Evergine.Assets
 Id: dd593717-0922-4f58-9c85-c309658eff03
 DefaultProfile:
   ExcludeAsset: false
@@ -20,7 +20,7 @@ PostProcessingGraphInfo:
       Outputs:
         - Name: ColorTexture
           Id: 6d767f98-d506-4cfb-a2a7-304e6d6e8058
-          Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+          Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
             Offset: 0
             ResourceType: Texture
             Slot: 0
@@ -34,12 +34,12 @@ PostProcessingGraphInfo:
           FixedSize:
             X: 0.0
             Y: 0.0
-          ReferencedInput: 
+          ReferencedInput:
           ScaleFactor: 1.0
           pixelFormat: Unknown
         - Name: DepthTexture
           Id: 9419a2a3-391e-4c58-acd7-c84d5f22918c
-          Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+          Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
             Offset: 0
             ResourceType: Texture
             Slot: 0
@@ -55,7 +55,7 @@ PostProcessingGraphInfo:
           FixedSize:
             X: 0.0
             Y: 0.0
-          ReferencedInput: 
+          ReferencedInput:
           ScaleFactor: 1.0
           pixelFormat: Unknown
     EndNode:
@@ -68,7 +68,7 @@ PostProcessingGraphInfo:
       Inputs:
         - Name: ColorTexture
           Id: c4628e91-29e1-40de-b47c-c4618bb3f345
-          Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+          Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
             Offset: 0
             ResourceType: Texture
             Slot: 0
@@ -88,7 +88,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: ViewProjectionInverse
             Id: 0d343705-5043-4b10-8d45-8d5c8ba95dd6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -113,7 +113,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ViewProjection
             Id: 610c3d8f-c8c8-4c11-9f1f-23ac8204cd7e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 0
@@ -138,7 +138,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: PreviousViewProjection
             Id: 6d9a09ed-c152-4037-9ecb-d6c3d84a3c3d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 0
@@ -163,7 +163,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Near
             Id: 9356a146-c287-4ff2-8261-bc3d1f54b80c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 192
               ResourceType: ConstantBuffer
               Slot: 0
@@ -172,7 +172,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Far
             Id: f0655a5e-6018-4568-becc-bd3d4b2bd19f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 196
               ResourceType: ConstantBuffer
               Slot: 0
@@ -181,7 +181,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Jitter
             Id: dcb4c845-47e0-4c6a-ac81-398682ac9a50
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 200
               ResourceType: ConstantBuffer
               Slot: 0
@@ -192,7 +192,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: PreviousJitter
             Id: 2e482c1f-c8b0-4eb9-965a-33acbf199eae
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 208
               ResourceType: ConstantBuffer
               Slot: 0
@@ -203,7 +203,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Depth
             Id: 08226730-32ec-4c75-bc05-65c830ca01e5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -215,7 +215,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: PositionOutput
             Id: 68f3a2e2-11bb-458a-af41-1dad5207bcb8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -234,7 +234,7 @@ PostProcessingGraphInfo:
             pixelFormat: R16G16B16A16_Float
           - Name: VelocityOutput
             Id: a04f652d-c9ca-4829-8c25-3288f0bd9539
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 1
@@ -253,7 +253,7 @@ PostProcessingGraphInfo:
             pixelFormat: R16G16_Float
           - Name: LinealDepthOutput
             Id: d882cc18-472a-4e19-9247-0cd1430ee5e9
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 2
@@ -283,7 +283,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: SampleCount
             Id: 61bcfd92-4268-4651-b733-24b08887d895
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -292,7 +292,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Range
             Id: dba0445d-e258-4e03-811a-120b0d0a0803
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -301,7 +301,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Power
             Id: 057468f6-17d1-4597-b659-ee2608078e84
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -310,7 +310,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ScaleBias
             Id: 51c6fb5a-d523-4821-8da2-43e71913a0be
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -319,7 +319,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Time
             Id: 4a973d29-4294-4ace-93ad-bb998db73fe6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -328,7 +328,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ViewProjection
             Id: 52281e1d-394e-49e8-8319-9136c44b7a03
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -353,7 +353,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Depth
             Id: 7447ae02-a913-4940-b2d1-16a5792ef846
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -364,7 +364,7 @@ PostProcessingGraphInfo:
               portId: 9419a2a3-391e-4c58-acd7-c84d5f22918c
           - Name: Position
             Id: 8388233c-87c4-401a-bd81-4334e9dfe084
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -375,7 +375,7 @@ PostProcessingGraphInfo:
               portId: 68f3a2e2-11bb-458a-af41-1dad5207bcb8
           - Name: Normal
             Id: 7f027dab-03a5-40f9-b238-29d3a2b2d2a5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -384,7 +384,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 0e9ff538-30af-406d-adfc-aa9934251a31
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -394,7 +394,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 1e58e9b8-dd87-47df-91b7-3e8c3f3bdd56
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -418,7 +418,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Blend
             Id: 22c66063-ff04-44d9-a556-6fdd94c262cb
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -427,7 +427,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Intensity0
             Id: 2b94cd43-1f6b-43a5-be6c-6472e8afb516
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -436,7 +436,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Intensity1
             Id: 86e15571-a148-404e-912e-2813842d093b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -445,7 +445,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input0
             Id: 806cd5f9-a32e-4def-b506-eed2a57b8c31
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -456,7 +456,7 @@ PostProcessingGraphInfo:
               portId: 6d767f98-d506-4cfb-a2a7-304e6d6e8058
           - Name: input1
             Id: d0f11aef-eb7d-437f-a469-6accbd954733
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -467,7 +467,7 @@ PostProcessingGraphInfo:
               portId: 1e58e9b8-dd87-47df-91b7-3e8c3f3bdd56
           - Name: Sampler
             Id: 2f109093-a9df-4ff1-ac5c-a2450cbd53f3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -477,7 +477,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: b32e9680-ab3b-4837-82c8-fae7d7193fd8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -489,7 +489,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -501,7 +501,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: 281b6a07-bed0-4bf0-b0b8-1c516a1d5c3f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -510,7 +510,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 84b01e24-61ae-417f-a006-59c1d23cfa7a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -521,7 +521,7 @@ PostProcessingGraphInfo:
               portId: 6d767f98-d506-4cfb-a2a7-304e6d6e8058
           - Name: Input1
             Id: c51d79f9-891f-4dcc-99e3-2270b44e8d9b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -532,7 +532,7 @@ PostProcessingGraphInfo:
               portId: b32e9680-ab3b-4837-82c8-fae7d7193fd8
           - Name: Sampler
             Id: 195167a1-78c4-47c7-ba6c-1dcb92ecae7e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -542,7 +542,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: d4f25ff0-7a8e-4983-8300-8b624cac1257
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -558,7 +558,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: SSR
@@ -570,7 +570,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: View
             Id: e529b17c-011e-42fe-afc4-c84842c4709f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -595,7 +595,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: 80635e31-ffba-466c-a47f-550154710134
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 0
@@ -620,7 +620,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: InverseProjection
             Id: c2250f7d-511b-40e1-b62a-a64fed7cec2c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 0
@@ -645,7 +645,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: NumRayMarchSamples
             Id: 63b096bf-e15e-40ed-9ccd-3bc057f925ad
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 192
               ResourceType: ConstantBuffer
               Slot: 0
@@ -654,7 +654,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: MaxReflectionDistance
             Id: 32e2c119-8765-481a-aa00-41036b24d22c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 196
               ResourceType: ConstantBuffer
               Slot: 0
@@ -663,7 +663,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: RefinementSteps
             Id: 8fa24658-d392-4c2c-bdee-cd9dd3412227
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 200
               ResourceType: ConstantBuffer
               Slot: 0
@@ -672,7 +672,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: PixelThickness
             Id: ba0408d6-c098-4087-91aa-3620893afb12
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 204
               ResourceType: ConstantBuffer
               Slot: 0
@@ -681,7 +681,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: MaxRoughness
             Id: 99db4b53-5ffd-4bbc-96aa-fc9adab3bd5d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 208
               ResourceType: ConstantBuffer
               Slot: 0
@@ -690,7 +690,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Jitter
             Id: 63c0f2f9-3957-4f02-9d35-d32da8b0dc6f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 212
               ResourceType: ConstantBuffer
               Slot: 0
@@ -701,7 +701,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Color
             Id: c31adbb9-a34b-4066-8dba-eb0a05fa3524
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -712,7 +712,7 @@ PostProcessingGraphInfo:
               portId: d4f25ff0-7a8e-4983-8300-8b624cac1257
           - Name: Depth
             Id: 55f5762f-416b-43a7-aeb0-39e9bc72b5ce
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -723,7 +723,7 @@ PostProcessingGraphInfo:
               portId: 9419a2a3-391e-4c58-acd7-c84d5f22918c
           - Name: Noise
             Id: e617ee1c-3bf9-42d7-8f7b-1ce03306f0c2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -732,7 +732,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ZPrePass
             Id: ccd1342a-e52c-48b7-8df2-91983f55ebe9
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 3
@@ -741,7 +741,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 85da0934-93f3-4d94-8a82-65a60d97e406
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -751,7 +751,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 8cc3793c-6788-46f8-9bec-b8abe03d29c7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -775,7 +775,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Output
             Id: 27918c5c-395f-4804-a364-449162b33ee4
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -784,7 +784,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Intensity
             Id: 2c7b922e-58db-4a3b-8149-420ca011a668
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -793,7 +793,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Color
             Id: 77c62c03-8d22-46ac-9e2a-9ef659526e69
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -804,7 +804,7 @@ PostProcessingGraphInfo:
               portId: d4f25ff0-7a8e-4983-8300-8b624cac1257
           - Name: ReflectionColor
             Id: de78889b-79cc-46e2-b0e0-83d0818a2e5a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -815,7 +815,7 @@ PostProcessingGraphInfo:
               portId: 8cc3793c-6788-46f8-9bec-b8abe03d29c7
           - Name: ZPrePass
             Id: 994b5fe1-174f-4c0a-857d-560e2a854a8f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -824,7 +824,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 6b7e2a3b-64b8-4db6-8dbf-3f241d89a227
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -834,7 +834,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: bc74dcea-9687-4f11-bac0-450cf51eb086
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -858,7 +858,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: 4bfad470-c52a-46bb-bbe3-e527a6f51a47
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -867,7 +867,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: c0278419-8867-472f-a2a3-0ed518f070f4
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -878,7 +878,7 @@ PostProcessingGraphInfo:
               portId: d4f25ff0-7a8e-4983-8300-8b624cac1257
           - Name: Input1
             Id: 25685100-6663-4348-bb2a-f121c4685891
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -889,7 +889,7 @@ PostProcessingGraphInfo:
               portId: bc74dcea-9687-4f11-bac0-450cf51eb086
           - Name: Sampler
             Id: 835f16ba-ffeb-46b6-a6b2-4ebbc25c8c6b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -899,7 +899,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 3af55472-ad7f-4411-bc24-1fa3791b5dcc
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -913,7 +913,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Fog
@@ -925,7 +925,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Technique
             Id: 66e4459d-cefb-4849-89a9-dd723397cad0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -934,7 +934,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Distance
             Id: 103fa226-31df-4507-8a78-edb3fd1491c1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -943,7 +943,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Height
             Id: 624182d7-9385-4ed4-8415-804a1217f83d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -952,7 +952,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FogColor
             Id: c6b48c84-b9cb-48c6-843a-919c68b7c743
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -964,7 +964,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Density
             Id: 2671f477-3f07-4416-850c-083f41e70f02
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -973,7 +973,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: HeightDensity
             Id: 8cfa033a-df96-4094-b72b-e5ce14e57901
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -982,7 +982,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Height
             Id: cb2b8f08-a692-4260-85bd-1cdba56b6938
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 20
               ResourceType: ConstantBuffer
               Slot: 0
@@ -991,7 +991,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: StartDistance
             Id: 8dad3b9b-a851-42f5-bb16-5df31d1e13f3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 24
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1000,7 +1000,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: EndDistance
             Id: 419c2b23-f9b2-419f-aca7-577087928bea
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 28
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1009,7 +1009,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: CameraWS
             Id: 062a80d3-776c-46bb-b6ca-ec2fe5f731cb
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 32
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1021,7 +1021,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: e15817d4-8d75-4f2b-a7b7-5a4d40a82048
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1032,7 +1032,7 @@ PostProcessingGraphInfo:
               portId: 3af55472-ad7f-4411-bc24-1fa3791b5dcc
           - Name: Position
             Id: e53abefb-6e8e-4193-941e-6e136bf0e113
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1043,7 +1043,7 @@ PostProcessingGraphInfo:
               portId: 68f3a2e2-11bb-458a-af41-1dad5207bcb8
           - Name: Sampler
             Id: e60cc0b6-9195-441f-bdda-45be8b0db56f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1053,7 +1053,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 628aabd1-7ae7-4307-a24c-e55aa624c8ee
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1065,7 +1065,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -1077,7 +1077,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: c395a213-75c3-486e-8ec9-2534eb7234e2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1086,7 +1086,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 59125ea8-177c-42c3-ace6-fcefc12db4d4
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1097,7 +1097,7 @@ PostProcessingGraphInfo:
               portId: 3af55472-ad7f-4411-bc24-1fa3791b5dcc
           - Name: Input1
             Id: c393babc-f317-444d-82a4-19d9b6aa02d7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1108,7 +1108,7 @@ PostProcessingGraphInfo:
               portId: 628aabd1-7ae7-4307-a24c-e55aa624c8ee
           - Name: Sampler
             Id: a7551414-cc45-4418-9236-14f93cf03bc8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1118,7 +1118,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 030120eb-cdeb-420e-a183-b556670c5fb1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1132,7 +1132,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: TAA
@@ -1144,7 +1144,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Input
             Id: 2df25d3d-bdcf-4c2a-a6fc-82b45ff54b0e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1155,7 +1155,7 @@ PostProcessingGraphInfo:
               portId: 030120eb-cdeb-420e-a183-b556670c5fb1
           - Name: LinearDepth
             Id: 3849c8c7-804a-4151-b4ef-9aa211f99cd8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1166,7 +1166,7 @@ PostProcessingGraphInfo:
               portId: d882cc18-472a-4e19-9247-0cd1430ee5e9
           - Name: VelocityMap
             Id: fc23b26e-d066-4869-bce3-7ca67ffe3f6e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -1177,7 +1177,7 @@ PostProcessingGraphInfo:
               portId: a04f652d-c9ca-4829-8c25-3288f0bd9539
           - Name: History
             Id: b9807b4b-da49-4ee7-b35c-fb47e88ec525
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 3
@@ -1186,7 +1186,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 7fdc4bc0-2104-4d77-bef3-7e8a790b0f3a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1196,7 +1196,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 49b346f4-456e-4f4c-b94d-ead627a1d9ea
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1208,7 +1208,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -1220,7 +1220,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: f4cb4736-eb33-4870-993b-467b7a505f37
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1229,7 +1229,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 5168c286-1f1f-4fd0-87f9-0a7ed5b54fd7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1240,7 +1240,7 @@ PostProcessingGraphInfo:
               portId: 030120eb-cdeb-420e-a183-b556670c5fb1
           - Name: Input1
             Id: fc45181a-7591-4c94-b91e-3344d3ea878e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1251,7 +1251,7 @@ PostProcessingGraphInfo:
               portId: 49b346f4-456e-4f4c-b94d-ead627a1d9ea
           - Name: Sampler
             Id: 147e64f3-cdc8-45f4-8ebe-059d5fb4ff4c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1261,7 +1261,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: ae322ff4-fdbb-44b2-81e6-655721a6b322
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1275,7 +1275,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: CameraMotionBlur
@@ -1287,7 +1287,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: DecayFactor
             Id: 104b9d5f-0376-4e1e-9ecc-4016aa4abf2d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1296,7 +1296,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: NumSamples
             Id: a19d1b9f-490a-4868-8be1-a8f86c03caac
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1305,7 +1305,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 960e7309-788a-45c7-8157-0fef29bc8f6d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1316,7 +1316,7 @@ PostProcessingGraphInfo:
               portId: ae322ff4-fdbb-44b2-81e6-655721a6b322
           - Name: velocityMap
             Id: 4467e1fa-feb4-4eee-a0e0-61bd89e9d90d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1327,7 +1327,7 @@ PostProcessingGraphInfo:
               portId: a04f652d-c9ca-4829-8c25-3288f0bd9539
           - Name: Sampler
             Id: 482703ae-ee49-478f-965d-6074d7a9409f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1337,7 +1337,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: output
             Id: f1c84466-3120-4853-b9c7-3f8a5ab43743
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1361,7 +1361,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: e781060c-e42f-4878-9cec-1d0e13ddf9cb
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1370,7 +1370,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 342a2a14-0efc-4c85-b92f-ff15050416ff
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1381,7 +1381,7 @@ PostProcessingGraphInfo:
               portId: ae322ff4-fdbb-44b2-81e6-655721a6b322
           - Name: Input1
             Id: 1fe66c1b-bebd-4412-b31b-428c33f30290
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1392,7 +1392,7 @@ PostProcessingGraphInfo:
               portId: f1c84466-3120-4853-b9c7-3f8a5ab43743
           - Name: Sampler
             Id: 3aa9f62c-6dcc-48c9-bc04-6c0f7ba242d5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1402,7 +1402,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 1b09c0b5-e0ea-4dfd-9e4f-b82b1317b487
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1418,7 +1418,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: BokehExtractFields
@@ -1430,7 +1430,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Near
             Id: ed313d5f-97e2-4437-9045-27cabed21a3f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1439,7 +1439,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Far
             Id: 51c072a9-e255-4315-b04a-9d64e57fd654
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1448,7 +1448,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FocalDistance
             Id: 3cc8a7d6-6fb6-4155-86a7-4349f03af8a4
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1457,7 +1457,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FocalRegion
             Id: 3d68703a-df07-4eb5-8ecc-79df0cb25c09
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1466,7 +1466,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FocalLength
             Id: 118cd3a5-5c01-4d51-963d-76abce841a0a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1475,7 +1475,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Aperture
             Id: ff75f4a4-60ef-4a0a-9817-d6a77cbe948e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 20
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1484,7 +1484,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Jitter
             Id: a6cf412f-e495-4c49-af14-f047f954e011
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 24
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1495,7 +1495,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: 63a130d6-529a-40fb-a191-098197dc339f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1506,7 +1506,7 @@ PostProcessingGraphInfo:
               portId: 1b09c0b5-e0ea-4dfd-9e4f-b82b1317b487
           - Name: Depth
             Id: 96cefe39-7c4e-411b-89b6-5fe0e06e4bf3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1517,7 +1517,7 @@ PostProcessingGraphInfo:
               portId: d882cc18-472a-4e19-9247-0cd1430ee5e9
           - Name: Sampler
             Id: 88f15072-7634-453c-8bc4-863828730a69
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1527,7 +1527,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: NearOutput
             Id: 87c97b07-994e-42d0-afe4-412117e58b5a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1544,7 +1544,7 @@ PostProcessingGraphInfo:
             pixelFormat: Unknown
           - Name: FarOutput
             Id: d11158bf-9335-4b30-b246-8e135f698163
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 1
@@ -1561,7 +1561,7 @@ PostProcessingGraphInfo:
             pixelFormat: Unknown
           - Name: NearCoC
             Id: ba108014-c841-4cf2-afc7-0fabf0d05f87
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 2
@@ -1585,7 +1585,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Input
             Id: 5a64172f-7229-4893-a2ea-d57ba7fba8f5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1596,7 +1596,7 @@ PostProcessingGraphInfo:
               portId: 87c97b07-994e-42d0-afe4-412117e58b5a
           - Name: Sampler
             Id: 0faf837e-2d2f-4ee9-ac2a-55138671cfe7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1606,7 +1606,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: fee01a4f-5230-4444-80e8-9a8ec235f68e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1618,7 +1618,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: BokehCoCDownscale
@@ -1630,7 +1630,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Input
             Id: a6cef61d-d627-4c10-ab27-0cfcc684a5d0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1641,7 +1641,7 @@ PostProcessingGraphInfo:
               portId: ba108014-c841-4cf2-afc7-0fabf0d05f87
           - Name: Sampler
             Id: 53c140ec-56f6-4487-ab12-811ffce68916
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1651,7 +1651,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 40b52175-9596-46eb-8f40-5b647312bd88
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1675,7 +1675,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: CoCTileMap
             Id: b97ae319-e105-4b93-ae46-b258c7ae69b8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1686,7 +1686,7 @@ PostProcessingGraphInfo:
               portId: 40b52175-9596-46eb-8f40-5b647312bd88
           - Name: Sampler
             Id: f2288a65-935f-407e-a5fe-60787a5c261f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1696,7 +1696,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 64dc959b-2d11-4fed-8374-3f7af495f982
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1708,7 +1708,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: BokehBlur
@@ -1720,7 +1720,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Field
             Id: 29b29768-a786-4f61-9c1d-013ea3774a70
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1729,7 +1729,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Bokeh
             Id: 177d922b-f011-421e-a4d9-928d19fc5f39
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1738,7 +1738,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ShapeSize
             Id: 78ef7575-ee3b-467c-ade9-cde02a220739
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1747,7 +1747,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ShapeRotation
             Id: fa860f46-9a2f-412d-b327-4333c0f7ed07
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1756,7 +1756,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: 77586139-6bd7-4db5-9a74-ff8a6aba462d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1767,7 +1767,7 @@ PostProcessingGraphInfo:
               portId: fee01a4f-5230-4444-80e8-9a8ec235f68e
           - Name: CoC
             Id: f254dfad-2987-42d1-bb34-328f52a8fc56
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1778,7 +1778,7 @@ PostProcessingGraphInfo:
               portId: 64dc959b-2d11-4fed-8374-3f7af495f982
           - Name: Sampler
             Id: 6d75a07c-7149-46b7-9dd6-f42fcbd73c68
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1788,7 +1788,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 3f0efd0b-1c5a-42bb-ae80-b08259ca5b83
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1800,7 +1800,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: BokehBlur
@@ -1812,7 +1812,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Field
             Id: 422bdf8b-f0d0-43a7-91bd-066dc9bedd36
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1821,7 +1821,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Bokeh
             Id: 68b429e7-b628-4774-8e62-653abd9fc66c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1830,7 +1830,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ShapeSize
             Id: 4a0411ca-c769-4f7d-bec8-c799b2355fe8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1839,7 +1839,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ShapeRotation
             Id: 4195bc7a-41d0-4a48-bb46-b84fc7dc3d9f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -1848,7 +1848,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: 1af5ce04-1abb-4d26-8d04-f0c0dceb242c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1859,7 +1859,7 @@ PostProcessingGraphInfo:
               portId: d11158bf-9335-4b30-b246-8e135f698163
           - Name: CoC
             Id: 008de52a-ca92-49e8-bd2a-f1ab5f4a2cf5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -1868,7 +1868,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 010a7734-472d-44c7-85b9-fe675db617a6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1878,7 +1878,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 28eb7217-7a34-404f-b668-b5cbf4c52986
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1890,7 +1890,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Mediam
@@ -1902,7 +1902,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: input
             Id: e6848aac-faef-42af-9ab6-14fc9fe48dc9
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1913,7 +1913,7 @@ PostProcessingGraphInfo:
               portId: 3f0efd0b-1c5a-42bb-ae80-b08259ca5b83
           - Name: Sampler
             Id: 75fe60a9-05d7-47d7-9de5-ef7fbea55512
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1923,7 +1923,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: c0b466ce-240e-4821-8958-c39d3cfc5476
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1935,7 +1935,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Mediam
@@ -1947,7 +1947,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: input
             Id: 5e59c3a1-1c42-4f48-b653-9e88e9e5f277
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -1958,7 +1958,7 @@ PostProcessingGraphInfo:
               portId: 28eb7217-7a34-404f-b668-b5cbf4c52986
           - Name: Sampler
             Id: 1d1278ad-6999-41df-8b57-d08cdf44a97e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -1968,7 +1968,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 9748a912-5775-44ba-8e0d-aed162586ba2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -1980,7 +1980,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: BokehCombine
@@ -1992,7 +1992,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Debug
             Id: 82a3f45e-0646-45d5-874a-88d1e405a0db
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2001,7 +2001,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FocalRegion
             Id: a7b986e6-63af-4d60-a4ca-badad8201f1f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2010,7 +2010,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FadePower
             Id: 58b78198-2c32-40ec-8c24-3e7299bb106f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2019,7 +2019,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FocalDistance
             Id: 331cd84f-c79e-4c75-9a6f-8428f90be558
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2028,7 +2028,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: FarPlane
             Id: c6719883-3129-4a65-8d61-1173018e8049
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2037,7 +2037,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Focus
             Id: 49a13872-6ff6-474f-bf4d-9c6d5c39af07
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2048,7 +2048,7 @@ PostProcessingGraphInfo:
               portId: 1b09c0b5-e0ea-4dfd-9e4f-b82b1317b487
           - Name: Near
             Id: 071ccaec-3223-416a-b1a4-88a4ffdeed44
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -2059,7 +2059,7 @@ PostProcessingGraphInfo:
               portId: c0b466ce-240e-4821-8958-c39d3cfc5476
           - Name: Far
             Id: 4f2020e5-74c9-4106-95c9-53f8f2170ab3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -2070,7 +2070,7 @@ PostProcessingGraphInfo:
               portId: 9748a912-5775-44ba-8e0d-aed162586ba2
           - Name: Depth
             Id: 03fb5a93-ee3e-46ff-a58e-5b2d1a7c1803
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 3
@@ -2081,7 +2081,7 @@ PostProcessingGraphInfo:
               portId: d882cc18-472a-4e19-9247-0cd1430ee5e9
           - Name: Sampler
             Id: 4d26a6af-0788-4770-a7d8-859dd9ca2407
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2091,7 +2091,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 2bb428d2-a954-4c41-9d55-cada1f2268fc
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2103,7 +2103,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -2115,7 +2115,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: b5cd7968-368b-4c4a-8902-27063a77aa36
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2124,7 +2124,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 06f8d11f-6d9a-46f1-aadb-873dc6763ef2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2135,7 +2135,7 @@ PostProcessingGraphInfo:
               portId: 1b09c0b5-e0ea-4dfd-9e4f-b82b1317b487
           - Name: Input1
             Id: 8e14c33e-6791-4b10-983f-ebc7bfd963d2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -2146,7 +2146,7 @@ PostProcessingGraphInfo:
               portId: 2bb428d2-a954-4c41-9d55-cada1f2268fc
           - Name: Sampler
             Id: ed3416c2-bcdf-4ee2-9a16-c9162b99b560
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2156,7 +2156,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 5cd8b0ea-302e-429b-9c3f-70cb5e625319
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2172,7 +2172,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: DownSample
@@ -2184,7 +2184,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Offsets
             Id: 099739fe-1aef-4753-9802-fae58bf1f3f9
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2193,7 +2193,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 5ed1a1e6-f782-4391-91d7-7792f0c6817e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2204,7 +2204,7 @@ PostProcessingGraphInfo:
               portId: 5cd8b0ea-302e-429b-9c3f-70cb5e625319
           - Name: Sampler
             Id: a7ffa22a-a01a-44ae-97f4-4f5be3772f63
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2214,7 +2214,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 492063bd-07cf-4e24-9884-ae431c9a2ffe
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2242,7 +2242,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: threshold
             Id: ce482092-3b83-4793-9101-1fb8f15821a5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2251,7 +2251,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 6ecc78b9-37d3-4f21-b704-b4cdc85ce0d2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2262,7 +2262,7 @@ PostProcessingGraphInfo:
               portId: 492063bd-07cf-4e24-9884-ae431c9a2ffe
           - Name: Sampler
             Id: e50224c6-59d9-489c-9c3f-3b052d7bf3d1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2272,7 +2272,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 1310f6cb-d9c3-4672-b76c-9bc64d152be6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2296,7 +2296,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: MinThreshold
             Id: d671f41d-cbef-4dc3-96cb-9fbb776d4188
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2305,7 +2305,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: MaxThreshold
             Id: 9e5be5db-1caa-4953-a962-ae7a92869d93
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2314,7 +2314,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Scale
             Id: 9ac2890f-2dd1-41c9-aee2-253463cfa028
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2323,7 +2323,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Intensity
             Id: 9b12f931-e954-48e7-982c-ab2016bb7c50
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2332,7 +2332,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 25d05393-f502-432e-9ca3-a2383ba8ae50
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2343,7 +2343,7 @@ PostProcessingGraphInfo:
               portId: 492063bd-07cf-4e24-9884-ae431c9a2ffe
           - Name: depth
             Id: d5ec4a44-bcb6-42a8-97ec-4312fae88740
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -2354,7 +2354,7 @@ PostProcessingGraphInfo:
               portId: d882cc18-472a-4e19-9247-0cd1430ee5e9
           - Name: Sampler
             Id: b0f192e7-4db7-418e-98bb-c944aafdbb42
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2364,7 +2364,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 2eda9285-3c91-456e-b579-111974df9a46
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2376,7 +2376,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: LensFlare
@@ -2388,7 +2388,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: GhostTint
             Id: e072eb05-7d2a-492a-8eea-15312901c848
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2397,7 +2397,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Chromatic
             Id: c51deecc-ee7b-4824-8888-5bb04f17ed99
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2406,7 +2406,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uGhostCount
             Id: 25008a1c-c9c9-40ed-af3e-02bac6e8af74
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2415,7 +2415,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uGhostSpacing
             Id: 3241db93-78e1-4a17-8ff6-997f118e5082
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2424,7 +2424,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uGhostThreshold
             Id: 8a1ed0d9-cf25-4b18-83bb-61ea95b04abc
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2433,7 +2433,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uHaloRadius
             Id: 74fe2cd9-b512-4a04-be14-2e416cb0c2fd
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2442,7 +2442,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uHaloThickness
             Id: 7e25d2ee-6c59-469a-84a1-365f91b147d0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2451,7 +2451,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uHaloThreshold
             Id: 73de2788-de3e-498a-919d-6b1040bd1087
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 20
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2460,7 +2460,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: uChromaticAberration
             Id: 66e934ea-291d-418c-8525-82b7a8f24661
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 24
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2469,7 +2469,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: View
             Id: 23676463-deb6-46f6-991c-02fb697c4129
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2494,7 +2494,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: f6a9e324-70ab-453b-a44a-d072a80904c4
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2519,7 +2519,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: lightDirection
             Id: f94f3318-dfb7-48f8-9528-239f91f2d06c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2531,7 +2531,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: d2bb1ce4-b635-4b6e-b295-7ab0f6ccfd61
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2542,7 +2542,7 @@ PostProcessingGraphInfo:
               portId: 492063bd-07cf-4e24-9884-ae431c9a2ffe
           - Name: ColorGradient
             Id: 252f26cc-c5dc-48d6-8af0-c32aa9b572a0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -2551,7 +2551,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 46431030-e840-4495-8902-5ce0a33456fa
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2561,7 +2561,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: b4e20950-e1fb-4a5b-b5a0-43172be459e0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2573,7 +2573,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -2585,7 +2585,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: 0cb38f6b-2e28-45a1-a8aa-15ff0f29947c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2594,7 +2594,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: ea759663-ff5d-42fd-ac1b-4211fe4fac44
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2605,7 +2605,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 5919b873-b9e9-4619-91fd-2fe95781b6f8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2617,7 +2617,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 09851945-03fb-4de0-aba9-4f0ea225d5eb
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2629,7 +2629,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -2641,7 +2641,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: 519c6cb1-8f27-4299-98d6-b6019ef6e4c3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2650,7 +2650,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: 63cf0623-afdd-42b4-b7a9-8c7443e68537
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2661,7 +2661,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: d45282b1-928f-49e9-bfdf-fb8fbae90228
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2673,7 +2673,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: b6c565b7-2486-4c09-a673-775a5e700396
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2685,7 +2685,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -2697,7 +2697,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: f79ecfa5-eb8b-4621-a123-3d95c75ba58c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2706,7 +2706,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: c5f7d227-d247-4afd-99a8-cd4958aa6a4d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2717,7 +2717,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 5202bf7b-9917-44e0-bde8-72753117cf7a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2729,7 +2729,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: d5238c24-cd2b-4984-9f37-2bdab1de0e26
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2741,7 +2741,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -2753,7 +2753,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: 0ad5b9aa-ec9b-47f1-bbab-64661949acc2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2762,7 +2762,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: ad8e556c-74dc-4f79-8047-5ee963af46a9
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2773,7 +2773,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 12370ea4-9d0a-4007-9bf4-8b3a7b29bb93
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2785,7 +2785,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: cb9b2b36-c636-4885-900d-c7a6f23b69ac
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2797,7 +2797,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: LightShaft
@@ -2809,7 +2809,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: stepAmount
             Id: a2ad04d2-f2be-405c-a30c-7a88497da2f3
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2818,7 +2818,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: numSteps
             Id: 01119656-54d7-4369-8b31-e336cc9ad6cc
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2827,7 +2827,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: View
             Id: 962c5ec4-049f-42ff-b8a2-b51cf762a7d7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2852,7 +2852,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: 2d804200-502d-449d-864e-81e6bd4f911b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2877,7 +2877,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: lightDirection
             Id: 289aeb89-c938-4dae-9916-4b386c70403a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2889,7 +2889,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 46e22dc0-46fd-4487-877b-ff3ce2f7e80b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -2900,7 +2900,7 @@ PostProcessingGraphInfo:
               portId: 2eda9285-3c91-456e-b579-111974df9a46
           - Name: Sampler
             Id: cc227410-e113-4c59-b645-7485975e5547
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -2910,7 +2910,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: b55d0177-9075-4825-b54e-4d92e506ce38
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -2922,7 +2922,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: LightShaft
@@ -2934,7 +2934,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: stepAmount
             Id: c76e732c-18f8-4629-874b-38d93e4dc3e6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2943,7 +2943,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: numSteps
             Id: cca84ec3-d4da-4154-ad48-e7034430d6a0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -2952,7 +2952,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: View
             Id: 967e84ef-acf7-41ae-b8c3-92813f9d7fb5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -2977,7 +2977,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: ec5e7eef-f074-40fd-a105-2b7eb0b1ab6f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3002,7 +3002,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: lightDirection
             Id: e566daf4-bff3-405b-82a8-ca4af2048a89
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3014,7 +3014,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 6fa48ea8-4ef7-4f73-8e48-042c5bdd79aa
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3025,7 +3025,7 @@ PostProcessingGraphInfo:
               portId: b55d0177-9075-4825-b54e-4d92e506ce38
           - Name: Sampler
             Id: f1b9acb1-e8b3-4abf-8f83-7acb3d41f7bc
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3035,7 +3035,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 285f5832-65e4-4bf2-8583-68d4f1ab28e2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3047,7 +3047,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: LightShaft
@@ -3059,7 +3059,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: stepAmount
             Id: 823d458b-12e6-4893-986f-3a039e856503
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3068,7 +3068,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: numSteps
             Id: 1f278665-0d99-4e78-8601-6905d9de1a8f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Int32]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3077,7 +3077,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: View
             Id: d46d164b-2fe8-4734-8802-38afe1301bab
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3102,7 +3102,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: 1e99657f-7ea9-4d1c-b256-94bd38a5255c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3127,7 +3127,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: lightDirection
             Id: 16e31207-8408-4290-ad71-cd208d1fae88
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3139,7 +3139,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 44c94e4c-5f3f-4302-9225-b6e93bb8bbb8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3150,7 +3150,7 @@ PostProcessingGraphInfo:
               portId: 285f5832-65e4-4bf2-8583-68d4f1ab28e2
           - Name: Sampler
             Id: 4cf28448-f34d-4652-b74a-f856caccae2c
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3160,7 +3160,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 28ad015b-1d64-44fd-881a-7b271500ec14
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3172,7 +3172,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -3184,7 +3184,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: 1a4bb579-8864-4c8d-a564-8d8b100bb362
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3193,7 +3193,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: 08ed8588-e974-4da4-be1f-fd14a5b16551
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3204,7 +3204,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 752f510c-4135-4191-b672-23283cd79d20
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3216,7 +3216,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: c752d39b-827a-443b-ab35-498b2bfc2824
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3228,7 +3228,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Gaussian
@@ -3240,7 +3240,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: cb794042-c266-4201-965b-881448c798ae
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3249,7 +3249,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: direction
             Id: 6d367adc-12c9-4b77-9df2-f12b77bdc59a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3260,7 +3260,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: 015f1754-7679-4113-9106-bd5bf83e220f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3272,7 +3272,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 592869e5-2cd6-4076-9d15-1501e857a875
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3284,7 +3284,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Bloom
@@ -3296,7 +3296,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: DirtLens
             Id: 6ac4437a-8c56-4ec1-9f56-8eb7c6b2755d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3305,7 +3305,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Rays
             Id: aea1aea6-6f0b-41a1-b4e2-203aab2a8d3d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3314,7 +3314,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: LensFlare
             Id: b979d63a-aa13-462d-afa1-d01ca7092f79
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3323,7 +3323,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: DebugMode
             Id: 5c3721fc-eefc-4a0c-a69d-3237c99e7279
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3332,7 +3332,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ColorIntensity
             Id: 58c24b21-e321-46b3-806c-f51097fa2c81
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3341,7 +3341,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: BloomIntensity
             Id: f20dcfd2-91c2-45a5-9d95-8659f7cbd31f
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3350,7 +3350,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: DirtIntensity
             Id: e234f98a-191d-4790-8a7a-200757b2c2c0
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 8
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3359,7 +3359,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: RaysIntensity
             Id: 75305c9d-9fd7-4481-b15e-ac41549d9120
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3368,7 +3368,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: LensFlareIntensity
             Id: 5892846f-1267-4213-ac06-85779a8bb233
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3377,7 +3377,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: View
             Id: 95d66bd3-ba4b-4f03-9aec-f9f713a760af
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3402,7 +3402,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Projection
             Id: d9545685-9c23-4738-9784-3d5a4655e557
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Matrix4x4,Evergine.Mathematics]],Evergine.Framework
               Offset: 64
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3427,7 +3427,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: lightDirection
             Id: dfadcdb6-31a4-4113-8980-9deba22b8a49
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector3,Evergine.Mathematics]],Evergine.Framework
               Offset: 128
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3439,7 +3439,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input
             Id: 83668d13-afb2-4796-8e8f-d450a69ff13e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3450,7 +3450,7 @@ PostProcessingGraphInfo:
               portId: 5cd8b0ea-302e-429b-9c3f-70cb5e625319
           - Name: BloomTexture
             Id: 2678e46b-6892-4992-a47f-81712d6435a2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -3461,7 +3461,7 @@ PostProcessingGraphInfo:
               portId: cb9b2b36-c636-4885-900d-c7a6f23b69ac
           - Name: DirtTexture
             Id: 131f1aa6-abed-4325-93a9-c128a68de153
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -3470,7 +3470,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: RaysTexture
             Id: 18bf88a3-8c19-45e6-b61d-e376077bc825
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 3
@@ -3481,7 +3481,7 @@ PostProcessingGraphInfo:
               portId: 28ad015b-1d64-44fd-881a-7b271500ec14
           - Name: LensFlareTexture
             Id: b1701c5c-a770-4ceb-80db-c0bb3900fd0b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 4
@@ -3492,7 +3492,7 @@ PostProcessingGraphInfo:
               portId: 592869e5-2cd6-4076-9d15-1501e857a875
           - Name: Starburst
             Id: b75835cf-014c-4a0e-8545-0669beb889f7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 5
@@ -3501,7 +3501,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 23b7a411-a5c7-43da-bae5-f7b325b6c755
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3511,7 +3511,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: e59c3611-13f1-4883-9411-ffa4ddd92859
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3535,7 +3535,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: 97332e68-ed14-4546-9947-1b5251617a44
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3544,7 +3544,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 98f904aa-8f7a-4894-86aa-81d0c7d441b6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3555,7 +3555,7 @@ PostProcessingGraphInfo:
               portId: 5cd8b0ea-302e-429b-9c3f-70cb5e625319
           - Name: Input1
             Id: 1c4ecbee-1c65-48b9-9d10-0f734a4bb741
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -3566,7 +3566,7 @@ PostProcessingGraphInfo:
               portId: e59c3611-13f1-4883-9411-ffa4ddd92859
           - Name: Sampler
             Id: ca78be97-4b4d-4e40-bd9b-e4b285d48a8d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3576,7 +3576,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: c5907e2a-2131-41e7-9e3d-ffe0180ad5a2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3590,7 +3590,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: ToneMapping
@@ -3602,7 +3602,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: HDR
             Id: c50fded1-8ffa-496c-82d3-b048f2965728
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3611,7 +3611,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: HDROperator
             Id: d03e10e9-9e13-482f-ae02-b2b0b50e8df2
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3620,7 +3620,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: ColorGradient
             Id: 5fb21ded-530f-4f60-90ba-f7f16f7fd682
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3629,7 +3629,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Dither
             Id: ed41def1-56d4-41f9-a5f8-87ec7dc91aaf
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3638,7 +3638,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Chromatic
             Id: 901274f2-2f2e-4a78-8a59-444c553783ed
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3647,7 +3647,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Grain
             Id: e451516e-494b-4057-9f47-ca5e0b422b11
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3656,7 +3656,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Vignette
             Id: 559f9c82-f2f3-4832-9f15-8da3994ca220
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3665,7 +3665,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Distortion
             Id: 24830d0d-b4a0-4500-bc95-a4491f588988
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3674,7 +3674,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: AberrationStrength
             Id: 5eb3c937-5cce-46f4-9623-d8675301daa7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3683,7 +3683,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: TexcoordOffset
             Id: acbdb1d9-c8da-450f-8c38-84318fdf1489
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[Evergine.Mathematics.Vector2,Evergine.Mathematics]],Evergine.Framework
               Offset: 4
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3694,7 +3694,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: GrainIntensity
             Id: 7a3b1c6f-27d8-497e-a6fb-bc91b1928ece
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 12
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3703,7 +3703,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: VignettePower
             Id: bc073baa-9958-44e9-a10f-bada76bc8e20
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 16
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3712,7 +3712,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: VignetteRadio
             Id: b9d608ec-2f77-47b2-a19c-f717e2d9e94a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 20
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3721,7 +3721,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Time
             Id: b09736cc-c472-4f18-a82f-1b6940898d6a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 1
@@ -3730,7 +3730,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: a4d11b1f-aece-4344-8a88-d4c099a9c167
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3741,7 +3741,7 @@ PostProcessingGraphInfo:
               portId: c5907e2a-2131-41e7-9e3d-ffe0180ad5a2
           - Name: lookuptable
             Id: 3e160ce5-a516-4fe9-8bf5-9fae1ec07471
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -3750,7 +3750,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: distortion
             Id: ae71b570-6ed1-439b-9852-4e936710cfb8
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 2
@@ -3759,7 +3759,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Sampler
             Id: 6d5676e2-0800-4214-aabe-30d9f2e37d7a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3769,7 +3769,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: f7c45b5d-7ecf-467e-9c6b-a1162b78d6d1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3781,7 +3781,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -3793,7 +3793,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: 6fd2704a-4863-476a-a024-23b669717816
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3802,7 +3802,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: dd9b45ef-f5ce-462a-b183-38bf4294b72a
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3813,7 +3813,7 @@ PostProcessingGraphInfo:
               portId: c5907e2a-2131-41e7-9e3d-ffe0180ad5a2
           - Name: Input1
             Id: 0fc204ae-0759-4c40-aa95-fb1f4ec2938b
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -3824,7 +3824,7 @@ PostProcessingGraphInfo:
               portId: f7c45b5d-7ecf-467e-9c6b-a1162b78d6d1
           - Name: Sampler
             Id: 58cd40b8-ae38-40e0-8c17-c7c2e8d9483e
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3834,7 +3834,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 35d93dbf-a9db-4946-bc18-89e6f7c7da08
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3848,7 +3848,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Sharpen
@@ -3860,7 +3860,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: amount
             Id: e7383125-500e-45b0-9f7c-eec695be68f1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortParameterType%601[[System.Single]],Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3869,7 +3869,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: input
             Id: da6be19d-8e39-47b7-99d1-9bb5b7f50aac
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3880,7 +3880,7 @@ PostProcessingGraphInfo:
               portId: 35d93dbf-a9db-4946-bc18-89e6f7c7da08
           - Name: Sampler
             Id: 5e0d6afd-0d89-4e38-a850-f49e0e1b32ab
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3890,7 +3890,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: b55c9316-f1bc-4ec0-973e-5e1591fb3a56
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3902,7 +3902,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -3914,7 +3914,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: 419a2889-0f35-409b-8930-78a2b4b502e6
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3923,7 +3923,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: 16b4312a-73d0-4f1c-95e8-d4e1b4d2d395
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -3934,7 +3934,7 @@ PostProcessingGraphInfo:
               portId: 35d93dbf-a9db-4946-bc18-89e6f7c7da08
           - Name: Input1
             Id: dd34b2b9-ead0-44fe-95e0-1d902b3ed18d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -3945,7 +3945,7 @@ PostProcessingGraphInfo:
               portId: b55c9316-f1bc-4ec0-973e-5e1591fb3a56
           - Name: Sampler
             Id: dbeb4afc-f901-4d95-8d84-ccfabe409f63
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -3955,7 +3955,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: 59d82c05-4b5f-4e81-b322-435888f29b21
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -3969,7 +3969,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: FXAA
@@ -3981,7 +3981,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Quality
             Id: dcbb6f72-b7bc-4296-9d33-11b101db40a1
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -3990,7 +3990,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Color
             Id: e20af283-c19b-42d0-9328-c5e65e873448
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -4001,7 +4001,7 @@ PostProcessingGraphInfo:
               portId: 59d82c05-4b5f-4e81-b322-435888f29b21
           - Name: Sampler
             Id: 6a00c050-76d1-4066-a0e1-5084cf275f16
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -4011,7 +4011,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: eb20ab17-c798-4d02-b72e-7f5659197369
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -4023,7 +4023,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
       - Name: Enabled
@@ -4035,7 +4035,7 @@ PostProcessingGraphInfo:
         Inputs:
           - Name: Enabled
             Id: a9fb7729-f80e-496e-9012-d5cf10737ea7
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortDirectiveType,WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortDirectiveType,Evergine.Framework
               Offset: 0
               ResourceType: ConstantBuffer
               Slot: 0
@@ -4044,7 +4044,7 @@ PostProcessingGraphInfo:
             ConnectedWith: null
           - Name: Input0
             Id: e44435d3-a397-4baf-bda0-f404a284161d
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 0
@@ -4055,7 +4055,7 @@ PostProcessingGraphInfo:
               portId: 59d82c05-4b5f-4e81-b322-435888f29b21
           - Name: Input1
             Id: 6fef6a13-c94b-4dff-bf42-3ebb32e9e2e5
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Texture
               Slot: 1
@@ -4066,7 +4066,7 @@ PostProcessingGraphInfo:
               portId: eb20ab17-c798-4d02-b72e-7f5659197369
           - Name: Sampler
             Id: 7c774111-960b-4dd8-8b2d-eb9dd7fd8a09
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.SamplerState,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.SamplerState,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: Sampler
               Slot: 0
@@ -4076,7 +4076,7 @@ PostProcessingGraphInfo:
         Outputs:
           - Name: Output
             Id: bf4be94e-7047-4272-ae68-552ba0ef4a05
-            Type: !WaveEngine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[WaveEngine.Common.Graphics.Texture,WaveEngine.Common]],WaveEngine.Framework
+            Type: !Evergine.Framework.Graphics.PostProcessingNodePortLoadableType%601[[Evergine.Common.Graphics.Texture,Evergine.Common]],Evergine.Framework
               Offset: 0
               ResourceType: UnorderedAccessBuffer
               Slot: 0
@@ -4088,7 +4088,7 @@ PostProcessingGraphInfo:
             FixedSize:
               X: 0.0
               Y: 0.0
-            ReferencedInput: 
+            ReferencedInput:
             ScaleFactor: 0.0
             pixelFormat: Unknown
 Profiles: {}

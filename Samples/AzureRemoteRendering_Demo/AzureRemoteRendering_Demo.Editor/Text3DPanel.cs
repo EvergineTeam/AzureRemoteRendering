@@ -1,12 +1,12 @@
 ﻿using AzureRemoteRendering_Demo.Toolkit.Components.GUI;
 using System.Collections.Generic;
 using System.Linq;
-using WaveEngine.Editor.Extension;
-using WaveEngine.Editor.Extension.Attributes;
-using WaveEngine.Framework;
-using WaveEngine.Platform;
+using Evergine.Editor.Extension;
+using Evergine.Editor.Extension.Attributes;
+using Evergine.Framework;
+using Evergine.Platform;
 
-namespace WaveEngine_MRTK_Demo.Editor
+namespace Evergine_MRTK_Demo.Editor
 {
     [CustomPanelEditor(typeof(Text3D))]
     public class Text3DPanel : PanelEditor
@@ -20,7 +20,7 @@ namespace WaveEngine_MRTK_Demo.Editor
             base.Loaded();
             var assetsRootPath = Application.Current.Container.Resolve<AssetsDirectory>().RootPath;
             this.fontsPathByName = new Dictionary<string, string>() { { "Default", string.Empty } };
-            foreach (var item in WaveContentUtils.FindFonts(assetsRootPath))
+            foreach (var item in EvergineContentUtils.FindFonts(assetsRootPath))
             {
                 this.fontsPathByName.Add(item.Key, item.Value);
             }

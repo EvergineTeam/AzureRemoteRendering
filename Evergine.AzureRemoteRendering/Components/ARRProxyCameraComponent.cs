@@ -1,12 +1,12 @@
 ﻿// Copyright © Wave Engine S.L. All rights reserved. Use is subject to license terms.
 
 using System;
-using WaveEngine.Common.Graphics;
-using WaveEngine.Framework;
-using WaveEngine.Framework.Graphics;
-using WaveEngine.Framework.Managers;
+using Evergine.Common.Graphics;
+using Evergine.Framework;
+using Evergine.Framework.Graphics;
+using Evergine.Framework.Managers;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// A component that binds the Azure Remote Rendering proxy camera with an <see cref="Camera3D"/>.

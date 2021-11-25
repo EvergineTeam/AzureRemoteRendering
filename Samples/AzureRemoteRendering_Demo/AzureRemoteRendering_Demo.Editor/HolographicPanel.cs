@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using WaveEngine.Editor.Extension;
-using WaveEngine.Editor.Extension.Attributes;
-using WaveEngine.MRTK.Effects;
+using Evergine.Editor.Extension;
+using Evergine.Editor.Extension.Attributes;
+using Evergine.MRTK.Effects;
 
-namespace WaveEngine_MRTK_Demo.Editor
+namespace Evergine_MRTK_Demo.Editor
 {
     [CustomPanelEditor(typeof(HoloGraphic))]
     public class HolographicPanel : PanelEditor

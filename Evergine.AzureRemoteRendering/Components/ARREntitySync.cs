@@ -2,14 +2,14 @@
 
 using System;
 using System.Collections.Generic;
-using WaveEngine.Framework;
+using Evergine.Framework;
 using Microsoft.Azure.RemoteRendering;
-using WaveEngine.Framework.Graphics;
+using Evergine.Framework.Graphics;
 using System.Diagnostics;
 using ARREntity = Microsoft.Azure.RemoteRendering.Entity;
-using WaveEntity = WaveEngine.Framework.Entity;
+using WaveEntity = Evergine.Framework.Entity;
 
-namespace WaveEngine.AzureRemoteRendering.Components
+namespace Evergine.AzureRemoteRendering.Components
 {
     /// <summary>
     /// Ensures that the hierarchy and a position of a proxy <see cref="WaveEntity"/> and a remote

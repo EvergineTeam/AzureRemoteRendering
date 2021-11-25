@@ -1,9 +1,9 @@
 ﻿using AzureRemoteRendering_Demo.Toolkit.Components.GUI;
 using System;
 using System.Text.RegularExpressions;
-using WaveEngine.AzureRemoteRendering;
-using WaveEngine.AzureRemoteRendering.Components;
-using WaveEngine.Framework;
+using Evergine.AzureRemoteRendering;
+using Evergine.AzureRemoteRendering.Components;
+using Evergine.Framework;
 
 namespace AzureRemoteRendering_Demo.GUI
 {

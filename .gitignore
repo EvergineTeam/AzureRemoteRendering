@@ -192,7 +192,7 @@ EditorReleasePackages/
 _InstallerOutput/
 
 src/.idea/
-.waveengine
+.evergine
 
 WaveContent.cs
 *BundleArtifacts

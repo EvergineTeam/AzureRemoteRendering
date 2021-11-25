@@ -1,4 +1,9 @@
-!WaveEngine.Common.ProjectModel,WaveEngine.Common
+!Evergine.Common.ProjectModel,Evergine.Common
+Packages:
+  - Id: Evergine.Core
+    Version: 2021.11.17.2-preview
+  - Id: Evergine.MRTK.Assets
+    Version: 2021.11.16.3-preview
 Profiles:
   - AdditionalEffectTechniqueCombinations: GAMMA_COLORSPACE
     AlphaCompressionFormat: BC3_UNorm

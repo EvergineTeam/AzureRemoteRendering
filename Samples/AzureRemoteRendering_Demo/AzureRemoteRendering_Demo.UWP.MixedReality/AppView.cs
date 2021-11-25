@@ -1,10 +1,10 @@
 using AzureRemoteRendering_Demo.UWP.MixedReality.Services;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using WaveEngine.Common.Graphics;
-using WaveEngine.DirectX11;
-using WaveEngine.Framework.Services;
-using WaveEngine.MixedReality;
+using Evergine.Common.Graphics;
+using Evergine.DirectX11;
+using Evergine.Framework.Services;
+using Evergine.MixedReality;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -34,7 +34,10 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality
             // At this point we have access to the device and we can create device-dependent
             // resources.
             // Create app
-            application = new MainApplication();
+            application = new MainApplication()
+            {
+                IsLowProfile = true
+            };
 
             // Create Services
             xrDevice = new MixedRealityPlatform();
@@ -45,9 +48,9 @@ namespace AzureRemoteRendering_Demo.UWP.MixedReality
             application.Container.RegisterInstance(new VoiceCommandService());
 
             ConfigureGraphicsContext(application);
-			
-			// Creates XAudio device
-            var xaudio = new WaveEngine.XAudio2.XAudioDevice();
+
+            // Creates XAudio device
+            var xaudio = new Evergine.XAudio2.XAudioDevice();
             application.Container.RegisterInstance(xaudio);
         }
 
