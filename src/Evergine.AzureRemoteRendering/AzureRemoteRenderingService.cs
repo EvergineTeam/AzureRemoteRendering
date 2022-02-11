@@ -337,7 +337,7 @@ namespace Evergine.AzureRemoteRendering
                 dxContext.RSSetViewport(0, 0, framebuffer.Width, framebuffer.Height);
                 dxContext.OMSetRenderTargets(colorDestination, depthDestination);
 
-                dxContext.ClearRenderTargetView(colorDestination, default(System.Drawing.Color));
+                dxContext.ClearRenderTargetView(colorDestination, default(Vortice.Mathematics.Color4));
                 dxContext.ClearDepthStencilView(depthDestination, DepthStencilClearFlags.Depth, 1, 0);
 
                 if (simulationBinding.ReprojectProxy() != Result.Success)
