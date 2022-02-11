@@ -1,0 +1,9 @@
+﻿Owners: Evergine
+Description: "Evergine Azure Remote Rendering Add-on."
+Tags:
+ - Evergine
+ - Azure Remote Rendering
+ - Mixed Reality
+Nugets:
+ - Evergine.Framework
+ 

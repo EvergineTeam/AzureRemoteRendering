@@ -18,13 +18,13 @@ jobs:
     workspace:
       clean: all
     pool:
-      vmImage: "windows-2019"
+      vmImage: "windows-2022"
     variables:
-      nugetConfigPath: "$(Build.SourcesDirectory)/Evergine.AzureRemoteRendering/NuGet.config"
+      # nugetConfigPath: "$(Build.SourcesDirectory)/Evergine.AzureRemoteRendering/NuGet.config"
       nugetOutputPath: "$(Build.StagingDirectory)/nupkgs"
       wepkgOutputPath: "$(Build.StagingDirectory)/wepkgs"
-      NetCoreSDKVersion: "6.0.x"
-      NuGetVersion: "6.0.x"
+      NetCoreSDKVersion: "6.x"
+      NuGetVersion: "6.x"
 
     steps:
       - task: UseDotNet@2
@@ -38,15 +38,15 @@ jobs:
           versionSpec: "$(NuGetVersion)"
           checkLatest: true
 
-      - task: PowerShell@2
-        inputs:
-          targetType: "inline"
-          script: '"<configuration></configuration>" > $(nugetConfigPath)'
+      # - task: PowerShell@2
+      #   inputs:
+      #     targetType: "inline"
+      #     script: '"<configuration></configuration>" > $(nugetConfigPath)'
 
-      - task: NuGetCommand@2
-        inputs:
-          command: "custom"
-          arguments: 'sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json" -ConfigFile $(nugetConfigPath)'
+      # - task: NuGetCommand@2
+      #   inputs:
+      #     command: "custom"
+      #     arguments: 'sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json" -ConfigFile $(nugetConfigPath)'
 
       - task: PowerShell@2
         displayName: "Generate NuGet packages"
@@ -54,11 +54,23 @@ jobs:
           filePath: "./Generate-NuGets.ps1"
           arguments: "-Version ${{ parameters.buildVersion }} -outputfolder $(nugetOutputPath)"
 
+      - task: PowerShell@2
+        displayName: "Generate Assets package"
+        inputs:
+          filePath: "./Generate-Assets-Package.ps1"
+          arguments: "-Version ${{ parameters.buildVersion }} -outputfolder $(wepkgOutputPath)"
+
       - task: PublishBuildArtifacts@1
         displayName: "Publish Artifact: NuGets"
         inputs:
           PathtoPublish: "$(nugetOutputPath)"
           ArtifactName: "NuGets"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Artifact: Wepkgs"
+        inputs:
+          PathtoPublish: "$(wepkgOutputPath)"
+          ArtifactName: Wepkgs
 
       - task: NuGetCommand@2
         displayName: "Push NuGets to feed"
@@ -69,3 +81,14 @@ jobs:
           packagesToPush: "$(nugetOutputPath)/**/*.nupkg;!$(nugetOutputPath)/**/*.symbols.nupkg"
           nuGetFeedType: "external"
           publishFeedCredentials: ${{ parameters.publishFeed }}
+
+      - task: AzureFileCopy@2
+        displayName: "Upload to Azure BLOB packages"
+        enabled: ${{ parameters.publishEnabled }}
+        condition: and(succeeded(), ne('${{ parameters.publishContainer }}', ''))
+        inputs:
+          SourcePath: "$(wepkgOutputPath)/Evergine.ARR.${{ parameters.buildVersion }}.wepkg"
+          azureSubscription: "Waveengineteam devops connections SP"
+          Destination: AzureBlob
+          storage: everginestudio
+          ContainerName: "pkg-${{ parameters.publishContainer }}"

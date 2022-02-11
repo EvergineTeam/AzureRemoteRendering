@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureRemoteRendering_Demo",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureRemoteRendering_Demo.Editor", "AzureRemoteRendering_Demo.Editor\AzureRemoteRendering_Demo.Editor.csproj", "{95780E7C-D9B2-46ED-8D18-4DF0A33A3D6F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evergine.AzureRemoteRendering", "..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj", "{C572370D-8142-4811-8143-EEAD048A82F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evergine.AzureRemoteRendering", "..\..\src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj", "{C572370D-8142-4811-8143-EEAD048A82F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

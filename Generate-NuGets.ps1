@@ -15,7 +15,7 @@ param (
 	[string]$outputFolderBase = "nupkgs",
 	[string]$buildVerbosity = "normal",
 	[string]$buildConfiguration = "Release",
-	[string]$bindingsCsprojPath = "Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj"
+	[string]$bindingsCsprojPath = "src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj"
 )
 
 # Utility functions

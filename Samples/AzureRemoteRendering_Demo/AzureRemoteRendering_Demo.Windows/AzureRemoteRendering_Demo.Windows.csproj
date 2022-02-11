@@ -6,12 +6,12 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Evergine.DirectX11" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.HLSLEverywhere" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.XAudio2" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.Forms" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.Targets" Version="2021.11.17.2-preview" />
-    <PackageReference Include="Evergine.Targets.Windows" Version="2021.11.17.2-preview" />
+    <PackageReference Include="Evergine.DirectX11" Version="2022.2.10.4-nightly" />
+    <PackageReference Include="Evergine.HLSLEverywhere" Version="2022.2.10.4-nightly" />
+    <PackageReference Include="Evergine.XAudio2" Version="2022.2.10.4-nightly" />
+    <PackageReference Include="Evergine.Forms" Version="2022.2.10.4-nightly" />
+    <PackageReference Include="Evergine.Targets" Version="2022.2.10.4-nightly" />
+    <PackageReference Include="Evergine.Targets.Windows" Version="2022.2.10.4-nightly" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.csproj" />
@@ -19,5 +19,5 @@
   <ItemGroup Condition="$(DefineConstants.Contains('EVERGINE_EDITOR'))">
     <ProjectReference Include="..\AzureRemoteRendering_Demo.Editor\AzureRemoteRendering_Demo.Editor.csproj" />
   </ItemGroup>
-  <Import Project="..\..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.Reference.targets" />
+  <Import Project="..\..\..\src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.Reference.targets" />
 </Project>
