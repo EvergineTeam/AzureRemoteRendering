@@ -16,12 +16,13 @@
     <PackageReference Include="Evergine.Targets" Version="2022.2.10.4-nightly" />
     <PackageReference Include="Evergine.CodeScenes" Version="2022.2.10.4-nightly" />
     <PackageReference Include="Evergine.NoesisGUI" Version="2022.2.10.4-nightly" />
-    <PackageReference Include="Evergine.MRTK" Version="2021.11.25.2-preview" />
+    <PackageReference Include="Evergine.MRTK" Version="2022.2.14.1-nightly" />
+    <PackageReference Include="Evergine.AzureRemoteRendering" Version="2022.2.11.1-nightly" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Toolkit\" />
   </ItemGroup>
-  <ItemGroup>
+  <!-- <ItemGroup>
     <ProjectReference Include="..\..\..\src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj" />
-  </ItemGroup>
+  </ItemGroup> -->
 </Project>

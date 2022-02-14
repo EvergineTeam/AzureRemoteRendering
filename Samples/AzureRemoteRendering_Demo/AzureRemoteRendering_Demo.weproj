@@ -1,9 +1,11 @@
 !Evergine.Common.ProjectModel,Evergine.Common
 Packages:
   - Id: Evergine.Core
-    Version: 2022.2.10.4-nightly
+    Version: 2022.2.12.1-nightly
+  - Id: Evergine.AzureRemoteRendering
+    Version: 2022.2.11.1-nightly
   - Id: Evergine.MRTK.Assets
-    Version: 2021.11.25.2-preview
+    Version: 2022.2.14.1-nightly
 Profiles:
   - AdditionalEffectTechniqueCombinations: SHADOW_SUPPORTED-SHADOWFILTER7
     AlphaCompressionFormat: BC3_UNorm
