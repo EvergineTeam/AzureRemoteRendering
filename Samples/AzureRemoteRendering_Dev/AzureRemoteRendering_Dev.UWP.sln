@@ -2,9 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28721.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRemoteRendering_Demo.UWP", "AzureRemoteRendering_Demo.UWP\AzureRemoteRendering_Demo.UWP.csproj", "{4EDB5F4A-6CC4-4276-B531-149748FAADD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRemoteRendering_Dev.UWP", "AzureRemoteRendering_Dev.UWP\AzureRemoteRendering_Dev.UWP.csproj", "{4EDB5F4A-6CC4-4276-B531-149748FAADD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureRemoteRendering_Demo", "AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.csproj", "{49DD23FF-A131-432B-8B93-56C6E5B27227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureRemoteRendering_Dev", "AzureRemoteRendering_Dev\AzureRemoteRendering_Dev.csproj", "{49DD23FF-A131-432B-8B93-56C6E5B27227}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evergine.AzureRemoteRendering", "..\..\src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj", "{68AE97C0-995B-47EA-8C42-D2122B393D1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,14 @@ Global
 		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Debug|x64.Build.0 = Debug|Any CPU
 		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Debug|x86.Build.0 = Debug|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|ARM64.Build.0 = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|x64.ActiveCfg = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|x64.Build.0 = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|x86.ActiveCfg = Release|Any CPU
+		{68AE97C0-995B-47EA-8C42-D2122B393D1E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

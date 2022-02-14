@@ -13,4 +13,4 @@ There is a sample app at `Samples/AzureRemoteRendering_Demo`. Before running it,
 
 ## How to contribute
 
-It is recommended to use the sample to develop the add-on, linking it to the source code. To do so, comment the lines 5-6 of the file _Samples\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.weproj_, and comment the line 20 and uncomment the lines 25-27 from _Samples\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.csproj_
+It is recommended to use the sample to debug and develop the add-on. To do so, use `Samples/AzureRemoteRendering_Dev` which is the same demo project but linked with source code.

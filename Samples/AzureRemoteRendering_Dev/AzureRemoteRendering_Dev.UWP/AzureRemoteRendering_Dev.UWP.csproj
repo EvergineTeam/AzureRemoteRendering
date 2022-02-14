@@ -8,8 +8,8 @@
     <ProjectGuid>{4EDB5F4A-6CC4-4276-B531-149748FAADD3}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AzureRemoteRendering_Demo.UWP</RootNamespace>
-    <AssemblyName>AzureRemoteRendering_Demo.UWP</AssemblyName>
+    <RootNamespace>AzureRemoteRendering_Dev.UWP</RootNamespace>
+    <AssemblyName>AzureRemoteRendering_Dev.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
@@ -18,7 +18,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>AzureRemoteRendering_Demo.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>AzureRemoteRendering_Dev.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -94,36 +94,39 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
+    <Compile Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\**\*.cs">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <Compile Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="AzureRemoteRendering_Demo.UWP_TemporaryKey.pfx" />
+    <None Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\AzureRemoteRendering_Demo.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\**\*.png">
+      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="..\..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.UWP\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -146,15 +149,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AzureRemoteRendering_Demo\AzureRemoteRendering_Demo.csproj">
+    <ProjectReference Include="..\AzureRemoteRendering_Dev\AzureRemoteRendering_Dev.csproj">
       <Project>{49dd23ff-a131-432b-8b93-56c6e5b27227}</Project>
-      <Name>AzureRemoteRendering_Demo</Name>
+      <Name>AzureRemoteRendering_Dev</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\..\..\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.Reference.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
