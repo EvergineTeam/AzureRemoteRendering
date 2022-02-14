@@ -27,9 +27,9 @@ namespace AzureRemoteRendering_Demo
 
         protected override Guid HandRaySampler => EvergineContent.MRTK.Samplers.LinearWrapSampler;
 
-        protected override void CreateScene()
+        protected override void OnPostCreateXRScene()
         {
-            base.CreateScene();
+            base.OnPostCreateXRScene();
 
             var remoteSessionConfig = this.Managers.EntityManager.FindFirstComponentOfType<ARRSessionManager>().AccountInfo;
 

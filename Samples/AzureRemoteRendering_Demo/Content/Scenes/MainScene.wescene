@@ -347,18 +347,15 @@ Items:
           Y: 0.0
           Z: 0.0
         CollisionCategory: Cat1
-        FaceScaleHandlePrefab:
-          PrefabId: 00000000-0000-0000-0000-000000000000
+        FaceScaleHandlePrefab: null
         HandleGrabbedMaterial: 7c6dfc11-0f01-4d22-bfc9-bc5ca4fae227
         HandleMaterial: 9adff77b-f6b6-4683-bf28-243fafea5436
         IsEnabled: true
         LinkScale: 0.00499999989
         MaintainHandlesApparentSize: false
-        RotationHandlePrefab:
-          PrefabId: 00000000-0000-0000-0000-000000000000
+        RotationHandlePrefab: null
         RotationHandleScale: 0.0199999996
-        ScaleHandlePrefab:
-          PrefabId: 00000000-0000-0000-0000-000000000000
+        ScaleHandlePrefab: null
         ScaleHandleScale: 0.0199999996
         ShowScaleHandles: true
         ShowWireframe: true
@@ -642,18 +639,15 @@ Items:
               Y: 0.0
               Z: 0.0
             CollisionCategory: Cat1
-            FaceScaleHandlePrefab:
-              PrefabId: 00000000-0000-0000-0000-000000000000
+            FaceScaleHandlePrefab: null
             HandleGrabbedMaterial: 7c6dfc11-0f01-4d22-bfc9-bc5ca4fae227
             HandleMaterial: 9adff77b-f6b6-4683-bf28-243fafea5436
             IsEnabled: true
             LinkScale: 0.00499999989
             MaintainHandlesApparentSize: false
-            RotationHandlePrefab:
-              PrefabId: 00000000-0000-0000-0000-000000000000
+            RotationHandlePrefab: null
             RotationHandleScale: 0.0199999996
-            ScaleHandlePrefab:
-              PrefabId: 00000000-0000-0000-0000-000000000000
+            ScaleHandlePrefab: null
             ScaleHandleScale: 0.0199999996
             ShowScaleHandles: false
             ShowWireframe: false
