@@ -21,7 +21,7 @@ namespace AzureRemoteRendering_Demo
             this.Container.RegisterType<AssetsService>();
             this.Container.RegisterType<ForegroundTaskSchedulerService>();
             this.Container.RegisterType<WorkActionScheduler>();
-            this.Container.RegisterType<NoesisService>();
+            this.Container.RegisterInstance(new NoesisService());
             this.Container.RegisterInstance(new AzureRemoteRenderingService());
 
             ForegroundTaskScheduler.Foreground.Configure(this.Container);
