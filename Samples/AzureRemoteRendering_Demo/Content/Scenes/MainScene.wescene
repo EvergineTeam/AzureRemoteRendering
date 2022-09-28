@@ -1,49 +1,6 @@
 !Evergine.Framework.Assets.AssetSources.Entities.SceneModel,Evergine.Framework
 Items:
   - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
-    Name: EnvironmentManager
-    Tag: null
-    IsEnabled: true
-    IsStatic: false
-    Components:
-      - !Evergine.Framework.Graphics.Transform3D,Evergine.Framework
-        Id: f40809f8-7688-4ee4-a28e-24abb97399f8
-        IsEnabled: true
-        LocalOrientation:
-          W: 1.0
-          X: 0.0
-          Y: 0.0
-          Z: 0.0
-        LocalPosition:
-          X: 0.0
-          Y: 0.0
-          Z: 0.0
-        LocalScale:
-          X: 1.0
-          Y: 1.0
-          Z: 1.0
-      - !Evergine.Components.Graphics3D.EnvironmentComponent,Evergine.Framework
-        Id: dfcf3b5f-4faa-49c2-8004-a3e655438716
-        IntensityMultiplier: 1.0
-        IsEnabled: true
-        ReflectionProbe: b228afd2-db22-42f5-8639-be1027139f44
-        Strategy: Automatically
-      - !Evergine.AzureRemoteRendering.Components.ARRSessionManager,Evergine.AzureRemoteRendering
-        Id: 02cfe74f-3358-45f6-9c37-5c3639fb506f
-        AccountInfo:
-          AccessToken: null
-          AccountDomain: null
-          AccountId: null
-          AccountKey: null
-          AuthenticationToken: null
-          RemoteRenderingDomain: null
-        CreateAndConnectAutomatically: true
-        InitialLeaseTime: 0:01:00:00.0000000
-        IsEnabled: true
-        VMSize: Standard
-    Children: []
-    Id: 9164af7f-ca81-4a90-839d-6f5b33d6c9cd
-  - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
     Name: Camera
     Tag: null
     IsEnabled: true
@@ -70,14 +27,15 @@ Items:
         IsEnabled: true
         MaxPitch: 1.49225616
         MouseSensibility: 0.0299999993
-        Speed: 5.0
+        MoveSpeed: 5.0
+        RotationSpeed: 5.0
         TouchMoveAndOrientationRatio: 0.5
         TouchSensibility: 1.0
         UpdateOrder: 0.5
       - !Evergine.Framework.Graphics.Camera3D,Evergine.Framework
         Id: fb5ab7da-817a-4356-b69d-2c166dff0c1f
         Aperture: 1.0
-        AspectRatio: 1.71794868
+        AspectRatio: 1.81694913
         AutoDepthBounds: false
         AutoExposureEnabled: false
         CameraOrder: 0.0
@@ -109,7 +67,7 @@ Items:
         MinLogLuminance: -10.0
         NearPlane: 0.100000001
         ScreenViewport:
-          Height: 312.0
+          Height: 295.0
           MaxDepth: 1.0
           MinDepth: 0.0
           Width: 536.0
@@ -242,7 +200,8 @@ Items:
         Id: c3ec7171-c013-487d-adab-45a8b8a2a9ca
         AsignedTo: Default
         IsEnabled: true
-        Material: 851ea2d2-0abd-4c18-bb09-83fe5d24503a
+        Material: 2636d7a8-7525-4378-8419-2ff8b57898dd
+        UseCopy: false
       - !Evergine.Components.Graphics3D.SphereMesh,Evergine.Components
         Id: f5c88d4e-dc50-4fef-8b06-a75b29f0a938
         Diameter: 1.0
@@ -368,9 +327,6 @@ Items:
         UpdateOrder: 0.5
         WireframeMaterial: d04c6b19-b181-4798-8052-73388883abfe
         WireframeShape: Cubic
-      - !AzureRemoteRendering_Demo.GUI.RemoteModelBoundingUpdater,AzureRemoteRendering_Demo
-        Id: 77c4f7f3-7fbe-4aba-b20c-b55f3098c1ce
-        IsEnabled: true
       - !Evergine.MRTK.SDK.Features.Input.Handlers.Manipulation.SimpleManipulationHandler,Evergine.MRTK
         Id: dc61ad0f-c673-4c5a-8e68-a4d9e1be5030
         Constraints: ConstraintRotX, ConstraintRotZ
@@ -393,6 +349,9 @@ Items:
         IsEnabled: true
         ManipulationEndedSound: 225031ed-2f89-4ab3-8f3b-ec380424b7bc
         ManipulationStartedSound: 225031ed-2f89-4ab3-8f3b-ec380424b7bc
+      - !AzureRemoteRendering_Demo.GUI.RemoteModelBoundingUpdater,AzureRemoteRendering_Dev
+        Id: 214446fd-5612-4645-8120-99ca4636093b
+        IsEnabled: true
     Children:
       - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
         Name: sphere
@@ -421,6 +380,7 @@ Items:
             AsignedTo: Default
             IsEnabled: true
             Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+            UseCopy: false
           - !Evergine.Components.Graphics3D.SphereMesh,Evergine.Components
             Id: 25130df6-db82-41df-b2a0-7c01c4cdf11c
             Diameter: 0.100000001
@@ -469,8 +429,8 @@ Items:
         SmoothDistanceFactor: 0.5
         SmoothPositionFactor: 0.100000001
         UpdateOrder: 0.5
-      - !AzureRemoteRendering_Demo.GUI.StatusComponent,AzureRemoteRendering_Demo
-        Id: 009aaa32-ff52-41df-8cb9-8cbe5ad9d919
+      - !AzureRemoteRendering_Demo.GUI.StatusComponent,AzureRemoteRendering_Dev
+        Id: 322f0a02-1007-4793-a7fb-7d935d361cb0
         IsEnabled: true
     Children:
       - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
@@ -480,12 +440,12 @@ Items:
         IsStatic: false
         Components:
           - !Evergine.Framework.Graphics.Transform3D,Evergine.Framework
-            Id: 631f9186-c517-4c91-bdd2-fac8dcb813ca
+            Id: a94db651-f669-43a3-a10b-d1a3ddd36043
             IsEnabled: true
             LocalOrientation:
-              W: 1.94707184E-07
+              W: 1.0
               X: 0.0
-              Y: 1.0
+              Y: 0.0
               Z: -0.0
             LocalPosition:
               X: 0.0
@@ -495,40 +455,37 @@ Items:
               X: 1.0
               Y: 1.0
               Z: 1.0
-          - !AzureRemoteRendering_Demo.Toolkit.Components.GUI.Text3D,AzureRemoteRendering_Demo
-            Id: ee4b1857-338f-4bf6-aa82-69036ea70a6a
-            Alpha: 1.0
-            Background:
-              A: 0
-              B: 0
-              G: 0
-              R: 0
-            CustomHeight: false
-            CustomWidth: false
-            FontFamilySource: null
-            FontSize: 47
-            FontStretch: Normal
-            FontStyle: Normal
-            FontWeight: Normal
-            Foreground:
+          - !Evergine.Components.Fonts.Text3DMesh,Evergine.Components
+            Id: 9c2affd1-da73-45f1-8c6d-a0a2ba7b7754
+            Color:
               A: 255
               B: 255
               G: 255
               R: 255
-            Height: 0.0124338623
+            Ellipsis: true
+            Font: d1322288-d9e9-4b1e-b2fe-ca281f0388a2
             HorizontalAlignment: Center
             IsEnabled: true
-            Normal: ZNegative
+            Layer: e35c59a9-26ab-4b4c-8210-4b1f21c31530
+            LineSpacing: 0.0
             Origin:
               X: 0.5
               Y: 0.5
-            PixelDensity: 3780
+            ScaleFactor: 0.0299999993
+            Size:
+              X: 0.349999994
+              Y: 0.0500000007
             Text: Disconnected
-            TextAlignment: Left
-            TextWrapping: NoWrap
-            UpdateOrder: 0.5
             VerticalAlignment: Center
-            Width: 0.0896825418
+            Wrapping: true
+          - !Evergine.Components.Fonts.Text3DRenderer,Evergine.Components
+            Id: 47fa6d45-db47-480b-bc95-238064241095
+            DebugBoundingbox: true
+            DebugMode: false
+            IsCullingEnabled: true
+            IsEnabled: true
+            OrderBias: 0
+            RenderFlags: CastShadows
         Children:
           - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
             Name: plane
@@ -540,14 +497,14 @@ Items:
                 Id: 9f8f8137-75ab-4b60-b8ae-b82f23ffe5a5
                 IsEnabled: true
                 LocalOrientation:
-                  W: 1.0
+                  W: 1.94707184E-07
                   X: 0.0
-                  Y: 0.0
+                  Y: 1.0
                   Z: 0.0
                 LocalPosition:
-                  X: 0.0
+                  X: 1.94707184E-09
                   Y: 0.0
-                  Z: 0.00499999989
+                  Z: -0.00499999989
                 LocalScale:
                   X: 1.0
                   Y: 1.0
@@ -557,19 +514,23 @@ Items:
                 AsignedTo: Default
                 IsEnabled: true
                 Material: 0852af68-ed44-4dd5-bebb-05c15449d498
+                UseCopy: false
               - !Evergine.Components.Graphics3D.PlaneMesh,Evergine.Components
                 Id: a6b27563-b38e-49b5-bf04-49606c687008
                 Height: 0.0500000007
-                InitialU: 0.0
-                InitialV: 0.0
                 IsEnabled: true
+                Origin:
+                  X: 0.5
+                  Y: 0.5
                 PlaneNormal: ZNegative
                 TwoSides: false
+                UMirror: false
+                UOffset: 0.0
                 UTile: 1.0
-                UVHorizontalFlip: false
-                UVVerticalFlip: false
-                Width: 0.25
-                YTile: 1.0
+                VMirror: false
+                VOffset: 0.0
+                VTile: 1.0
+                Width: 0.349999994
               - !Evergine.Components.Graphics3D.MeshRenderer,Evergine.Framework
                 Id: 74faa3c5-6e88-49c5-8613-1127e9569de6
                 DebugBoundingbox: true
@@ -579,7 +540,7 @@ Items:
                 RenderFlags: CastShadows
             Children: []
             Id: 1915564e-090c-448c-b6a9-3d4340473087
-        Id: 857cdf41-b3be-4980-a748-a117652d234b
+        Id: e4f76bd9-bd09-47be-8ede-8bf70ad35bcc
     Id: 2f73f58d-e566-4436-a9a2-4863574676e5
   - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
     Name: enabledWhenConnected
@@ -603,9 +564,13 @@ Items:
           X: 1.0
           Y: 1.0
           Z: 1.0
-      - !AzureRemoteRendering_Demo.GUI.EnableWhenConnected,AzureRemoteRendering_Demo
-        Id: 9279a7f5-253c-44c7-9a35-e76ea961d3a9
+      - !Evergine.Framework.ErrorComponent,Evergine.Framework
+        Id: b0878958-edf7-403b-a5e3-932f42fb2ee8
         IsEnabled: true
+        OldType: '!AzureRemoteRendering_Demo.GUI.EnableWhenConnected,AzureRemoteRendering_Demo'
+        Properties:
+          Id: 9279a7f5-253c-44c7-9a35-e76ea961d3a9
+          IsEnabled: true
     Children:
       - !Evergine.Framework.Assets.AssetSources.Entities.EntityItemModel,Evergine.Framework
         Name: flattenedBoundingBox
@@ -716,7 +681,7 @@ Items:
                   Z: 0.0
                 LocalPosition:
                   X: 0.0
-                  Y: 0.0
+                  Y: 0.159999996
                   Z: 0.0
                 LocalScale:
                   X: 1.0
@@ -727,19 +692,23 @@ Items:
                 AsignedTo: Default
                 IsEnabled: true
                 Material: 76254053-dba8-4ecd-8ffd-2989ae519c06
+                UseCopy: false
               - !Evergine.Components.Graphics3D.PlaneMesh,Evergine.Components
                 Id: 3bdb50c3-e10d-4142-83b5-5541906759f8
                 Height: 1.0
-                InitialU: 0.0
-                InitialV: 0.0
                 IsEnabled: true
+                Origin:
+                  X: 0.5
+                  Y: 0.5
                 PlaneNormal: ZNegative
                 TwoSides: true
+                UMirror: false
+                UOffset: 0.0
                 UTile: 1.0
-                UVHorizontalFlip: false
-                UVVerticalFlip: false
+                VMirror: false
+                VOffset: 0.0
+                VTile: 1.0
                 Width: 1.0
-                YTile: 1.0
               - !Evergine.Components.Graphics3D.MeshRenderer,Evergine.Framework
                 Id: 5c2f8fbd-e5c1-4222-99ac-78ac9a1d95ae
                 DebugBoundingbox: true
@@ -788,11 +757,38 @@ Items:
               X: 1.0
               Y: 1.0
               Z: 1.0
-          - !AzureRemoteRendering_Demo.GUI.CommandsController,AzureRemoteRendering_Demo
-            Id: 7a392df3-2762-442a-91a0-7910bb43d5d6
+          - !AzureRemoteRendering_Demo.GUI.CommandsController,AzureRemoteRendering_Dev
+            Id: d39a8e7f-7ae3-48bb-900b-a719042d622d
             IsEnabled: true
             UpdateOrder: 0.5
         Children: []
         Id: 3aedf953-0bea-400c-af98-9363a53f620f
     Id: b0056bdf-de6c-4edc-a0f2-2b5791f2a9a1
-Managers: []
+Managers:
+  - !Evergine.Framework.Managers.EnvironmentManager,Evergine.Framework
+    Id: fcbc4318-ce5d-4b60-9bdb-f655fc62a5b8
+    IBLReflectionProbe: b228afd2-db22-42f5-8639-be1027139f44
+    IntensityMultiplier: 1.0
+    IsEnabled: true
+    Strategy: Automatically
+  - !Evergine.Framework.Managers.ShadowMapManager,Evergine.Framework
+    Id: 8a058985-2830-4da7-913f-60e738ee5a41
+    AutoDepthBounds: false
+    DirectionalResolution: Size_1024
+    IsEnabled: true
+    PunctualResolution: Size_512
+    ShadowFilter: PCF3x3
+    SpotResolution: Size_512
+  - !Evergine.AzureRemoteRendering.Components.ARRSessionManager,Evergine.AzureRemoteRendering
+    Id: d55ca04e-4d6c-43a9-aed4-5402bf5909de
+    AccountInfo:
+      AccessToken: null
+      AccountDomain: null
+      AccountId: null
+      AccountKey: null
+      AuthenticationToken: null
+      RemoteRenderingDomain: null
+    CreateAndConnectAutomatically: true
+    InitialLeaseTime: 0:01:00:00.0000000
+    IsEnabled: true
+    VMSize: Standard

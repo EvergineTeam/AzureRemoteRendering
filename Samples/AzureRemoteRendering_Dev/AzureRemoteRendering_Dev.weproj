@@ -31,4 +31,4 @@ Profiles:
     Name: UWP.MixedReality
     NonAlphaCompressionFormat: BC3_UNorm
     Platform: UWP
-ResourcesPath: Content
+ResourcesPath: ..\AzureRemoteRendering_Demo\Content

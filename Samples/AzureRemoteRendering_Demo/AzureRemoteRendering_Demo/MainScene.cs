@@ -31,7 +31,7 @@ namespace AzureRemoteRendering_Demo
         {
             base.OnPostCreateXRScene();
 
-            var remoteSessionConfig = this.Managers.EntityManager.FindFirstComponentOfType<ARRSessionManager>().AccountInfo;
+            var remoteSessionConfig = this.Managers.FindManager<ARRSessionManager>().AccountInfo;
 
             // Users need to fill out the following with their account data and model
             remoteSessionConfig.AccountId = "00000000-0000-0000-0000-000000000000";

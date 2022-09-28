@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Evergine.Framework;
+using Evergine.Framework.Managers;
 
 namespace Evergine.AzureRemoteRendering.Components
 {
@@ -13,7 +14,7 @@ namespace Evergine.AzureRemoteRendering.Components
     /// Component that handles the initialization of <see cref="AzureRemoteRenderingService"/> and the creation and
     /// connection of a <see cref="RenderingSession"/>.
     /// </summary>
-    public class ARRSessionManager : Component
+    public class ARRSessionManager : SceneManager
     {
         /// <summary>
         /// The <see cref="AzureRemoteRenderingService"/> dependency used by this component.

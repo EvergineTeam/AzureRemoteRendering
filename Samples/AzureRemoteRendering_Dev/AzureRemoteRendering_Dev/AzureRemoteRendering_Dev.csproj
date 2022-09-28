@@ -20,12 +20,12 @@
     <PackageReference Include="Evergine.Components" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.Framework" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.Mathematics" Version="2022.9.28.1" />
+    <PackageReference Include="Evergine.MRTK" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.Platform" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.Bullet" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.Targets" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.CodeScenes" Version="2022.9.28.1" />
     <PackageReference Include="Evergine.NoesisGUI" Version="2022.9.28.1" />
-    <PackageReference Include="Evergine.MRTK" Version="2022.9.28.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Evergine.AzureRemoteRendering\Evergine.AzureRemoteRendering.csproj" />

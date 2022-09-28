@@ -1,9 +1,9 @@
-﻿using AzureRemoteRendering_Demo.Toolkit.Components.GUI;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using Evergine.AzureRemoteRendering;
 using Evergine.AzureRemoteRendering.Components;
 using Evergine.Framework;
+using Evergine.Components.Fonts;
 
 namespace AzureRemoteRendering_Demo.GUI
 {
@@ -13,7 +13,7 @@ namespace AzureRemoteRendering_Demo.GUI
         protected AzureRemoteRenderingService arrService;
 
         [BindComponent(source: BindComponentSource.Children)]
-        protected Text3D text3D;
+        protected Text3DMesh text3D;
 
         [BindComponent(source: BindComponentSource.Scene)]
         protected ARRModelLoader modelLoader;
