@@ -2,7 +2,6 @@ using Evergine.Framework;
 using Evergine.Framework.Services;
 using Evergine.Framework.Threading;
 using Evergine.Platform;
-using Evergine.NoesisGUI;
 using Evergine.AzureRemoteRendering;
 
 namespace AzureRemoteRendering_Demo
@@ -21,7 +20,6 @@ namespace AzureRemoteRendering_Demo
             this.Container.RegisterType<AssetsService>();
             this.Container.RegisterType<ForegroundTaskSchedulerService>();
             this.Container.RegisterType<WorkActionScheduler>();
-            this.Container.RegisterInstance(new NoesisService());
             this.Container.RegisterInstance(new AzureRemoteRenderingService());
 
             ForegroundTaskScheduler.Foreground.Configure(this.Container);
