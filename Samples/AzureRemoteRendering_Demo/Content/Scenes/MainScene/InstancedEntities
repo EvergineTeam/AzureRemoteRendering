@@ -35,7 +35,6 @@ Items:
       - !Evergine.Framework.Graphics.Camera3D,Evergine.Framework
         Id: fb5ab7da-817a-4356-b69d-2c166dff0c1f
         Aperture: 1.0
-        AspectRatio: 1.81694913
         AutoDepthBounds: false
         AutoExposureEnabled: false
         CameraOrder: 0.0
@@ -43,9 +42,6 @@ Items:
         ClearFlags: All
         ClearStencil: 0
         Compensation: 0.0
-        DepthRange:
-          MaxDepth: 1.0
-          MinDepth: 0.0
         DisplayTag: null
         Exposure: 1.0
         FarPlane: 1000.0
@@ -66,13 +62,6 @@ Items:
         LogLuminanceRange: 12.0
         MinLogLuminance: -10.0
         NearPlane: 0.100000001
-        ScreenViewport:
-          Height: 295.0
-          MaxDepth: 1.0
-          MinDepth: 0.0
-          Width: 536.0
-          X: 0.0
-          Y: 0.0
         Sensitivity: 100.0
         SensorSize:
           X: 36.0
@@ -80,10 +69,6 @@ Items:
         ShutterSpeed: 1.20000005
         TAU: 1.10000002
         TagFilter: null
-        UpVector:
-          X: 0.0
-          Y: 1.0
-          Z: 0.0
         UsePhysicalParameters: false
       - !Evergine.AzureRemoteRendering.Components.ARRProxyCameraComponent,Evergine.AzureRemoteRendering
         Id: e55fc126-352c-4446-8375-1fe46c1198df
@@ -200,15 +185,15 @@ Items:
         Id: c3ec7171-c013-487d-adab-45a8b8a2a9ca
         AsignedTo: Default
         IsEnabled: true
-        Material: 2636d7a8-7525-4378-8419-2ff8b57898dd
+        Material: f6ee1e0b-6776-4af4-9ae6-193d87891ac3
         UseCopy: false
       - !Evergine.Components.Graphics3D.SphereMesh,Evergine.Components
         Id: f5c88d4e-dc50-4fef-8b06-a75b29f0a938
         Diameter: 1.0
         IsEnabled: true
         Tessellation: 32
-        UVHorizontalFlip: false
-        UVVerticalFlip: false
+        UMirror: false
+        VMirror: false
       - !Evergine.Components.Graphics3D.MeshRenderer,Evergine.Framework
         Id: f75e0491-5e4d-45f5-bd8b-efd4a10b961c
         DebugBoundingbox: true
@@ -299,6 +284,7 @@ Items:
       - !Evergine.MRTK.SDK.Features.UX.Components.BoundingBox.BoundingBox,Evergine.MRTK
         Id: cbcd21d4-ea6a-44fe-9cd9-42c98f883952
         AutoCalculate: true
+        BoxFocusedMaterial: null
         BoxGrabbedMaterial: 0852af68-ed44-4dd5-bebb-05c15449d498
         BoxMaterial: 76254053-dba8-4ecd-8ffd-2989ae519c06
         BoxPadding:
@@ -307,6 +293,7 @@ Items:
           Z: 0.0
         CollisionCategory: Cat1
         FaceScaleHandlePrefab: null
+        HandleFocusedMaterial: null
         HandleGrabbedMaterial: 7c6dfc11-0f01-4d22-bfc9-bc5ca4fae227
         HandleMaterial: 9adff77b-f6b6-4683-bf28-243fafea5436
         IsEnabled: true
@@ -386,8 +373,8 @@ Items:
             Diameter: 0.100000001
             IsEnabled: true
             Tessellation: 16
-            UVHorizontalFlip: false
-            UVVerticalFlip: false
+            UMirror: false
+            VMirror: false
           - !Evergine.Components.Graphics3D.MeshRenderer,Evergine.Framework
             Id: 33e40ed6-2270-41af-ab26-68271a21e99d
             DebugBoundingbox: true
@@ -446,7 +433,7 @@ Items:
               W: 1.0
               X: 0.0
               Y: 0.0
-              Z: -0.0
+              Z: 0.0
             LocalPosition:
               X: 0.0
               Y: 0.0
@@ -475,6 +462,7 @@ Items:
             Size:
               X: 0.349999994
               Y: 0.0500000007
+            Softness: 0.75
             Text: Disconnected
             VerticalAlignment: Center
             Wrapping: true
@@ -597,6 +585,7 @@ Items:
           - !Evergine.MRTK.SDK.Features.UX.Components.BoundingBox.BoundingBox,Evergine.MRTK
             Id: 58dd4899-5e3d-4e49-b04f-e810f4f3a722
             AutoCalculate: true
+            BoxFocusedMaterial: null
             BoxGrabbedMaterial: 0852af68-ed44-4dd5-bebb-05c15449d498
             BoxMaterial: null
             BoxPadding:
@@ -605,6 +594,7 @@ Items:
               Z: 0.0
             CollisionCategory: Cat1
             FaceScaleHandlePrefab: null
+            HandleFocusedMaterial: null
             HandleGrabbedMaterial: 7c6dfc11-0f01-4d22-bfc9-bc5ca4fae227
             HandleMaterial: 9adff77b-f6b6-4683-bf28-243fafea5436
             IsEnabled: true
@@ -631,7 +621,7 @@ Items:
             Margin: 0.0399999991
             Offset:
               X: 0.0
-              Y: 0.0
+              Y: 0.159999982
               Z: 0.0
             OrientationOffset:
               W: 1.0
