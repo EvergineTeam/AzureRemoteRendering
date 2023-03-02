@@ -2,13 +2,13 @@
 Packages:
   - Id: Evergine.Core
     LocalPath: null
-    Version: 2022.9.28.1
+    Version: 2023.3.1.1
   - Id: Evergine.ARR
     LocalPath: null
     Version: 2022.9.28.1
   - Id: Evergine.MRTK
     LocalPath: null
-    Version: 2022.9.28.1
+    Version: 2023.3.2.1
 Profiles:
   - AdditionalEffectTechniqueCombinations: SHADOW_SUPPORTED-SHADOWFILTER7
     AlphaCompressionFormat: BC3_UNorm
