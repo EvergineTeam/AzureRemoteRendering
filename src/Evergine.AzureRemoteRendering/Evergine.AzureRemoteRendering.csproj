@@ -11,6 +11,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>Evergine;C#;Game Engine;DirectX;OpenGL;OpenGLES;Vulkan;Metal;2D;3D;AR;VR;MixedReality;Mobile;HoloLens</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(RRPlatform)' == ''">
     <RRPlatform>win_x64</RRPlatform>
