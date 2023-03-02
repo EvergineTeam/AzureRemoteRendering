@@ -27,6 +27,12 @@ namespace AzureRemoteRendering_Demo
 
         protected override Guid HandRaySampler => EvergineContent.MRTK.Samplers.LinearWrapSampler;
 
+        protected override Guid LeftControllerModelPrefab => EvergineContent.MRTK.Prefabs.DefaultLeftController_weprefab;
+
+        protected override Guid RightControllerModelPrefab => EvergineContent.MRTK.Prefabs.DefaultRightController_weprefab;
+
+        protected override float MaxFarCursorLength => 0.5f;
+
         protected override void OnPostCreateXRScene()
         {
             base.OnPostCreateXRScene();
