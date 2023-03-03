@@ -15,7 +15,7 @@
     <PackageReference Include="Evergine.Targets" Version="2023.3.1.1" />
     <PackageReference Include="Evergine.CodeScenes" Version="2023.3.1.1" />
     <PackageReference Include="Evergine.MRTK" Version="2023.3.2.1" />
-    <PackageReference Include="Evergine.AzureRemoteRendering" Version="2023.3.2.1-nightly" />
+    <PackageReference Include="Evergine.AzureRemoteRendering" Version="2023.3.3.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Toolkit\" />

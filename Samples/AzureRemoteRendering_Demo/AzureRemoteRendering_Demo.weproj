@@ -5,7 +5,7 @@ Packages:
     Version: 2023.3.1.1
   - Id: Evergine.ARR
     LocalPath: null
-    Version: 2023.3.2.1-nightly
+    Version: 2023.3.3.1
   - Id: Evergine.MRTK
     LocalPath: null
     Version: 2023.3.2.1
